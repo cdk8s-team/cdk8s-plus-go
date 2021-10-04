@@ -8,9 +8,9 @@ information to effectively respond to your bug report or contribution.
 
 ## Where/What to Contribute
 
-The Go code located in this repository is auto generated and pushed as part of the release process of the `cdk8s-core` jsii library.
+The Go code located in this repository is auto generated and pushed as part of the release process of the `cdk8s-plus-XX` jsii libraries.
 
-Therefore, any contribution pertaining that code should be performed in the [`cdk8s-core`](https://github.com/cdk8s-team/cdk8s-core) repository.
+Therefore, any contribution pertaining that code should be performed in the [`cdk8s-plus`](https://github.com/cdk8s-team/cdk8s-plus) repository.
 
 Essentially, contributions to this repository should be limited to the `README.md` file.
 
