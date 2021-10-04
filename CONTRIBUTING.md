@@ -6,6 +6,13 @@ documentation, we greatly value feedback and contributions from our community.
 Please read through this document before submitting any issues or pull requests to ensure we have all the necessary
 information to effectively respond to your bug report or contribution.
 
+## Where/What to Contribute
+
+The Go code located in this repository is auto generated and pushed as part of the release process of the `cdk8s-core` jsii library.
+
+Therefore, any contribution pertaining that code should be performed in the [`cdk8s-core`](https://github.com/cdk8s-team/cdk8s-core) repository.
+
+Essentially, contributions to this repository should be limited to the `README.md` file.
 
 ## Reporting Bugs/Feature Requests
 
@@ -39,6 +46,12 @@ To send us a pull request, please:
 GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
 [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
+### Developer Certificate Of Origin (DCO)
+
+Every commit should be signed-off in compliance with the [Developer Certificate Of Origin](./DCO).
+You can sign your commits by using the `git commit -s` command.
+
+> To configure automatic signoff, see [git-hooks](./git-hooks/README.md).
 
 ## Finding contributions to work on
 Looking at the existing issues is a great way to find something to contribute on. As our projects, by default, use the default GitHub issue labels (enhancement/bug/duplicate/help wanted/invalid/question/wontfix), looking at any 'help wanted' issues is a great place to start.
