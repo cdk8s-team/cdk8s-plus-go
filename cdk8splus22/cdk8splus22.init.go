@@ -84,7 +84,8 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
-			_jsii_.MemberMethod{JsiiMethod: "expose", GoMethod: "Expose"},
+			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
+			_jsii_.MemberMethod{JsiiMethod: "exposeViaService", GoMethod: "ExposeViaService"},
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
@@ -146,8 +147,16 @@ func init() {
 		reflect.TypeOf((*EnvValueFromSecretOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ExposeOptions",
-		reflect.TypeOf((*ExposeOptions)(nil)).Elem(),
+		"cdk8s-plus-22.ExposeDeploymentViaIngressOptions",
+		reflect.TypeOf((*ExposeDeploymentViaIngressOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.ExposeDeploymentViaServiceOptions",
+		reflect.TypeOf((*ExposeDeploymentViaServiceOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.ExposeServiceViaIngressOptions",
+		reflect.TypeOf((*ExposeServiceViaIngressOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.HttpGetProbeOptions",
@@ -515,6 +524,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addSelector", GoMethod: "AddSelector"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "clusterIP", GoGetter: "ClusterIP"},
+			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
 			_jsii_.MemberProperty{JsiiProperty: "externalName", GoGetter: "ExternalName"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
