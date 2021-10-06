@@ -10,6 +10,34 @@ import (
 	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus20/internal"
 )
 
+// Options to add a deployment to a service.
+type AddDeploymentOptions struct {
+	// The name of this port within the service.
+	//
+	// This must be a DNS_LABEL. All
+	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
+	// field in EndpointPort objects. Optional if only one ServicePort is defined
+	// on this service.
+	Name *string `json:"name"`
+	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
+	//
+	// Usually assigned by the system. If specified, it will be
+	// allocated to the service if unused or else creation of the service will
+	// fail. Default is to auto-allocate a port if the ServiceType of this Service
+	// requires one.
+	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+	//
+	NodePort *float64 `json:"nodePort"`
+	// The IP protocol for this port.
+	//
+	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
+	Protocol Protocol `json:"protocol"`
+	// The port number the service will redirect to.
+	TargetPort *float64 `json:"targetPort"`
+	// The port number the service will bind to.
+	Port *float64 `json:"port"`
+}
+
 // Options for `configmap.addDirectory()`.
 type AddDirectoryOptions struct {
 	// Glob patterns to exclude when adding files.
@@ -566,7 +594,7 @@ type Deployment interface {
 	Volumes() *[]Volume
 	AddContainer(container *ContainerProps) Container
 	AddVolume(volume Volume)
-	Expose(port *float64, options *ExposeOptions) Service
+	Expose(options *ExposeOptions) Service
 	OnPrepare()
 	OnSynthesize(session constructs.ISynthesisSession)
 	OnValidate() *[]*string
@@ -731,13 +759,13 @@ func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
 // Expose a deployment via a service.
 //
 // This is equivalent to running `kubectl expose deployment <deployment-name>`.
-func (d *jsiiProxy_Deployment) Expose(port *float64, options *ExposeOptions) Service {
+func (d *jsiiProxy_Deployment) Expose(options *ExposeOptions) Service {
 	var returns Service
 
 	_jsii_.Invoke(
 		d,
 		"expose",
-		[]interface{}{port, options},
+		[]interface{}{options},
 		&returns,
 	)
 
@@ -1010,6 +1038,8 @@ type ExposeOptions struct {
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
 	Name *string `json:"name"`
+	// The port that the service should serve on.
+	Port *float64 `json:"port"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
@@ -2875,7 +2905,7 @@ type Service interface {
 	Ports() *[]*ServicePort
 	Selector() *map[string]*string
 	Type() ServiceType
-	AddDeployment(deployment Deployment, port *float64, options *ServicePortOptions)
+	AddDeployment(deployment Deployment, options *AddDeploymentOptions)
 	AddSelector(label *string, value *string)
 	OnPrepare()
 	OnSynthesize(session constructs.ISynthesisSession)
@@ -2999,11 +3029,11 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 // If not targetPort is specific in the portOptions, then requests will be routed
 // to the port exposed by the first container in the deployment's pods.
 // The deployment's `labelSelector` will be used to select pods.
-func (s *jsiiProxy_Service) AddDeployment(deployment Deployment, port *float64, options *ServicePortOptions) {
+func (s *jsiiProxy_Service) AddDeployment(deployment Deployment, options *AddDeploymentOptions) {
 	_jsii_.InvokeVoid(
 		s,
 		"addDeployment",
-		[]interface{}{deployment, port, options},
+		[]interface{}{deployment, options},
 	)
 }
 

@@ -8,6 +8,10 @@ import (
 
 func init() {
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.AddDeploymentOptions",
+		reflect.TypeOf((*AddDeploymentOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.AddDirectoryOptions",
 		reflect.TypeOf((*AddDirectoryOptions)(nil)).Elem(),
 	)
