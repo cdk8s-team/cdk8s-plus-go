@@ -594,7 +594,8 @@ type Deployment interface {
 	Volumes() *[]Volume
 	AddContainer(container *ContainerProps) Container
 	AddVolume(volume Volume)
-	Expose(options *ExposeOptions) Service
+	ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) IngressV1Beta1
+	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
 	OnPrepare()
 	OnSynthesize(session constructs.ISynthesisSession)
 	OnValidate() *[]*string
@@ -756,15 +757,31 @@ func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
 	)
 }
 
+// Expose a deployment via an ingress.
+//
+// This will first expose the deployment with a service, and then expose the service via an ingress.
+func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) IngressV1Beta1 {
+	var returns IngressV1Beta1
+
+	_jsii_.Invoke(
+		d,
+		"exposeViaIngress",
+		[]interface{}{path, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Expose a deployment via a service.
 //
 // This is equivalent to running `kubectl expose deployment <deployment-name>`.
-func (d *jsiiProxy_Deployment) Expose(options *ExposeOptions) Service {
+func (d *jsiiProxy_Deployment) ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service {
 	var returns Service
 
 	_jsii_.Invoke(
 		d,
-		"expose",
+		"exposeViaService",
 		[]interface{}{options},
 		&returns,
 	)
@@ -1032,8 +1049,8 @@ type EnvValueFromSecretOptions struct {
 	Optional *bool `json:"optional"`
 }
 
-// Options for exposing a deployment via a service.
-type ExposeOptions struct {
+// Options for exposing a deployment via an ingress.
+type ExposeDeploymentViaIngressOptions struct {
 	// The name of the service to expose.
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
@@ -1048,6 +1065,32 @@ type ExposeOptions struct {
 	ServiceType ServiceType `json:"serviceType"`
 	// The port number the service will redirect to.
 	TargetPort *float64 `json:"targetPort"`
+	// The ingress to add rules to.
+	Ingress IngressV1Beta1 `json:"ingress"`
+}
+
+// Options for exposing a deployment via a service.
+type ExposeDeploymentViaServiceOptions struct {
+	// The name of the service to expose.
+	//
+	// This will be set on the Service.metadata and must be a DNS_LABEL
+	Name *string `json:"name"`
+	// The port that the service should serve on.
+	Port *float64 `json:"port"`
+	// The IP protocol for this port.
+	//
+	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
+	Protocol Protocol `json:"protocol"`
+	// The type of the exposed service.
+	ServiceType ServiceType `json:"serviceType"`
+	// The port number the service will redirect to.
+	TargetPort *float64 `json:"targetPort"`
+}
+
+// Options for exposing a service using an ingress.
+type ExposeServiceViaIngressOptions struct {
+	// The ingress to add rules to.
+	Ingress IngressV1Beta1 `json:"ingress"`
 }
 
 // Options for `Probe.fromHttpGet()`.
@@ -2907,6 +2950,7 @@ type Service interface {
 	Type() ServiceType
 	AddDeployment(deployment Deployment, options *AddDeploymentOptions)
 	AddSelector(label *string, value *string)
+	ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) IngressV1Beta1
 	OnPrepare()
 	OnSynthesize(session constructs.ISynthesisSession)
 	OnValidate() *[]*string
@@ -3044,6 +3088,22 @@ func (s *jsiiProxy_Service) AddSelector(label *string, value *string) {
 		"addSelector",
 		[]interface{}{label, value},
 	)
+}
+
+// Expose a service via an ingress using the specified path.
+//
+// Returns: The `Ingress` resource that was used.
+func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) IngressV1Beta1 {
+	var returns IngressV1Beta1
+
+	_jsii_.Invoke(
+		s,
+		"exposeViaIngress",
+		[]interface{}{path, options},
+		&returns,
+	)
+
+	return returns
 }
 
 // Perform final modifications before synthesis.
