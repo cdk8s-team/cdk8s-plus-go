@@ -1,4 +1,4 @@
-// High level abstractions on top of cdk8s
+// cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-20 synthesizes Kubernetes manifests for Kubernetes 1.20.0
 package cdk8splus20
 
 import (
