@@ -18,7 +18,7 @@ type AddDeploymentOptions struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -27,23 +27,23 @@ type AddDeploymentOptions struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort"`
+	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol"`
+	Protocol Protocol `json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort"`
+	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
 	// The port number the service will bind to.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 }
 
 // Options for `configmap.addDirectory()`.
 type AddDirectoryOptions struct {
 	// Glob patterns to exclude when adding files.
-	Exclude *[]*string `json:"exclude"`
+	Exclude *[]*string `json:"exclude" yaml:"exclude"`
 	// A prefix to add to all keys in the config map.
-	KeyPrefix *string `json:"keyPrefix"`
+	KeyPrefix *string `json:"keyPrefix" yaml:"keyPrefix"`
 }
 
 // Options for `Probe.fromCommand()`.
@@ -51,25 +51,25 @@ type CommandProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold"`
+	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold"`
+	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
 }
 
 // ConfigMap holds configuration data for pods to consume.
@@ -293,7 +293,7 @@ func (c *jsiiProxy_ConfigMap) ToString() *string {
 // Properties for initialization of `ConfigMap`.
 type ConfigMapProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// BinaryData contains the binary data.
 	//
 	// Each key must consist of alphanumeric characters, '-', '_' or '.'.
@@ -303,7 +303,7 @@ type ConfigMapProps struct {
 	// 1.10+ apiserver and kubelet.
 	//
 	// You can also add binary data using `configMap.addBinaryData()`.
-	BinaryData *map[string]*string `json:"binaryData"`
+	BinaryData *map[string]*string `json:"binaryData" yaml:"binaryData"`
 	// Data contains the configuration data.
 	//
 	// Each key must consist of alphanumeric characters, '-', '_' or '.'. Values
@@ -312,7 +312,7 @@ type ConfigMapProps struct {
 	// is enforced during validation process.
 	//
 	// You can also add data using `configMap.addData()`.
-	Data *map[string]*string `json:"data"`
+	Data *map[string]*string `json:"data" yaml:"data"`
 }
 
 // Options for the ConfigMap-based volume.
@@ -323,7 +323,7 @@ type ConfigMapVolumeOptions struct {
 	// 0777. Defaults to 0644. Directories within the path are not affected by
 	// this setting. This might be in conflict with other options that affect the
 	// file mode, like fsGroup, and the result can be other mode bits set.
-	DefaultMode *float64 `json:"defaultMode"`
+	DefaultMode *float64 `json:"defaultMode" yaml:"defaultMode"`
 	// If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.
 	//
 	// If specified, the listed keys will be projected
@@ -331,11 +331,11 @@ type ConfigMapVolumeOptions struct {
 	// is specified which is not present in the ConfigMap, the volume setup will
 	// error unless it is marked optional. Paths must be relative and may not
 	// contain the '..' path or start with '..'.
-	Items *map[string]*PathMapping `json:"items"`
+	Items *map[string]*PathMapping `json:"items" yaml:"items"`
 	// The volume name.
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// Specify whether the ConfigMap or its keys must be defined.
-	Optional *bool `json:"optional"`
+	Optional *bool `json:"optional" yaml:"optional"`
 }
 
 // A single application container that you want to run within a pod.
@@ -501,7 +501,7 @@ func (c *jsiiProxy_Container) Mount(path *string, volume Volume, options *MountO
 // Properties for creating a container.
 type ContainerProps struct {
 	// Docker image name.
-	Image *string `json:"image"`
+	Image *string `json:"image" yaml:"image"`
 	// Arguments to the entrypoint. The docker image's CMD is used if `command` is not provided.
 	//
 	// Variable references $(VAR_NAME) are expanded using the container's
@@ -513,46 +513,46 @@ type ContainerProps struct {
 	// Cannot be updated.
 	// See: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	//
-	Args *[]*string `json:"args"`
+	Args *[]*string `json:"args" yaml:"args"`
 	// Entrypoint array.
 	//
 	// Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.
 	// If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME).
 	// Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated.
 	// More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-	Command *[]*string `json:"command"`
+	Command *[]*string `json:"command" yaml:"command"`
 	// List of environment variables to set in the container.
 	//
 	// Cannot be updated.
-	Env *map[string]EnvValue `json:"env"`
+	Env *map[string]EnvValue `json:"env" yaml:"env"`
 	// Image pull policy for this container.
-	ImagePullPolicy ImagePullPolicy `json:"imagePullPolicy"`
+	ImagePullPolicy ImagePullPolicy `json:"imagePullPolicy" yaml:"imagePullPolicy"`
 	// Periodic probe of container liveness.
 	//
 	// Container will be restarted if the probe fails.
-	Liveness Probe `json:"liveness"`
+	Liveness Probe `json:"liveness" yaml:"liveness"`
 	// Name of the container specified as a DNS_LABEL.
 	//
 	// Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// Number of port to expose on the pod's IP address.
 	//
 	// This must be a valid port number, 0 < x < 65536.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 	// Determines when the container is ready to serve traffic.
-	Readiness Probe `json:"readiness"`
+	Readiness Probe `json:"readiness" yaml:"readiness"`
 	// StartupProbe indicates that the Pod has successfully initialized.
 	//
 	// If specified, no other probes are executed until this completes successfully
-	Startup Probe `json:"startup"`
+	Startup Probe `json:"startup" yaml:"startup"`
 	// Pod volumes to mount into the container's filesystem.
 	//
 	// Cannot be updated.
-	VolumeMounts *[]*VolumeMount `json:"volumeMounts"`
+	VolumeMounts *[]*VolumeMount `json:"volumeMounts" yaml:"volumeMounts"`
 	// Container's working directory.
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
-	WorkingDir *string `json:"workingDir"`
+	WorkingDir *string `json:"workingDir" yaml:"workingDir"`
 }
 
 // A Deployment provides declarative updates for Pods and ReplicaSets.
@@ -866,18 +866,18 @@ func (d *jsiiProxy_Deployment) ToString() *string {
 // Properties for initialization of `Deployment`.
 type DeploymentProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -888,22 +888,22 @@ type DeploymentProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod selector for this deployment.
 	//
 	// If this is set to `false` you must define your selector through
 	// `deployment.podMetadata.addLabel()` and `deployment.selectByLabel()`.
-	DefaultSelector *bool `json:"defaultSelector"`
+	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// Number of desired pods.
-	Replicas *float64 `json:"replicas"`
+	Replicas *float64 `json:"replicas" yaml:"replicas"`
 }
 
 // The medium on which to store the volume.
@@ -923,14 +923,14 @@ type EmptyDirVolumeOptions struct {
 	// filesystem) for you instead. While tmpfs is very fast, be aware that unlike
 	// disks, tmpfs is cleared on node reboot and any files you write will count
 	// against your Container's memory limit.
-	Medium EmptyDirMedium `json:"medium"`
+	Medium EmptyDirMedium `json:"medium" yaml:"medium"`
 	// Total amount of local storage required for this EmptyDir volume.
 	//
 	// The size
 	// limit is also applicable for memory medium. The maximum usage on memory
 	// medium EmptyDir would be the minimum value between the SizeLimit specified
 	// here and the sum of memory limits of all containers in a pod.
-	SizeLimit cdk8s.Size `json:"sizeLimit"`
+	SizeLimit cdk8s.Size `json:"sizeLimit" yaml:"sizeLimit"`
 }
 
 // Utility class for creating reading env values from various sources.
@@ -1032,7 +1032,7 @@ func EnvValue_FromValue(value *string) EnvValue {
 // Options to specify an envionment variable value from a ConfigMap key.
 type EnvValueFromConfigMapOptions struct {
 	// Specify whether the ConfigMap or its key must be defined.
-	Optional *bool `json:"optional"`
+	Optional *bool `json:"optional" yaml:"optional"`
 }
 
 // Options to specify an environment variable value from the process environment.
@@ -1040,13 +1040,13 @@ type EnvValueFromProcessOptions struct {
 	// Specify whether the key must exist in the environment.
 	//
 	// If this is set to true, and the key does not exist, an error will thrown.
-	Required *bool `json:"required"`
+	Required *bool `json:"required" yaml:"required"`
 }
 
 // Options to specify an environment variable value from a Secret.
 type EnvValueFromSecretOptions struct {
 	// Specify whether the Secret or its key must be defined.
-	Optional *bool `json:"optional"`
+	Optional *bool `json:"optional" yaml:"optional"`
 }
 
 // Options for exposing a deployment via an ingress.
@@ -1054,21 +1054,21 @@ type ExposeDeploymentViaIngressOptions struct {
 	// The name of the service to expose.
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// The port that the service should serve on.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol"`
+	Protocol Protocol `json:"protocol" yaml:"protocol"`
 	// The type of the exposed service.
-	ServiceType ServiceType `json:"serviceType"`
+	ServiceType ServiceType `json:"serviceType" yaml:"serviceType"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort"`
+	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
 	// The ingress to add rules to.
-	Ingress Ingress `json:"ingress"`
+	Ingress Ingress `json:"ingress" yaml:"ingress"`
 	// The type of the path.
-	PathType HttpIngressPathType `json:"pathType"`
+	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
 }
 
 // Options for exposing a deployment via a service.
@@ -1076,25 +1076,25 @@ type ExposeDeploymentViaServiceOptions struct {
 	// The name of the service to expose.
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// The port that the service should serve on.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol"`
+	Protocol Protocol `json:"protocol" yaml:"protocol"`
 	// The type of the exposed service.
-	ServiceType ServiceType `json:"serviceType"`
+	ServiceType ServiceType `json:"serviceType" yaml:"serviceType"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort"`
+	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
 }
 
 // Options for exposing a service using an ingress.
 type ExposeServiceViaIngressOptions struct {
 	// The ingress to add rules to.
-	Ingress Ingress `json:"ingress"`
+	Ingress Ingress `json:"ingress" yaml:"ingress"`
 	// The type of the path.
-	PathType HttpIngressPathType `json:"pathType"`
+	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
 }
 
 // Options for `Probe.fromHttpGet()`.
@@ -1102,27 +1102,27 @@ type HttpGetProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold"`
+	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold"`
+	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
 	// The TCP port to use when sending the GET request.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 }
 
 // Specify how the path is matched against request paths.
@@ -1538,12 +1538,12 @@ func IngressBackend_FromService(service Service, options *ServiceIngressBackendO
 // Properties for `Ingress`.
 type IngressProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// The default backend services requests that do not match any rule.
 	//
 	// Using this option or the `addDefaultBackend()` method is equivalent to
 	// adding a rule with both `path` and `host` undefined.
-	DefaultBackend IngressBackend `json:"defaultBackend"`
+	DefaultBackend IngressBackend `json:"defaultBackend" yaml:"defaultBackend"`
 	// Routing rules for this ingress.
 	//
 	// Each rule must define an `IngressBackend` that will receive the requests
@@ -1552,7 +1552,7 @@ type IngressProps struct {
 	//
 	// You can also add rules later using `addRule()`, `addHostRule()`,
 	// `addDefaultBackend()` and `addHostDefaultBackend()`.
-	Rules *[]*IngressRule `json:"rules"`
+	Rules *[]*IngressRule `json:"rules" yaml:"rules"`
 	// TLS settings for this ingress.
 	//
 	// Using this option tells the ingress controller to expose a TLS endpoint.
@@ -1560,7 +1560,7 @@ type IngressProps struct {
 	// members of this list specify different hosts, they will be multiplexed on
 	// the same port according to the hostname specified through the SNI TLS
 	// extension, if the ingress controller fulfilling the ingress supports SNI.
-	Tls *[]*IngressTls `json:"tls"`
+	Tls *[]*IngressTls `json:"tls" yaml:"tls"`
 }
 
 // Represents the rules mapping the paths under a specified host to the related backend services.
@@ -1569,7 +1569,7 @@ type IngressProps struct {
 // then routed to the backend associated with the matching path.
 type IngressRule struct {
 	// Backend defines the referenced service endpoint to which the traffic will be forwarded to.
-	Backend IngressBackend `json:"backend"`
+	Backend IngressBackend `json:"backend" yaml:"backend"`
 	// Host is the fully qualified domain name of a network host, as defined by RFC 3986.
 	//
 	// Note the following deviations from the "host" part of the URI as
@@ -1579,16 +1579,16 @@ type IngressRule struct {
 	// port of an Ingress is implicitly :80 for http and :443 for https. Both
 	// these may change in the future. Incoming requests are matched against the
 	// host before the IngressRuleValue.
-	Host *string `json:"host"`
+	Host *string `json:"host" yaml:"host"`
 	// Path is an extended POSIX regex as defined by IEEE Std 1003.1, (i.e this follows the egrep/unix syntax, not the perl syntax) matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'.
-	Path *string `json:"path"`
+	Path *string `json:"path" yaml:"path"`
 	// Specify how the path is matched against request paths.
 	//
 	// By default, path
 	// types will be matched by prefix.
 	// See: https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
 	//
-	PathType HttpIngressPathType `json:"pathType"`
+	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
 }
 
 // Represents the TLS configuration mapping that is passed to the ingress controller for SSL termination.
@@ -1597,13 +1597,13 @@ type IngressTls struct {
 	//
 	// The values in
 	// this list must match the name/s used in the TLS Secret.
-	Hosts *[]*string `json:"hosts"`
+	Hosts *[]*string `json:"hosts" yaml:"hosts"`
 	// Secret is the secret that contains the certificate and key used to terminate SSL traffic on 443.
 	//
 	// If the SNI host in a listener conflicts with
 	// the "Host" header field used by an IngressRule, the SNI host is used for
 	// termination and value of the Host header is used for routing.
-	Secret ISecret `json:"secret"`
+	Secret ISecret `json:"secret" yaml:"secret"`
 }
 
 // A Job creates one or more Pods and ensures that a specified number of them successfully terminate.
@@ -1865,18 +1865,18 @@ func (j *jsiiProxy_Job) ToString() *string {
 // Properties for initialization of `Job`.
 type JobProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -1887,19 +1887,19 @@ type JobProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Specifies the duration the job may be active before the system tries to terminate it.
-	ActiveDeadline cdk8s.Duration `json:"activeDeadline"`
+	ActiveDeadline cdk8s.Duration `json:"activeDeadline" yaml:"activeDeadline"`
 	// Specifies the number of retries before marking this job failed.
-	BackoffLimit *float64 `json:"backoffLimit"`
+	BackoffLimit *float64 `json:"backoffLimit" yaml:"backoffLimit"`
 	// Limits the lifetime of a Job that has finished execution (either Complete or Failed).
 	//
 	// If this field is set, after the Job finishes, it is eligible to
@@ -1908,7 +1908,7 @@ type JobProps struct {
 	// the Job becomes eligible to be deleted immediately after it finishes. This
 	// field is alpha-level and is only honored by servers that enable the
 	// `TTLAfterFinished` feature.
-	TtlAfterFinished cdk8s.Duration `json:"ttlAfterFinished"`
+	TtlAfterFinished cdk8s.Duration `json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
 }
 
 // Options for mounts.
@@ -1921,13 +1921,13 @@ type MountOptions struct {
 	// other Containers in the same Pod, or even to other Pods on the same node.
 	//
 	// This field is beta in 1.10.
-	Propagation MountPropagation `json:"propagation"`
+	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
 	// Defaults to false.
-	ReadOnly *bool `json:"readOnly"`
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
 	// Path within the volume from which the container's volume should be mounted.).
-	SubPath *string `json:"subPath"`
+	SubPath *string `json:"subPath" yaml:"subPath"`
 	// Expanded path within the volume from which the container's volume should be mounted.
 	//
 	// Behaves similarly to SubPath but environment variable references
@@ -1937,7 +1937,7 @@ type MountOptions struct {
 	//
 	// `subPathExpr` and `subPath` are mutually exclusive. This field is beta in
 	// 1.15.
-	SubPathExpr *string `json:"subPathExpr"`
+	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
 }
 
 type MountPropagation string
@@ -1955,13 +1955,13 @@ type PathMapping struct {
 	// May not be an absolute
 	// path. May not contain the path element '..'. May not start with the string
 	// '..'.
-	Path *string `json:"path"`
+	Path *string `json:"path" yaml:"path"`
 	// Optional: mode bits to use on this file, must be a value between 0 and 0777.
 	//
 	// If not specified, the volume defaultMode will be used. This might be
 	// in conflict with other options that affect the file mode, like fsGroup, and
 	// the result can be other mode bits set.
-	Mode *float64 `json:"mode"`
+	Mode *float64 `json:"mode" yaml:"mode"`
 }
 
 // Pod is a collection of containers that can run on a host.
@@ -2191,18 +2191,18 @@ const (
 // Properties for initialization of `Pod`.
 type PodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2213,13 +2213,13 @@ type PodProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 }
 
 // Provides read/write capabilities ontop of a `PodSpecProps`.
@@ -2334,11 +2334,11 @@ type PodSpecProps struct {
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2349,13 +2349,13 @@ type PodSpecProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 }
 
 // Provides read/write capabilities ontop of a `PodTemplateProps`.
@@ -2485,11 +2485,11 @@ type PodTemplateProps struct {
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2500,15 +2500,15 @@ type PodTemplateProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -2567,25 +2567,25 @@ type ProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold"`
+	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold"`
+	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
 }
 
 type Protocol string
@@ -2726,7 +2726,7 @@ func (r *jsiiProxy_Resource) ToString() *string {
 // Initialization properties for resources.
 type ResourceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 }
 
 // Restart policy for all containers within the pod.
@@ -2924,27 +2924,27 @@ func (s *jsiiProxy_Secret) ToString() *string {
 
 type SecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// stringData allows specifying non-binary secret data in string form.
 	//
 	// It is
 	// provided as a write-only convenience method. All keys and values are merged
 	// into the data field on write, overwriting any existing values. It is never
 	// output when reading from the API.
-	StringData *map[string]*string `json:"stringData"`
+	StringData *map[string]*string `json:"stringData" yaml:"stringData"`
 	// Optional type associated with the secret.
 	//
 	// Used to facilitate programmatic
 	// handling of secret data by various controllers.
-	Type *string `json:"type"`
+	Type *string `json:"type" yaml:"type"`
 }
 
 // Represents a specific value in JSON secret.
 type SecretValue struct {
 	// The JSON key.
-	Key *string `json:"key"`
+	Key *string `json:"key" yaml:"key"`
 	// The secret.
-	Secret ISecret `json:"secret"`
+	Secret ISecret `json:"secret" yaml:"secret"`
 }
 
 // An abstract way to expose an application running on a set of Pods as a network service.
@@ -3390,11 +3390,11 @@ func (s *jsiiProxy_ServiceAccount) ToString() *string {
 // Properties for initialization of `ServiceAccount`.
 type ServiceAccountProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// List of secrets allowed to be used by pods running using this ServiceAccount.
 	// See: https://kubernetes.io/docs/concepts/configuration/secret
 	//
-	Secrets *[]ISecret `json:"secrets"`
+	Secrets *[]ISecret `json:"secrets" yaml:"secrets"`
 }
 
 // Options for setting up backends for ingress rules.
@@ -3405,7 +3405,7 @@ type ServiceIngressBackendOptions struct {
 	// - If the service exposes multiple ports, this option must be specified.
 	// - If the service exposes a single port, this option is optional and if
 	//    specified, it must be the same port exposed by the service.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 }
 
 // Definition of a service port.
@@ -3416,7 +3416,7 @@ type ServicePort struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -3425,15 +3425,15 @@ type ServicePort struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort"`
+	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol"`
+	Protocol Protocol `json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort"`
+	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
 	// The port number the service will bind to.
-	Port *float64 `json:"port"`
+	Port *float64 `json:"port" yaml:"port"`
 }
 
 type ServicePortOptions struct {
@@ -3443,7 +3443,7 @@ type ServicePortOptions struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name"`
+	Name *string `json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -3452,19 +3452,19 @@ type ServicePortOptions struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort"`
+	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol"`
+	Protocol Protocol `json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort"`
+	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
 }
 
 // Properties for initialization of `Service`.
 type ServiceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// The IP address of the service and is usually assigned randomly by the master.
 	//
 	// If an address is specified manually and is not in use by others, it
@@ -3475,28 +3475,28 @@ type ServiceProps struct {
 	// ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 	//
-	ClusterIP *string `json:"clusterIP"`
+	ClusterIP *string `json:"clusterIP" yaml:"clusterIP"`
 	// A list of IP addresses for which nodes in the cluster will also accept traffic for this service.
 	//
 	// These IPs are not managed by Kubernetes. The user
 	// is responsible for ensuring that traffic arrives at a node with this IP. A
 	// common example is external load-balancers that are not part of the
 	// Kubernetes system.
-	ExternalIPs *[]*string `json:"externalIPs"`
+	ExternalIPs *[]*string `json:"externalIPs" yaml:"externalIPs"`
 	// The externalName to be used when ServiceType.EXTERNAL_NAME is set.
-	ExternalName *string `json:"externalName"`
+	ExternalName *string `json:"externalName" yaml:"externalName"`
 	// A list of CIDR IP addresses, if specified and supported by the platform, will restrict traffic through the cloud-provider load-balancer to the specified client IPs.
 	//
 	// More info: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
-	LoadBalancerSourceRanges *[]*string `json:"loadBalancerSourceRanges"`
+	LoadBalancerSourceRanges *[]*string `json:"loadBalancerSourceRanges" yaml:"loadBalancerSourceRanges"`
 	// The port exposed by this service.
 	//
 	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-	Ports *[]*ServicePort `json:"ports"`
+	Ports *[]*ServicePort `json:"ports" yaml:"ports"`
 	// Determines how the Service is exposed.
 	//
 	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-	Type ServiceType `json:"type"`
+	Type ServiceType `json:"type" yaml:"type"`
 }
 
 // For some parts of your application (for example, frontends) you may want to expose a Service onto an external IP address, that's outside of your cluster.
@@ -3800,18 +3800,18 @@ func (s *jsiiProxy_StatefulSet) ToString() *string {
 // Properties for initialization of `StatefulSet`.
 type StatefulSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers"`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy"`
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -3822,26 +3822,26 @@ type StatefulSetProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount"`
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes"`
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Service to associate with the statefulset.
-	Service Service `json:"service"`
+	Service Service `json:"service" yaml:"service"`
 	// Automatically allocates a pod selector for this statefulset.
 	//
 	// If this is set to `false` you must define your selector through
 	// `statefulset.podMetadata.addLabel()` and `statefulset.selectByLabel()`.
-	DefaultSelector *bool `json:"defaultSelector"`
+	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// Pod management policy to use for this statefulset.
-	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy"`
+	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
-	Replicas *float64 `json:"replicas"`
+	Replicas *float64 `json:"replicas" yaml:"replicas"`
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
@@ -3977,13 +3977,13 @@ type VolumeMount struct {
 	// other Containers in the same Pod, or even to other Pods on the same node.
 	//
 	// This field is beta in 1.10.
-	Propagation MountPropagation `json:"propagation"`
+	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
 	// Defaults to false.
-	ReadOnly *bool `json:"readOnly"`
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
 	// Path within the volume from which the container's volume should be mounted.).
-	SubPath *string `json:"subPath"`
+	SubPath *string `json:"subPath" yaml:"subPath"`
 	// Expanded path within the volume from which the container's volume should be mounted.
 	//
 	// Behaves similarly to SubPath but environment variable references
@@ -3993,13 +3993,13 @@ type VolumeMount struct {
 	//
 	// `subPathExpr` and `subPath` are mutually exclusive. This field is beta in
 	// 1.15.
-	SubPathExpr *string `json:"subPathExpr"`
+	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
 	// Path within the container at which the volume should be mounted.
 	//
 	// Must not
 	// contain ':'.
-	Path *string `json:"path"`
+	Path *string `json:"path" yaml:"path"`
 	// The volume to mount.
-	Volume Volume `json:"volume"`
+	Volume Volume `json:"volume" yaml:"volume"`
 }
 
