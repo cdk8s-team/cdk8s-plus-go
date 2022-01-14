@@ -507,6 +507,10 @@ func init() {
 		"cdk8s-plus-21.SecretValue",
 		reflect.TypeOf((*SecretValue)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.SecretVolumeOptions",
+		reflect.TypeOf((*SecretVolumeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-21.Service",
 		reflect.TypeOf((*Service)(nil)).Elem(),
