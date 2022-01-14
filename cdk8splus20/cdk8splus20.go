@@ -2925,6 +2925,29 @@ type SecretValue struct {
 	Secret ISecret `json:"secret" yaml:"secret"`
 }
 
+// Options for the Secret-based volume.
+type SecretVolumeOptions struct {
+	// Mode bits to use on created files by default.
+	//
+	// Must be a value between 0 and
+	// 0777. Defaults to 0644. Directories within the path are not affected by
+	// this setting. This might be in conflict with other options that affect the
+	// file mode, like fsGroup, and the result can be other mode bits set.
+	DefaultMode *float64 `json:"defaultMode" yaml:"defaultMode"`
+	// If unspecified, each key-value pair in the Data field of the referenced secret will be projected into the volume as a file whose name is the key and content is the value.
+	//
+	// If specified, the listed keys will be projected
+	// into the specified paths, and unlisted keys will not be present. If a key
+	// is specified which is not present in the secret, the volume setup will
+	// error unless it is marked optional. Paths must be relative and may not
+	// contain the '..' path or start with '..'.
+	Items *map[string]*PathMapping `json:"items" yaml:"items"`
+	// The volume name.
+	Name *string `json:"name" yaml:"name"`
+	// Specify whether the secret or its keys must be defined.
+	Optional *bool `json:"optional" yaml:"optional"`
+}
+
 // An abstract way to expose an application running on a set of Pods as a network service.
 //
 // With Kubernetes you don't need to modify your application to use an unfamiliar service discovery mechanism.
@@ -3939,6 +3962,31 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 		"cdk8s-plus-20.Volume",
 		"fromEmptyDir",
 		[]interface{}{name, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Populate the volume from a Secret.
+//
+// A secret volume is used to pass sensitive information, such as passwords, to Pods.
+// You can store secrets in the Kubernetes API and mount them as files for use by pods
+// without coupling to Kubernetes directly.
+//
+// secret volumes are backed by tmpfs (a RAM-backed filesystem)
+// so they are never written to non-volatile storage.
+// See: https://kubernetes.io/docs/concepts/storage/volumes/#secret
+//
+func Volume_FromSecret(secret ISecret, options *SecretVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Volume",
+		"fromSecret",
+		[]interface{}{secret, options},
 		&returns,
 	)
 
