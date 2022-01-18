@@ -123,6 +123,22 @@ func init() {
 		"cdk8s-plus-22.EmptyDirVolumeOptions",
 		reflect.TypeOf((*EmptyDirVolumeOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.EnvFieldPaths",
+		reflect.TypeOf((*EnvFieldPaths)(nil)).Elem(),
+		map[string]interface{}{
+			"POD_NAME": EnvFieldPaths_POD_NAME,
+			"POD_NAMESPACE": EnvFieldPaths_POD_NAMESPACE,
+			"POD_UID": EnvFieldPaths_POD_UID,
+			"POD_LABEL": EnvFieldPaths_POD_LABEL,
+			"POD_ANNOTATION": EnvFieldPaths_POD_ANNOTATION,
+			"POD_IP": EnvFieldPaths_POD_IP,
+			"SERVICE_ACCOUNT_NAME": EnvFieldPaths_SERVICE_ACCOUNT_NAME,
+			"NODE_NAME": EnvFieldPaths_NODE_NAME,
+			"NODE_IP": EnvFieldPaths_NODE_IP,
+			"POD_IPS": EnvFieldPaths_POD_IPS,
+		},
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.EnvValue",
 		reflect.TypeOf((*EnvValue)(nil)).Elem(),
@@ -139,8 +155,16 @@ func init() {
 		reflect.TypeOf((*EnvValueFromConfigMapOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.EnvValueFromFieldRefOptions",
+		reflect.TypeOf((*EnvValueFromFieldRefOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.EnvValueFromProcessOptions",
 		reflect.TypeOf((*EnvValueFromProcessOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.EnvValueFromResourceOptions",
+		reflect.TypeOf((*EnvValueFromResourceOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.EnvValueFromSecretOptions",
@@ -472,6 +496,18 @@ func init() {
 			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
 			return &j
+		},
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.ResourceFieldPaths",
+		reflect.TypeOf((*ResourceFieldPaths)(nil)).Elem(),
+		map[string]interface{}{
+			"CPU_LIMIT": ResourceFieldPaths_CPU_LIMIT,
+			"MEMORY_LIMIT": ResourceFieldPaths_MEMORY_LIMIT,
+			"CPU_REQUEST": ResourceFieldPaths_CPU_REQUEST,
+			"MEMORY_REQUEST": ResourceFieldPaths_MEMORY_REQUEST,
+			"STORAGE_LIMIT": ResourceFieldPaths_STORAGE_LIMIT,
+			"STORAGE_REQUEST": ResourceFieldPaths_STORAGE_REQUEST,
 		},
 	)
 	_jsii_.RegisterStruct(
