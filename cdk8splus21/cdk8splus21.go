@@ -933,6 +933,21 @@ type EmptyDirVolumeOptions struct {
 	SizeLimit cdk8s.Size `json:"sizeLimit" yaml:"sizeLimit"`
 }
 
+type EnvFieldPaths string
+
+const (
+	EnvFieldPaths_POD_NAME EnvFieldPaths = "POD_NAME"
+	EnvFieldPaths_POD_NAMESPACE EnvFieldPaths = "POD_NAMESPACE"
+	EnvFieldPaths_POD_UID EnvFieldPaths = "POD_UID"
+	EnvFieldPaths_POD_LABEL EnvFieldPaths = "POD_LABEL"
+	EnvFieldPaths_POD_ANNOTATION EnvFieldPaths = "POD_ANNOTATION"
+	EnvFieldPaths_POD_IP EnvFieldPaths = "POD_IP"
+	EnvFieldPaths_SERVICE_ACCOUNT_NAME EnvFieldPaths = "SERVICE_ACCOUNT_NAME"
+	EnvFieldPaths_NODE_NAME EnvFieldPaths = "NODE_NAME"
+	EnvFieldPaths_NODE_IP EnvFieldPaths = "NODE_IP"
+	EnvFieldPaths_POD_IPS EnvFieldPaths = "POD_IPS"
+)
+
 // Utility class for creating reading env values from various sources.
 type EnvValue interface {
 	Value() interface{}
@@ -981,6 +996,22 @@ func EnvValue_FromConfigMap(configMap IConfigMap, key *string, options *EnvValue
 	return returns
 }
 
+// Create a value from a field reference.
+func EnvValue_FromFieldRef(fieldPath EnvFieldPaths, options *EnvValueFromFieldRefOptions) EnvValue {
+	_init_.Initialize()
+
+	var returns EnvValue
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.EnvValue",
+		"fromFieldRef",
+		[]interface{}{fieldPath, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Create a value from a key in the current process environment.
 func EnvValue_FromProcess(key *string, options *EnvValueFromProcessOptions) EnvValue {
 	_init_.Initialize()
@@ -991,6 +1022,22 @@ func EnvValue_FromProcess(key *string, options *EnvValueFromProcessOptions) EnvV
 		"cdk8s-plus-21.EnvValue",
 		"fromProcess",
 		[]interface{}{key, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Create a value from a resource.
+func EnvValue_FromResource(resource ResourceFieldPaths, options *EnvValueFromResourceOptions) EnvValue {
+	_init_.Initialize()
+
+	var returns EnvValue
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.EnvValue",
+		"fromResource",
+		[]interface{}{resource, options},
 		&returns,
 	)
 
@@ -1035,12 +1082,28 @@ type EnvValueFromConfigMapOptions struct {
 	Optional *bool `json:"optional" yaml:"optional"`
 }
 
+// Options to specify an environment variable value from a field reference.
+type EnvValueFromFieldRefOptions struct {
+	// Version of the schema the FieldPath is written in terms of.
+	ApiVersion *string `json:"apiVersion" yaml:"apiVersion"`
+	// The key to select the pod label or annotation.
+	Key *string `json:"key" yaml:"key"`
+}
+
 // Options to specify an environment variable value from the process environment.
 type EnvValueFromProcessOptions struct {
 	// Specify whether the key must exist in the environment.
 	//
 	// If this is set to true, and the key does not exist, an error will thrown.
 	Required *bool `json:"required" yaml:"required"`
+}
+
+// Options to specify an environment variable value from a resource.
+type EnvValueFromResourceOptions struct {
+	// The container to select the value from.
+	Container Container `json:"container" yaml:"container"`
+	// The output format of the exposed resource.
+	Divisor *string `json:"divisor" yaml:"divisor"`
 }
 
 // Options to specify an environment variable value from a Secret.
@@ -2700,6 +2763,17 @@ func (r *jsiiProxy_Resource) ToString() *string {
 
 	return returns
 }
+
+type ResourceFieldPaths string
+
+const (
+	ResourceFieldPaths_CPU_LIMIT ResourceFieldPaths = "CPU_LIMIT"
+	ResourceFieldPaths_MEMORY_LIMIT ResourceFieldPaths = "MEMORY_LIMIT"
+	ResourceFieldPaths_CPU_REQUEST ResourceFieldPaths = "CPU_REQUEST"
+	ResourceFieldPaths_MEMORY_REQUEST ResourceFieldPaths = "MEMORY_REQUEST"
+	ResourceFieldPaths_STORAGE_LIMIT ResourceFieldPaths = "STORAGE_LIMIT"
+	ResourceFieldPaths_STORAGE_REQUEST ResourceFieldPaths = "STORAGE_REQUEST"
+)
 
 // Initialization properties for resources.
 type ResourceProps struct {
