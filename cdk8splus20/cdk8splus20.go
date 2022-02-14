@@ -1527,7 +1527,7 @@ func (i *jsiiProxy_IngressV1Beta1) OnSynthesize(session constructs.ISynthesisSes
 	)
 }
 
-// (deprecated) Validate the current construct.
+// Validate the current construct.
 //
 // This method can be implemented by derived constructs in order to perform
 // validation logic. It is called on all constructs before synthesis.
