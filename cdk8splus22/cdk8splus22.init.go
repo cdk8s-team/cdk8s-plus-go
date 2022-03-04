@@ -668,6 +668,10 @@ func init() {
 		"cdk8s-plus-22.StatefulSetProps",
 		reflect.TypeOf((*StatefulSetProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.TcpSocketProbeOptions",
+		reflect.TypeOf((*TcpSocketProbeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Volume",
 		reflect.TypeOf((*Volume)(nil)).Elem(),
