@@ -299,8 +299,7 @@ type ConfigMapProps struct {
 	// Each key must consist of alphanumeric characters, '-', '_' or '.'.
 	// BinaryData can contain byte sequences that are not in the UTF-8 range. The
 	// keys stored in BinaryData must not overlap with the ones in the Data field,
-	// this is enforced during validation process. Using this field will require
-	// 1.10+ apiserver and kubelet.
+	// this is enforced during validation process.
 	//
 	// You can also add binary data using `configMap.addBinaryData()`.
 	BinaryData *map[string]*string `json:"binaryData" yaml:"binaryData"`
@@ -1982,8 +1981,6 @@ type MountOptions struct {
 	//
 	// Mount propagation allows for sharing volumes mounted by a Container to
 	// other Containers in the same Pod, or even to other Pods on the same node.
-	//
-	// This field is beta in 1.10.
 	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
@@ -1995,11 +1992,9 @@ type MountOptions struct {
 	//
 	// Behaves similarly to SubPath but environment variable references
 	// $(VAR_NAME) are expanded using the container's environment. Defaults to ""
-	// (volume's root). SubPathExpr and SubPath are mutually exclusive. This field
-	// is beta in 1.15.
+	// (volume's root).
 	//
-	// `subPathExpr` and `subPath` are mutually exclusive. This field is beta in
-	// 1.15.
+	// `subPathExpr` and `subPath` are mutually exclusive.
 	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
 }
 
@@ -4143,8 +4138,6 @@ type VolumeMount struct {
 	//
 	// Mount propagation allows for sharing volumes mounted by a Container to
 	// other Containers in the same Pod, or even to other Pods on the same node.
-	//
-	// This field is beta in 1.10.
 	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
@@ -4156,11 +4149,9 @@ type VolumeMount struct {
 	//
 	// Behaves similarly to SubPath but environment variable references
 	// $(VAR_NAME) are expanded using the container's environment. Defaults to ""
-	// (volume's root). SubPathExpr and SubPath are mutually exclusive. This field
-	// is beta in 1.15.
+	// (volume's root).
 	//
-	// `subPathExpr` and `subPath` are mutually exclusive. This field is beta in
-	// 1.15.
+	// `subPathExpr` and `subPath` are mutually exclusive.
 	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
 	// Path within the container at which the volume should be mounted.
 	//
