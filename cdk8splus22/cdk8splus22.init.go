@@ -66,6 +66,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "mounts", GoGetter: "Mounts"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "port", GoGetter: "Port"},
+			_jsii_.MemberProperty{JsiiProperty: "resources", GoGetter: "Resources"},
 			_jsii_.MemberProperty{JsiiProperty: "workingDir", GoGetter: "WorkingDir"},
 		},
 		func() interface{} {
@@ -75,6 +76,20 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.ContainerProps",
 		reflect.TypeOf((*ContainerProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Cpu",
+		reflect.TypeOf((*Cpu)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "amount", GoGetter: "Amount"},
+		},
+		func() interface{} {
+			return &jsiiProxy_Cpu{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.CpuResources",
+		reflect.TypeOf((*CpuResources)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Deployment",
@@ -361,6 +376,10 @@ func init() {
 		reflect.TypeOf((*JobProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.MemoryResources",
+		reflect.TypeOf((*MemoryResources)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.MountOptions",
 		reflect.TypeOf((*MountOptions)(nil)).Elem(),
 	)
@@ -513,6 +532,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.ResourceProps",
 		reflect.TypeOf((*ResourceProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.Resources",
+		reflect.TypeOf((*Resources)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-22.RestartPolicy",
