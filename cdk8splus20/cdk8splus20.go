@@ -2603,6 +2603,22 @@ func Probe_FromHttpGet(path *string, options *HttpGetProbeOptions) Probe {
 	return returns
 }
 
+// Defines a probe based opening a connection to a TCP socket on the container.
+func Probe_FromTcpSocket(options *TcpSocketProbeOptions) Probe {
+	_init_.Initialize()
+
+	var returns Probe
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Probe",
+		"fromTcpSocket",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Probe options.
 type ProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
@@ -3917,6 +3933,36 @@ type StatefulSetProps struct {
 	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
+}
+
+// Options for `Probe.fromTcpSocket()`.
+type TcpSocketProbeOptions struct {
+	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
+	//
+	// Defaults to 3. Minimum value is 1.
+	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
+	// Number of seconds after the container has started before liveness probes are initiated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+	//
+	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
+	// How often (in seconds) to perform the probe.
+	//
+	// Default to 10 seconds. Minimum value is 1.
+	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
+	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
+	//
+	// Must be 1 for liveness and startup. Minimum value is 1.
+	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
+	// Number of seconds after which the probe times out.
+	//
+	// Defaults to 1 second. Minimum value is 1.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+	//
+	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	// The host name to connect to on the container.
+	Host *string `json:"host" yaml:"host"`
+	// The TCP port to connect to on the container.
+	Port *float64 `json:"port" yaml:"port"`
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
