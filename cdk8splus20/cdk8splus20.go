@@ -347,6 +347,7 @@ type Container interface {
 	Mounts() *[]*VolumeMount
 	Name() *string
 	Port() *float64
+	Resources() *Resources
 	WorkingDir() *string
 	AddEnv(name *string, value EnvValue)
 	Mount(path *string, volume Volume, options *MountOptions)
@@ -432,6 +433,16 @@ func (j *jsiiProxy_Container) Port() *float64 {
 	_jsii_.Get(
 		j,
 		"port",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Container) Resources() *Resources {
+	var returns *Resources
+	_jsii_.Get(
+		j,
+		"resources",
 		&returns,
 	)
 	return returns
@@ -540,6 +551,10 @@ type ContainerProps struct {
 	Port *float64 `json:"port" yaml:"port"`
 	// Determines when the container is ready to serve traffic.
 	Readiness Probe `json:"readiness" yaml:"readiness"`
+	// Compute resources (CPU and memory requests and limits) required by the container.
+	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	//
+	Resources *Resources `json:"resources" yaml:"resources"`
 	// StartupProbe indicates that the Pod has successfully initialized.
 	//
 	// If specified, no other probes are executed until this completes successfully
@@ -552,6 +567,74 @@ type ContainerProps struct {
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 	WorkingDir *string `json:"workingDir" yaml:"workingDir"`
+}
+
+// Represents the amount of CPU.
+//
+// The amount can be passed as millis or units.
+type Cpu interface {
+	Amount() *string
+	SetAmount(val *string)
+}
+
+// The jsii proxy struct for Cpu
+type jsiiProxy_Cpu struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_Cpu) Amount() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"amount",
+		&returns,
+	)
+	return returns
+}
+
+
+func (j *jsiiProxy_Cpu) SetAmount(val *string) {
+	_jsii_.Set(
+		j,
+		"amount",
+		val,
+	)
+}
+
+func Cpu_Millis(amount *float64) Cpu {
+	_init_.Initialize()
+
+	var returns Cpu
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Cpu",
+		"millis",
+		[]interface{}{amount},
+		&returns,
+	)
+
+	return returns
+}
+
+func Cpu_Units(amount *float64) Cpu {
+	_init_.Initialize()
+
+	var returns Cpu
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Cpu",
+		"units",
+		[]interface{}{amount},
+		&returns,
+	)
+
+	return returns
+}
+
+// CPU request and limit.
+type CpuResources struct {
+	Limit Cpu `json:"limit" yaml:"limit"`
+	Request Cpu `json:"request" yaml:"request"`
 }
 
 // A Deployment provides declarative updates for Pods and ReplicaSets.
@@ -1951,6 +2034,12 @@ type JobProps struct {
 	TtlAfterFinished cdk8s.Duration `json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
 }
 
+// Memory request and limit.
+type MemoryResources struct {
+	Limit cdk8s.Size `json:"limit" yaml:"limit"`
+	Request cdk8s.Size `json:"request" yaml:"request"`
+}
+
 // Options for mounts.
 type MountOptions struct {
 	// Determines how mounts are propagated from the host to container and the other way around.
@@ -2790,6 +2879,12 @@ const (
 type ResourceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+}
+
+// CPU and memory compute resources.
+type Resources struct {
+	Cpu *CpuResources `json:"cpu" yaml:"cpu"`
+	Memory *MemoryResources `json:"memory" yaml:"memory"`
 }
 
 // Restart policy for all containers within the pod.
