@@ -76,18 +76,56 @@ type CommandProbeOptions struct {
 type ConfigMap interface {
 	Resource
 	IConfigMap
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// The binary data associated with this config map.
+	//
+	// Returns a copy. To add data records, use `addBinaryData()` or `addData()`.
 	BinaryData() *map[string]*string
+	// The data associated with this config map.
+	//
+	// Returns an copy. To add data records, use `addData()` or `addBinaryData()`.
 	Data() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Adds a binary data entry to the config map.
+	//
+	// BinaryData can contain byte
+	// sequences that are not in the UTF-8 range.
 	AddBinaryData(key *string, value *string)
+	// Adds a data entry to the config map.
 	AddData(key *string, value *string)
+	// Adds a directory to the ConfigMap.
 	AddDirectory(localDir *string, options *AddDirectoryOptions)
+	// Adds a file to the ConfigMap.
 	AddFile(localFile *string, key *string)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -188,10 +226,6 @@ func ConfigMap_FromConfigMapName(name *string) IConfigMap {
 	return returns
 }
 
-// Adds a binary data entry to the config map.
-//
-// BinaryData can contain byte
-// sequences that are not in the UTF-8 range.
 func (c *jsiiProxy_ConfigMap) AddBinaryData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		c,
@@ -200,7 +234,6 @@ func (c *jsiiProxy_ConfigMap) AddBinaryData(key *string, value *string) {
 	)
 }
 
-// Adds a data entry to the config map.
 func (c *jsiiProxy_ConfigMap) AddData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		c,
@@ -209,7 +242,6 @@ func (c *jsiiProxy_ConfigMap) AddData(key *string, value *string) {
 	)
 }
 
-// Adds a directory to the ConfigMap.
 func (c *jsiiProxy_ConfigMap) AddDirectory(localDir *string, options *AddDirectoryOptions) {
 	_jsii_.InvokeVoid(
 		c,
@@ -218,7 +250,6 @@ func (c *jsiiProxy_ConfigMap) AddDirectory(localDir *string, options *AddDirecto
 	)
 }
 
-// Adds a file to the ConfigMap.
 func (c *jsiiProxy_ConfigMap) AddFile(localFile *string, key *string) {
 	_jsii_.InvokeVoid(
 		c,
@@ -227,14 +258,6 @@ func (c *jsiiProxy_ConfigMap) AddFile(localFile *string, key *string) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (c *jsiiProxy_ConfigMap) OnPrepare() {
 	_jsii_.InvokeVoid(
 		c,
@@ -243,10 +266,6 @@ func (c *jsiiProxy_ConfigMap) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (c *jsiiProxy_ConfigMap) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		c,
@@ -255,14 +274,6 @@ func (c *jsiiProxy_ConfigMap) OnSynthesize(session constructs.ISynthesisSession)
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (c *jsiiProxy_ConfigMap) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -276,7 +287,6 @@ func (c *jsiiProxy_ConfigMap) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (c *jsiiProxy_ConfigMap) ToString() *string {
 	var returns *string
 
@@ -339,17 +349,44 @@ type ConfigMapVolumeOptions struct {
 
 // A single application container that you want to run within a pod.
 type Container interface {
+	// Arguments to the entrypoint.
+	//
+	// Returns: a copy of the arguments array, cannot be modified.
 	Args() *[]*string
+	// Entrypoint array (the command to execute when the container starts).
+	//
+	// Returns: a copy of the entrypoint array, cannot be modified.
 	Command() *[]*string
+	// The environment variables for this container.
+	//
+	// Returns a copy. To add environment variables use `addEnv()`.
 	Env() *map[string]EnvValue
+	// The container image.
 	Image() *string
+	// Image pull policy for this container.
 	ImagePullPolicy() ImagePullPolicy
+	// Volume mounts configured for this container.
 	Mounts() *[]*VolumeMount
+	// The name of the container.
 	Name() *string
+	// The port this container exposes.
 	Port() *float64
+	// Compute resources (CPU and memory requests and limits) required by the container.
+	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+	//
 	Resources() *Resources
+	// The working directory inside the container.
 	WorkingDir() *string
+	// Add an environment value to the container.
+	//
+	// The variable value can come
+	// from various dynamic sources such a secrets of config maps.
+	// See: EnvValue.fromXXX
+	//
 	AddEnv(name *string, value EnvValue)
+	// Mount a volume to a specific path so that it is accessible by the container.
+	//
+	// Every pod that is configured to use this container will autmoatically have access to the volume.
 	Mount(path *string, volume Volume, options *MountOptions)
 }
 
@@ -483,12 +520,6 @@ func NewContainer_Override(c Container, props *ContainerProps) {
 	)
 }
 
-// Add an environment value to the container.
-//
-// The variable value can come
-// from various dynamic sources such a secrets of config maps.
-// See: EnvValue.fromXXX
-//
 func (c *jsiiProxy_Container) AddEnv(name *string, value EnvValue) {
 	_jsii_.InvokeVoid(
 		c,
@@ -497,9 +528,6 @@ func (c *jsiiProxy_Container) AddEnv(name *string, value EnvValue) {
 	)
 }
 
-// Mount a volume to a specific path so that it is accessible by the container.
-//
-// Every pod that is configured to use this container will autmoatically have access to the volume.
 func (c *jsiiProxy_Container) Mount(path *string, volume Volume, options *MountOptions) {
 	_jsii_.InvokeVoid(
 		c,
@@ -557,7 +585,7 @@ type ContainerProps struct {
 	Resources *Resources `json:"resources" yaml:"resources"`
 	// StartupProbe indicates that the Pod has successfully initialized.
 	//
-	// If specified, no other probes are executed until this completes successfully
+	// If specified, no other probes are executed until this completes successfully.
 	Startup Probe `json:"startup" yaml:"startup"`
 	// Pod volumes to mount into the container's filesystem.
 	//
@@ -664,24 +692,73 @@ type CpuResources struct {
 type Deployment interface {
 	Resource
 	IPodTemplate
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The labels this deployment will match against in order to select pods.
+	//
+	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Provides read/write access to the underlying pod metadata of the resource.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// Number of desired pods.
 	Replicas() *float64
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
+	// Expose a deployment via an ingress.
+	//
+	// This will first expose the deployment with a service, and then expose the service via an ingress.
 	ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) IngressV1Beta1
+	// Expose a deployment via a service.
+	//
+	// This is equivalent to running `kubectl expose deployment <deployment-name>`.
 	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Configure a label selector to this deployment.
+	//
+	// Pods that have the label will be selected by deployments configured with this spec.
 	SelectByLabel(key *string, value *string)
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -816,7 +893,6 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 	)
 }
 
-// Add a container to the pod.
 func (d *jsiiProxy_Deployment) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -830,7 +906,6 @@ func (d *jsiiProxy_Deployment) AddContainer(container *ContainerProps) Container
 	return returns
 }
 
-// Add a volume to the pod.
 func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		d,
@@ -839,9 +914,6 @@ func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
 	)
 }
 
-// Expose a deployment via an ingress.
-//
-// This will first expose the deployment with a service, and then expose the service via an ingress.
 func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) IngressV1Beta1 {
 	var returns IngressV1Beta1
 
@@ -855,9 +927,6 @@ func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDep
 	return returns
 }
 
-// Expose a deployment via a service.
-//
-// This is equivalent to running `kubectl expose deployment <deployment-name>`.
 func (d *jsiiProxy_Deployment) ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service {
 	var returns Service
 
@@ -871,14 +940,6 @@ func (d *jsiiProxy_Deployment) ExposeViaService(options *ExposeDeploymentViaServ
 	return returns
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (d *jsiiProxy_Deployment) OnPrepare() {
 	_jsii_.InvokeVoid(
 		d,
@@ -887,10 +948,6 @@ func (d *jsiiProxy_Deployment) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (d *jsiiProxy_Deployment) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		d,
@@ -899,14 +956,6 @@ func (d *jsiiProxy_Deployment) OnSynthesize(session constructs.ISynthesisSession
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (d *jsiiProxy_Deployment) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -920,9 +969,6 @@ func (d *jsiiProxy_Deployment) OnValidate() *[]*string {
 	return returns
 }
 
-// Configure a label selector to this deployment.
-//
-// Pods that have the label will be selected by deployments configured with this spec.
 func (d *jsiiProxy_Deployment) SelectByLabel(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		d,
@@ -931,7 +977,6 @@ func (d *jsiiProxy_Deployment) SelectByLabel(key *string, value *string) {
 	)
 }
 
-// Returns a string representation of this construct.
 func (d *jsiiProxy_Deployment) ToString() *string {
 	var returns *string
 
@@ -992,7 +1037,13 @@ type DeploymentProps struct {
 type EmptyDirMedium string
 
 const (
+	// The default volume of the backing node.
 	EmptyDirMedium_DEFAULT EmptyDirMedium = "DEFAULT"
+	// Mount a tmpfs (RAM-backed filesystem) for you instead.
+	//
+	// While tmpfs is very
+	// fast, be aware that unlike disks, tmpfs is cleared on node reboot and any
+	// files you write will count against your Container's memory limit.
 	EmptyDirMedium_MEMORY EmptyDirMedium = "MEMORY"
 )
 
@@ -1018,15 +1069,25 @@ type EmptyDirVolumeOptions struct {
 type EnvFieldPaths string
 
 const (
+	// The name of the pod.
 	EnvFieldPaths_POD_NAME EnvFieldPaths = "POD_NAME"
+	// The namespace of the pod.
 	EnvFieldPaths_POD_NAMESPACE EnvFieldPaths = "POD_NAMESPACE"
+	// The uid of the pod.
 	EnvFieldPaths_POD_UID EnvFieldPaths = "POD_UID"
+	// The labels of the pod.
 	EnvFieldPaths_POD_LABEL EnvFieldPaths = "POD_LABEL"
+	// The annotations of the pod.
 	EnvFieldPaths_POD_ANNOTATION EnvFieldPaths = "POD_ANNOTATION"
+	// The ipAddress of the pod.
 	EnvFieldPaths_POD_IP EnvFieldPaths = "POD_IP"
+	// The service account name of the pod.
 	EnvFieldPaths_SERVICE_ACCOUNT_NAME EnvFieldPaths = "SERVICE_ACCOUNT_NAME"
+	// The name of the node.
 	EnvFieldPaths_NODE_NAME EnvFieldPaths = "NODE_NAME"
+	// The ipAddress of the node.
 	EnvFieldPaths_NODE_IP EnvFieldPaths = "NODE_IP"
+	// The ipAddresess of the pod.
 	EnvFieldPaths_POD_IPS EnvFieldPaths = "POD_IPS"
 )
 
@@ -1430,8 +1491,23 @@ type jsiiProxy_IServiceAccount struct {
 type ImagePullPolicy string
 
 const (
+	// Every time the kubelet launches a container, the kubelet queries the container image registry to resolve the name to an image digest.
+	//
+	// If the kubelet has a container image with that exact
+	// digest cached locally, the kubelet uses its cached image; otherwise, the kubelet downloads
+	// (pulls) the image with the resolved digest, and uses that image to launch the container.
+	//
+	// Default is Always if ImagePullPolicy is omitted and either the image tag is :latest or
+	// the image tag is omitted.
 	ImagePullPolicy_ALWAYS ImagePullPolicy = "ALWAYS"
+	// The image is pulled only if it is not already present locally.
+	//
+	// Default is IfNotPresent if ImagePullPolicy is omitted and the image tag is present but
+	// not :latest.
 	ImagePullPolicy_IF_NOT_PRESENT ImagePullPolicy = "IF_NOT_PRESENT"
+	// The image is assumed to exist locally.
+	//
+	// No attempt is made to pull the image.
 	ImagePullPolicy_NEVER ImagePullPolicy = "NEVER"
 )
 
@@ -1442,18 +1518,50 @@ const (
 // based virtual hosting etc.
 type IngressV1Beta1 interface {
 	Resource
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Defines the default backend for this ingress.
+	//
+	// A default backend capable of
+	// servicing requests that don't match any rule.
 	AddDefaultBackend(backend IngressV1Beta1Backend)
+	// Specify a default backend for a specific host name.
+	//
+	// This backend will be used as a catch-all for requests
+	// targeted to this host name (the `Host` header matches this value).
 	AddHostDefaultBackend(host *string, backend IngressV1Beta1Backend)
+	// Adds an ingress rule applied to requests to a specific host and a specific HTTP path (the `Host` header matches this value).
 	AddHostRule(host *string, path *string, backend IngressV1Beta1Backend)
+	// Adds an ingress rule applied to requests sent to a specific HTTP path.
 	AddRule(path *string, backend IngressV1Beta1Backend)
+	// Adds rules to this ingress.
 	AddRules(rules ...*IngressV1Beta1Rule)
 	AddTls(tls *[]*IngressV1Beta1Tls)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -1517,10 +1625,6 @@ func NewIngressV1Beta1_Override(i IngressV1Beta1, scope constructs.Construct, id
 	)
 }
 
-// Defines the default backend for this ingress.
-//
-// A default backend capable of
-// servicing requests that don't match any rule.
 func (i *jsiiProxy_IngressV1Beta1) AddDefaultBackend(backend IngressV1Beta1Backend) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1529,10 +1633,6 @@ func (i *jsiiProxy_IngressV1Beta1) AddDefaultBackend(backend IngressV1Beta1Backe
 	)
 }
 
-// Specify a default backend for a specific host name.
-//
-// This backend will be used as a catch-all for requests
-// targeted to this host name (the `Host` header matches this value).
 func (i *jsiiProxy_IngressV1Beta1) AddHostDefaultBackend(host *string, backend IngressV1Beta1Backend) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1541,7 +1641,6 @@ func (i *jsiiProxy_IngressV1Beta1) AddHostDefaultBackend(host *string, backend I
 	)
 }
 
-// Adds an ingress rule applied to requests to a specific host and a specific HTTP path (the `Host` header matches this value).
 func (i *jsiiProxy_IngressV1Beta1) AddHostRule(host *string, path *string, backend IngressV1Beta1Backend) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1550,7 +1649,6 @@ func (i *jsiiProxy_IngressV1Beta1) AddHostRule(host *string, path *string, backe
 	)
 }
 
-// Adds an ingress rule applied to requests sent to a specific HTTP path.
 func (i *jsiiProxy_IngressV1Beta1) AddRule(path *string, backend IngressV1Beta1Backend) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1559,7 +1657,6 @@ func (i *jsiiProxy_IngressV1Beta1) AddRule(path *string, backend IngressV1Beta1B
 	)
 }
 
-// Adds rules to this ingress.
 func (i *jsiiProxy_IngressV1Beta1) AddRules(rules ...*IngressV1Beta1Rule) {
 	args := []interface{}{}
 	for _, a := range rules {
@@ -1581,14 +1678,6 @@ func (i *jsiiProxy_IngressV1Beta1) AddTls(tls *[]*IngressV1Beta1Tls) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (i *jsiiProxy_IngressV1Beta1) OnPrepare() {
 	_jsii_.InvokeVoid(
 		i,
@@ -1597,10 +1686,6 @@ func (i *jsiiProxy_IngressV1Beta1) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (i *jsiiProxy_IngressV1Beta1) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1609,10 +1694,6 @@ func (i *jsiiProxy_IngressV1Beta1) OnSynthesize(session constructs.ISynthesisSes
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
 func (i *jsiiProxy_IngressV1Beta1) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -1626,7 +1707,6 @@ func (i *jsiiProxy_IngressV1Beta1) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (i *jsiiProxy_IngressV1Beta1) ToString() *string {
 	var returns *string
 
@@ -1739,22 +1819,63 @@ type IngressV1Beta1Tls struct {
 type Job interface {
 	Resource
 	IPodTemplate
+	// Duration before job is terminated.
+	//
+	// If undefined, there is no deadline.
 	ActiveDeadline() cdk8s.Duration
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// Number of retries before marking failed.
 	BackoffLimit() *float64
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Provides read/write access to the underlying pod metadata of the resource.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// TTL before the job is deleted after it is finished.
 	TtlAfterFinished() cdk8s.Duration
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -1899,7 +2020,6 @@ func NewJob_Override(j Job, scope constructs.Construct, id *string, props *JobPr
 	)
 }
 
-// Add a container to the pod.
 func (j *jsiiProxy_Job) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -1913,7 +2033,6 @@ func (j *jsiiProxy_Job) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
-// Add a volume to the pod.
 func (j *jsiiProxy_Job) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		j,
@@ -1922,14 +2041,6 @@ func (j *jsiiProxy_Job) AddVolume(volume Volume) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (j *jsiiProxy_Job) OnPrepare() {
 	_jsii_.InvokeVoid(
 		j,
@@ -1938,10 +2049,6 @@ func (j *jsiiProxy_Job) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (j *jsiiProxy_Job) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		j,
@@ -1950,14 +2057,6 @@ func (j *jsiiProxy_Job) OnSynthesize(session constructs.ISynthesisSession) {
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (j *jsiiProxy_Job) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -1971,7 +2070,6 @@ func (j *jsiiProxy_Job) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (j *jsiiProxy_Job) ToString() *string {
 	var returns *string
 
@@ -2068,8 +2166,45 @@ type MountOptions struct {
 type MountPropagation string
 
 const (
+	// This volume mount will not receive any subsequent mounts that are mounted to this volume or any of its subdirectories by the host.
+	//
+	// In similar
+	// fashion, no mounts created by the Container will be visible on the host.
+	//
+	// This is the default mode.
+	//
+	// This mode is equal to `private` mount propagation as described in the Linux
+	// kernel documentation.
 	MountPropagation_NONE MountPropagation = "NONE"
+	// This volume mount will receive all subsequent mounts that are mounted to this volume or any of its subdirectories.
+	//
+	// In other words, if the host mounts anything inside the volume mount, the
+	// Container will see it mounted there.
+	//
+	// Similarly, if any Pod with Bidirectional mount propagation to the same
+	// volume mounts anything there, the Container with HostToContainer mount
+	// propagation will see it.
+	//
+	// This mode is equal to `rslave` mount propagation as described in the Linux
+	// kernel documentation.
 	MountPropagation_HOST_TO_CONTAINER MountPropagation = "HOST_TO_CONTAINER"
+	// This volume mount behaves the same the HostToContainer mount.
+	//
+	// In addition,
+	// all volume mounts created by the Container will be propagated back to the
+	// host and to all Containers of all Pods that use the same volume
+	//
+	// A typical use case for this mode is a Pod with a FlexVolume or CSI driver
+	// or a Pod that needs to mount something on the host using a hostPath volume.
+	//
+	// This mode is equal to `rshared` mount propagation as described in the Linux
+	// kernel documentation
+	//
+	// Caution: Bidirectional mount propagation can be dangerous. It can damage
+	// the host operating system and therefore it is allowed only in privileged
+	// Containers. Familiarity with Linux kernel behavior is strongly recommended.
+	// In addition, any volume mounts created by Containers in Pods must be
+	// destroyed (unmounted) by the Containers on termination.
 	MountPropagation_BIDIRECTIONAL MountPropagation = "BIDIRECTIONAL"
 )
 
@@ -2096,18 +2231,53 @@ type PathMapping struct {
 type Pod interface {
 	Resource
 	IPodSpec
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -2212,7 +2382,6 @@ func NewPod_Override(p Pod, scope constructs.Construct, id *string, props *PodPr
 	)
 }
 
-// Add a container to the pod.
 func (p *jsiiProxy_Pod) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -2226,7 +2395,6 @@ func (p *jsiiProxy_Pod) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
-// Add a volume to the pod.
 func (p *jsiiProxy_Pod) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2235,14 +2403,6 @@ func (p *jsiiProxy_Pod) AddVolume(volume Volume) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (p *jsiiProxy_Pod) OnPrepare() {
 	_jsii_.InvokeVoid(
 		p,
@@ -2251,10 +2411,6 @@ func (p *jsiiProxy_Pod) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (p *jsiiProxy_Pod) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2263,14 +2419,6 @@ func (p *jsiiProxy_Pod) OnSynthesize(session constructs.ISynthesisSession) {
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (p *jsiiProxy_Pod) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -2284,7 +2432,6 @@ func (p *jsiiProxy_Pod) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (p *jsiiProxy_Pod) ToString() *string {
 	var returns *string
 
@@ -2350,11 +2497,21 @@ type PodProps struct {
 // Provides read/write capabilities ontop of a `PodSpecProps`.
 type PodSpec interface {
 	IPodSpec
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
 }
 
@@ -2428,7 +2585,6 @@ func NewPodSpec_Override(p PodSpec, props *PodSpecProps) {
 	)
 }
 
-// Add a container to the pod.
 func (p *jsiiProxy_PodSpec) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -2442,7 +2598,6 @@ func (p *jsiiProxy_PodSpec) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
-// Add a volume to the pod.
 func (p *jsiiProxy_PodSpec) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2487,12 +2642,23 @@ type PodSpecProps struct {
 type PodTemplate interface {
 	PodSpec
 	IPodTemplate
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// Provides read/write access to the underlying pod metadata of the resource.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
 }
 
@@ -2577,7 +2743,6 @@ func NewPodTemplate_Override(p PodTemplate, props *PodTemplateProps) {
 	)
 }
 
-// Add a container to the pod.
 func (p *jsiiProxy_PodTemplate) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -2591,7 +2756,6 @@ func (p *jsiiProxy_PodTemplate) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
-// Add a volume to the pod.
 func (p *jsiiProxy_PodTemplate) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2744,12 +2908,35 @@ const (
 type Resource interface {
 	constructs.Construct
 	IResource
+	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -2801,14 +2988,6 @@ func NewResource_Override(r Resource, scope constructs.Construct, id *string, op
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (r *jsiiProxy_Resource) OnPrepare() {
 	_jsii_.InvokeVoid(
 		r,
@@ -2817,10 +2996,6 @@ func (r *jsiiProxy_Resource) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (r *jsiiProxy_Resource) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		r,
@@ -2829,14 +3004,6 @@ func (r *jsiiProxy_Resource) OnSynthesize(session constructs.ISynthesisSession) 
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (r *jsiiProxy_Resource) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -2850,7 +3017,6 @@ func (r *jsiiProxy_Resource) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (r *jsiiProxy_Resource) ToString() *string {
 	var returns *string
 
@@ -2867,11 +3033,17 @@ func (r *jsiiProxy_Resource) ToString() *string {
 type ResourceFieldPaths string
 
 const (
+	// CPU limit of the container.
 	ResourceFieldPaths_CPU_LIMIT ResourceFieldPaths = "CPU_LIMIT"
+	// Memory limit of the container.
 	ResourceFieldPaths_MEMORY_LIMIT ResourceFieldPaths = "MEMORY_LIMIT"
+	// CPU request of the container.
 	ResourceFieldPaths_CPU_REQUEST ResourceFieldPaths = "CPU_REQUEST"
+	// Memory request of the container.
 	ResourceFieldPaths_MEMORY_REQUEST ResourceFieldPaths = "MEMORY_REQUEST"
+	// Ephemeral storage limit of the container.
 	ResourceFieldPaths_STORAGE_LIMIT ResourceFieldPaths = "STORAGE_LIMIT"
+	// Ephemeral storage request of the container.
 	ResourceFieldPaths_STORAGE_REQUEST ResourceFieldPaths = "STORAGE_REQUEST"
 )
 
@@ -2891,8 +3063,11 @@ type Resources struct {
 type RestartPolicy string
 
 const (
+	// Always restart the pod after it exits.
 	RestartPolicy_ALWAYS RestartPolicy = "ALWAYS"
+	// Only restart if the pod exits with a non-zero exit code.
 	RestartPolicy_ON_FAILURE RestartPolicy = "ON_FAILURE"
+	// Never restart the pod.
 	RestartPolicy_NEVER RestartPolicy = "NEVER"
 )
 
@@ -2906,14 +3081,41 @@ const (
 type Secret interface {
 	Resource
 	ISecret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -2994,7 +3196,6 @@ func Secret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
-// Adds a string data field to the secert.
 func (s *jsiiProxy_Secret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3003,7 +3204,6 @@ func (s *jsiiProxy_Secret) AddStringData(key *string, value *string) {
 	)
 }
 
-// Gets a string data by key or undefined.
 func (s *jsiiProxy_Secret) GetStringData(key *string) *string {
 	var returns *string
 
@@ -3017,14 +3217,6 @@ func (s *jsiiProxy_Secret) GetStringData(key *string) *string {
 	return returns
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (s *jsiiProxy_Secret) OnPrepare() {
 	_jsii_.InvokeVoid(
 		s,
@@ -3033,10 +3225,6 @@ func (s *jsiiProxy_Secret) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (s *jsiiProxy_Secret) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3045,14 +3233,6 @@ func (s *jsiiProxy_Secret) OnSynthesize(session constructs.ISynthesisSession) {
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (s *jsiiProxy_Secret) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -3066,7 +3246,6 @@ func (s *jsiiProxy_Secret) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (s *jsiiProxy_Secret) ToString() *string {
 	var returns *string
 
@@ -3143,21 +3322,65 @@ type SecretVolumeOptions struct {
 // or load balancer in between your application and the backend Pods.
 type Service interface {
 	Resource
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// The IP address of the service and is usually assigned randomly by the master.
 	ClusterIP() *string
+	// The externalName to be used for EXTERNAL_NAME types.
 	ExternalName() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Ports for this service.
+	//
+	// Use `serve()` to expose additional service ports.
 	Ports() *[]*ServicePort
+	// Returns the labels which are used to select pods for this service.
 	Selector() *map[string]*string
+	// Determines how the Service is exposed.
 	Type() ServiceType
+	// Associate a deployment to this service.
+	//
+	// If not targetPort is specific in the portOptions, then requests will be routed
+	// to the port exposed by the first container in the deployment's pods.
+	// The deployment's `labelSelector` will be used to select pods.
 	AddDeployment(deployment Deployment, options *AddDeploymentOptions)
+	// Services defined using this spec will select pods according the provided label.
 	AddSelector(label *string, value *string)
+	// Expose a service via an ingress using the specified path.
+	//
+	// Returns: The `Ingress` resource that was used.
 	ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) IngressV1Beta1
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Configure a port the service will bind to.
+	//
+	// This method can be called multiple times.
 	Serve(port *float64, options *ServicePortOptions)
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -3271,11 +3494,6 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 	)
 }
 
-// Associate a deployment to this service.
-//
-// If not targetPort is specific in the portOptions, then requests will be routed
-// to the port exposed by the first container in the deployment's pods.
-// The deployment's `labelSelector` will be used to select pods.
 func (s *jsiiProxy_Service) AddDeployment(deployment Deployment, options *AddDeploymentOptions) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3284,7 +3502,6 @@ func (s *jsiiProxy_Service) AddDeployment(deployment Deployment, options *AddDep
 	)
 }
 
-// Services defined using this spec will select pods according the provided label.
 func (s *jsiiProxy_Service) AddSelector(label *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3293,9 +3510,6 @@ func (s *jsiiProxy_Service) AddSelector(label *string, value *string) {
 	)
 }
 
-// Expose a service via an ingress using the specified path.
-//
-// Returns: The `Ingress` resource that was used.
 func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) IngressV1Beta1 {
 	var returns IngressV1Beta1
 
@@ -3309,14 +3523,6 @@ func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServic
 	return returns
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (s *jsiiProxy_Service) OnPrepare() {
 	_jsii_.InvokeVoid(
 		s,
@@ -3325,10 +3531,6 @@ func (s *jsiiProxy_Service) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (s *jsiiProxy_Service) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3337,14 +3539,6 @@ func (s *jsiiProxy_Service) OnSynthesize(session constructs.ISynthesisSession) {
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (s *jsiiProxy_Service) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -3358,9 +3552,6 @@ func (s *jsiiProxy_Service) OnValidate() *[]*string {
 	return returns
 }
 
-// Configure a port the service will bind to.
-//
-// This method can be called multiple times.
 func (s *jsiiProxy_Service) Serve(port *float64, options *ServicePortOptions) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3369,7 +3560,6 @@ func (s *jsiiProxy_Service) Serve(port *float64, options *ServicePortOptions) {
 	)
 }
 
-// Returns a string representation of this construct.
 func (s *jsiiProxy_Service) ToString() *string {
 	var returns *string
 
@@ -3396,14 +3586,43 @@ func (s *jsiiProxy_Service) ToString() *string {
 type ServiceAccount interface {
 	Resource
 	IServiceAccount
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// List of secrets allowed to be used by pods running using this service account.
+	//
+	// Returns a copy. To add a secret, use `addSecret()`.
 	Secrets() *[]ISecret
+	// Allow a secret to be accessed by pods using this service account.
 	AddSecret(secret ISecret)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -3494,7 +3713,6 @@ func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
 	return returns
 }
 
-// Allow a secret to be accessed by pods using this service account.
 func (s *jsiiProxy_ServiceAccount) AddSecret(secret ISecret) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3503,14 +3721,6 @@ func (s *jsiiProxy_ServiceAccount) AddSecret(secret ISecret) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (s *jsiiProxy_ServiceAccount) OnPrepare() {
 	_jsii_.InvokeVoid(
 		s,
@@ -3519,10 +3729,6 @@ func (s *jsiiProxy_ServiceAccount) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (s *jsiiProxy_ServiceAccount) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3531,14 +3737,6 @@ func (s *jsiiProxy_ServiceAccount) OnSynthesize(session constructs.ISynthesisSes
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (s *jsiiProxy_ServiceAccount) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -3552,7 +3750,6 @@ func (s *jsiiProxy_ServiceAccount) OnValidate() *[]*string {
 	return returns
 }
 
-// Returns a string representation of this construct.
 func (s *jsiiProxy_ServiceAccount) ToString() *string {
 	var returns *string
 
@@ -3687,9 +3884,25 @@ type ServiceProps struct {
 type ServiceType string
 
 const (
+	// Exposes the Service on a cluster-internal IP.
+	//
+	// Choosing this value makes the Service only reachable from within the cluster.
+	// This is the default ServiceType.
 	ServiceType_CLUSTER_IP ServiceType = "CLUSTER_IP"
+	// Exposes the Service on each Node's IP at a static port (the NodePort).
+	//
+	// A ClusterIP Service, to which the NodePort Service routes, is automatically created.
+	// You'll be able to contact the NodePort Service, from outside the cluster,
+	// by requesting <NodeIP>:<NodePort>.
 	ServiceType_NODE_PORT ServiceType = "NODE_PORT"
+	// Exposes the Service externally using a cloud provider's load balancer.
+	//
+	// NodePort and ClusterIP Services, to which the external load balancer routes,
+	// are automatically created.
 	ServiceType_LOAD_BALANCER ServiceType = "LOAD_BALANCER"
+	// Maps the Service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up.
+	//
+	// > Note: You need either kube-dns version 1.7 or CoreDNS version 0.0.8 or higher to use the ExternalName type.
 	ServiceType_EXTERNAL_NAME ServiceType = "EXTERNAL_NAME"
 )
 
@@ -3720,23 +3933,67 @@ const (
 type StatefulSet interface {
 	Resource
 	IPodTemplate
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
 	ApiObject() cdk8s.ApiObject
+	// The containers belonging to the pod.
+	//
+	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The labels this statefulset will match against in order to select pods.
+	//
+	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
 	Name() *string
+	// Management policy to use for the set.
 	PodManagementPolicy() PodManagementPolicy
+	// Provides read/write access to the underlying pod metadata of the resource.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// Number of desired pods.
 	Replicas() *float64
+	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The volumes associated with this pod.
+	//
+	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
+	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add a volume to the pod.
 	AddVolume(volume Volume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
 	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
 	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Configure a label selector to this deployment.
+	//
+	// Pods that have the label will be selected by deployments configured with this spec.
 	SelectByLabel(key *string, value *string)
+	// Returns a string representation of this construct.
 	ToString() *string
 }
 
@@ -3881,7 +4138,6 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 	)
 }
 
-// Add a container to the pod.
 func (s *jsiiProxy_StatefulSet) AddContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -3895,7 +4151,6 @@ func (s *jsiiProxy_StatefulSet) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
-// Add a volume to the pod.
 func (s *jsiiProxy_StatefulSet) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3904,14 +4159,6 @@ func (s *jsiiProxy_StatefulSet) AddVolume(volume Volume) {
 	)
 }
 
-// Perform final modifications before synthesis.
-//
-// This method can be implemented by derived constructs in order to perform
-// final changes before synthesis. prepare() will be called after child
-// constructs have been prepared.
-//
-// This is an advanced framework feature. Only use this if you
-// understand the implications.
 func (s *jsiiProxy_StatefulSet) OnPrepare() {
 	_jsii_.InvokeVoid(
 		s,
@@ -3920,10 +4167,6 @@ func (s *jsiiProxy_StatefulSet) OnPrepare() {
 	)
 }
 
-// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-//
-// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-// as they participate in synthesizing the cloud assembly.
 func (s *jsiiProxy_StatefulSet) OnSynthesize(session constructs.ISynthesisSession) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3932,14 +4175,6 @@ func (s *jsiiProxy_StatefulSet) OnSynthesize(session constructs.ISynthesisSessio
 	)
 }
 
-// Validate the current construct.
-//
-// This method can be implemented by derived constructs in order to perform
-// validation logic. It is called on all constructs before synthesis.
-//
-// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-// instead of overriding this method.
 func (s *jsiiProxy_StatefulSet) OnValidate() *[]*string {
 	var returns *[]*string
 
@@ -3953,9 +4188,6 @@ func (s *jsiiProxy_StatefulSet) OnValidate() *[]*string {
 	return returns
 }
 
-// Configure a label selector to this deployment.
-//
-// Pods that have the label will be selected by deployments configured with this spec.
 func (s *jsiiProxy_StatefulSet) SelectByLabel(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -3964,7 +4196,6 @@ func (s *jsiiProxy_StatefulSet) SelectByLabel(key *string, value *string) {
 	)
 }
 
-// Returns a string representation of this construct.
 func (s *jsiiProxy_StatefulSet) ToString() *string {
 	var returns *string
 
