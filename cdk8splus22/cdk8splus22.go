@@ -700,6 +700,10 @@ type Deployment interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	// The labels this deployment will match against in order to select pods.
 	//
 	// Returns a a copy. Use `selectByLabel()` to add labels.
@@ -721,6 +725,8 @@ type Deployment interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 	// Expose a deployment via an ingress.
@@ -783,6 +789,16 @@ func (j *jsiiProxy_Deployment) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -906,6 +922,19 @@ func (d *jsiiProxy_Deployment) AddContainer(container *ContainerProps) Container
 	return returns
 }
 
+func (d *jsiiProxy_Deployment) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		d,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		d,
@@ -1001,6 +1030,20 @@ type DeploymentProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
@@ -1361,12 +1404,18 @@ type jsiiProxy_IConfigMap struct {
 type IPodSpec interface {
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 	// The containers belonging to the pod.
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
 	// The service account used to run this pod.
@@ -1395,6 +1444,19 @@ func (i *jsiiProxy_IPodSpec) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (i *jsiiProxy_IPodSpec) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		i,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (i *jsiiProxy_IPodSpec) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		i,
@@ -1408,6 +1470,16 @@ func (j *jsiiProxy_IPodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IPodSpec) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -1858,6 +1930,10 @@ type Job interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -1875,6 +1951,8 @@ type Job interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 	// Perform final modifications before synthesis.
@@ -1945,6 +2023,16 @@ func (j *jsiiProxy_Job) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -2058,6 +2146,19 @@ func (j *jsiiProxy_Job) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (j *jsiiProxy_Job) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		j,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (j *jsiiProxy_Job) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		j,
@@ -2119,6 +2220,20 @@ type JobProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
@@ -2264,6 +2379,10 @@ type Pod interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -2277,6 +2396,8 @@ type Pod interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 	// Perform final modifications before synthesis.
@@ -2327,6 +2448,16 @@ func (j *jsiiProxy_Pod) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -2420,6 +2551,19 @@ func (p *jsiiProxy_Pod) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (p *jsiiProxy_Pod) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		p,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_Pod) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2496,6 +2640,20 @@ type PodProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
@@ -2526,6 +2684,10 @@ type PodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
 	// The service account used to run this pod.
@@ -2536,6 +2698,8 @@ type PodSpec interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 }
@@ -2550,6 +2714,16 @@ func (j *jsiiProxy_PodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSpec) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -2623,6 +2797,19 @@ func (p *jsiiProxy_PodSpec) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (p *jsiiProxy_PodSpec) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		p,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_PodSpec) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2640,6 +2827,20 @@ type PodSpecProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
@@ -2671,6 +2872,10 @@ type PodTemplate interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	// Provides read/write access to the underlying pod metadata of the resource.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
@@ -2683,6 +2888,8 @@ type PodTemplate interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 }
@@ -2698,6 +2905,16 @@ func (j *jsiiProxy_PodTemplate) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodTemplate) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -2781,6 +2998,19 @@ func (p *jsiiProxy_PodTemplate) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
+func (p *jsiiProxy_PodTemplate) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		p,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_PodTemplate) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		p,
@@ -2800,6 +3030,20 @@ type PodTemplateProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
@@ -3966,6 +4210,10 @@ type StatefulSet interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The init containers belonging to the pod.
+	//
+	// Use `addInitContainer` to add init containers.
+	InitContainers() *[]Container
 	// The labels this statefulset will match against in order to select pods.
 	//
 	// Returns a a copy. Use `selectByLabel()` to add labels.
@@ -3989,6 +4237,8 @@ type StatefulSet interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	// Add an init container to the pod.
+	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
 	AddVolume(volume Volume)
 	// Perform final modifications before synthesis.
@@ -4043,6 +4293,16 @@ func (j *jsiiProxy_StatefulSet) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
 		&returns,
 	)
 	return returns
@@ -4176,6 +4436,19 @@ func (s *jsiiProxy_StatefulSet) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
+func (s *jsiiProxy_StatefulSet) AddInitContainer(container *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		s,
+		"addInitContainer",
+		[]interface{}{container},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_StatefulSet) AddVolume(volume Volume) {
 	_jsii_.InvokeVoid(
 		s,
@@ -4245,6 +4518,20 @@ type StatefulSetProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
