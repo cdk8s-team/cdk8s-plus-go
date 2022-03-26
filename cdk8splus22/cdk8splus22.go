@@ -826,6 +826,10 @@ type Deployment interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -852,6 +856,7 @@ type Deployment interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -916,6 +921,16 @@ func (j *jsiiProxy_Deployment) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -1059,6 +1074,14 @@ func (d *jsiiProxy_Deployment) AddContainer(container *ContainerProps) Container
 	return returns
 }
 
+func (d *jsiiProxy_Deployment) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		d,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (d *jsiiProxy_Deployment) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -1167,6 +1190,8 @@ type DeploymentProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -1496,6 +1521,14 @@ const (
 	FsGroupChangePolicy_ALWAYS FsGroupChangePolicy = "ALWAYS"
 )
 
+// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's /etc/hosts file.
+type HostAlias struct {
+	// Hostnames for the chosen IP address.
+	Hostnames *[]*string `json:"hostnames" yaml:"hostnames"`
+	// IP address of the host file entry.
+	Ip *string `json:"ip" yaml:"ip"`
+}
+
 // Options for `Probe.fromHttpGet()`.
 type HttpGetProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
@@ -1562,6 +1595,10 @@ type IPodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -1620,6 +1657,16 @@ func (j *jsiiProxy_IPodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IPodSpec) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -2080,6 +2127,10 @@ type Job interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -2102,6 +2153,7 @@ type Job interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -2174,6 +2226,16 @@ func (j *jsiiProxy_Job) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -2307,6 +2369,14 @@ func (j *jsiiProxy_Job) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (j *jsiiProxy_Job) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		j,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (j *jsiiProxy_Job) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -2381,6 +2451,8 @@ type JobProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -2542,6 +2614,10 @@ type Pod interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -2560,6 +2636,7 @@ type Pod interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -2612,6 +2689,16 @@ func (j *jsiiProxy_Pod) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -2725,6 +2812,14 @@ func (p *jsiiProxy_Pod) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (p *jsiiProxy_Pod) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		p,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (p *jsiiProxy_Pod) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -2814,6 +2909,8 @@ type PodProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -2984,6 +3081,10 @@ type PodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -2999,6 +3100,7 @@ type PodSpec interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -3015,6 +3117,16 @@ func (j *jsiiProxy_PodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSpec) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -3108,6 +3220,14 @@ func (p *jsiiProxy_PodSpec) AddContainer(container *ContainerProps) Container {
 	return returns
 }
 
+func (p *jsiiProxy_PodSpec) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		p,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (p *jsiiProxy_PodSpec) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -3138,6 +3258,8 @@ type PodSpecProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -3185,6 +3307,10 @@ type PodTemplate interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -3202,6 +3328,7 @@ type PodTemplate interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -3219,6 +3346,16 @@ func (j *jsiiProxy_PodTemplate) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodTemplate) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -3322,6 +3459,14 @@ func (p *jsiiProxy_PodTemplate) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
+func (p *jsiiProxy_PodTemplate) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		p,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (p *jsiiProxy_PodTemplate) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -3354,6 +3499,8 @@ type PodTemplateProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -4536,6 +4683,10 @@ type StatefulSet interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
+	//
+	// This is only valid for non-hostNetwork pods.
+	HostAliases() *[]*HostAlias
 	// The init containers belonging to the pod.
 	//
 	// Use `addInitContainer` to add init containers.
@@ -4564,6 +4715,7 @@ type StatefulSet interface {
 	Volumes() *[]Volume
 	// Add a container to the pod.
 	AddContainer(container *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
 	AddInitContainer(container *ContainerProps) Container
 	// Add a volume to the pod.
@@ -4620,6 +4772,16 @@ func (j *jsiiProxy_StatefulSet) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
 		&returns,
 	)
 	return returns
@@ -4773,6 +4935,14 @@ func (s *jsiiProxy_StatefulSet) AddContainer(container *ContainerProps) Containe
 	return returns
 }
 
+func (s *jsiiProxy_StatefulSet) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		s,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
 func (s *jsiiProxy_StatefulSet) AddInitContainer(container *ContainerProps) Container {
 	var returns Container
 
@@ -4855,6 +5025,8 @@ type StatefulSetProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
