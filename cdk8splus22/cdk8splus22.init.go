@@ -15,6 +15,30 @@ func init() {
 		"cdk8s-plus-22.AddDirectoryOptions",
 		reflect.TypeOf((*AddDirectoryOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.BasicAuthSecret",
+		reflect.TypeOf((*BasicAuthSecret)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_BasicAuthSecret{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Secret)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.BasicAuthSecretProps",
+		reflect.TypeOf((*BasicAuthSecretProps)(nil)).Elem(),
+	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.CommandProbeOptions",
 		reflect.TypeOf((*CommandProbeOptions)(nil)).Elem(),
@@ -153,6 +177,30 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.DeploymentProps",
 		reflect.TypeOf((*DeploymentProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.DockerConfigSecret",
+		reflect.TypeOf((*DockerConfigSecret)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_DockerConfigSecret{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Secret)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.DockerConfigSecretProps",
+		reflect.TypeOf((*DockerConfigSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-22.EmptyDirMedium",
@@ -732,6 +780,30 @@ func init() {
 		"cdk8s-plus-22.ServiceAccountProps",
 		reflect.TypeOf((*ServiceAccountProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		reflect.TypeOf((*ServiceAccountTokenSecret)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_ServiceAccountTokenSecret{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Secret)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.ServiceAccountTokenSecretProps",
+		reflect.TypeOf((*ServiceAccountTokenSecretProps)(nil)).Elem(),
+	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.ServiceIngressBackendOptions",
 		reflect.TypeOf((*ServiceIngressBackendOptions)(nil)).Elem(),
@@ -757,6 +829,30 @@ func init() {
 			"LOAD_BALANCER": ServiceType_LOAD_BALANCER,
 			"EXTERNAL_NAME": ServiceType_EXTERNAL_NAME,
 		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.SshAuthSecret",
+		reflect.TypeOf((*SshAuthSecret)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_SshAuthSecret{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Secret)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.SshAuthSecretProps",
+		reflect.TypeOf((*SshAuthSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.StatefulSet",
@@ -804,6 +900,30 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.TcpSocketProbeOptions",
 		reflect.TypeOf((*TcpSocketProbeOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.TlsSecret",
+		reflect.TypeOf((*TlsSecret)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_TlsSecret{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Secret)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.TlsSecretProps",
+		reflect.TypeOf((*TlsSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Volume",
