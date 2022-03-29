@@ -46,6 +46,808 @@ type AddDirectoryOptions struct {
 	KeyPrefix *string `json:"keyPrefix" yaml:"keyPrefix"`
 }
 
+// Represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod.
+// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+//
+type AwsElasticBlockStorePersistentVolume interface {
+	PersistentVolume
+	// Access modes requirement of this claim.
+	AccessModes() *[]PersistentVolumeAccessMode
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// PVC this volume is bound to.
+	//
+	// Undefined means this volume is not yet
+	// claimed by any PVC.
+	Claim() IPersistentVolumeClaim
+	// File system type of this volume.
+	FsType() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Volume mode of this volume.
+	Mode() PersistentVolumeMode
+	// Mount options of this volume.
+	MountOptions() *[]*string
+	// The name of this API object.
+	Name() *string
+	// Partition of this volume.
+	Partition() *float64
+	// Whether or not it is mounted as a read-only volume.
+	ReadOnly() *bool
+	// Reclaim policy of this volume.
+	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// Storage size of this volume.
+	Storage() cdk8s.Size
+	// Storage class this volume belongs to.
+	StorageClassName() *string
+	// Volume id of this volume.
+	VolumeId() *string
+	// Bind a volume to a specific claim.
+	//
+	// Note that you must also bind the claim to the volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
+	//
+	Bind(pvc IPersistentVolumeClaim)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
+	//
+	// Note that this method will throw in case the volume is already claimed.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+	//
+	Reserve() PersistentVolumeClaim
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for AwsElasticBlockStorePersistentVolume
+type jsiiProxy_AwsElasticBlockStorePersistentVolume struct {
+	jsiiProxy_PersistentVolume
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) AccessModes() *[]PersistentVolumeAccessMode {
+	var returns *[]PersistentVolumeAccessMode
+	_jsii_.Get(
+		j,
+		"accessModes",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Claim() IPersistentVolumeClaim {
+	var returns IPersistentVolumeClaim
+	_jsii_.Get(
+		j,
+		"claim",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) FsType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"fsType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Mode() PersistentVolumeMode {
+	var returns PersistentVolumeMode
+	_jsii_.Get(
+		j,
+		"mode",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) MountOptions() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"mountOptions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Partition() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"partition",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ReadOnly() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"readOnly",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPolicy {
+	var returns PersistentVolumeReclaimPolicy
+	_jsii_.Get(
+		j,
+		"reclaimPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Storage() cdk8s.Size {
+	var returns cdk8s.Size
+	_jsii_.Get(
+		j,
+		"storage",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) StorageClassName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"storageClassName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) VolumeId() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"volumeId",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewAwsElasticBlockStorePersistentVolume(scope constructs.Construct, id *string, props *AwsElasticBlockStorePersistentVolumeProps) AwsElasticBlockStorePersistentVolume {
+	_init_.Initialize()
+
+	j := jsiiProxy_AwsElasticBlockStorePersistentVolume{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewAwsElasticBlockStorePersistentVolume_Override(a AwsElasticBlockStorePersistentVolume, scope constructs.Construct, id *string, props *AwsElasticBlockStorePersistentVolumeProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		[]interface{}{scope, id, props},
+		a,
+	)
+}
+
+// Imports a pv from the cluster as a reference.
+func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+	_init_.Initialize()
+
+	var returns IPersistentVolume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"fromPersistentVolumeName",
+		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+	_jsii_.InvokeVoid(
+		a,
+		"bind",
+		[]interface{}{pvc},
+	)
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnPrepare() {
+	_jsii_.InvokeVoid(
+		a,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		a,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		a,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Reserve() PersistentVolumeClaim {
+	var returns PersistentVolumeClaim
+
+	_jsii_.Invoke(
+		a,
+		"reserve",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `AwsElasticBlockStorePersistentVolume`.
+type AwsElasticBlockStorePersistentVolumeProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Contains all ways the volume can be mounted.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
+	//
+	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
+	//
+	// Expected to be non-nil when bound.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
+	//
+	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
+	//
+	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
+	//
+	// The reclaim policy tells the cluster what to do with
+	// the volume after it has been released of its claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
+	//
+	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	// What is the storage capacity of this volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	// Name of StorageClass to which this persistent volume belongs.
+	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	// Defines what type of volume is required by the claim.
+	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	// Unique ID of the persistent disk resource in AWS (Amazon EBS volume).
+	//
+	// More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	VolumeId *string `json:"volumeId" yaml:"volumeId"`
+	// Filesystem type of the volume that you want to mount.
+	//
+	// Tip: Ensure that the filesystem type is supported by the host operating system.
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// The partition in the volume that you want to mount.
+	//
+	// If omitted, the default is to mount by volume name.
+	// Examples: For volume /dev/sda1, you specify the partition as "1".
+	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
+	Partition *float64 `json:"partition" yaml:"partition"`
+	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
+// AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
+type AzureDiskPersistentVolume interface {
+	PersistentVolume
+	// Access modes requirement of this claim.
+	AccessModes() *[]PersistentVolumeAccessMode
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// Caching mode of this volume.
+	CachingMode() AzureDiskPersistentVolumeCachingMode
+	// PVC this volume is bound to.
+	//
+	// Undefined means this volume is not yet
+	// claimed by any PVC.
+	Claim() IPersistentVolumeClaim
+	// Disk name of this volume.
+	DiskName() *string
+	// Disk URI of this volume.
+	DiskUri() *string
+	// File system type of this volume.
+	FsType() *string
+	// Azure kind of this volume.
+	Kind() AzureDiskPersistentVolumeKind
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Volume mode of this volume.
+	Mode() PersistentVolumeMode
+	// Mount options of this volume.
+	MountOptions() *[]*string
+	// The name of this API object.
+	Name() *string
+	// Whether or not it is mounted as a read-only volume.
+	ReadOnly() *bool
+	// Reclaim policy of this volume.
+	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// Storage size of this volume.
+	Storage() cdk8s.Size
+	// Storage class this volume belongs to.
+	StorageClassName() *string
+	// Bind a volume to a specific claim.
+	//
+	// Note that you must also bind the claim to the volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
+	//
+	Bind(pvc IPersistentVolumeClaim)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
+	//
+	// Note that this method will throw in case the volume is already claimed.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+	//
+	Reserve() PersistentVolumeClaim
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for AzureDiskPersistentVolume
+type jsiiProxy_AzureDiskPersistentVolume struct {
+	jsiiProxy_PersistentVolume
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) AccessModes() *[]PersistentVolumeAccessMode {
+	var returns *[]PersistentVolumeAccessMode
+	_jsii_.Get(
+		j,
+		"accessModes",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) CachingMode() AzureDiskPersistentVolumeCachingMode {
+	var returns AzureDiskPersistentVolumeCachingMode
+	_jsii_.Get(
+		j,
+		"cachingMode",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Claim() IPersistentVolumeClaim {
+	var returns IPersistentVolumeClaim
+	_jsii_.Get(
+		j,
+		"claim",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) DiskName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"diskName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) DiskUri() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"diskUri",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) FsType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"fsType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Kind() AzureDiskPersistentVolumeKind {
+	var returns AzureDiskPersistentVolumeKind
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Mode() PersistentVolumeMode {
+	var returns PersistentVolumeMode
+	_jsii_.Get(
+		j,
+		"mode",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) MountOptions() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"mountOptions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) ReadOnly() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"readOnly",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPolicy {
+	var returns PersistentVolumeReclaimPolicy
+	_jsii_.Get(
+		j,
+		"reclaimPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Storage() cdk8s.Size {
+	var returns cdk8s.Size
+	_jsii_.Get(
+		j,
+		"storage",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) StorageClassName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"storageClassName",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewAzureDiskPersistentVolume(scope constructs.Construct, id *string, props *AzureDiskPersistentVolumeProps) AzureDiskPersistentVolume {
+	_init_.Initialize()
+
+	j := jsiiProxy_AzureDiskPersistentVolume{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewAzureDiskPersistentVolume_Override(a AzureDiskPersistentVolume, scope constructs.Construct, id *string, props *AzureDiskPersistentVolumeProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		[]interface{}{scope, id, props},
+		a,
+	)
+}
+
+// Imports a pv from the cluster as a reference.
+func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+	_init_.Initialize()
+
+	var returns IPersistentVolume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"fromPersistentVolumeName",
+		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+	_jsii_.InvokeVoid(
+		a,
+		"bind",
+		[]interface{}{pvc},
+	)
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) OnPrepare() {
+	_jsii_.InvokeVoid(
+		a,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		a,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		a,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) Reserve() PersistentVolumeClaim {
+	var returns PersistentVolumeClaim
+
+	_jsii_.Invoke(
+		a,
+		"reserve",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Azure disk caching modes.
+type AzureDiskPersistentVolumeCachingMode string
+
+const (
+	// None.
+	AzureDiskPersistentVolumeCachingMode_NONE AzureDiskPersistentVolumeCachingMode = "NONE"
+	// ReadOnly.
+	AzureDiskPersistentVolumeCachingMode_READ_ONLY AzureDiskPersistentVolumeCachingMode = "READ_ONLY"
+	// ReadWrite.
+	AzureDiskPersistentVolumeCachingMode_READ_WRITE AzureDiskPersistentVolumeCachingMode = "READ_WRITE"
+)
+
+// Azure Disk kinds.
+type AzureDiskPersistentVolumeKind string
+
+const (
+	// Multiple blob disks per storage account.
+	AzureDiskPersistentVolumeKind_SHARED AzureDiskPersistentVolumeKind = "SHARED"
+	// Single blob disk per storage account.
+	AzureDiskPersistentVolumeKind_DEDICATED AzureDiskPersistentVolumeKind = "DEDICATED"
+	// Azure managed data disk.
+	AzureDiskPersistentVolumeKind_MANAGED AzureDiskPersistentVolumeKind = "MANAGED"
+)
+
+// Properties for `AzureDiskPersistentVolume`.
+type AzureDiskPersistentVolumeProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Contains all ways the volume can be mounted.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
+	//
+	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
+	//
+	// Expected to be non-nil when bound.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
+	//
+	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
+	//
+	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
+	//
+	// The reclaim policy tells the cluster what to do with
+	// the volume after it has been released of its claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
+	//
+	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	// What is the storage capacity of this volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	// Name of StorageClass to which this persistent volume belongs.
+	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	// Defines what type of volume is required by the claim.
+	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	// The Name of the data disk in the blob storage.
+	DiskName *string `json:"diskName" yaml:"diskName"`
+	// The URI the data disk in the blob storage.
+	DiskUri *string `json:"diskUri" yaml:"diskUri"`
+	// Host Caching mode.
+	CachingMode AzureDiskPersistentVolumeCachingMode `json:"cachingMode" yaml:"cachingMode"`
+	// Filesystem type to mount.
+	//
+	// Must be a filesystem type supported by the host operating system.
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// Kind of disk.
+	Kind AzureDiskPersistentVolumeKind `json:"kind" yaml:"kind"`
+	// Force the ReadOnly setting in VolumeMounts.
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
 // Create a secret for basic authentication.
 // See: https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret
 //
@@ -1926,6 +2728,390 @@ const (
 	FsGroupChangePolicy_ALWAYS FsGroupChangePolicy = "ALWAYS"
 )
 
+// GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod.
+//
+// Provisioned by an admin.
+// See: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+//
+type GCEPersistentDiskPersistentVolume interface {
+	PersistentVolume
+	// Access modes requirement of this claim.
+	AccessModes() *[]PersistentVolumeAccessMode
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// PVC this volume is bound to.
+	//
+	// Undefined means this volume is not yet
+	// claimed by any PVC.
+	Claim() IPersistentVolumeClaim
+	// File system type of this volume.
+	FsType() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Volume mode of this volume.
+	Mode() PersistentVolumeMode
+	// Mount options of this volume.
+	MountOptions() *[]*string
+	// The name of this API object.
+	Name() *string
+	// Partition of this volume.
+	Partition() *float64
+	// PD resource in GCE of this volume.
+	PdName() *string
+	// Whether or not it is mounted as a read-only volume.
+	ReadOnly() *bool
+	// Reclaim policy of this volume.
+	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// Storage size of this volume.
+	Storage() cdk8s.Size
+	// Storage class this volume belongs to.
+	StorageClassName() *string
+	// Bind a volume to a specific claim.
+	//
+	// Note that you must also bind the claim to the volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
+	//
+	Bind(pvc IPersistentVolumeClaim)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
+	//
+	// Note that this method will throw in case the volume is already claimed.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+	//
+	Reserve() PersistentVolumeClaim
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for GCEPersistentDiskPersistentVolume
+type jsiiProxy_GCEPersistentDiskPersistentVolume struct {
+	jsiiProxy_PersistentVolume
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) AccessModes() *[]PersistentVolumeAccessMode {
+	var returns *[]PersistentVolumeAccessMode
+	_jsii_.Get(
+		j,
+		"accessModes",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Claim() IPersistentVolumeClaim {
+	var returns IPersistentVolumeClaim
+	_jsii_.Get(
+		j,
+		"claim",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) FsType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"fsType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Mode() PersistentVolumeMode {
+	var returns PersistentVolumeMode
+	_jsii_.Get(
+		j,
+		"mode",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) MountOptions() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"mountOptions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Partition() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"partition",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) PdName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"pdName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ReadOnly() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"readOnly",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPolicy {
+	var returns PersistentVolumeReclaimPolicy
+	_jsii_.Get(
+		j,
+		"reclaimPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Storage() cdk8s.Size {
+	var returns cdk8s.Size
+	_jsii_.Get(
+		j,
+		"storage",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) StorageClassName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"storageClassName",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewGCEPersistentDiskPersistentVolume(scope constructs.Construct, id *string, props *GCEPersistentDiskPersistentVolumeProps) GCEPersistentDiskPersistentVolume {
+	_init_.Initialize()
+
+	j := jsiiProxy_GCEPersistentDiskPersistentVolume{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewGCEPersistentDiskPersistentVolume_Override(g GCEPersistentDiskPersistentVolume, scope constructs.Construct, id *string, props *GCEPersistentDiskPersistentVolumeProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		[]interface{}{scope, id, props},
+		g,
+	)
+}
+
+// Imports a pv from the cluster as a reference.
+func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+	_init_.Initialize()
+
+	var returns IPersistentVolume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"fromPersistentVolumeName",
+		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+	_jsii_.InvokeVoid(
+		g,
+		"bind",
+		[]interface{}{pvc},
+	)
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnPrepare() {
+	_jsii_.InvokeVoid(
+		g,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		g,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		g,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Reserve() PersistentVolumeClaim {
+	var returns PersistentVolumeClaim
+
+	_jsii_.Invoke(
+		g,
+		"reserve",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		g,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `GCEPersistentDiskPersistentVolume`.
+type GCEPersistentDiskPersistentVolumeProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Contains all ways the volume can be mounted.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
+	//
+	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
+	//
+	// Expected to be non-nil when bound.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
+	//
+	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
+	//
+	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
+	//
+	// The reclaim policy tells the cluster what to do with
+	// the volume after it has been released of its claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
+	//
+	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	// What is the storage capacity of this volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	// Name of StorageClass to which this persistent volume belongs.
+	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	// Defines what type of volume is required by the claim.
+	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	// Unique name of the PD resource in GCE.
+	//
+	// Used to identify the disk in GCE.
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+	//
+	PdName *string `json:"pdName" yaml:"pdName"`
+	// Filesystem type of the volume that you want to mount.
+	//
+	// Tip: Ensure that the filesystem type is supported by the host operating system.
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// The partition in the volume that you want to mount.
+	//
+	// If omitted, the default is to mount by volume name.
+	// Examples: For volume /dev/sda1, you specify the partition as "1".
+	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
+	Partition *float64 `json:"partition" yaml:"partition"`
+	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
 // Defines a specific action that should be taken.
 type Handler interface {
 }
@@ -2054,6 +3240,26 @@ type IConfigMap interface {
 
 // The jsii proxy for IConfigMap
 type jsiiProxy_IConfigMap struct {
+	jsiiProxy_IResource
+}
+
+// Contract of a `PersistentVolumeClaim`.
+type IPersistentVolume interface {
+	IResource
+}
+
+// The jsii proxy for IPersistentVolume
+type jsiiProxy_IPersistentVolume struct {
+	jsiiProxy_IResource
+}
+
+// Contract of a `PersistentVolumeClaim`.
+type IPersistentVolumeClaim interface {
+	IResource
+}
+
+// The jsii proxy for IPersistentVolumeClaim
+type jsiiProxy_IPersistentVolumeClaim struct {
 	jsiiProxy_IResource
 }
 
@@ -3074,6 +4280,675 @@ type PathMapping struct {
 	// the result can be other mode bits set.
 	Mode *float64 `json:"mode" yaml:"mode"`
 }
+
+// A PersistentVolume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes.
+//
+// It is a resource in the cluster just like a node is a cluster resource.
+// PVs are volume plugins like Volumes, but have a lifecycle independent of any
+// individual Pod that uses the PV. This API object captures the details of the
+// implementation of the storage, be that NFS, iSCSI, or a
+// cloud-provider-specific storage system.
+type PersistentVolume interface {
+	Resource
+	IPersistentVolume
+	// Access modes requirement of this claim.
+	AccessModes() *[]PersistentVolumeAccessMode
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// PVC this volume is bound to.
+	//
+	// Undefined means this volume is not yet
+	// claimed by any PVC.
+	Claim() IPersistentVolumeClaim
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Volume mode of this volume.
+	Mode() PersistentVolumeMode
+	// Mount options of this volume.
+	MountOptions() *[]*string
+	// The name of this API object.
+	Name() *string
+	// Reclaim policy of this volume.
+	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// Storage size of this volume.
+	Storage() cdk8s.Size
+	// Storage class this volume belongs to.
+	StorageClassName() *string
+	// Bind a volume to a specific claim.
+	//
+	// Note that you must also bind the claim to the volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
+	//
+	Bind(pvc IPersistentVolumeClaim)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
+	//
+	// Note that this method will throw in case the volume is already claimed.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+	//
+	Reserve() PersistentVolumeClaim
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for PersistentVolume
+type jsiiProxy_PersistentVolume struct {
+	jsiiProxy_Resource
+	jsiiProxy_IPersistentVolume
+}
+
+func (j *jsiiProxy_PersistentVolume) AccessModes() *[]PersistentVolumeAccessMode {
+	var returns *[]PersistentVolumeAccessMode
+	_jsii_.Get(
+		j,
+		"accessModes",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Claim() IPersistentVolumeClaim {
+	var returns IPersistentVolumeClaim
+	_jsii_.Get(
+		j,
+		"claim",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Mode() PersistentVolumeMode {
+	var returns PersistentVolumeMode
+	_jsii_.Get(
+		j,
+		"mode",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) MountOptions() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"mountOptions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPolicy {
+	var returns PersistentVolumeReclaimPolicy
+	_jsii_.Get(
+		j,
+		"reclaimPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Storage() cdk8s.Size {
+	var returns cdk8s.Size
+	_jsii_.Get(
+		j,
+		"storage",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) StorageClassName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"storageClassName",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPersistentVolume(scope constructs.Construct, id *string, props *PersistentVolumeProps) PersistentVolume {
+	_init_.Initialize()
+
+	j := jsiiProxy_PersistentVolume{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.PersistentVolume",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPersistentVolume_Override(p PersistentVolume, scope constructs.Construct, id *string, props *PersistentVolumeProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.PersistentVolume",
+		[]interface{}{scope, id, props},
+		p,
+	)
+}
+
+// Imports a pv from the cluster as a reference.
+func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+	_init_.Initialize()
+
+	var returns IPersistentVolume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.PersistentVolume",
+		"fromPersistentVolumeName",
+		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+	_jsii_.InvokeVoid(
+		p,
+		"bind",
+		[]interface{}{pvc},
+	)
+}
+
+func (p *jsiiProxy_PersistentVolume) OnPrepare() {
+	_jsii_.InvokeVoid(
+		p,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (p *jsiiProxy_PersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		p,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (p *jsiiProxy_PersistentVolume) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		p,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) Reserve() PersistentVolumeClaim {
+	var returns PersistentVolumeClaim
+
+	_jsii_.Invoke(
+		p,
+		"reserve",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Access Modes.
+type PersistentVolumeAccessMode string
+
+const (
+	// The volume can be mounted as read-write by a single node.
+	//
+	// ReadWriteOnce access mode still can allow multiple pods to access
+	// the volume when the pods are running on the same node.
+	PersistentVolumeAccessMode_READ_WRITE_ONCE PersistentVolumeAccessMode = "READ_WRITE_ONCE"
+	// The volume can be mounted as read-only by many nodes.
+	PersistentVolumeAccessMode_READ_ONLY_MANY PersistentVolumeAccessMode = "READ_ONLY_MANY"
+	// The volume can be mounted as read-write by many nodes.
+	PersistentVolumeAccessMode_READ_WRITE_MANY PersistentVolumeAccessMode = "READ_WRITE_MANY"
+	// The volume can be mounted as read-write by a single Pod.
+	//
+	// Use ReadWriteOncePod access mode if you want to ensure that
+	// only one pod across whole cluster can read that PVC or write to it.
+	// This is only supported for CSI volumes and Kubernetes version 1.22+.
+	PersistentVolumeAccessMode_READ_WRITE_ONCE_POD PersistentVolumeAccessMode = "READ_WRITE_ONCE_POD"
+)
+
+// A PersistentVolumeClaim (PVC) is a request for storage by a user.
+//
+// It is similar to a Pod. Pods consume node resources and PVCs consume PV resources.
+// Pods can request specific levels of resources (CPU and Memory).
+// Claims can request specific size and access modes.
+type PersistentVolumeClaim interface {
+	Resource
+	IPersistentVolumeClaim
+	// Access modes requirement of this claim.
+	AccessModes() *[]PersistentVolumeAccessMode
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Storage requirement of this claim.
+	Storage() cdk8s.Size
+	// Storage class requirment of this claim.
+	StorageClassName() *string
+	// PV this claim is bound to.
+	//
+	// Undefined means the claim is not bound
+	// to any specific volume.
+	Volume() IPersistentVolume
+	// Volume mode requirement of this claim.
+	VolumeMode() PersistentVolumeMode
+	// Bind a claim to a specific volume.
+	//
+	// Note that you must also bind the volume to the claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
+	//
+	Bind(pv IPersistentVolume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for PersistentVolumeClaim
+type jsiiProxy_PersistentVolumeClaim struct {
+	jsiiProxy_Resource
+	jsiiProxy_IPersistentVolumeClaim
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) AccessModes() *[]PersistentVolumeAccessMode {
+	var returns *[]PersistentVolumeAccessMode
+	_jsii_.Get(
+		j,
+		"accessModes",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Storage() cdk8s.Size {
+	var returns cdk8s.Size
+	_jsii_.Get(
+		j,
+		"storage",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) StorageClassName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"storageClassName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Volume() IPersistentVolume {
+	var returns IPersistentVolume
+	_jsii_.Get(
+		j,
+		"volume",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) VolumeMode() PersistentVolumeMode {
+	var returns PersistentVolumeMode
+	_jsii_.Get(
+		j,
+		"volumeMode",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPersistentVolumeClaim(scope constructs.Construct, id *string, props *PersistentVolumeClaimProps) PersistentVolumeClaim {
+	_init_.Initialize()
+
+	j := jsiiProxy_PersistentVolumeClaim{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.PersistentVolumeClaim",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPersistentVolumeClaim_Override(p PersistentVolumeClaim, scope constructs.Construct, id *string, props *PersistentVolumeClaimProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.PersistentVolumeClaim",
+		[]interface{}{scope, id, props},
+		p,
+	)
+}
+
+// Imports a pvc from the cluster as a reference.
+func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeClaim {
+	_init_.Initialize()
+
+	var returns IPersistentVolumeClaim
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.PersistentVolumeClaim",
+		"fromClaimName",
+		[]interface{}{claimName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) Bind(pv IPersistentVolume) {
+	_jsii_.InvokeVoid(
+		p,
+		"bind",
+		[]interface{}{pv},
+	)
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) OnPrepare() {
+	_jsii_.InvokeVoid(
+		p,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		p,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		p,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `PersistentVolumeClaim`.
+type PersistentVolumeClaimProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Contains the access modes the volume should support.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+	//
+	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	// Minimum storage size the volume should have.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	// Name of the StorageClass required by the claim. When this property is not set, the behavior is as follows:.
+	//
+	// - If the admission plugin is turned on, the storage class marked as default will be used.
+	// - If the admission plugin is turned off, the pvc can only be bound to volumes without a storage class.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+	//
+	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	// The PersistentVolume backing this claim.
+	//
+	// The control plane still checks that storage class, access modes,
+	// and requested storage size on the volume are valid.
+	//
+	// Note that in order to guarantee a proper binding, the volume should
+	// also define a `claimRef` referring to this claim. Otherwise, the volume may be
+	// claimed be other pvc's before it gets a chance to bind to this one.
+	//
+	// If the volume is managed (i.e not imported), you can use `pv.claim()` to easily
+	// create a bi-directional bounded claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding.
+	//
+	Volume IPersistentVolume `json:"volume" yaml:"volume"`
+	// Defines what type of volume is required by the claim.
+	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+}
+
+// Options for a PersistentVolumeClaim-based volume.
+type PersistentVolumeClaimVolumeOptions struct {
+	// The volume name.
+	Name *string `json:"name" yaml:"name"`
+	// Will force the ReadOnly setting in VolumeMounts.
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
+// Volume Modes.
+type PersistentVolumeMode string
+
+const (
+	// Volume is ounted into Pods into a directory.
+	//
+	// If the volume is backed by a block device and the device is empty,
+	// Kubernetes creates a filesystem on the device before mounting it
+	// for the first time.
+	PersistentVolumeMode_FILE_SYSTEM PersistentVolumeMode = "FILE_SYSTEM"
+	// Use a volume as a raw block device.
+	//
+	// Such volume is presented into a Pod as a block device,
+	// without any filesystem on it. This mode is useful to provide a Pod the fastest possible way
+	// to access a volume, without any filesystem layer between the Pod
+	// and the volume. On the other hand, the application running in
+	// the Pod must know how to handle a raw block device.
+	PersistentVolumeMode_BLOCK PersistentVolumeMode = "BLOCK"
+)
+
+// Properties for `PersistentVolume`.
+type PersistentVolumeProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Contains all ways the volume can be mounted.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
+	//
+	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
+	//
+	// Expected to be non-nil when bound.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
+	//
+	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
+	//
+	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
+	//
+	// The reclaim policy tells the cluster what to do with
+	// the volume after it has been released of its claim.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
+	//
+	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	// What is the storage capacity of this volume.
+	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	// Name of StorageClass to which this persistent volume belongs.
+	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	// Defines what type of volume is required by the claim.
+	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+}
+
+// Reclaim Policies.
+type PersistentVolumeReclaimPolicy string
+
+const (
+	// The Retain reclaim policy allows for manual reclamation of the resource.
+	//
+	// When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the
+	// volume is considered "released". But it is not yet available for another claim
+	// because the previous claimant's data remains on the volume.
+	// An administrator can manually reclaim the volume with the following steps:
+	//
+	// 1. Delete the PersistentVolume. The associated storage asset in external
+	//     infrastructure (such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume) still exists after the PV is deleted.
+	// 2. Manually clean up the data on the associated storage asset accordingly.
+	// 3. Manually delete the associated storage asset.
+	//
+	// If you want to reuse the same storage asset, create a new PersistentVolume
+	// with the same storage asset definition.
+	PersistentVolumeReclaimPolicy_RETAIN PersistentVolumeReclaimPolicy = "RETAIN"
+	// For volume plugins that support the Delete reclaim policy, deletion removes both the PersistentVolume object from Kubernetes, as well as the associated storage asset in the external infrastructure, such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume.
+	//
+	// Volumes that were dynamically provisioned inherit the reclaim policy of their StorageClass, which defaults to Delete.
+	// The administrator should configure the StorageClass according to users' expectations; otherwise,
+	// the PV must be edited or patched after it is created.
+	PersistentVolumeReclaimPolicy_DELETE PersistentVolumeReclaimPolicy = "DELETE"
+)
 
 // Pod is a collection of containers that can run on a host.
 //
@@ -6206,30 +8081,6 @@ func (j *jsiiProxy_Volume) Name() *string {
 }
 
 
-func NewVolume(name *string, config interface{}) Volume {
-	_init_.Initialize()
-
-	j := jsiiProxy_Volume{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.Volume",
-		[]interface{}{name, config},
-		&j,
-	)
-
-	return &j
-}
-
-func NewVolume_Override(v Volume, name *string, config interface{}) {
-	_init_.Initialize()
-
-	_jsii_.Create(
-		"cdk8s-plus-22.Volume",
-		[]interface{}{name, config},
-		v,
-	)
-}
-
 // Populate the volume from a ConfigMap.
 //
 // The configMap resource provides a way to inject configuration data into
@@ -6273,6 +8124,48 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 		"cdk8s-plus-22.Volume",
 		"fromEmptyDir",
 		[]interface{}{name, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Create a volume from a specific PersistentVolume.
+//
+// This will implicitly create
+// the appropriate PersistentVolumeClaim and use it as the volume reference.
+// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
+//
+func Volume_FromPersistentVolume(pv PersistentVolume, options *PersistentVolumeClaimVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Volume",
+		"fromPersistentVolume",
+		[]interface{}{pv, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Used to mount a PersistentVolume into a Pod.
+//
+// PersistentVolumeClaims are a way for users to "claim" durable storage (such as a GCE PersistentDisk or an iSCSI volume)
+// without knowing the details of the particular cloud environment.
+// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+//
+func Volume_FromPersistentVolumeClaim(pvc IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Volume",
+		"fromPersistentVolumeClaim",
+		[]interface{}{pvc, options},
 		&returns,
 	)
 

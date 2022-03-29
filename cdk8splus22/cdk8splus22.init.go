@@ -16,6 +16,96 @@ func init() {
 		reflect.TypeOf((*AddDirectoryOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		reflect.TypeOf((*AwsElasticBlockStorePersistentVolume)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
+			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
+			_jsii_.MemberProperty{JsiiProperty: "fsType", GoGetter: "FsType"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "mode", GoGetter: "Mode"},
+			_jsii_.MemberProperty{JsiiProperty: "mountOptions", GoGetter: "MountOptions"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "partition", GoGetter: "Partition"},
+			_jsii_.MemberProperty{JsiiProperty: "readOnly", GoGetter: "ReadOnly"},
+			_jsii_.MemberProperty{JsiiProperty: "reclaimPolicy", GoGetter: "ReclaimPolicy"},
+			_jsii_.MemberMethod{JsiiMethod: "reserve", GoMethod: "Reserve"},
+			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
+			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberProperty{JsiiProperty: "volumeId", GoGetter: "VolumeId"},
+		},
+		func() interface{} {
+			j := jsiiProxy_AwsElasticBlockStorePersistentVolume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_PersistentVolume)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolumeProps",
+		reflect.TypeOf((*AwsElasticBlockStorePersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		reflect.TypeOf((*AzureDiskPersistentVolume)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
+			_jsii_.MemberProperty{JsiiProperty: "cachingMode", GoGetter: "CachingMode"},
+			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
+			_jsii_.MemberProperty{JsiiProperty: "diskName", GoGetter: "DiskName"},
+			_jsii_.MemberProperty{JsiiProperty: "diskUri", GoGetter: "DiskUri"},
+			_jsii_.MemberProperty{JsiiProperty: "fsType", GoGetter: "FsType"},
+			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "mode", GoGetter: "Mode"},
+			_jsii_.MemberProperty{JsiiProperty: "mountOptions", GoGetter: "MountOptions"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "readOnly", GoGetter: "ReadOnly"},
+			_jsii_.MemberProperty{JsiiProperty: "reclaimPolicy", GoGetter: "ReclaimPolicy"},
+			_jsii_.MemberMethod{JsiiMethod: "reserve", GoMethod: "Reserve"},
+			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
+			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_AzureDiskPersistentVolume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_PersistentVolume)
+			return &j
+		},
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.AzureDiskPersistentVolumeCachingMode",
+		reflect.TypeOf((*AzureDiskPersistentVolumeCachingMode)(nil)).Elem(),
+		map[string]interface{}{
+			"NONE": AzureDiskPersistentVolumeCachingMode_NONE,
+			"READ_ONLY": AzureDiskPersistentVolumeCachingMode_READ_ONLY,
+			"READ_WRITE": AzureDiskPersistentVolumeCachingMode_READ_WRITE,
+		},
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.AzureDiskPersistentVolumeKind",
+		reflect.TypeOf((*AzureDiskPersistentVolumeKind)(nil)).Elem(),
+		map[string]interface{}{
+			"SHARED": AzureDiskPersistentVolumeKind_SHARED,
+			"DEDICATED": AzureDiskPersistentVolumeKind_DEDICATED,
+			"MANAGED": AzureDiskPersistentVolumeKind_MANAGED,
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.AzureDiskPersistentVolumeProps",
+		reflect.TypeOf((*AzureDiskPersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-22.BasicAuthSecret",
 		reflect.TypeOf((*BasicAuthSecret)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -282,6 +372,41 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		reflect.TypeOf((*GCEPersistentDiskPersistentVolume)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
+			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
+			_jsii_.MemberProperty{JsiiProperty: "fsType", GoGetter: "FsType"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "mode", GoGetter: "Mode"},
+			_jsii_.MemberProperty{JsiiProperty: "mountOptions", GoGetter: "MountOptions"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "partition", GoGetter: "Partition"},
+			_jsii_.MemberProperty{JsiiProperty: "pdName", GoGetter: "PdName"},
+			_jsii_.MemberProperty{JsiiProperty: "readOnly", GoGetter: "ReadOnly"},
+			_jsii_.MemberProperty{JsiiProperty: "reclaimPolicy", GoGetter: "ReclaimPolicy"},
+			_jsii_.MemberMethod{JsiiMethod: "reserve", GoMethod: "Reserve"},
+			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
+			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_GCEPersistentDiskPersistentVolume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_PersistentVolume)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.GCEPersistentDiskPersistentVolumeProps",
+		reflect.TypeOf((*GCEPersistentDiskPersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Handler",
 		reflect.TypeOf((*Handler)(nil)).Elem(),
 		nil, // no members
@@ -322,6 +447,30 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_IConfigMap{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"cdk8s-plus-22.IPersistentVolume",
+		reflect.TypeOf((*IPersistentVolume)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+		},
+		func() interface{} {
+			j := jsiiProxy_IPersistentVolume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"cdk8s-plus-22.IPersistentVolumeClaim",
+		reflect.TypeOf((*IPersistentVolumeClaim)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+		},
+		func() interface{} {
+			j := jsiiProxy_IPersistentVolumeClaim{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
 			return &j
 		},
@@ -510,6 +659,97 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.PathMapping",
 		reflect.TypeOf((*PathMapping)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.PersistentVolume",
+		reflect.TypeOf((*PersistentVolume)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
+			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "mode", GoGetter: "Mode"},
+			_jsii_.MemberProperty{JsiiProperty: "mountOptions", GoGetter: "MountOptions"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "reclaimPolicy", GoGetter: "ReclaimPolicy"},
+			_jsii_.MemberMethod{JsiiMethod: "reserve", GoMethod: "Reserve"},
+			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
+			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_PersistentVolume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPersistentVolume)
+			return &j
+		},
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.PersistentVolumeAccessMode",
+		reflect.TypeOf((*PersistentVolumeAccessMode)(nil)).Elem(),
+		map[string]interface{}{
+			"READ_WRITE_ONCE": PersistentVolumeAccessMode_READ_WRITE_ONCE,
+			"READ_ONLY_MANY": PersistentVolumeAccessMode_READ_ONLY_MANY,
+			"READ_WRITE_MANY": PersistentVolumeAccessMode_READ_WRITE_MANY,
+			"READ_WRITE_ONCE_POD": PersistentVolumeAccessMode_READ_WRITE_ONCE_POD,
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.PersistentVolumeClaim",
+		reflect.TypeOf((*PersistentVolumeClaim)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
+			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberProperty{JsiiProperty: "volume", GoGetter: "Volume"},
+			_jsii_.MemberProperty{JsiiProperty: "volumeMode", GoGetter: "VolumeMode"},
+		},
+		func() interface{} {
+			j := jsiiProxy_PersistentVolumeClaim{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPersistentVolumeClaim)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PersistentVolumeClaimProps",
+		reflect.TypeOf((*PersistentVolumeClaimProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PersistentVolumeClaimVolumeOptions",
+		reflect.TypeOf((*PersistentVolumeClaimVolumeOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.PersistentVolumeMode",
+		reflect.TypeOf((*PersistentVolumeMode)(nil)).Elem(),
+		map[string]interface{}{
+			"FILE_SYSTEM": PersistentVolumeMode_FILE_SYSTEM,
+			"BLOCK": PersistentVolumeMode_BLOCK,
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PersistentVolumeProps",
+		reflect.TypeOf((*PersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.PersistentVolumeReclaimPolicy",
+		reflect.TypeOf((*PersistentVolumeReclaimPolicy)(nil)).Elem(),
+		map[string]interface{}{
+			"RETAIN": PersistentVolumeReclaimPolicy_RETAIN,
+			"DELETE": PersistentVolumeReclaimPolicy_DELETE,
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Pod",
