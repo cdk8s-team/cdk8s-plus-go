@@ -83,6 +83,8 @@ type AwsElasticBlockStorePersistentVolume interface {
 	StorageClassName() *string
 	// Volume id of this volume.
 	VolumeId() *string
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
 	// Bind a volume to a specific claim.
 	//
 	// Note that you must also bind the claim to the volume.
@@ -308,6 +310,19 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *s
 	return returns
 }
 
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		a,
+		"asVolume",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(pvc IPersistentVolumeClaim) {
 	_jsii_.InvokeVoid(
 		a,
@@ -467,6 +482,8 @@ type AzureDiskPersistentVolume interface {
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
 	// Bind a volume to a specific claim.
 	//
 	// Note that you must also bind the claim to the volume.
@@ -706,6 +723,19 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPer
 		"cdk8s-plus-22.AzureDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		a,
+		"asVolume",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -1383,7 +1413,7 @@ type Container interface {
 	// Mount a volume to a specific path so that it is accessible by the container.
 	//
 	// Every pod that is configured to use this container will autmoatically have access to the volume.
-	Mount(path *string, volume Volume, options *MountOptions)
+	Mount(path *string, storage IStorage, options *MountOptions)
 }
 
 // The jsii proxy struct for Container
@@ -1534,11 +1564,11 @@ func (c *jsiiProxy_Container) AddEnv(name *string, value EnvValue) {
 	)
 }
 
-func (c *jsiiProxy_Container) Mount(path *string, volume Volume, options *MountOptions) {
+func (c *jsiiProxy_Container) Mount(path *string, storage IStorage, options *MountOptions) {
 	_jsii_.InvokeVoid(
 		c,
 		"mount",
-		[]interface{}{path, volume, options},
+		[]interface{}{path, storage, options},
 	)
 }
 
@@ -2767,6 +2797,8 @@ type GCEPersistentDiskPersistentVolume interface {
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
 	// Bind a volume to a specific claim.
 	//
 	// Note that you must also bind the claim to the volume.
@@ -2986,6 +3018,19 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *stri
 		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		g,
+		"asVolume",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -3455,6 +3500,30 @@ type IServiceAccount interface {
 // The jsii proxy for IServiceAccount
 type jsiiProxy_IServiceAccount struct {
 	jsiiProxy_IResource
+}
+
+// Represents a piece of storage in the cluster.
+type IStorage interface {
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
+}
+
+// The jsii proxy for IStorage
+type jsiiProxy_IStorage struct {
+	_ byte // padding
+}
+
+func (i *jsiiProxy_IStorage) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		i,
+		"asVolume",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 type ImagePullPolicy string
@@ -4291,6 +4360,7 @@ type PathMapping struct {
 type PersistentVolume interface {
 	Resource
 	IPersistentVolume
+	IStorage
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
 	// The underlying cdk8s API object.
@@ -4315,6 +4385,8 @@ type PersistentVolume interface {
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
 	// Bind a volume to a specific claim.
 	//
 	// Note that you must also bind the claim to the volume.
@@ -4358,6 +4430,7 @@ type PersistentVolume interface {
 type jsiiProxy_PersistentVolume struct {
 	jsiiProxy_Resource
 	jsiiProxy_IPersistentVolume
+	jsiiProxy_IStorage
 }
 
 func (j *jsiiProxy_PersistentVolume) AccessModes() *[]PersistentVolumeAccessMode {
@@ -4495,6 +4568,19 @@ func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVo
 		"cdk8s-plus-22.PersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		p,
+		"asVolume",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -8062,12 +8148,15 @@ type TlsSecretProps struct {
 // hierarchy, and any volumes are mounted at the specified paths within the
 // image. Volumes can not mount onto other volumes
 type Volume interface {
+	IStorage
 	Name() *string
+	// Convert the piece of storage into a concrete volume.
+	AsVolume() Volume
 }
 
 // The jsii proxy struct for Volume
 type jsiiProxy_Volume struct {
-	_ byte // padding
+	jsiiProxy_IStorage
 }
 
 func (j *jsiiProxy_Volume) Name() *string {
@@ -8130,27 +8219,6 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 	return returns
 }
 
-// Create a volume from a specific PersistentVolume.
-//
-// This will implicitly create
-// the appropriate PersistentVolumeClaim and use it as the volume reference.
-// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume
-//
-func Volume_FromPersistentVolume(pv PersistentVolume, options *PersistentVolumeClaimVolumeOptions) Volume {
-	_init_.Initialize()
-
-	var returns Volume
-
-	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
-		"fromPersistentVolume",
-		[]interface{}{pv, options},
-		&returns,
-	)
-
-	return returns
-}
-
 // Used to mount a PersistentVolume into a Pod.
 //
 // PersistentVolumeClaims are a way for users to "claim" durable storage (such as a GCE PersistentDisk or an iSCSI volume)
@@ -8191,6 +8259,19 @@ func Volume_FromSecret(secret ISecret, options *SecretVolumeOptions) Volume {
 		"cdk8s-plus-22.Volume",
 		"fromSecret",
 		[]interface{}{secret, options},
+		&returns,
+	)
+
+	return returns
+}
+
+func (v *jsiiProxy_Volume) AsVolume() Volume {
+	var returns Volume
+
+	_jsii_.Invoke(
+		v,
+		"asVolume",
+		nil, // no parameters
 		&returns,
 	)
 
