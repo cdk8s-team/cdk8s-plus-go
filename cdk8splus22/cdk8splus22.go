@@ -7864,6 +7864,8 @@ type StatefulSet interface {
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The update startegy of this stateful set.
+	Strategy() StatefulSetUpdateStrategy
 	// The volumes associated with this pod.
 	//
 	// Use `addVolume` to add volumes.
@@ -8037,6 +8039,16 @@ func (j *jsiiProxy_StatefulSet) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Strategy() StatefulSetUpdateStrategy {
+	var returns StatefulSetUpdateStrategy
+	_jsii_.Get(
+		j,
+		"strategy",
 		&returns,
 	)
 	return returns
@@ -8234,6 +8246,68 @@ type StatefulSetProps struct {
 	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
+	// Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
+	Strategy StatefulSetUpdateStrategy `json:"strategy" yaml:"strategy"`
+}
+
+// StatefulSet update strategies.
+type StatefulSetUpdateStrategy interface {
+}
+
+// The jsii proxy struct for StatefulSetUpdateStrategy
+type jsiiProxy_StatefulSetUpdateStrategy struct {
+	_ byte // padding
+}
+
+// The controller will not automatically update the Pods in a StatefulSet.
+//
+// Users must manually delete Pods to cause the controller to create new Pods
+// that reflect modifications.
+func StatefulSetUpdateStrategy_OnDelete() StatefulSetUpdateStrategy {
+	_init_.Initialize()
+
+	var returns StatefulSetUpdateStrategy
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.StatefulSetUpdateStrategy",
+		"onDelete",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// The controller will delete and recreate each Pod in the StatefulSet.
+//
+// It will proceed in the same order as Pod termination (from the largest ordinal to the smallest),
+// updating each Pod one at a time. The Kubernetes control plane waits until an updated
+// Pod is Running and Ready prior to updating its predecessor.
+func StatefulSetUpdateStrategy_RollingUpdate(options *StatefulSetUpdateStrategyRollingUpdateOptions) StatefulSetUpdateStrategy {
+	_init_.Initialize()
+
+	var returns StatefulSetUpdateStrategy
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.StatefulSetUpdateStrategy",
+		"rollingUpdate",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `StatefulSetUpdateStrategy.rollingUpdate`.
+type StatefulSetUpdateStrategyRollingUpdateOptions struct {
+	// If specified, all Pods with an ordinal that is greater than or equal to the partition will be updated when the StatefulSet's .spec.template is updated. All Pods with an ordinal that is less than the partition will not be updated, and, even if they are deleted, they will be recreated at the previous version.
+	//
+	// If the partition is greater than replicas, updates to the pod template will not be propagated to Pods.
+	// In most cases you will not need to use a partition, but they are useful if you want to stage an
+	// update, roll out a canary, or perform a phased roll out.
+	// See: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#partitions
+	//
+	Partition *float64 `json:"partition" yaml:"partition"`
 }
 
 // Sysctl defines a kernel parameter to be set.
