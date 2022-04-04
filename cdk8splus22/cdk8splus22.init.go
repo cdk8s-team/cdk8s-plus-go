@@ -114,6 +114,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -134,6 +135,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.CommandProbeOptions",
 		reflect.TypeOf((*CommandProbeOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.CommonSecretProps",
+		reflect.TypeOf((*CommonSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.ConfigMap",
@@ -277,6 +282,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -957,6 +963,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -1042,6 +1049,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -1092,6 +1100,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -1163,6 +1172,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberMethod{JsiiMethod: "getStringData", GoMethod: "GetStringData"},
+			_jsii_.MemberProperty{JsiiProperty: "immutable", GoGetter: "Immutable"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},

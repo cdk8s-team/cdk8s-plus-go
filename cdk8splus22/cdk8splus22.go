@@ -887,6 +887,8 @@ type BasicAuthSecret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -931,6 +933,16 @@ func (j *jsiiProxy_BasicAuthSecret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -1064,6 +1076,10 @@ func (b *jsiiProxy_BasicAuthSecret) ToString() *string {
 type BasicAuthSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// The password or token for authentication.
 	Password *string `json:"password" yaml:"password"`
 	// The user name for authentication.
@@ -1094,6 +1110,16 @@ type CommandProbeOptions struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
 	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+}
+
+// Common properties for `Secret`.
+type CommonSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 }
 
 // ConfigMap holds configuration data for pods to consume.
@@ -2294,6 +2320,8 @@ type DockerConfigSecret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -2338,6 +2366,16 @@ func (j *jsiiProxy_DockerConfigSecret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -2471,6 +2509,10 @@ func (d *jsiiProxy_DockerConfigSecret) ToString() *string {
 type DockerConfigSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// JSON content to provide for the `~/.docker/config.json` file. This will be stringified and inserted as stringData.
 	// See: https://docs.docker.com/engine/reference/commandline/cli/#sample-configuration-file
 	//
@@ -6254,6 +6296,8 @@ type Secret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -6299,6 +6343,16 @@ func (j *jsiiProxy_Secret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Secret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -6432,6 +6486,10 @@ func (s *jsiiProxy_Secret) ToString() *string {
 type SecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// stringData allows specifying non-binary secret data in string form.
 	//
 	// It is
@@ -6954,6 +7012,8 @@ type ServiceAccountTokenSecret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -6998,6 +7058,16 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -7131,6 +7201,10 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) ToString() *string {
 type ServiceAccountTokenSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// The service account to store a secret for.
 	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
 }
@@ -7275,6 +7349,8 @@ type SshAuthSecret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -7319,6 +7395,16 @@ func (j *jsiiProxy_SshAuthSecret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -7452,6 +7538,10 @@ func (s *jsiiProxy_SshAuthSecret) ToString() *string {
 type SshAuthSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// The SSH private key to use.
 	SshPrivateKey *string `json:"sshPrivateKey" yaml:"sshPrivateKey"`
 }
@@ -7934,6 +8024,8 @@ type TlsSecret interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not the secret is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -7978,6 +8070,16 @@ func (j *jsiiProxy_TlsSecret) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -8111,6 +8213,10 @@ func (t *jsiiProxy_TlsSecret) ToString() *string {
 type TlsSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 	// The TLS cert.
 	TlsCert *string `json:"tlsCert" yaml:"tlsCert"`
 	// The TLS key.
