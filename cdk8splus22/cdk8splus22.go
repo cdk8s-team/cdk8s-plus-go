@@ -2277,6 +2277,8 @@ type DeploymentProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
@@ -4260,6 +4262,8 @@ type JobProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
@@ -5404,6 +5408,8 @@ type PodProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
@@ -5576,6 +5582,7 @@ type PodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	DockerRegistryAuth() DockerConfigSecret
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -5612,6 +5619,16 @@ func (j *jsiiProxy_PodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSpec) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -5753,6 +5770,8 @@ type PodSpecProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
@@ -5802,6 +5821,7 @@ type PodTemplate interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	DockerRegistryAuth() DockerConfigSecret
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -5841,6 +5861,16 @@ func (j *jsiiProxy_PodTemplate) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodTemplate) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -5994,6 +6024,8 @@ type PodTemplateProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
@@ -7939,6 +7971,8 @@ type StatefulSetProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
