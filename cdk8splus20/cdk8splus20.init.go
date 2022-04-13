@@ -21,6 +21,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
 			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
 			_jsii_.MemberProperty{JsiiProperty: "fsType", GoGetter: "FsType"},
@@ -56,6 +57,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
 			_jsii_.MemberProperty{JsiiProperty: "cachingMode", GoGetter: "CachingMode"},
 			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
@@ -377,6 +379,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
 			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
 			_jsii_.MemberProperty{JsiiProperty: "fsType", GoGetter: "FsType"},
@@ -539,6 +542,16 @@ func init() {
 			return &j
 		},
 	)
+	_jsii_.RegisterInterface(
+		"cdk8s-plus-20.IStorage",
+		reflect.TypeOf((*IStorage)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
+		},
+		func() interface{} {
+			return &jsiiProxy_IStorage{}
+		},
+	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-20.ImagePullPolicy",
 		reflect.TypeOf((*ImagePullPolicy)(nil)).Elem(),
@@ -657,6 +670,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
 			_jsii_.MemberProperty{JsiiProperty: "claim", GoGetter: "Claim"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -676,6 +690,7 @@ func init() {
 			j := jsiiProxy_PersistentVolume{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPersistentVolume)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IStorage)
 			return &j
 		},
 	)
@@ -1160,10 +1175,13 @@ func init() {
 		"cdk8s-plus-20.Volume",
 		reflect.TypeOf((*Volume)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 		},
 		func() interface{} {
-			return &jsiiProxy_Volume{}
+			j := jsiiProxy_Volume{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IStorage)
+			return &j
 		},
 	)
 	_jsii_.RegisterStruct(
