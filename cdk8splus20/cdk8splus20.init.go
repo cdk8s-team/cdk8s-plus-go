@@ -239,6 +239,44 @@ func init() {
 		reflect.TypeOf((*CpuResources)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-20.DaemonSet",
+		reflect.TypeOf((*DaemonSet)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
+			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
+			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
+			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "minReadySeconds", GoGetter: "MinReadySeconds"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
+			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
+			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
+			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+		},
+		func() interface{} {
+			j := jsiiProxy_DaemonSet{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.DaemonSetProps",
+		reflect.TypeOf((*DaemonSetProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-20.Deployment",
 		reflect.TypeOf((*Deployment)(nil)).Elem(),
 		[]_jsii_.Member{
