@@ -51,6 +51,10 @@ func init() {
 		"cdk8s-plus-20.AwsElasticBlockStorePersistentVolumeProps",
 		reflect.TypeOf((*AwsElasticBlockStorePersistentVolumeProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.AwsElasticBlockStoreVolumeOptions",
+		reflect.TypeOf((*AwsElasticBlockStoreVolumeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-20.AzureDiskPersistentVolume",
 		reflect.TypeOf((*AzureDiskPersistentVolume)(nil)).Elem(),
@@ -106,6 +110,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.AzureDiskPersistentVolumeProps",
 		reflect.TypeOf((*AzureDiskPersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.AzureDiskVolumeOptions",
+		reflect.TypeOf((*AzureDiskVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-20.BasicAuthSecret",
@@ -408,6 +416,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.GCEPersistentDiskPersistentVolumeProps",
 		reflect.TypeOf((*GCEPersistentDiskPersistentVolumeProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.GCEPersistentDiskVolumeOptions",
+		reflect.TypeOf((*GCEPersistentDiskVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-20.Handler",

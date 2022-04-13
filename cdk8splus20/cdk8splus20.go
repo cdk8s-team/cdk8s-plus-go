@@ -443,6 +443,28 @@ type AwsElasticBlockStorePersistentVolumeProps struct {
 	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
 }
 
+// Options of `Volume.fromAwsElasticBlockStore`.
+type AwsElasticBlockStoreVolumeOptions struct {
+	// Filesystem type of the volume that you want to mount.
+	//
+	// Tip: Ensure that the filesystem type is supported by the host operating system.
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// The volume name.
+	Name *string `json:"name" yaml:"name"`
+	// The partition in the volume that you want to mount.
+	//
+	// If omitted, the default is to mount by volume name.
+	// Examples: For volume /dev/sda1, you specify the partition as "1".
+	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
+	Partition *float64 `json:"partition" yaml:"partition"`
+	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
 // AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
 type AzureDiskPersistentVolume interface {
 	PersistentVolume
@@ -874,6 +896,22 @@ type AzureDiskPersistentVolumeProps struct {
 	FsType *string `json:"fsType" yaml:"fsType"`
 	// Kind of disk.
 	Kind AzureDiskPersistentVolumeKind `json:"kind" yaml:"kind"`
+	// Force the ReadOnly setting in VolumeMounts.
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
+// Options of `Volume.fromAzureDisk`.
+type AzureDiskVolumeOptions struct {
+	// Host Caching mode.
+	CachingMode AzureDiskPersistentVolumeCachingMode `json:"cachingMode" yaml:"cachingMode"`
+	// Filesystem type to mount.
+	//
+	// Must be a filesystem type supported by the host operating system.
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// Kind of disk.
+	Kind AzureDiskPersistentVolumeKind `json:"kind" yaml:"kind"`
+	// The volume name.
+	Name *string `json:"name" yaml:"name"`
 	// Force the ReadOnly setting in VolumeMounts.
 	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
 }
@@ -3141,6 +3179,28 @@ type GCEPersistentDiskPersistentVolumeProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
 	FsType *string `json:"fsType" yaml:"fsType"`
+	// The partition in the volume that you want to mount.
+	//
+	// If omitted, the default is to mount by volume name.
+	// Examples: For volume /dev/sda1, you specify the partition as "1".
+	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
+	Partition *float64 `json:"partition" yaml:"partition"`
+	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+}
+
+// Options of `Volume.fromGcePersistentDisk`.
+type GCEPersistentDiskVolumeOptions struct {
+	// Filesystem type of the volume that you want to mount.
+	//
+	// Tip: Ensure that the filesystem type is supported by the host operating system.
+	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+	//
+	FsType *string `json:"fsType" yaml:"fsType"`
+	// The volume name.
+	Name *string `json:"name" yaml:"name"`
 	// The partition in the volume that you want to mount.
 	//
 	// If omitted, the default is to mount by volume name.
@@ -8145,6 +8205,48 @@ func (j *jsiiProxy_Volume) Name() *string {
 }
 
 
+// Mounts an Amazon Web Services (AWS) EBS volume into your pod.
+//
+// Unlike emptyDir, which is erased when a pod is removed, the contents of an EBS volume are
+// persisted and the volume is unmounted. This means that an EBS volume can be pre-populated with data,
+// and that data can be shared between pods.
+//
+// There are some restrictions when using an awsElasticBlockStore volume:
+//
+// - the nodes on which pods are running must be AWS EC2 instances.
+// - those instances need to be in the same region and availability zone as the EBS volume.
+// - EBS only supports a single EC2 instance mounting a volume.
+func Volume_FromAwsElasticBlockStore(volumeId *string, options *AwsElasticBlockStoreVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Volume",
+		"fromAwsElasticBlockStore",
+		[]interface{}{volumeId, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Mounts a Microsoft Azure Data Disk into a pod.
+func Volume_FromAzureDisk(diskName *string, diskUri *string, options *AzureDiskVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Volume",
+		"fromAzureDisk",
+		[]interface{}{diskName, diskUri, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Populate the volume from a ConfigMap.
 //
 // The configMap resource provides a way to inject configuration data into
@@ -8188,6 +8290,31 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 		"cdk8s-plus-20.Volume",
 		"fromEmptyDir",
 		[]interface{}{name, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Mounts a Google Compute Engine (GCE) persistent disk (PD) into your Pod.
+//
+// Unlike emptyDir, which is erased when a pod is removed, the contents of a PD are
+// preserved and the volume is merely unmounted. This means that a PD can be pre-populated
+// with data, and that data can be shared between pods.
+//
+// There are some restrictions when using a gcePersistentDisk:
+//
+// - the nodes on which Pods are running must be GCE VMs
+// - those VMs need to be in the same GCE project and zone as the persistent disk.
+func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Volume",
+		"fromGcePersistentDisk",
+		[]interface{}{pdName, options},
 		&returns,
 	)
 
