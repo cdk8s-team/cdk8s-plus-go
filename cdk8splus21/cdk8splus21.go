@@ -46,6 +46,198 @@ type AddDirectoryOptions struct {
 	KeyPrefix *string `json:"keyPrefix" yaml:"keyPrefix"`
 }
 
+// Create a secret for basic authentication.
+// See: https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret
+//
+type BasicAuthSecret interface {
+	Secret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Adds a string data field to the secert.
+	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
+	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for BasicAuthSecret
+type jsiiProxy_BasicAuthSecret struct {
+	jsiiProxy_Secret
+}
+
+func (j *jsiiProxy_BasicAuthSecret) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewBasicAuthSecret(scope constructs.Construct, id *string, props *BasicAuthSecretProps) BasicAuthSecret {
+	_init_.Initialize()
+
+	j := jsiiProxy_BasicAuthSecret{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.BasicAuthSecret",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewBasicAuthSecret_Override(b BasicAuthSecret, scope constructs.Construct, id *string, props *BasicAuthSecretProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.BasicAuthSecret",
+		[]interface{}{scope, id, props},
+		b,
+	)
+}
+
+// Imports a secret from the cluster as a reference.
+func BasicAuthSecret_FromSecretName(name *string) ISecret {
+	_init_.Initialize()
+
+	var returns ISecret
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.BasicAuthSecret",
+		"fromSecretName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (b *jsiiProxy_BasicAuthSecret) AddStringData(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		b,
+		"addStringData",
+		[]interface{}{key, value},
+	)
+}
+
+func (b *jsiiProxy_BasicAuthSecret) GetStringData(key *string) *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		b,
+		"getStringData",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func (b *jsiiProxy_BasicAuthSecret) OnPrepare() {
+	_jsii_.InvokeVoid(
+		b,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (b *jsiiProxy_BasicAuthSecret) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		b,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (b *jsiiProxy_BasicAuthSecret) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		b,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (b *jsiiProxy_BasicAuthSecret) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		b,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `BasicAuthSecret`.
+type BasicAuthSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The password or token for authentication.
+	Password *string `json:"password" yaml:"password"`
+	// The user name for authentication.
+	Username *string `json:"username" yaml:"username"`
+}
+
 // Options for `Probe.fromCommand()`.
 type CommandProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
@@ -1238,6 +1430,198 @@ type DeploymentProps struct {
 	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
+}
+
+// Create a secret for storing credentials for accessing a container image registry.
+// See: https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets
+//
+type DockerConfigSecret interface {
+	Secret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Adds a string data field to the secert.
+	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
+	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for DockerConfigSecret
+type jsiiProxy_DockerConfigSecret struct {
+	jsiiProxy_Secret
+}
+
+func (j *jsiiProxy_DockerConfigSecret) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewDockerConfigSecret(scope constructs.Construct, id *string, props *DockerConfigSecretProps) DockerConfigSecret {
+	_init_.Initialize()
+
+	j := jsiiProxy_DockerConfigSecret{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.DockerConfigSecret",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewDockerConfigSecret_Override(d DockerConfigSecret, scope constructs.Construct, id *string, props *DockerConfigSecretProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.DockerConfigSecret",
+		[]interface{}{scope, id, props},
+		d,
+	)
+}
+
+// Imports a secret from the cluster as a reference.
+func DockerConfigSecret_FromSecretName(name *string) ISecret {
+	_init_.Initialize()
+
+	var returns ISecret
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.DockerConfigSecret",
+		"fromSecretName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DockerConfigSecret) AddStringData(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		d,
+		"addStringData",
+		[]interface{}{key, value},
+	)
+}
+
+func (d *jsiiProxy_DockerConfigSecret) GetStringData(key *string) *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		d,
+		"getStringData",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DockerConfigSecret) OnPrepare() {
+	_jsii_.InvokeVoid(
+		d,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (d *jsiiProxy_DockerConfigSecret) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		d,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (d *jsiiProxy_DockerConfigSecret) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		d,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DockerConfigSecret) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		d,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `DockerConfigSecret`.
+type DockerConfigSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// JSON content to provide for the `~/.docker/config.json` file. This will be stringified and inserted as stringData.
+	// See: https://docs.docker.com/engine/reference/commandline/cli/#sample-configuration-file
+	//
+	Data *map[string]interface{} `json:"data" yaml:"data"`
 }
 
 // The medium on which to store the volume.
@@ -3976,6 +4360,7 @@ func (s *jsiiProxy_Secret) ToString() *string {
 	return returns
 }
 
+// Options for `Secret`.
 type SecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
@@ -4492,6 +4877,196 @@ type ServiceAccountProps struct {
 	Secrets *[]ISecret `json:"secrets" yaml:"secrets"`
 }
 
+// Create a secret for a service account token.
+// See: https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets
+//
+type ServiceAccountTokenSecret interface {
+	Secret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Adds a string data field to the secert.
+	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
+	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for ServiceAccountTokenSecret
+type jsiiProxy_ServiceAccountTokenSecret struct {
+	jsiiProxy_Secret
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewServiceAccountTokenSecret(scope constructs.Construct, id *string, props *ServiceAccountTokenSecretProps) ServiceAccountTokenSecret {
+	_init_.Initialize()
+
+	j := jsiiProxy_ServiceAccountTokenSecret{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.ServiceAccountTokenSecret",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewServiceAccountTokenSecret_Override(s ServiceAccountTokenSecret, scope constructs.Construct, id *string, props *ServiceAccountTokenSecretProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.ServiceAccountTokenSecret",
+		[]interface{}{scope, id, props},
+		s,
+	)
+}
+
+// Imports a secret from the cluster as a reference.
+func ServiceAccountTokenSecret_FromSecretName(name *string) ISecret {
+	_init_.Initialize()
+
+	var returns ISecret
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ServiceAccountTokenSecret",
+		"fromSecretName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) AddStringData(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		s,
+		"addStringData",
+		[]interface{}{key, value},
+	)
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) GetStringData(key *string) *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"getStringData",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) OnPrepare() {
+	_jsii_.InvokeVoid(
+		s,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		s,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		s,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `ServiceAccountTokenSecret`.
+type ServiceAccountTokenSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The service account to store a secret for.
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+}
+
 // Options for setting up backends for ingress rules.
 type ServiceIngressV1BetaBackendOptions struct {
 	// The port to use to access the service.
@@ -4622,6 +5197,196 @@ const (
 	// > Note: You need either kube-dns version 1.7 or CoreDNS version 0.0.8 or higher to use the ExternalName type.
 	ServiceType_EXTERNAL_NAME ServiceType = "EXTERNAL_NAME"
 )
+
+// Create a secret for ssh authentication.
+// See: https://kubernetes.io/docs/concepts/configuration/secret/#ssh-authentication-secrets
+//
+type SshAuthSecret interface {
+	Secret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Adds a string data field to the secert.
+	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
+	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for SshAuthSecret
+type jsiiProxy_SshAuthSecret struct {
+	jsiiProxy_Secret
+}
+
+func (j *jsiiProxy_SshAuthSecret) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewSshAuthSecret(scope constructs.Construct, id *string, props *SshAuthSecretProps) SshAuthSecret {
+	_init_.Initialize()
+
+	j := jsiiProxy_SshAuthSecret{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.SshAuthSecret",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewSshAuthSecret_Override(s SshAuthSecret, scope constructs.Construct, id *string, props *SshAuthSecretProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.SshAuthSecret",
+		[]interface{}{scope, id, props},
+		s,
+	)
+}
+
+// Imports a secret from the cluster as a reference.
+func SshAuthSecret_FromSecretName(name *string) ISecret {
+	_init_.Initialize()
+
+	var returns ISecret
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.SshAuthSecret",
+		"fromSecretName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_SshAuthSecret) AddStringData(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		s,
+		"addStringData",
+		[]interface{}{key, value},
+	)
+}
+
+func (s *jsiiProxy_SshAuthSecret) GetStringData(key *string) *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"getStringData",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_SshAuthSecret) OnPrepare() {
+	_jsii_.InvokeVoid(
+		s,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (s *jsiiProxy_SshAuthSecret) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		s,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (s *jsiiProxy_SshAuthSecret) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		s,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_SshAuthSecret) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `SshAuthSecret`.
+type SshAuthSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The SSH private key to use.
+	SshPrivateKey *string `json:"sshPrivateKey" yaml:"sshPrivateKey"`
+}
 
 // StatefulSet is the workload API object used to manage stateful applications.
 //
@@ -5090,6 +5855,198 @@ type TcpSocketProbeOptions struct {
 	Host *string `json:"host" yaml:"host"`
 	// The TCP port to connect to on the container.
 	Port *float64 `json:"port" yaml:"port"`
+}
+
+// Create a secret for storing a TLS certificate and its associated key.
+// See: https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets
+//
+type TlsSecret interface {
+	Secret
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// Adds a string data field to the secert.
+	AddStringData(key *string, value *string)
+	// Gets a string data by key or undefined.
+	GetStringData(key *string) *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for TlsSecret
+type jsiiProxy_TlsSecret struct {
+	jsiiProxy_Secret
+}
+
+func (j *jsiiProxy_TlsSecret) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewTlsSecret(scope constructs.Construct, id *string, props *TlsSecretProps) TlsSecret {
+	_init_.Initialize()
+
+	j := jsiiProxy_TlsSecret{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.TlsSecret",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewTlsSecret_Override(t TlsSecret, scope constructs.Construct, id *string, props *TlsSecretProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.TlsSecret",
+		[]interface{}{scope, id, props},
+		t,
+	)
+}
+
+// Imports a secret from the cluster as a reference.
+func TlsSecret_FromSecretName(name *string) ISecret {
+	_init_.Initialize()
+
+	var returns ISecret
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.TlsSecret",
+		"fromSecretName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (t *jsiiProxy_TlsSecret) AddStringData(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		t,
+		"addStringData",
+		[]interface{}{key, value},
+	)
+}
+
+func (t *jsiiProxy_TlsSecret) GetStringData(key *string) *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		t,
+		"getStringData",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func (t *jsiiProxy_TlsSecret) OnPrepare() {
+	_jsii_.InvokeVoid(
+		t,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (t *jsiiProxy_TlsSecret) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		t,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (t *jsiiProxy_TlsSecret) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		t,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (t *jsiiProxy_TlsSecret) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		t,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `TlsSecret`.
+type TlsSecretProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The TLS cert.
+	TlsCert *string `json:"tlsCert" yaml:"tlsCert"`
+	// The TLS key.
+	TlsKey *string `json:"tlsKey" yaml:"tlsKey"`
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
