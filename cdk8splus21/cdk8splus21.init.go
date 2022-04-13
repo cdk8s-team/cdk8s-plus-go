@@ -67,6 +67,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "port", GoGetter: "Port"},
 			_jsii_.MemberProperty{JsiiProperty: "resources", GoGetter: "Resources"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "workingDir", GoGetter: "WorkingDir"},
 		},
 		func() interface{} {
@@ -76,6 +77,24 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.ContainerProps",
 		reflect.TypeOf((*ContainerProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.ContainerSecurityContext",
+		reflect.TypeOf((*ContainerSecurityContext)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
+			_jsii_.MemberProperty{JsiiProperty: "group", GoGetter: "Group"},
+			_jsii_.MemberProperty{JsiiProperty: "privileged", GoGetter: "Privileged"},
+			_jsii_.MemberProperty{JsiiProperty: "readOnlyRootFilesystem", GoGetter: "ReadOnlyRootFilesystem"},
+			_jsii_.MemberProperty{JsiiProperty: "user", GoGetter: "User"},
+		},
+		func() interface{} {
+			return &jsiiProxy_ContainerSecurityContext{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.ContainerSecurityContextProps",
+		reflect.TypeOf((*ContainerSecurityContextProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-21.Cpu",
@@ -112,6 +131,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "replicas", GoGetter: "Replicas"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
@@ -198,6 +218,14 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.ExposeServiceViaIngressOptions",
 		reflect.TypeOf((*ExposeServiceViaIngressOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-21.FsGroupChangePolicy",
+		reflect.TypeOf((*FsGroupChangePolicy)(nil)).Elem(),
+		map[string]interface{}{
+			"ON_ROOT_MISMATCH": FsGroupChangePolicy_ON_ROOT_MISMATCH,
+			"ALWAYS": FsGroupChangePolicy_ALWAYS,
+		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.HttpGetProbeOptions",
@@ -358,6 +386,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "ttlAfterFinished", GoGetter: "TtlAfterFinished"},
@@ -411,6 +440,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
 			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -435,6 +465,25 @@ func init() {
 		reflect.TypeOf((*PodProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-21.PodSecurityContext",
+		reflect.TypeOf((*PodSecurityContext)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
+			_jsii_.MemberProperty{JsiiProperty: "fsGroup", GoGetter: "FsGroup"},
+			_jsii_.MemberProperty{JsiiProperty: "fsGroupChangePolicy", GoGetter: "FsGroupChangePolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "group", GoGetter: "Group"},
+			_jsii_.MemberProperty{JsiiProperty: "sysctls", GoGetter: "Sysctls"},
+			_jsii_.MemberProperty{JsiiProperty: "user", GoGetter: "User"},
+		},
+		func() interface{} {
+			return &jsiiProxy_PodSecurityContext{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.PodSecurityContextProps",
+		reflect.TypeOf((*PodSecurityContextProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-21.PodSpec",
 		reflect.TypeOf((*PodSpec)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -444,6 +493,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -468,6 +518,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -682,6 +733,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "replicas", GoGetter: "Replicas"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
@@ -697,6 +749,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.StatefulSetProps",
 		reflect.TypeOf((*StatefulSetProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.Sysctl",
+		reflect.TypeOf((*Sysctl)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.TcpSocketProbeOptions",

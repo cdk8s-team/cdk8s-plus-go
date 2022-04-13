@@ -375,6 +375,8 @@ type Container interface {
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
 	Resources() *Resources
+	// The security context of the container.
+	SecurityContext() ContainerSecurityContext
 	// The working directory inside the container.
 	WorkingDir() *string
 	// Add an environment value to the container.
@@ -485,6 +487,16 @@ func (j *jsiiProxy_Container) Resources() *Resources {
 	return returns
 }
 
+func (j *jsiiProxy_Container) SecurityContext() ContainerSecurityContext {
+	var returns ContainerSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Container) WorkingDir() *string {
 	var returns *string
 	_jsii_.Get(
@@ -583,6 +595,12 @@ type ContainerProps struct {
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
 	Resources *Resources `json:"resources" yaml:"resources"`
+	// SecurityContext defines the security options the container should be run with.
+	//
+	// If set, the fields override equivalent fields of the pod's security context.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+	//
+	SecurityContext *ContainerSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// StartupProbe indicates that the Pod has successfully initialized.
 	//
 	// If specified, no other probes are executed until this completes successfully.
@@ -595,6 +613,114 @@ type ContainerProps struct {
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 	WorkingDir *string `json:"workingDir" yaml:"workingDir"`
+}
+
+// Container security attributes and settings.
+type ContainerSecurityContext interface {
+	EnsureNonRoot() *bool
+	Group() *float64
+	Privileged() *bool
+	ReadOnlyRootFilesystem() *bool
+	User() *float64
+}
+
+// The jsii proxy struct for ContainerSecurityContext
+type jsiiProxy_ContainerSecurityContext struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) EnsureNonRoot() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"ensureNonRoot",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) Group() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"group",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) Privileged() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"privileged",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) ReadOnlyRootFilesystem() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"readOnlyRootFilesystem",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) User() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"user",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewContainerSecurityContext(props *ContainerSecurityContextProps) ContainerSecurityContext {
+	_init_.Initialize()
+
+	j := jsiiProxy_ContainerSecurityContext{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.ContainerSecurityContext",
+		[]interface{}{props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewContainerSecurityContext_Override(c ContainerSecurityContext, props *ContainerSecurityContextProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.ContainerSecurityContext",
+		[]interface{}{props},
+		c,
+	)
+}
+
+// Properties for `ContainerSecurityContext`.
+type ContainerSecurityContextProps struct {
+	// Indicates that the container must run as a non-root user.
+	//
+	// If true, the Kubelet will validate the image at runtime to ensure that it does
+	// not run as UID 0 (root) and fail to start the container if it does.
+	EnsureNonRoot *bool `json:"ensureNonRoot" yaml:"ensureNonRoot"`
+	// The GID to run the entrypoint of the container process.
+	Group *float64 `json:"group" yaml:"group"`
+	// Run container in privileged mode.
+	//
+	// Processes in privileged containers are essentially equivalent to root on the host.
+	Privileged *bool `json:"privileged" yaml:"privileged"`
+	// Whether this container has a read-only root filesystem.
+	ReadOnlyRootFilesystem *bool `json:"readOnlyRootFilesystem" yaml:"readOnlyRootFilesystem"`
+	// The UID to run the entrypoint of the container process.
+	User *float64 `json:"user" yaml:"user"`
 }
 
 // Represents the amount of CPU.
@@ -717,6 +843,7 @@ type Deployment interface {
 	Replicas() *float64
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -859,6 +986,16 @@ func (j *jsiiProxy_Deployment) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -1048,6 +1185,8 @@ type DeploymentProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -1341,6 +1480,17 @@ type ExposeServiceViaIngressOptions struct {
 	// The ingress to add rules to.
 	Ingress IngressV1Beta1 `json:"ingress" yaml:"ingress"`
 }
+
+type FsGroupChangePolicy string
+
+const (
+	// Only change permissions and ownership if permission and ownership of root directory does not match with expected permissions of the volume.
+	//
+	// This could help shorten the time it takes to change ownership and permission of a volume.
+	FsGroupChangePolicy_ON_ROOT_MISMATCH FsGroupChangePolicy = "ON_ROOT_MISMATCH"
+	// Always change permission and ownership of the volume when volume is mounted.
+	FsGroupChangePolicy_ALWAYS FsGroupChangePolicy = "ALWAYS"
+)
 
 // Options for `Probe.fromHttpGet()`.
 type HttpGetProbeOptions struct {
@@ -1916,6 +2066,7 @@ type Job interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// TTL before the job is deleted after it is finished.
@@ -2048,6 +2199,16 @@ func (j *jsiiProxy_Job) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -2213,6 +2374,8 @@ type JobProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2363,6 +2526,7 @@ type Pod interface {
 	Name() *string
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -2463,6 +2627,16 @@ func (j *jsiiProxy_Pod) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -2633,6 +2807,8 @@ type PodProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2652,6 +2828,130 @@ type PodProps struct {
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
 }
 
+// Holds pod-level security attributes and common container settings.
+type PodSecurityContext interface {
+	EnsureNonRoot() *bool
+	FsGroup() *float64
+	FsGroupChangePolicy() FsGroupChangePolicy
+	Group() *float64
+	Sysctls() *[]*Sysctl
+	User() *float64
+}
+
+// The jsii proxy struct for PodSecurityContext
+type jsiiProxy_PodSecurityContext struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_PodSecurityContext) EnsureNonRoot() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"ensureNonRoot",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSecurityContext) FsGroup() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"fsGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSecurityContext) FsGroupChangePolicy() FsGroupChangePolicy {
+	var returns FsGroupChangePolicy
+	_jsii_.Get(
+		j,
+		"fsGroupChangePolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSecurityContext) Group() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"group",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSecurityContext) Sysctls() *[]*Sysctl {
+	var returns *[]*Sysctl
+	_jsii_.Get(
+		j,
+		"sysctls",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSecurityContext) User() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"user",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPodSecurityContext(props *PodSecurityContextProps) PodSecurityContext {
+	_init_.Initialize()
+
+	j := jsiiProxy_PodSecurityContext{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.PodSecurityContext",
+		[]interface{}{props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPodSecurityContext_Override(p PodSecurityContext, props *PodSecurityContextProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.PodSecurityContext",
+		[]interface{}{props},
+		p,
+	)
+}
+
+// Properties for `PodSecurityContext`.
+type PodSecurityContextProps struct {
+	// Indicates that the container must run as a non-root user.
+	//
+	// If true, the Kubelet will validate the image at runtime to ensure that it does
+	// not run as UID 0 (root) and fail to start the container if it does.
+	EnsureNonRoot *bool `json:"ensureNonRoot" yaml:"ensureNonRoot"`
+	// Modify the ownership and permissions of pod volumes to this GID.
+	FsGroup *float64 `json:"fsGroup" yaml:"fsGroup"`
+	// Defines behavior of changing ownership and permission of the volume before being exposed inside Pod.
+	//
+	// This field will only apply to volume types which support fsGroup based ownership(and permissions).
+	// It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir.
+	FsGroupChangePolicy FsGroupChangePolicy `json:"fsGroupChangePolicy" yaml:"fsGroupChangePolicy"`
+	// The GID to run the entrypoint of the container process.
+	Group *float64 `json:"group" yaml:"group"`
+	// Sysctls hold a list of namespaced sysctls used for the pod.
+	//
+	// Pods with unsupported sysctls (by the container runtime) might fail to launch.
+	Sysctls *[]*Sysctl `json:"sysctls" yaml:"sysctls"`
+	// The UID to run the entrypoint of the container process.
+	User *float64 `json:"user" yaml:"user"`
+}
+
 // Provides read/write capabilities ontop of a `PodSpecProps`.
 type PodSpec interface {
 	IPodSpec
@@ -2665,6 +2965,7 @@ type PodSpec interface {
 	InitContainers() *[]Container
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -2709,6 +3010,16 @@ func (j *jsiiProxy_PodSpec) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSpec) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -2820,6 +3131,8 @@ type PodSpecProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -2855,6 +3168,7 @@ type PodTemplate interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -2910,6 +3224,16 @@ func (j *jsiiProxy_PodTemplate) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodTemplate) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -3023,6 +3347,8 @@ type PodTemplateProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -4204,6 +4530,7 @@ type StatefulSet interface {
 	Replicas() *float64
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -4348,6 +4675,16 @@ func (j *jsiiProxy_StatefulSet) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -4511,6 +4848,8 @@ type StatefulSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
 	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -4541,6 +4880,14 @@ type StatefulSetProps struct {
 	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
+}
+
+// Sysctl defines a kernel parameter to be set.
+type Sysctl struct {
+	// Name of a property to set.
+	Name *string `json:"name" yaml:"name"`
+	// Value of a property to set.
+	Value *string `json:"value" yaml:"value"`
 }
 
 // Options for `Probe.fromTcpSocket()`.
