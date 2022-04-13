@@ -740,6 +740,25 @@ func (c *jsiiProxy_Container) Mount(path *string, volume Volume, options *MountO
 	)
 }
 
+// Container lifecycle properties.
+type ContainerLifecycle struct {
+	// This hook is executed immediately after a container is created.
+	//
+	// However,
+	// there is no guarantee that the hook will execute before the container ENTRYPOINT.
+	PostStart Handler `json:"postStart" yaml:"postStart"`
+	// This hook is called immediately before a container is terminated due to an API request or management event such as a liveness/startup probe failure, preemption, resource contention and others.
+	//
+	// A call to the PreStop hook fails if the container is already in a terminated or completed state
+	// and the hook must complete before the TERM signal to stop the container can be sent.
+	// The Pod's termination grace period countdown begins before the PreStop hook is executed,
+	// so regardless of the outcome of the handler, the container will eventually terminate
+	// within the Pod's termination grace period. No parameters are passed to the handler.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination
+	//
+	PreStop Handler `json:"preStop" yaml:"preStop"`
+}
+
 // Properties for creating a container.
 type ContainerProps struct {
 	// Docker image name.
@@ -769,6 +788,8 @@ type ContainerProps struct {
 	Env *map[string]EnvValue `json:"env" yaml:"env"`
 	// Image pull policy for this container.
 	ImagePullPolicy ImagePullPolicy `json:"imagePullPolicy" yaml:"imagePullPolicy"`
+	// Describes actions that the management system should take in response to container lifecycle events.
+	Lifecycle *ContainerLifecycle `json:"lifecycle" yaml:"lifecycle"`
 	// Periodic probe of container liveness.
 	//
 	// Container will be restarted if the probe fails.
@@ -1900,6 +1921,77 @@ const (
 	// Always change permission and ownership of the volume when volume is mounted.
 	FsGroupChangePolicy_ALWAYS FsGroupChangePolicy = "ALWAYS"
 )
+
+// Defines a specific action that should be taken.
+type Handler interface {
+}
+
+// The jsii proxy struct for Handler
+type jsiiProxy_Handler struct {
+	_ byte // padding
+}
+
+// Defines a handler based on a command which is executed within the container.
+func Handler_FromCommand(command *[]*string) Handler {
+	_init_.Initialize()
+
+	var returns Handler
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Handler",
+		"fromCommand",
+		[]interface{}{command},
+		&returns,
+	)
+
+	return returns
+}
+
+// Defines a handler based on an HTTP GET request to the IP address of the container.
+func Handler_FromHttpGet(path *string, options *HandlerFromHttpGetOptions) Handler {
+	_init_.Initialize()
+
+	var returns Handler
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Handler",
+		"fromHttpGet",
+		[]interface{}{path, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Defines a handler based opening a connection to a TCP socket on the container.
+func Handler_FromTcpSocket(options *HandlerFromTcpSocketOptions) Handler {
+	_init_.Initialize()
+
+	var returns Handler
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.Handler",
+		"fromTcpSocket",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `Handler.fromHttpGet`.
+type HandlerFromHttpGetOptions struct {
+	// The TCP port to use when sending the GET request.
+	Port *float64 `json:"port" yaml:"port"`
+}
+
+// Options for `Handler.fromTcpSocket`.
+type HandlerFromTcpSocketOptions struct {
+	// The host name to connect to on the container.
+	Host *string `json:"host" yaml:"host"`
+	// The TCP port to connect to on the container.
+	Port *float64 `json:"port" yaml:"port"`
+}
 
 // HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's /etc/hosts file.
 type HostAlias struct {
@@ -3908,16 +4000,6 @@ type Probe interface {
 // The jsii proxy struct for Probe
 type jsiiProxy_Probe struct {
 	_ byte // padding
-}
-
-func NewProbe_Override(p Probe) {
-	_init_.Initialize()
-
-	_jsii_.Create(
-		"cdk8s-plus-20.Probe",
-		nil, // no parameters
-		p,
-	)
 }
 
 // Defines a probe based on a command which is executed within the container.

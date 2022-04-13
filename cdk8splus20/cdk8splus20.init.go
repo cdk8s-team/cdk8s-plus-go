@@ -99,6 +99,10 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.ContainerLifecycle",
+		reflect.TypeOf((*ContainerLifecycle)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.ContainerProps",
 		reflect.TypeOf((*ContainerProps)(nil)).Elem(),
 	)
@@ -276,6 +280,22 @@ func init() {
 			"ON_ROOT_MISMATCH": FsGroupChangePolicy_ON_ROOT_MISMATCH,
 			"ALWAYS": FsGroupChangePolicy_ALWAYS,
 		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-20.Handler",
+		reflect.TypeOf((*Handler)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_Handler{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.HandlerFromHttpGetOptions",
+		reflect.TypeOf((*HandlerFromHttpGetOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.HandlerFromTcpSocketOptions",
+		reflect.TypeOf((*HandlerFromTcpSocketOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.HostAlias",
