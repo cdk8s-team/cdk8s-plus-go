@@ -308,6 +308,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -321,6 +322,18 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.DeploymentProps",
 		reflect.TypeOf((*DeploymentProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.DeploymentStrategy",
+		reflect.TypeOf((*DeploymentStrategy)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_DeploymentStrategy{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.DeploymentStrategyRollingUpdateOptions",
+		reflect.TypeOf((*DeploymentStrategyRollingUpdateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-21.DockerConfigSecret",
@@ -720,6 +733,17 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.PathMapping",
 		reflect.TypeOf((*PathMapping)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.PercentOrAbsolute",
+		reflect.TypeOf((*PercentOrAbsolute)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "isZero", GoMethod: "IsZero"},
+			_jsii_.MemberProperty{JsiiProperty: "value", GoGetter: "Value"},
+		},
+		func() interface{} {
+			return &jsiiProxy_PercentOrAbsolute{}
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-21.PersistentVolume",

@@ -2380,6 +2380,8 @@ type Deployment interface {
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
+	// The upgrade strategy of this deployment.
+	Strategy() DeploymentStrategy
 	// The volumes associated with this pod.
 	//
 	// Use `addVolume` to add volumes.
@@ -2551,6 +2553,16 @@ func (j *jsiiProxy_Deployment) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Strategy() DeploymentStrategy {
+	var returns DeploymentStrategy
+	_jsii_.Get(
+		j,
+		"strategy",
 		&returns,
 	)
 	return returns
@@ -2770,6 +2782,76 @@ type DeploymentProps struct {
 	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
+	// Specifies the strategy used to replace old Pods by new ones.
+	Strategy DeploymentStrategy `json:"strategy" yaml:"strategy"`
+}
+
+// Deployment strategies.
+type DeploymentStrategy interface {
+}
+
+// The jsii proxy struct for DeploymentStrategy
+type jsiiProxy_DeploymentStrategy struct {
+	_ byte // padding
+}
+
+// All existing Pods are killed before new ones are created.
+// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#recreate-deployment
+//
+func DeploymentStrategy_Recreate() DeploymentStrategy {
+	_init_.Initialize()
+
+	var returns DeploymentStrategy
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.DeploymentStrategy",
+		"recreate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func DeploymentStrategy_RollingUpdate(options *DeploymentStrategyRollingUpdateOptions) DeploymentStrategy {
+	_init_.Initialize()
+
+	var returns DeploymentStrategy
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.DeploymentStrategy",
+		"rollingUpdate",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `DeploymentStrategy.rollingUpdate`.
+type DeploymentStrategyRollingUpdateOptions struct {
+	// The maximum number of pods that can be scheduled above the desired number of pods.
+	//
+	// Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).
+	// Absolute number is calculated from percentage by rounding up.
+	// This can not be 0 if `maxUnavailable` is 0.
+	//
+	// Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update
+	// starts, such that the total number of old and new pods do not exceed 130% of desired pods.
+	// Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that
+	// total number of pods running at any time during the update is at most 130% of desired pods.
+	MaxSurge PercentOrAbsolute `json:"maxSurge" yaml:"maxSurge"`
+	// The maximum number of pods that can be unavailable during the update.
+	//
+	// Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).
+	// Absolute number is calculated from percentage by rounding down.
+	// This can not be 0 if `maxSurge` is 0.
+	//
+	// Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired
+	// pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can
+	// be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total
+	// number of pods available at all times during the update is at least 70% of desired pods.
+	MaxUnavailable PercentOrAbsolute `json:"maxUnavailable" yaml:"maxUnavailable"`
 }
 
 // Create a secret for storing credentials for accessing a container image registry.
@@ -4850,6 +4932,73 @@ type PathMapping struct {
 	// in conflict with other options that affect the file mode, like fsGroup, and
 	// the result can be other mode bits set.
 	Mode *float64 `json:"mode" yaml:"mode"`
+}
+
+// Union like class repsenting either a ration in percents or an absolute number.
+type PercentOrAbsolute interface {
+	Value() interface{}
+	IsZero() *bool
+}
+
+// The jsii proxy struct for PercentOrAbsolute
+type jsiiProxy_PercentOrAbsolute struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_PercentOrAbsolute) Value() interface{} {
+	var returns interface{}
+	_jsii_.Get(
+		j,
+		"value",
+		&returns,
+	)
+	return returns
+}
+
+
+// Absolute number.
+func PercentOrAbsolute_Absolute(num *float64) PercentOrAbsolute {
+	_init_.Initialize()
+
+	var returns PercentOrAbsolute
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.PercentOrAbsolute",
+		"absolute",
+		[]interface{}{num},
+		&returns,
+	)
+
+	return returns
+}
+
+// Percent ratio.
+func PercentOrAbsolute_Percent(percent *float64) PercentOrAbsolute {
+	_init_.Initialize()
+
+	var returns PercentOrAbsolute
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.PercentOrAbsolute",
+		"percent",
+		[]interface{}{percent},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PercentOrAbsolute) IsZero() *bool {
+	var returns *bool
+
+	_jsii_.Invoke(
+		p,
+		"isZero",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 // A PersistentVolume (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes.
