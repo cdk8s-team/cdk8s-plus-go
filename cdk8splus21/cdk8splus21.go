@@ -1150,6 +1150,8 @@ type ConfigMap interface {
 	//
 	// Returns an copy. To add data records, use `addData()` or `addBinaryData()`.
 	Data() *map[string]*string
+	// Whether or not this config map is immutable.
+	Immutable() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -1222,6 +1224,16 @@ func (j *jsiiProxy_ConfigMap) Data() *map[string]*string {
 	_jsii_.Get(
 		j,
 		"data",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ConfigMap) Immutable() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"immutable",
 		&returns,
 	)
 	return returns
@@ -1384,6 +1396,10 @@ type ConfigMapProps struct {
 	//
 	// You can also add data using `configMap.addData()`.
 	Data *map[string]*string `json:"data" yaml:"data"`
+	// If set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified).
+	//
+	// If not set to true, the field can be modified at any time.
+	Immutable *bool `json:"immutable" yaml:"immutable"`
 }
 
 // Options for the ConfigMap-based volume.
