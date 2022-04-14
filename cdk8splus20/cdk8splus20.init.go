@@ -1211,6 +1211,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -1224,6 +1225,18 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.StatefulSetProps",
 		reflect.TypeOf((*StatefulSetProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-20.StatefulSetUpdateStrategy",
+		reflect.TypeOf((*StatefulSetUpdateStrategy)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_StatefulSetUpdateStrategy{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-20.StatefulSetUpdateStrategyRollingUpdateOptions",
+		reflect.TypeOf((*StatefulSetUpdateStrategyRollingUpdateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-20.Sysctl",
