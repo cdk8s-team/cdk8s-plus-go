@@ -1942,6 +1942,8 @@ type DaemonSet interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -1962,6 +1964,7 @@ type DaemonSet interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -2026,6 +2029,16 @@ func (j *jsiiProxy_DaemonSet) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -2269,6 +2282,10 @@ type DaemonSetProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -2356,6 +2373,8 @@ type Deployment interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -2377,6 +2396,7 @@ type Deployment interface {
 	Replicas() *float64
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -2453,6 +2473,16 @@ func (j *jsiiProxy_Deployment) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -2732,6 +2762,10 @@ type DeploymentProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -2853,6 +2887,31 @@ type DeploymentStrategyRollingUpdateOptions struct {
 	// number of pods available at all times during the update is at least 70% of desired pods.
 	MaxUnavailable PercentOrAbsolute `json:"maxUnavailable" yaml:"maxUnavailable"`
 }
+
+// Custom DNS option.
+type DnsOption struct {
+	// Option name.
+	Name *string `json:"name" yaml:"name"`
+	// Option value.
+	Value *string `json:"value" yaml:"value"`
+}
+
+// Pod DNS policies.
+type DnsPolicy string
+
+const (
+	// Any DNS query that does not match the configured cluster domain suffix, such as "www.kubernetes.io", is forwarded to the upstream nameserver inherited from the node. Cluster administrators may have extra stub-domain and upstream DNS servers configured.
+	DnsPolicy_CLUSTER_FIRST DnsPolicy = "CLUSTER_FIRST"
+	// For Pods running with hostNetwork, you should explicitly set its DNS policy "ClusterFirstWithHostNet".
+	DnsPolicy_CLUSTER_FIRST_WITH_HOST_NET DnsPolicy = "CLUSTER_FIRST_WITH_HOST_NET"
+	// The Pod inherits the name resolution configuration from the node that the pods run on.
+	DnsPolicy_DEFAULT DnsPolicy = "DEFAULT"
+	// It allows a Pod to ignore DNS settings from the Kubernetes environment.
+	//
+	// All DNS settings are supposed to be provided using the dnsConfig
+	// field in the Pod Spec.
+	DnsPolicy_NONE DnsPolicy = "NONE"
+)
 
 // Create a secret for storing credentials for accessing a container image registry.
 // See: https://kubernetes.io/docs/concepts/configuration/secret/#docker-config-secrets
@@ -3911,6 +3970,8 @@ type IPodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -3921,6 +3982,8 @@ type IPodSpec interface {
 	InitContainers() *[]Container
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
+	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The volumes associated with this pod.
@@ -3978,6 +4041,16 @@ func (j *jsiiProxy_IPodSpec) Containers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_IPodSpec) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_IPodSpec) HostAliases() *[]*HostAlias {
 	var returns *[]*HostAlias
 	_jsii_.Get(
@@ -4003,6 +4076,16 @@ func (j *jsiiProxy_IPodSpec) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IPodSpec) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
 		&returns,
 	)
 	return returns
@@ -4460,6 +4543,8 @@ type Job interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -4475,6 +4560,7 @@ type Job interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -4559,6 +4645,16 @@ func (j *jsiiProxy_Job) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -4784,6 +4880,10 @@ type JobProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -5702,6 +5802,8 @@ type Pod interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -5715,6 +5817,7 @@ type Pod interface {
 	Name() *string
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -5777,6 +5880,16 @@ func (j *jsiiProxy_Pod) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -5971,6 +6084,212 @@ func (p *jsiiProxy_Pod) ToString() *string {
 	return returns
 }
 
+// Holds dns settings of the pod.
+type PodDns interface {
+	// The configured hostname of the pod.
+	//
+	// Undefined means its set to a system-defined value.
+	Hostname() *string
+	// Whether or not the pods hostname is set to its FQDN.
+	HostnameAsFQDN() *bool
+	// Nameservers defined for this pod.
+	Nameservers() *[]*string
+	// Custom dns options defined for this pod.
+	Options() *[]*DnsOption
+	// The DNS policy of this pod.
+	Policy() DnsPolicy
+	// Search domains defined for this pod.
+	Searches() *[]*string
+	// The configured subdomain of the pod.
+	Subdomain() *string
+	// Add a nameserver.
+	AddNameserver(nameservers ...*string)
+	// Add a custom option.
+	AddOption(options ...*DnsOption)
+	// Add a search domain.
+	AddSearch(searches ...*string)
+}
+
+// The jsii proxy struct for PodDns
+type jsiiProxy_PodDns struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_PodDns) Hostname() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"hostname",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) HostnameAsFQDN() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"hostnameAsFQDN",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) Nameservers() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"nameservers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) Options() *[]*DnsOption {
+	var returns *[]*DnsOption
+	_jsii_.Get(
+		j,
+		"options",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) Policy() DnsPolicy {
+	var returns DnsPolicy
+	_jsii_.Get(
+		j,
+		"policy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) Searches() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"searches",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodDns) Subdomain() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"subdomain",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPodDns(props *PodDnsProps) PodDns {
+	_init_.Initialize()
+
+	j := jsiiProxy_PodDns{}
+
+	_jsii_.Create(
+		"cdk8s-plus-20.PodDns",
+		[]interface{}{props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPodDns_Override(p PodDns, props *PodDnsProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-20.PodDns",
+		[]interface{}{props},
+		p,
+	)
+}
+
+func (p *jsiiProxy_PodDns) AddNameserver(nameservers ...*string) {
+	args := []interface{}{}
+	for _, a := range nameservers {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		p,
+		"addNameserver",
+		args,
+	)
+}
+
+func (p *jsiiProxy_PodDns) AddOption(options ...*DnsOption) {
+	args := []interface{}{}
+	for _, a := range options {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		p,
+		"addOption",
+		args,
+	)
+}
+
+func (p *jsiiProxy_PodDns) AddSearch(searches ...*string) {
+	args := []interface{}{}
+	for _, a := range searches {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		p,
+		"addSearch",
+		args,
+	)
+}
+
+// Properties for `PodDns`.
+type PodDnsProps struct {
+	// Specifies the hostname of the Pod.
+	Hostname *string `json:"hostname" yaml:"hostname"`
+	// If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).
+	//
+	// In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).
+	// In Windows containers, this means setting the registry value of hostname for the registry
+	// key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters to FQDN.
+	// If a pod does not have FQDN, this has no effect.
+	HostnameAsFQDN *bool `json:"hostnameAsFQDN" yaml:"hostnameAsFQDN"`
+	// A list of IP addresses that will be used as DNS servers for the Pod.
+	//
+	// There can be at most 3 IP addresses specified.
+	// When the policy is set to "NONE", the list must contain at least one IP address,
+	// otherwise this property is optional.
+	// The servers listed will be combined to the base nameservers generated from
+	// the specified DNS policy with duplicate addresses removed.
+	Nameservers *[]*string `json:"nameservers" yaml:"nameservers"`
+	// List of objects where each object may have a name property (required) and a value property (optional).
+	//
+	// The contents in this property
+	// will be merged to the options generated from the specified DNS policy.
+	// Duplicate entries are removed.
+	Options *[]*DnsOption `json:"options" yaml:"options"`
+	// Set DNS policy for the pod.
+	//
+	// If policy is set to `None`, other configuration must be supplied.
+	Policy DnsPolicy `json:"policy" yaml:"policy"`
+	// A list of DNS search domains for hostname lookup in the Pod.
+	//
+	// When specified, the provided list will be merged into the base
+	// search domain names generated from the chosen DNS policy.
+	// Duplicate domain names are removed.
+	//
+	// Kubernetes allows for at most 6 search domains.
+	Searches *[]*string `json:"searches" yaml:"searches"`
+	// If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>".
+	Subdomain *string `json:"subdomain" yaml:"subdomain"`
+}
+
 // Controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
 //
 // The default policy is `OrderedReady`, where pods are created in increasing order
@@ -5997,6 +6316,10 @@ type PodProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -6171,6 +6494,8 @@ type PodSpec interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
@@ -6182,6 +6507,7 @@ type PodSpec interface {
 	InitContainers() *[]Container
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -6208,6 +6534,16 @@ func (j *jsiiProxy_PodSpec) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodSpec) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -6359,6 +6695,10 @@ type PodSpecProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -6410,6 +6750,8 @@ type PodTemplate interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
@@ -6423,6 +6765,7 @@ type PodTemplate interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -6450,6 +6793,16 @@ func (j *jsiiProxy_PodTemplate) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PodTemplate) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -6613,6 +6966,10 @@ type PodTemplateProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
@@ -8218,6 +8575,8 @@ type StatefulSet interface {
 	//
 	// Use `addContainer` to add containers.
 	Containers() *[]Container
+	// The pod's DNS settings.
+	Dns() PodDns
 	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
 	//
 	// This is only valid for non-hostNetwork pods.
@@ -8241,6 +8600,7 @@ type StatefulSet interface {
 	Replicas() *float64
 	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
+	// The pod's security context.
 	SecurityContext() PodSecurityContext
 	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
@@ -8309,6 +8669,16 @@ func (j *jsiiProxy_StatefulSet) Containers() *[]Container {
 	_jsii_.Get(
 		j,
 		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
 		&returns,
 	)
 	return returns
@@ -8572,6 +8942,10 @@ type StatefulSetProps struct {
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
 	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
 	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
