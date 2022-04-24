@@ -254,6 +254,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
@@ -292,6 +293,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaService", GoMethod: "ExposeViaService"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
@@ -334,6 +336,20 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.DeploymentStrategyRollingUpdateOptions",
 		reflect.TypeOf((*DeploymentStrategyRollingUpdateOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.DnsOption",
+		reflect.TypeOf((*DnsOption)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.DnsPolicy",
+		reflect.TypeOf((*DnsPolicy)(nil)).Elem(),
+		map[string]interface{}{
+			"CLUSTER_FIRST": DnsPolicy_CLUSTER_FIRST,
+			"CLUSTER_FIRST_WITH_HOST_NET": DnsPolicy_CLUSTER_FIRST_WITH_HOST_NET,
+			"DEFAULT": DnsPolicy_DEFAULT,
+			"NONE": DnsPolicy_NONE,
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.DockerConfigSecret",
@@ -556,9 +572,11 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -574,10 +592,12 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -696,6 +716,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "backoffLimit", GoGetter: "BackoffLimit"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -857,6 +878,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -876,6 +898,29 @@ func init() {
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSpec)
 			return &j
 		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.PodDns",
+		reflect.TypeOf((*PodDns)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addNameserver", GoMethod: "AddNameserver"},
+			_jsii_.MemberMethod{JsiiMethod: "addOption", GoMethod: "AddOption"},
+			_jsii_.MemberMethod{JsiiMethod: "addSearch", GoMethod: "AddSearch"},
+			_jsii_.MemberProperty{JsiiProperty: "hostname", GoGetter: "Hostname"},
+			_jsii_.MemberProperty{JsiiProperty: "hostnameAsFQDN", GoGetter: "HostnameAsFQDN"},
+			_jsii_.MemberProperty{JsiiProperty: "nameservers", GoGetter: "Nameservers"},
+			_jsii_.MemberProperty{JsiiProperty: "options", GoGetter: "Options"},
+			_jsii_.MemberProperty{JsiiProperty: "policy", GoGetter: "Policy"},
+			_jsii_.MemberProperty{JsiiProperty: "searches", GoGetter: "Searches"},
+			_jsii_.MemberProperty{JsiiProperty: "subdomain", GoGetter: "Subdomain"},
+		},
+		func() interface{} {
+			return &jsiiProxy_PodDns{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodDnsProps",
+		reflect.TypeOf((*PodDnsProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-22.PodManagementPolicy",
@@ -917,6 +962,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
@@ -944,6 +990,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
@@ -1205,6 +1252,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
