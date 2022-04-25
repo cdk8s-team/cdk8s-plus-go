@@ -90,7 +90,7 @@ type AwsElasticBlockStorePersistentVolume interface {
 	// Note that you must also bind the claim to the volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
-	Bind(pvc IPersistentVolumeClaim)
+	Bind(claim IPersistentVolumeClaim)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -323,11 +323,11 @@ func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsVolume() Volume {
 	return returns
 }
 
-func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(claim IPersistentVolumeClaim) {
 	_jsii_.InvokeVoid(
 		a,
 		"bind",
-		[]interface{}{pvc},
+		[]interface{}{claim},
 	)
 }
 
@@ -511,7 +511,7 @@ type AzureDiskPersistentVolume interface {
 	// Note that you must also bind the claim to the volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
-	Bind(pvc IPersistentVolumeClaim)
+	Bind(claim IPersistentVolumeClaim)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -764,11 +764,11 @@ func (a *jsiiProxy_AzureDiskPersistentVolume) AsVolume() Volume {
 	return returns
 }
 
-func (a *jsiiProxy_AzureDiskPersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+func (a *jsiiProxy_AzureDiskPersistentVolume) Bind(claim IPersistentVolumeClaim) {
 	_jsii_.InvokeVoid(
 		a,
 		"bind",
-		[]interface{}{pvc},
+		[]interface{}{claim},
 	)
 }
 
@@ -1973,12 +1973,12 @@ type DaemonSet interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -2179,13 +2179,13 @@ func NewDaemonSet_Override(d DaemonSet, scope constructs.Construct, id *string, 
 	)
 }
 
-func (d *jsiiProxy_DaemonSet) AddContainer(container *ContainerProps) Container {
+func (d *jsiiProxy_DaemonSet) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		d,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -2200,24 +2200,24 @@ func (d *jsiiProxy_DaemonSet) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (d *jsiiProxy_DaemonSet) AddInitContainer(container *ContainerProps) Container {
+func (d *jsiiProxy_DaemonSet) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		d,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (d *jsiiProxy_DaemonSet) AddVolume(volume Volume) {
+func (d *jsiiProxy_DaemonSet) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		d,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -2407,12 +2407,12 @@ type Deployment interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 	// Expose a deployment via an ingress.
 	//
 	// This will first expose the deployment with a service, and then expose the service via an ingress.
@@ -2633,13 +2633,13 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 	)
 }
 
-func (d *jsiiProxy_Deployment) AddContainer(container *ContainerProps) Container {
+func (d *jsiiProxy_Deployment) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		d,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -2654,24 +2654,24 @@ func (d *jsiiProxy_Deployment) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (d *jsiiProxy_Deployment) AddInitContainer(container *ContainerProps) Container {
+func (d *jsiiProxy_Deployment) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		d,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (d *jsiiProxy_Deployment) AddVolume(volume Volume) {
+func (d *jsiiProxy_Deployment) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		d,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -3448,7 +3448,7 @@ type GCEPersistentDiskPersistentVolume interface {
 	// Note that you must also bind the claim to the volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
-	Bind(pvc IPersistentVolumeClaim)
+	Bind(claim IPersistentVolumeClaim)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -3681,11 +3681,11 @@ func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsVolume() Volume {
 	return returns
 }
 
-func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Bind(claim IPersistentVolumeClaim) {
 	_jsii_.InvokeVoid(
 		g,
 		"bind",
-		[]interface{}{pvc},
+		[]interface{}{claim},
 	)
 }
 
@@ -4458,7 +4458,7 @@ type jsiiProxy_IngressBackend struct {
 }
 
 // A Kubernetes `Service` to use as the backend for this path.
-func IngressBackend_FromService(service Service, options *ServiceIngressBackendOptions) IngressBackend {
+func IngressBackend_FromService(serv Service, options *ServiceIngressBackendOptions) IngressBackend {
 	_init_.Initialize()
 
 	var returns IngressBackend
@@ -4466,7 +4466,7 @@ func IngressBackend_FromService(service Service, options *ServiceIngressBackendO
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.IngressBackend",
 		"fromService",
-		[]interface{}{service, options},
+		[]interface{}{serv, options},
 		&returns,
 	)
 
@@ -4596,12 +4596,12 @@ type Job interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -4810,13 +4810,13 @@ func NewJob_Override(j Job, scope constructs.Construct, id *string, props *JobPr
 	)
 }
 
-func (j *jsiiProxy_Job) AddContainer(container *ContainerProps) Container {
+func (j *jsiiProxy_Job) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		j,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -4831,24 +4831,24 @@ func (j *jsiiProxy_Job) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (j *jsiiProxy_Job) AddInitContainer(container *ContainerProps) Container {
+func (j *jsiiProxy_Job) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		j,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (j *jsiiProxy_Job) AddVolume(volume Volume) {
+func (j *jsiiProxy_Job) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		j,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -5168,7 +5168,7 @@ type PersistentVolume interface {
 	// Note that you must also bind the claim to the volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
-	Bind(pvc IPersistentVolumeClaim)
+	Bind(claim IPersistentVolumeClaim)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -5363,11 +5363,11 @@ func (p *jsiiProxy_PersistentVolume) AsVolume() Volume {
 	return returns
 }
 
-func (p *jsiiProxy_PersistentVolume) Bind(pvc IPersistentVolumeClaim) {
+func (p *jsiiProxy_PersistentVolume) Bind(claim IPersistentVolumeClaim) {
 	_jsii_.InvokeVoid(
 		p,
 		"bind",
-		[]interface{}{pvc},
+		[]interface{}{claim},
 	)
 }
 
@@ -5480,7 +5480,7 @@ type PersistentVolumeClaim interface {
 	// Note that you must also bind the volume to the claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
-	Bind(pv IPersistentVolume)
+	Bind(vol IPersistentVolume)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -5635,11 +5635,11 @@ func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeCla
 	return returns
 }
 
-func (p *jsiiProxy_PersistentVolumeClaim) Bind(pv IPersistentVolume) {
+func (p *jsiiProxy_PersistentVolumeClaim) Bind(vol IPersistentVolume) {
 	_jsii_.InvokeVoid(
 		p,
 		"bind",
-		[]interface{}{pv},
+		[]interface{}{vol},
 	)
 }
 
@@ -5851,12 +5851,12 @@ type Pod interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -6025,13 +6025,13 @@ func NewPod_Override(p Pod, scope constructs.Construct, id *string, props *PodPr
 	)
 }
 
-func (p *jsiiProxy_Pod) AddContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_Pod) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -6046,24 +6046,24 @@ func (p *jsiiProxy_Pod) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (p *jsiiProxy_Pod) AddInitContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_Pod) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (p *jsiiProxy_Pod) AddVolume(volume Volume) {
+func (p *jsiiProxy_Pod) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		p,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -6541,12 +6541,12 @@ type PodSpec interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 }
 
 // The jsii proxy struct for PodSpec
@@ -6669,13 +6669,13 @@ func NewPodSpec_Override(p PodSpec, props *PodSpecProps) {
 	)
 }
 
-func (p *jsiiProxy_PodSpec) AddContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_PodSpec) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -6690,24 +6690,24 @@ func (p *jsiiProxy_PodSpec) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (p *jsiiProxy_PodSpec) AddInitContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_PodSpec) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (p *jsiiProxy_PodSpec) AddVolume(volume Volume) {
+func (p *jsiiProxy_PodSpec) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		p,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -6799,12 +6799,12 @@ type PodTemplate interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 }
 
 // The jsii proxy struct for PodTemplate
@@ -6938,13 +6938,13 @@ func NewPodTemplate_Override(p PodTemplate, props *PodTemplateProps) {
 	)
 }
 
-func (p *jsiiProxy_PodTemplate) AddContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_PodTemplate) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -6959,24 +6959,24 @@ func (p *jsiiProxy_PodTemplate) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (p *jsiiProxy_PodTemplate) AddInitContainer(container *ContainerProps) Container {
+func (p *jsiiProxy_PodTemplate) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		p,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (p *jsiiProxy_PodTemplate) AddVolume(volume Volume) {
+func (p *jsiiProxy_PodTemplate) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		p,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -7593,7 +7593,7 @@ type Service interface {
 	// If not targetPort is specific in the portOptions, then requests will be routed
 	// to the port exposed by the first container in the deployment's pods.
 	// The deployment's `labelSelector` will be used to select pods.
-	AddDeployment(deployment Deployment, options *AddDeploymentOptions)
+	AddDeployment(depl Deployment, options *AddDeploymentOptions)
 	// Services defined using this spec will select pods according the provided label.
 	AddSelector(label *string, value *string)
 	// Expose a service via an ingress using the specified path.
@@ -7741,11 +7741,11 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 	)
 }
 
-func (s *jsiiProxy_Service) AddDeployment(deployment Deployment, options *AddDeploymentOptions) {
+func (s *jsiiProxy_Service) AddDeployment(depl Deployment, options *AddDeploymentOptions) {
 	_jsii_.InvokeVoid(
 		s,
 		"addDeployment",
-		[]interface{}{deployment, options},
+		[]interface{}{depl, options},
 	)
 }
 
@@ -7845,7 +7845,7 @@ type ServiceAccount interface {
 	// Returns a copy. To add a secret, use `addSecret()`.
 	Secrets() *[]ISecret
 	// Allow a secret to be accessed by pods using this service account.
-	AddSecret(secret ISecret)
+	AddSecret(secr ISecret)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -7960,11 +7960,11 @@ func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
 	return returns
 }
 
-func (s *jsiiProxy_ServiceAccount) AddSecret(secret ISecret) {
+func (s *jsiiProxy_ServiceAccount) AddSecret(secr ISecret) {
 	_jsii_.InvokeVoid(
 		s,
 		"addSecret",
-		[]interface{}{secret},
+		[]interface{}{secr},
 	)
 }
 
@@ -8636,12 +8636,12 @@ type StatefulSet interface {
 	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
 	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
+	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
+	AddInitContainer(cont *ContainerProps) Container
 	// Add a volume to the pod.
-	AddVolume(volume Volume)
+	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -8864,13 +8864,13 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 	)
 }
 
-func (s *jsiiProxy_StatefulSet) AddContainer(container *ContainerProps) Container {
+func (s *jsiiProxy_StatefulSet) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		s,
 		"addContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
@@ -8885,24 +8885,24 @@ func (s *jsiiProxy_StatefulSet) AddHostAlias(hostAlias *HostAlias) {
 	)
 }
 
-func (s *jsiiProxy_StatefulSet) AddInitContainer(container *ContainerProps) Container {
+func (s *jsiiProxy_StatefulSet) AddInitContainer(cont *ContainerProps) Container {
 	var returns Container
 
 	_jsii_.Invoke(
 		s,
 		"addInitContainer",
-		[]interface{}{container},
+		[]interface{}{cont},
 		&returns,
 	)
 
 	return returns
 }
 
-func (s *jsiiProxy_StatefulSet) AddVolume(volume Volume) {
+func (s *jsiiProxy_StatefulSet) AddVolume(vol Volume) {
 	_jsii_.InvokeVoid(
 		s,
 		"addVolume",
-		[]interface{}{volume},
+		[]interface{}{vol},
 	)
 }
 
@@ -9510,7 +9510,7 @@ func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolu
 // without knowing the details of the particular cloud environment.
 // See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 //
-func Volume_FromPersistentVolumeClaim(pvc IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
+func Volume_FromPersistentVolumeClaim(claim IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -9518,7 +9518,7 @@ func Volume_FromPersistentVolumeClaim(pvc IPersistentVolumeClaim, options *Persi
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromPersistentVolumeClaim",
-		[]interface{}{pvc, options},
+		[]interface{}{claim, options},
 		&returns,
 	)
 
@@ -9535,7 +9535,7 @@ func Volume_FromPersistentVolumeClaim(pvc IPersistentVolumeClaim, options *Persi
 // so they are never written to non-volatile storage.
 // See: https://kubernetes.io/docs/concepts/storage/volumes/#secret
 //
-func Volume_FromSecret(secret ISecret, options *SecretVolumeOptions) Volume {
+func Volume_FromSecret(secr ISecret, options *SecretVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -9543,7 +9543,7 @@ func Volume_FromSecret(secret ISecret, options *SecretVolumeOptions) Volume {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromSecret",
-		[]interface{}{secret, options},
+		[]interface{}{secr, options},
 		&returns,
 	)
 
