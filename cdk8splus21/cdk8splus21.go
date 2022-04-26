@@ -2692,16 +2692,19 @@ type Deployment interface {
 	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
+	MinReady() cdk8s.Duration
 	// The name of this API object.
 	Name() *string
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// The maximum duration for a deployment to make progress before it is considered to be failed.
+	ProgressDeadline() cdk8s.Duration
 	// Number of desired pods.
 	Replicas() *float64
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
-	// The upgrade strategy of this deployment.
 	Strategy() DeploymentStrategy
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
@@ -2832,6 +2835,16 @@ func (j *jsiiProxy_Deployment) Metadata() cdk8s.ApiObjectMetadataDefinition {
 	return returns
 }
 
+func (j *jsiiProxy_Deployment) MinReady() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"minReady",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Deployment) Name() *string {
 	var returns *string
 	_jsii_.Get(
@@ -2847,6 +2860,16 @@ func (j *jsiiProxy_Deployment) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	_jsii_.Get(
 		j,
 		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) ProgressDeadline() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"progressDeadline",
 		&returns,
 	)
 	return returns
@@ -3115,6 +3138,22 @@ type DeploymentProps struct {
 	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
+	//
+	// Zero means the pod will be considered available as soon as it is ready.
+	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds
+	//
+	MinReady cdk8s.Duration `json:"minReady" yaml:"minReady"`
+	// The maximum duration for a deployment to make progress before it is considered to be failed.
+	//
+	// The deployment controller will continue
+	// to process failed deployments and a condition with a ProgressDeadlineExceeded
+	// reason will be surfaced in the deployment status.
+	//
+	// Note that progress will not be estimated during the time a deployment is paused.
+	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#progress-deadline-seconds
+	//
+	ProgressDeadline cdk8s.Duration `json:"progressDeadline" yaml:"progressDeadline"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
 	// Specifies the strategy used to replace old Pods by new ones.
