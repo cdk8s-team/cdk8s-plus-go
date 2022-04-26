@@ -10,6 +10,331 @@ import (
 	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus22/internal"
 )
 
+type AbstractPod interface {
+	Resource
+	// The underlying cdk8s API object.
+	ApiObject() cdk8s.ApiObject
+	Containers() *[]Container
+	Dns() PodDns
+	DockerRegistryAuth() DockerConfigSecret
+	HostAliases() *[]*HostAlias
+	InitContainers() *[]Container
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
+	ServiceAccount() IServiceAccount
+	Volumes() *[]Volume
+	AddContainer(cont *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
+	AddInitContainer(cont *ContainerProps) Container
+	AddVolume(vol Volume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for AbstractPod
+type jsiiProxy_AbstractPod struct {
+	jsiiProxy_Resource
+}
+
+func (j *jsiiProxy_AbstractPod) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Containers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) RestartPolicy() RestartPolicy {
+	var returns RestartPolicy
+	_jsii_.Get(
+		j,
+		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) ServiceAccount() IServiceAccount {
+	var returns IServiceAccount
+	_jsii_.Get(
+		j,
+		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Volumes() *[]Volume {
+	var returns *[]Volume
+	_jsii_.Get(
+		j,
+		"volumes",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewAbstractPod_Override(a AbstractPod, scope constructs.Construct, id *string, props *AbstractPodProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.AbstractPod",
+		[]interface{}{scope, id, props},
+		a,
+	)
+}
+
+func (a *jsiiProxy_AbstractPod) AddContainer(cont *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		a,
+		"addContainer",
+		[]interface{}{cont},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		a,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
+func (a *jsiiProxy_AbstractPod) AddInitContainer(cont *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		a,
+		"addInitContainer",
+		[]interface{}{cont},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) AddVolume(vol Volume) {
+	_jsii_.InvokeVoid(
+		a,
+		"addVolume",
+		[]interface{}{vol},
+	)
+}
+
+func (a *jsiiProxy_AbstractPod) OnPrepare() {
+	_jsii_.InvokeVoid(
+		a,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (a *jsiiProxy_AbstractPod) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		a,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (a *jsiiProxy_AbstractPod) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		a,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `AbstractPod`.
+type AbstractPodProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// List of containers belonging to the pod.
+	//
+	// Containers cannot currently be
+	// added or removed. There must be at least one container in a Pod.
+	//
+	// You can add additionnal containers using `podSpec.addContainer()`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	// Restart policy for all containers within the pod.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+	//
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	// A service account provides an identity for processes that run in a Pod.
+	//
+	// When you (a human) access the cluster (for example, using kubectl), you are
+	// authenticated by the apiserver as a particular User Account (currently this
+	// is usually admin, unless your cluster administrator has customized your
+	// cluster). Processes in containers inside pods can also contact the
+	// apiserver. When they do, they are authenticated as a particular Service
+	// Account (for example, default).
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+	//
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	// List of volumes that can be mounted by containers belonging to the pod.
+	//
+	// You can also add volumes later using `podSpec.addVolume()`
+	// See: https://kubernetes.io/docs/concepts/storage/volumes
+	//
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+}
+
 // Options to add a deployment to a service.
 type AddDeploymentOptions struct {
 	// The name of this port within the service.
@@ -1932,27 +2257,17 @@ type CpuResources struct {
 // A more complex setup might use multiple DaemonSets for a single type of daemon,
 // but with different flags and/or different memory and cpu requests for different hardware types.
 type DaemonSet interface {
-	Resource
-	IPodTemplate
+	Workload
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
 	Containers() *[]Container
-	// The pod's DNS settings.
 	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
+	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
 	InitContainers() *[]Container
-	// The labels this daemon set will match against in order to select pods.
+	// The labels this workload will match against in order to select pods.
 	//
 	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
@@ -1960,24 +2275,15 @@ type DaemonSet interface {
 	MinReadySeconds() *float64
 	// The name of this API object.
 	Name() *string
-	// Provides read/write access to the underlying pod metadata of the resource.
+	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
-	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
-	// The pod's security context.
 	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
-	// Add a container to the pod.
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
 	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
 	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
@@ -2002,7 +2308,9 @@ type DaemonSet interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this daemon set.
+	// Configure a label selector to this workload.
+	//
+	// Pods that have the label will be selected by workloads configured with this spec.
 	SelectByLabel(key *string, value *string)
 	// Returns a string representation of this construct.
 	ToString() *string
@@ -2010,8 +2318,7 @@ type DaemonSet interface {
 
 // The jsii proxy struct for DaemonSet
 type jsiiProxy_DaemonSet struct {
-	jsiiProxy_Resource
-	jsiiProxy_IPodTemplate
+	jsiiProxy_Workload
 }
 
 func (j *jsiiProxy_DaemonSet) ApiObject() cdk8s.ApiObject {
@@ -2039,6 +2346,16 @@ func (j *jsiiProxy_DaemonSet) Dns() PodDns {
 	_jsii_.Get(
 		j,
 		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -2327,13 +2644,10 @@ type DaemonSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
-	// Automatically allocates a pod selector for this daemon set.
-	//
-	// If this is set to `false` you must define your selector through
-	// `dset.podMetadata.addLabel()` and `dset.selectByLabel()`.
+	// Automatically allocates a pod selector for this workload.
 	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
+	// The pod metadata of this workload.
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	MinReadySeconds *float64 `json:"minReadySeconds" yaml:"minReadySeconds"`
 }
@@ -2363,55 +2677,36 @@ type DaemonSetProps struct {
 // - Use the status of the Deployment as an indicator that a rollout has stuck.
 // - Clean up older ReplicaSets that you don't need anymore.
 type Deployment interface {
-	Resource
-	IPodTemplate
+	Workload
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
 	Containers() *[]Container
-	// The pod's DNS settings.
 	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
+	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
 	InitContainers() *[]Container
-	// The labels this deployment will match against in order to select pods.
+	// The labels this workload will match against in order to select pods.
 	//
 	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
-	// Provides read/write access to the underlying pod metadata of the resource.
+	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Number of desired pods.
 	Replicas() *float64
-	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
-	// The pod's security context.
 	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The upgrade strategy of this deployment.
 	Strategy() DeploymentStrategy
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
-	// Add a container to the pod.
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
 	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
 	AddVolume(vol Volume)
 	// Expose a deployment via an ingress.
 	//
@@ -2444,9 +2739,9 @@ type Deployment interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this deployment.
+	// Configure a label selector to this workload.
 	//
-	// Pods that have the label will be selected by deployments configured with this spec.
+	// Pods that have the label will be selected by workloads configured with this spec.
 	SelectByLabel(key *string, value *string)
 	// Returns a string representation of this construct.
 	ToString() *string
@@ -2454,8 +2749,7 @@ type Deployment interface {
 
 // The jsii proxy struct for Deployment
 type jsiiProxy_Deployment struct {
-	jsiiProxy_Resource
-	jsiiProxy_IPodTemplate
+	jsiiProxy_Workload
 }
 
 func (j *jsiiProxy_Deployment) ApiObject() cdk8s.ApiObject {
@@ -2483,6 +2777,16 @@ func (j *jsiiProxy_Deployment) Dns() PodDns {
 	_jsii_.Get(
 		j,
 		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -2751,7 +3055,7 @@ func (d *jsiiProxy_Deployment) ToString() *string {
 	return returns
 }
 
-// Properties for initialization of `Deployment`.
+// Properties for `Deployment`.
 type DeploymentProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
@@ -2807,13 +3111,10 @@ type DeploymentProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
-	// Automatically allocates a pod selector for this deployment.
-	//
-	// If this is set to `false` you must define your selector through
-	// `deployment.podMetadata.addLabel()` and `deployment.selectByLabel()`.
+	// Automatically allocates a pod selector for this workload.
 	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
+	// The pod metadata of this workload.
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Number of desired pods.
 	Replicas *float64 `json:"replicas" yaml:"replicas"`
 	// Specifies the strategy used to replace old Pods by new ones.
@@ -3974,185 +4275,6 @@ type jsiiProxy_IPersistentVolumeClaim struct {
 	jsiiProxy_IResource
 }
 
-// Represents a resource that can be configured with a kuberenets pod spec. (e.g `Deployment`, `Job`, `Pod`, ...).
-//
-// Use the `PodSpec` class as an implementation helper.
-type IPodSpec interface {
-	// Add a container to the pod.
-	AddContainer(container *ContainerProps) Container
-	// Add an init container to the pod.
-	AddInitContainer(container *ContainerProps) Container
-	// Add a volume to the pod.
-	AddVolume(volume Volume)
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
-	Containers() *[]Container
-	// The pod's DNS settings.
-	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
-	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
-	InitContainers() *[]Container
-	// Restart policy for all containers within the pod.
-	RestartPolicy() RestartPolicy
-	// The pod's security context.
-	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
-	ServiceAccount() IServiceAccount
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
-	Volumes() *[]Volume
-}
-
-// The jsii proxy for IPodSpec
-type jsiiProxy_IPodSpec struct {
-	_ byte // padding
-}
-
-func (i *jsiiProxy_IPodSpec) AddContainer(container *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		i,
-		"addContainer",
-		[]interface{}{container},
-		&returns,
-	)
-
-	return returns
-}
-
-func (i *jsiiProxy_IPodSpec) AddInitContainer(container *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		i,
-		"addInitContainer",
-		[]interface{}{container},
-		&returns,
-	)
-
-	return returns
-}
-
-func (i *jsiiProxy_IPodSpec) AddVolume(volume Volume) {
-	_jsii_.InvokeVoid(
-		i,
-		"addVolume",
-		[]interface{}{volume},
-	)
-}
-
-func (j *jsiiProxy_IPodSpec) Containers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"containers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) Dns() PodDns {
-	var returns PodDns
-	_jsii_.Get(
-		j,
-		"dns",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) HostAliases() *[]*HostAlias {
-	var returns *[]*HostAlias
-	_jsii_.Get(
-		j,
-		"hostAliases",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) InitContainers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"initContainers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) RestartPolicy() RestartPolicy {
-	var returns RestartPolicy
-	_jsii_.Get(
-		j,
-		"restartPolicy",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) SecurityContext() PodSecurityContext {
-	var returns PodSecurityContext
-	_jsii_.Get(
-		j,
-		"securityContext",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) ServiceAccount() IServiceAccount {
-	var returns IServiceAccount
-	_jsii_.Get(
-		j,
-		"serviceAccount",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_IPodSpec) Volumes() *[]Volume {
-	var returns *[]Volume
-	_jsii_.Get(
-		j,
-		"volumes",
-		&returns,
-	)
-	return returns
-}
-
-// Represents a resource that can be configured with a kuberenets pod template. (e.g `Deployment`, `Job`, ...).
-//
-// Use the `PodTemplate` class as an implementation helper.
-type IPodTemplate interface {
-	IPodSpec
-	// Provides read/write access to the underlying pod metadata of the resource.
-	PodMetadata() cdk8s.ApiObjectMetadataDefinition
-}
-
-// The jsii proxy for IPodTemplate
-type jsiiProxy_IPodTemplate struct {
-	jsiiProxy_IPodSpec
-}
-
-func (j *jsiiProxy_IPodTemplate) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
-	var returns cdk8s.ApiObjectMetadataDefinition
-	_jsii_.Get(
-		j,
-		"podMetadata",
-		&returns,
-	)
-	return returns
-}
-
 // Represents a resource.
 type IResource interface {
 	// The Kubernetes name of this resource.
@@ -4552,8 +4674,7 @@ type IngressTls struct {
 // The Job object will start a new Pod if the first Pod fails or is deleted (for example due to a node hardware failure or a node reboot).
 // You can also use a Job to run multiple Pods in parallel.
 type Job interface {
-	Resource
-	IPodTemplate
+	Workload
 	// Duration before job is terminated.
 	//
 	// If undefined, there is no deadline.
@@ -4564,43 +4685,29 @@ type Job interface {
 	ApiObject() cdk8s.ApiObject
 	// Number of retries before marking failed.
 	BackoffLimit() *float64
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
 	Containers() *[]Container
-	// The pod's DNS settings.
 	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
+	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
 	InitContainers() *[]Container
+	// The labels this workload will match against in order to select pods.
+	//
+	// Returns a a copy. Use `selectByLabel()` to add labels.
+	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
-	// Provides read/write access to the underlying pod metadata of the resource.
+	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
-	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
-	// The pod's security context.
 	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// TTL before the job is deleted after it is finished.
 	TtlAfterFinished() cdk8s.Duration
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
-	// Add a container to the pod.
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
 	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
 	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
@@ -4625,14 +4732,17 @@ type Job interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
+	// Configure a label selector to this workload.
+	//
+	// Pods that have the label will be selected by workloads configured with this spec.
+	SelectByLabel(key *string, value *string)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
 
 // The jsii proxy struct for Job
 type jsiiProxy_Job struct {
-	jsiiProxy_Resource
-	jsiiProxy_IPodTemplate
+	jsiiProxy_Workload
 }
 
 func (j *jsiiProxy_Job) ActiveDeadline() cdk8s.Duration {
@@ -4685,6 +4795,16 @@ func (j *jsiiProxy_Job) Dns() PodDns {
 	return returns
 }
 
+func (j *jsiiProxy_Job) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Job) HostAliases() *[]*HostAlias {
 	var returns *[]*HostAlias
 	_jsii_.Get(
@@ -4700,6 +4820,16 @@ func (j *jsiiProxy_Job) InitContainers() *[]Container {
 	_jsii_.Get(
 		j,
 		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) LabelSelector() *map[string]*string {
+	var returns *map[string]*string
+	_jsii_.Get(
+		j,
+		"labelSelector",
 		&returns,
 	)
 	return returns
@@ -4881,6 +5011,14 @@ func (j *jsiiProxy_Job) OnValidate() *[]*string {
 	return returns
 }
 
+func (j *jsiiProxy_Job) SelectByLabel(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		j,
+		"selectByLabel",
+		[]interface{}{key, value},
+	)
+}
+
 func (j *jsiiProxy_Job) ToString() *string {
 	var returns *string
 
@@ -4894,7 +5032,7 @@ func (j *jsiiProxy_Job) ToString() *string {
 	return returns
 }
 
-// Properties for initialization of `Job`.
+// Properties for `Job`.
 type JobProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
@@ -4950,7 +5088,9 @@ type JobProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// The pod metadata.
+	// Automatically allocates a pod selector for this workload.
+	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
+	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Specifies the duration the job may be active before the system tries to terminate it.
 	ActiveDeadline cdk8s.Duration `json:"activeDeadline" yaml:"activeDeadline"`
@@ -5817,45 +5957,26 @@ const (
 // This resource is
 // created by clients and scheduled onto hosts.
 type Pod interface {
-	Resource
-	IPodSpec
+	AbstractPod
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
 	Containers() *[]Container
-	// The pod's DNS settings.
 	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
+	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
 	InitContainers() *[]Container
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
-	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
-	// The pod's security context.
 	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
-	// Add a container to the pod.
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
 	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
 	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
@@ -5886,8 +6007,7 @@ type Pod interface {
 
 // The jsii proxy struct for Pod
 type jsiiProxy_Pod struct {
-	jsiiProxy_Resource
-	jsiiProxy_IPodSpec
+	jsiiProxy_AbstractPod
 }
 
 func (j *jsiiProxy_Pod) ApiObject() cdk8s.ApiObject {
@@ -5915,6 +6035,16 @@ func (j *jsiiProxy_Pod) Dns() PodDns {
 	_jsii_.Get(
 		j,
 		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -6330,7 +6460,7 @@ const (
 	PodManagementPolicy_PARALLEL PodManagementPolicy = "PARALLEL"
 )
 
-// Properties for initialization of `Pod`.
+// Properties for `Pod`.
 type PodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
@@ -6510,534 +6640,6 @@ type PodSecurityContextProps struct {
 	Sysctls *[]*Sysctl `json:"sysctls" yaml:"sysctls"`
 	// The UID to run the entrypoint of the container process.
 	User *float64 `json:"user" yaml:"user"`
-}
-
-// Provides read/write capabilities ontop of a `PodSpecProps`.
-type PodSpec interface {
-	IPodSpec
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
-	Containers() *[]Container
-	// The pod's DNS settings.
-	Dns() PodDns
-	DockerRegistryAuth() DockerConfigSecret
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
-	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
-	InitContainers() *[]Container
-	// Restart policy for all containers within the pod.
-	RestartPolicy() RestartPolicy
-	// The pod's security context.
-	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
-	ServiceAccount() IServiceAccount
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
-	Volumes() *[]Volume
-	// Add a container to the pod.
-	AddContainer(cont *ContainerProps) Container
-	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
-	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
-	AddVolume(vol Volume)
-}
-
-// The jsii proxy struct for PodSpec
-type jsiiProxy_PodSpec struct {
-	jsiiProxy_IPodSpec
-}
-
-func (j *jsiiProxy_PodSpec) Containers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"containers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) Dns() PodDns {
-	var returns PodDns
-	_jsii_.Get(
-		j,
-		"dns",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) DockerRegistryAuth() DockerConfigSecret {
-	var returns DockerConfigSecret
-	_jsii_.Get(
-		j,
-		"dockerRegistryAuth",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) HostAliases() *[]*HostAlias {
-	var returns *[]*HostAlias
-	_jsii_.Get(
-		j,
-		"hostAliases",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) InitContainers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"initContainers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) RestartPolicy() RestartPolicy {
-	var returns RestartPolicy
-	_jsii_.Get(
-		j,
-		"restartPolicy",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) SecurityContext() PodSecurityContext {
-	var returns PodSecurityContext
-	_jsii_.Get(
-		j,
-		"securityContext",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) ServiceAccount() IServiceAccount {
-	var returns IServiceAccount
-	_jsii_.Get(
-		j,
-		"serviceAccount",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodSpec) Volumes() *[]Volume {
-	var returns *[]Volume
-	_jsii_.Get(
-		j,
-		"volumes",
-		&returns,
-	)
-	return returns
-}
-
-
-func NewPodSpec(props *PodSpecProps) PodSpec {
-	_init_.Initialize()
-
-	j := jsiiProxy_PodSpec{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.PodSpec",
-		[]interface{}{props},
-		&j,
-	)
-
-	return &j
-}
-
-func NewPodSpec_Override(p PodSpec, props *PodSpecProps) {
-	_init_.Initialize()
-
-	_jsii_.Create(
-		"cdk8s-plus-22.PodSpec",
-		[]interface{}{props},
-		p,
-	)
-}
-
-func (p *jsiiProxy_PodSpec) AddContainer(cont *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		p,
-		"addContainer",
-		[]interface{}{cont},
-		&returns,
-	)
-
-	return returns
-}
-
-func (p *jsiiProxy_PodSpec) AddHostAlias(hostAlias *HostAlias) {
-	_jsii_.InvokeVoid(
-		p,
-		"addHostAlias",
-		[]interface{}{hostAlias},
-	)
-}
-
-func (p *jsiiProxy_PodSpec) AddInitContainer(cont *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		p,
-		"addInitContainer",
-		[]interface{}{cont},
-		&returns,
-	)
-
-	return returns
-}
-
-func (p *jsiiProxy_PodSpec) AddVolume(vol Volume) {
-	_jsii_.InvokeVoid(
-		p,
-		"addVolume",
-		[]interface{}{vol},
-	)
-}
-
-// Properties of a `PodSpec`.
-type PodSpecProps struct {
-	// List of containers belonging to the pod.
-	//
-	// Containers cannot currently be
-	// added or removed. There must be at least one container in a Pod.
-	//
-	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
-	// DNS settings for the pod.
-	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
-	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
-	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
-	// List of initialization containers belonging to the pod.
-	//
-	// Init containers are executed in order prior to containers being started.
-	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
-	// The name for an init container or normal container must be unique among all containers.
-	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
-	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
-	// for each resource type, and then using the max of of that value or the sum of the normal containers.
-	// Limits are applied to init containers in a similar fashion.
-	//
-	// Init containers cannot currently be added ,removed or updated.
-	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
-	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
-	// Restart policy for all containers within the pod.
-	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
-	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
-	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
-	// A service account provides an identity for processes that run in a Pod.
-	//
-	// When you (a human) access the cluster (for example, using kubectl), you are
-	// authenticated by the apiserver as a particular User Account (currently this
-	// is usually admin, unless your cluster administrator has customized your
-	// cluster). Processes in containers inside pods can also contact the
-	// apiserver. When they do, they are authenticated as a particular Service
-	// Account (for example, default).
-	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
-	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
-	// List of volumes that can be mounted by containers belonging to the pod.
-	//
-	// You can also add volumes later using `podSpec.addVolume()`
-	// See: https://kubernetes.io/docs/concepts/storage/volumes
-	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-}
-
-// Provides read/write capabilities ontop of a `PodTemplateProps`.
-type PodTemplate interface {
-	PodSpec
-	IPodTemplate
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
-	Containers() *[]Container
-	// The pod's DNS settings.
-	Dns() PodDns
-	DockerRegistryAuth() DockerConfigSecret
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
-	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
-	InitContainers() *[]Container
-	// Provides read/write access to the underlying pod metadata of the resource.
-	PodMetadata() cdk8s.ApiObjectMetadataDefinition
-	// Restart policy for all containers within the pod.
-	RestartPolicy() RestartPolicy
-	// The pod's security context.
-	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
-	ServiceAccount() IServiceAccount
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
-	Volumes() *[]Volume
-	// Add a container to the pod.
-	AddContainer(cont *ContainerProps) Container
-	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
-	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
-	AddVolume(vol Volume)
-}
-
-// The jsii proxy struct for PodTemplate
-type jsiiProxy_PodTemplate struct {
-	jsiiProxy_PodSpec
-	jsiiProxy_IPodTemplate
-}
-
-func (j *jsiiProxy_PodTemplate) Containers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"containers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) Dns() PodDns {
-	var returns PodDns
-	_jsii_.Get(
-		j,
-		"dns",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) DockerRegistryAuth() DockerConfigSecret {
-	var returns DockerConfigSecret
-	_jsii_.Get(
-		j,
-		"dockerRegistryAuth",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) HostAliases() *[]*HostAlias {
-	var returns *[]*HostAlias
-	_jsii_.Get(
-		j,
-		"hostAliases",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) InitContainers() *[]Container {
-	var returns *[]Container
-	_jsii_.Get(
-		j,
-		"initContainers",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
-	var returns cdk8s.ApiObjectMetadataDefinition
-	_jsii_.Get(
-		j,
-		"podMetadata",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) RestartPolicy() RestartPolicy {
-	var returns RestartPolicy
-	_jsii_.Get(
-		j,
-		"restartPolicy",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) SecurityContext() PodSecurityContext {
-	var returns PodSecurityContext
-	_jsii_.Get(
-		j,
-		"securityContext",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) ServiceAccount() IServiceAccount {
-	var returns IServiceAccount
-	_jsii_.Get(
-		j,
-		"serviceAccount",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_PodTemplate) Volumes() *[]Volume {
-	var returns *[]Volume
-	_jsii_.Get(
-		j,
-		"volumes",
-		&returns,
-	)
-	return returns
-}
-
-
-func NewPodTemplate(props *PodTemplateProps) PodTemplate {
-	_init_.Initialize()
-
-	j := jsiiProxy_PodTemplate{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.PodTemplate",
-		[]interface{}{props},
-		&j,
-	)
-
-	return &j
-}
-
-func NewPodTemplate_Override(p PodTemplate, props *PodTemplateProps) {
-	_init_.Initialize()
-
-	_jsii_.Create(
-		"cdk8s-plus-22.PodTemplate",
-		[]interface{}{props},
-		p,
-	)
-}
-
-func (p *jsiiProxy_PodTemplate) AddContainer(cont *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		p,
-		"addContainer",
-		[]interface{}{cont},
-		&returns,
-	)
-
-	return returns
-}
-
-func (p *jsiiProxy_PodTemplate) AddHostAlias(hostAlias *HostAlias) {
-	_jsii_.InvokeVoid(
-		p,
-		"addHostAlias",
-		[]interface{}{hostAlias},
-	)
-}
-
-func (p *jsiiProxy_PodTemplate) AddInitContainer(cont *ContainerProps) Container {
-	var returns Container
-
-	_jsii_.Invoke(
-		p,
-		"addInitContainer",
-		[]interface{}{cont},
-		&returns,
-	)
-
-	return returns
-}
-
-func (p *jsiiProxy_PodTemplate) AddVolume(vol Volume) {
-	_jsii_.InvokeVoid(
-		p,
-		"addVolume",
-		[]interface{}{vol},
-	)
-}
-
-// Properties of a `PodTemplate`.
-//
-// Adds metadata information on top of the spec.
-type PodTemplateProps struct {
-	// List of containers belonging to the pod.
-	//
-	// Containers cannot currently be
-	// added or removed. There must be at least one container in a Pod.
-	//
-	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
-	// DNS settings for the pod.
-	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
-	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
-	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
-	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
-	// List of initialization containers belonging to the pod.
-	//
-	// Init containers are executed in order prior to containers being started.
-	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
-	// The name for an init container or normal container must be unique among all containers.
-	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
-	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
-	// for each resource type, and then using the max of of that value or the sum of the normal containers.
-	// Limits are applied to init containers in a similar fashion.
-	//
-	// Init containers cannot currently be added ,removed or updated.
-	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
-	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
-	// Restart policy for all containers within the pod.
-	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
-	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
-	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
-	// A service account provides an identity for processes that run in a Pod.
-	//
-	// When you (a human) access the cluster (for example, using kubectl), you are
-	// authenticated by the apiserver as a particular User Account (currently this
-	// is usually admin, unless your cluster administrator has customized your
-	// cluster). Processes in containers inside pods can also contact the
-	// apiserver. When they do, they are authenticated as a particular Service
-	// Account (for example, default).
-	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
-	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
-	// List of volumes that can be mounted by containers belonging to the pod.
-	//
-	// You can also add volumes later using `podSpec.addVolume()`
-	// See: https://kubernetes.io/docs/concepts/storage/volumes
-	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// The pod metadata.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -8590,27 +8192,17 @@ type SshAuthSecretProps struct {
 // - Ordered, graceful deployment and scaling.
 // - Ordered, automated rolling updates.
 type StatefulSet interface {
-	Resource
-	IPodTemplate
+	Workload
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
-	// The containers belonging to the pod.
-	//
-	// Use `addContainer` to add containers.
 	Containers() *[]Container
-	// The pod's DNS settings.
 	Dns() PodDns
-	// An optional list of hosts and IPs that will be injected into the pod's hosts file if specified.
-	//
-	// This is only valid for non-hostNetwork pods.
+	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
-	// The init containers belonging to the pod.
-	//
-	// Use `addInitContainer` to add init containers.
 	InitContainers() *[]Container
-	// The labels this statefulset will match against in order to select pods.
+	// The labels this workload will match against in order to select pods.
 	//
 	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
@@ -8619,28 +8211,19 @@ type StatefulSet interface {
 	Name() *string
 	// Management policy to use for the set.
 	PodManagementPolicy() PodManagementPolicy
-	// Provides read/write access to the underlying pod metadata of the resource.
+	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Number of desired pods.
 	Replicas() *float64
-	// Restart policy for all containers within the pod.
 	RestartPolicy() RestartPolicy
-	// The pod's security context.
 	SecurityContext() PodSecurityContext
-	// The service account used to run this pod.
 	ServiceAccount() IServiceAccount
 	// The update startegy of this stateful set.
 	Strategy() StatefulSetUpdateStrategy
-	// The volumes associated with this pod.
-	//
-	// Use `addVolume` to add volumes.
 	Volumes() *[]Volume
-	// Add a container to the pod.
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
-	// Add an init container to the pod.
 	AddInitContainer(cont *ContainerProps) Container
-	// Add a volume to the pod.
 	AddVolume(vol Volume)
 	// Perform final modifications before synthesis.
 	//
@@ -8665,9 +8248,9 @@ type StatefulSet interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this deployment.
+	// Configure a label selector to this workload.
 	//
-	// Pods that have the label will be selected by deployments configured with this spec.
+	// Pods that have the label will be selected by workloads configured with this spec.
 	SelectByLabel(key *string, value *string)
 	// Returns a string representation of this construct.
 	ToString() *string
@@ -8675,8 +8258,7 @@ type StatefulSet interface {
 
 // The jsii proxy struct for StatefulSet
 type jsiiProxy_StatefulSet struct {
-	jsiiProxy_Resource
-	jsiiProxy_IPodTemplate
+	jsiiProxy_Workload
 }
 
 func (j *jsiiProxy_StatefulSet) ApiObject() cdk8s.ApiObject {
@@ -8704,6 +8286,16 @@ func (j *jsiiProxy_StatefulSet) Dns() PodDns {
 	_jsii_.Get(
 		j,
 		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
 		&returns,
 	)
 	return returns
@@ -9012,15 +8604,12 @@ type StatefulSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// The pod metadata.
+	// Automatically allocates a pod selector for this workload.
+	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
+	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Service to associate with the statefulset.
 	Service Service `json:"service" yaml:"service"`
-	// Automatically allocates a pod selector for this statefulset.
-	//
-	// If this is set to `false` you must define your selector through
-	// `statefulset.podMetadata.addLabel()` and `statefulset.selectByLabel()`.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// Pod management policy to use for this statefulset.
 	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
@@ -9593,5 +9182,377 @@ type VolumeMount struct {
 	Path *string `json:"path" yaml:"path"`
 	// The volume to mount.
 	Volume Volume `json:"volume" yaml:"volume"`
+}
+
+// A workload is an application running on Kubernetes.
+//
+// Whether your workload is a single
+// component or several that work together, on Kubernetes you run it inside a set of pods.
+// In Kubernetes, a Pod represents a set of running containers on your cluster.
+type Workload interface {
+	AbstractPod
+	// The underlying cdk8s API object.
+	ApiObject() cdk8s.ApiObject
+	Containers() *[]Container
+	Dns() PodDns
+	DockerRegistryAuth() DockerConfigSecret
+	HostAliases() *[]*HostAlias
+	InitContainers() *[]Container
+	// The labels this workload will match against in order to select pods.
+	//
+	// Returns a a copy. Use `selectByLabel()` to add labels.
+	LabelSelector() *map[string]*string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The metadata of pods in this workload.
+	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	RestartPolicy() RestartPolicy
+	SecurityContext() PodSecurityContext
+	ServiceAccount() IServiceAccount
+	Volumes() *[]Volume
+	AddContainer(cont *ContainerProps) Container
+	AddHostAlias(hostAlias *HostAlias)
+	AddInitContainer(cont *ContainerProps) Container
+	AddVolume(vol Volume)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Configure a label selector to this workload.
+	//
+	// Pods that have the label will be selected by workloads configured with this spec.
+	SelectByLabel(key *string, value *string)
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for Workload
+type jsiiProxy_Workload struct {
+	jsiiProxy_AbstractPod
+}
+
+func (j *jsiiProxy_Workload) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Containers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"containers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Dns() PodDns {
+	var returns PodDns
+	_jsii_.Get(
+		j,
+		"dns",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) DockerRegistryAuth() DockerConfigSecret {
+	var returns DockerConfigSecret
+	_jsii_.Get(
+		j,
+		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) HostAliases() *[]*HostAlias {
+	var returns *[]*HostAlias
+	_jsii_.Get(
+		j,
+		"hostAliases",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) InitContainers() *[]Container {
+	var returns *[]Container
+	_jsii_.Get(
+		j,
+		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) LabelSelector() *map[string]*string {
+	var returns *map[string]*string
+	_jsii_.Get(
+		j,
+		"labelSelector",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) RestartPolicy() RestartPolicy {
+	var returns RestartPolicy
+	_jsii_.Get(
+		j,
+		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) SecurityContext() PodSecurityContext {
+	var returns PodSecurityContext
+	_jsii_.Get(
+		j,
+		"securityContext",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) ServiceAccount() IServiceAccount {
+	var returns IServiceAccount
+	_jsii_.Get(
+		j,
+		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Volumes() *[]Volume {
+	var returns *[]Volume
+	_jsii_.Get(
+		j,
+		"volumes",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewWorkload_Override(w Workload, scope constructs.Construct, id *string, props *WorkloadProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Workload",
+		[]interface{}{scope, id, props},
+		w,
+	)
+}
+
+func (w *jsiiProxy_Workload) AddContainer(cont *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		w,
+		"addContainer",
+		[]interface{}{cont},
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) AddHostAlias(hostAlias *HostAlias) {
+	_jsii_.InvokeVoid(
+		w,
+		"addHostAlias",
+		[]interface{}{hostAlias},
+	)
+}
+
+func (w *jsiiProxy_Workload) AddInitContainer(cont *ContainerProps) Container {
+	var returns Container
+
+	_jsii_.Invoke(
+		w,
+		"addInitContainer",
+		[]interface{}{cont},
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) AddVolume(vol Volume) {
+	_jsii_.InvokeVoid(
+		w,
+		"addVolume",
+		[]interface{}{vol},
+	)
+}
+
+func (w *jsiiProxy_Workload) OnPrepare() {
+	_jsii_.InvokeVoid(
+		w,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (w *jsiiProxy_Workload) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		w,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (w *jsiiProxy_Workload) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		w,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) SelectByLabel(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		w,
+		"selectByLabel",
+		[]interface{}{key, value},
+	)
+}
+
+func (w *jsiiProxy_Workload) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		w,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `Workload`.
+type WorkloadProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// List of containers belonging to the pod.
+	//
+	// Containers cannot currently be
+	// added or removed. There must be at least one container in a Pod.
+	//
+	// You can add additionnal containers using `podSpec.addContainer()`
+	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	// DNS settings for the pod.
+	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+	//
+	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	// A secret containing docker credentials for authenticating to a registry.
+	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	// List of initialization containers belonging to the pod.
+	//
+	// Init containers are executed in order prior to containers being started.
+	// If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy.
+	// The name for an init container or normal container must be unique among all containers.
+	// Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.
+	// The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit
+	// for each resource type, and then using the max of of that value or the sum of the normal containers.
+	// Limits are applied to init containers in a similar fashion.
+	//
+	// Init containers cannot currently be added ,removed or updated.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+	//
+	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	// Restart policy for all containers within the pod.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+	//
+	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	// SecurityContext holds pod-level security attributes and common container settings.
+	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	// A service account provides an identity for processes that run in a Pod.
+	//
+	// When you (a human) access the cluster (for example, using kubectl), you are
+	// authenticated by the apiserver as a particular User Account (currently this
+	// is usually admin, unless your cluster administrator has customized your
+	// cluster). Processes in containers inside pods can also contact the
+	// apiserver. When they do, they are authenticated as a particular Service
+	// Account (for example, default).
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+	//
+	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	// List of volumes that can be mounted by containers belonging to the pod.
+	//
+	// You can also add volumes later using `podSpec.addVolume()`
+	// See: https://kubernetes.io/docs/concepts/storage/volumes
+	//
+	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	// Automatically allocates a pod selector for this workload.
+	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
+	// The pod metadata of this workload.
+	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 }
 
