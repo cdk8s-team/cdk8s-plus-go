@@ -7,6 +7,41 @@ import (
 )
 
 func init() {
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.AbstractPod",
+		reflect.TypeOf((*AbstractPod)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
+			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
+			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
+			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
+			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+		},
+		func() interface{} {
+			j := jsiiProxy_AbstractPod{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.AbstractPodProps",
+		reflect.TypeOf((*AbstractPodProps)(nil)).Elem(),
+	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.AddDeploymentOptions",
 		reflect.TypeOf((*AddDeploymentOptions)(nil)).Elem(),
@@ -255,6 +290,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
@@ -274,8 +310,7 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_DaemonSet{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
 			return &j
 		},
 	)
@@ -294,6 +329,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaService", GoMethod: "ExposeViaService"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
@@ -316,8 +352,7 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_Deployment{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
 			return &j
 		},
 	)
@@ -556,49 +591,6 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-21.IPodSpec",
-		reflect.TypeOf((*IPodSpec)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
-			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
-			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
-			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
-			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
-			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
-			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
-			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
-			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
-		},
-		func() interface{} {
-			return &jsiiProxy_IPodSpec{}
-		},
-	)
-	_jsii_.RegisterInterface(
-		"cdk8s-plus-21.IPodTemplate",
-		reflect.TypeOf((*IPodTemplate)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
-			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
-			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
-			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
-			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
-			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
-			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
-			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
-			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
-			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
-		},
-		func() interface{} {
-			j := jsiiProxy_IPodTemplate{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSpec)
-			return &j
-		},
-	)
-	_jsii_.RegisterInterface(
 		"cdk8s-plus-21.IResource",
 		reflect.TypeOf((*IResource)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -708,8 +700,10 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "backoffLimit", GoGetter: "BackoffLimit"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
+			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
@@ -718,6 +712,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
+			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "ttlAfterFinished", GoGetter: "TtlAfterFinished"},
@@ -725,8 +720,7 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_Job{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
 			return &j
 		},
 	)
@@ -870,6 +864,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -885,8 +880,7 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_Pod{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSpec)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_AbstractPod)
 			return &j
 		},
 	)
@@ -943,64 +937,6 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.PodSecurityContextProps",
 		reflect.TypeOf((*PodSecurityContextProps)(nil)).Elem(),
-	)
-	_jsii_.RegisterClass(
-		"cdk8s-plus-21.PodSpec",
-		reflect.TypeOf((*PodSpec)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
-			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
-			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
-			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
-			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
-			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
-			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
-			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
-			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
-			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
-			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
-		},
-		func() interface{} {
-			j := jsiiProxy_PodSpec{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSpec)
-			return &j
-		},
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-21.PodSpecProps",
-		reflect.TypeOf((*PodSpecProps)(nil)).Elem(),
-	)
-	_jsii_.RegisterClass(
-		"cdk8s-plus-21.PodTemplate",
-		reflect.TypeOf((*PodTemplate)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
-			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
-			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
-			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
-			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
-			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
-			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
-			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
-			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
-			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
-			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
-			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
-			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
-		},
-		func() interface{} {
-			j := jsiiProxy_PodTemplate{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_PodSpec)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
-			return &j
-		},
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-21.PodTemplateProps",
-		reflect.TypeOf((*PodTemplateProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-21.Probe",
@@ -1244,6 +1180,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
@@ -1265,8 +1202,7 @@ func init() {
 		},
 		func() interface{} {
 			j := jsiiProxy_StatefulSet{}
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
-			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodTemplate)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
 			return &j
 		},
 	)
@@ -1335,5 +1271,43 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-21.VolumeMount",
 		reflect.TypeOf((*VolumeMount)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.Workload",
+		reflect.TypeOf((*Workload)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
+			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
+			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
+			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
+			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberMethod{JsiiMethod: "onPrepare", GoMethod: "OnPrepare"},
+			_jsii_.MemberMethod{JsiiMethod: "onSynthesize", GoMethod: "OnSynthesize"},
+			_jsii_.MemberMethod{JsiiMethod: "onValidate", GoMethod: "OnValidate"},
+			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
+			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
+			_jsii_.MemberMethod{JsiiMethod: "selectByLabel", GoMethod: "SelectByLabel"},
+			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Workload{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_AbstractPod)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-21.WorkloadProps",
+		reflect.TypeOf((*WorkloadProps)(nil)).Elem(),
 	)
 }
