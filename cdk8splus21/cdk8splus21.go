@@ -14,6 +14,7 @@ type AbstractPod interface {
 	Resource
 	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -67,6 +68,16 @@ func (j *jsiiProxy_AbstractPod) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -281,6 +292,10 @@ func (a *jsiiProxy_AbstractPod) ToString() *string {
 type AbstractPodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -2262,6 +2277,7 @@ type DaemonSet interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -2326,6 +2342,16 @@ func (j *jsiiProxy_DaemonSet) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -2592,6 +2618,10 @@ func (d *jsiiProxy_DaemonSet) ToString() *string {
 type DaemonSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -2682,6 +2712,7 @@ type Deployment interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -2760,6 +2791,16 @@ func (j *jsiiProxy_Deployment) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -3082,6 +3123,10 @@ func (d *jsiiProxy_Deployment) ToString() *string {
 type DeploymentProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -4697,6 +4742,7 @@ type Job interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	// Number of retries before marking failed.
 	BackoffLimit() *float64
 	Containers() *[]Container
@@ -4774,6 +4820,16 @@ func (j *jsiiProxy_Job) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -5050,6 +5106,10 @@ func (j *jsiiProxy_Job) ToString() *string {
 type JobProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -5976,6 +6036,7 @@ type Pod interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -6029,6 +6090,16 @@ func (j *jsiiProxy_Pod) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -6478,6 +6549,10 @@ const (
 type PodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -7453,6 +7528,8 @@ type ServiceAccount interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// Whether or not a token is automatically mounted for this service account.
+	AutomountToken() *bool
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -7500,6 +7577,16 @@ func (j *jsiiProxy_ServiceAccount) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccount) AutomountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountToken",
 		&returns,
 	)
 	return returns
@@ -7632,6 +7719,12 @@ func (s *jsiiProxy_ServiceAccount) ToString() *string {
 type ServiceAccountProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether pods running as this service account should have an API token automatically mounted.
+	//
+	// Can be overridden at the pod level.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountToken *bool `json:"automountToken" yaml:"automountToken"`
 	// List of secrets allowed to be used by pods running using this ServiceAccount.
 	// See: https://kubernetes.io/docs/concepts/configuration/secret
 	//
@@ -8211,6 +8304,7 @@ type StatefulSet interface {
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -8280,6 +8374,16 @@ func (j *jsiiProxy_StatefulSet) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -8566,6 +8670,10 @@ func (s *jsiiProxy_StatefulSet) ToString() *string {
 type StatefulSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
@@ -9207,6 +9315,7 @@ type Workload interface {
 	AbstractPod
 	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
+	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -9270,6 +9379,16 @@ func (j *jsiiProxy_Workload) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) AutomountServiceAccountToken() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"automountServiceAccountToken",
 		&returns,
 	)
 	return returns
@@ -9512,6 +9631,10 @@ func (w *jsiiProxy_Workload) ToString() *string {
 type WorkloadProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Indicates whether a service account token should be automatically mounted.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+	//
+	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
