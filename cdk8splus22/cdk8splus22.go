@@ -8340,6 +8340,8 @@ type StatefulSet interface {
 	// Returns a a copy. Use `selectByLabel()` to add labels.
 	LabelSelector() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
+	MinReady() cdk8s.Duration
 	// The name of this API object.
 	Name() *string
 	// Management policy to use for the set.
@@ -8479,6 +8481,16 @@ func (j *jsiiProxy_StatefulSet) Metadata() cdk8s.ApiObjectMetadataDefinition {
 	_jsii_.Get(
 		j,
 		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) MinReady() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"minReady",
 		&returns,
 	)
 	return returns
@@ -8757,6 +8769,14 @@ type StatefulSetProps struct {
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
 	// Service to associate with the statefulset.
 	Service Service `json:"service" yaml:"service"`
+	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
+	//
+	// Zero means the pod will be considered available as soon as it is ready.
+	//
+	// This is an alpha field and requires enabling StatefulSetMinReadySeconds feature gate.
+	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds
+	//
+	MinReady cdk8s.Duration `json:"minReady" yaml:"minReady"`
 	// Pod management policy to use for this statefulset.
 	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
