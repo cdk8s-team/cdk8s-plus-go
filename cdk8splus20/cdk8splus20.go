@@ -2283,10 +2283,14 @@ type DaemonSet interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
-	// The labels this workload will match against in order to select pods.
+	// The expression matchers this workload will use in order to select pods.
 	//
-	// Returns a a copy. Use `selectByLabel()` to add labels.
-	LabelSelector() *map[string]*string
+	// Returns a a copy. Use `select()` to add expression matchers.
+	MatchExpressions() *[]*LabelSelectorRequirement
+	// The label matchers this workload will use in order to select pods.
+	//
+	// Returns a a copy. Use `select()` to add label matchers.
+	MatchLabels() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	MinReadySeconds() *float64
 	// The name of this API object.
@@ -2324,10 +2328,8 @@ type DaemonSet interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this workload.
-	//
-	// Pods that have the label will be selected by workloads configured with this spec.
-	SelectByLabel(key *string, value *string)
+	// Configure selectors for this workload.
+	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -2407,11 +2409,21 @@ func (j *jsiiProxy_DaemonSet) InitContainers() *[]Container {
 	return returns
 }
 
-func (j *jsiiProxy_DaemonSet) LabelSelector() *map[string]*string {
+func (j *jsiiProxy_DaemonSet) MatchExpressions() *[]*LabelSelectorRequirement {
+	var returns *[]*LabelSelectorRequirement
+	_jsii_.Get(
+		j,
+		"matchExpressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) MatchLabels() *map[string]*string {
 	var returns *map[string]*string
 	_jsii_.Get(
 		j,
-		"labelSelector",
+		"matchLabels",
 		&returns,
 	)
 	return returns
@@ -2593,11 +2605,16 @@ func (d *jsiiProxy_DaemonSet) OnValidate() *[]*string {
 	return returns
 }
 
-func (d *jsiiProxy_DaemonSet) SelectByLabel(key *string, value *string) {
+func (d *jsiiProxy_DaemonSet) Select(selectors ...LabelSelector) {
+	args := []interface{}{}
+	for _, a := range selectors {
+		args = append(args, a)
+	}
+
 	_jsii_.InvokeVoid(
 		d,
-		"selectByLabel",
-		[]interface{}{key, value},
+		"select",
+		args,
 	)
 }
 
@@ -2674,10 +2691,13 @@ type DaemonSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// Automatically allocates a pod selector for this workload.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
+	//
+	// This ensures this workload manages pods created by
+	// its pod template.
+	Select *bool `json:"select" yaml:"select"`
 	// Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	MinReadySeconds *float64 `json:"minReadySeconds" yaml:"minReadySeconds"`
 }
@@ -2718,10 +2738,14 @@ type Deployment interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
-	// The labels this workload will match against in order to select pods.
+	// The expression matchers this workload will use in order to select pods.
 	//
-	// Returns a a copy. Use `selectByLabel()` to add labels.
-	LabelSelector() *map[string]*string
+	// Returns a a copy. Use `select()` to add expression matchers.
+	MatchExpressions() *[]*LabelSelectorRequirement
+	// The label matchers this workload will use in order to select pods.
+	//
+	// Returns a a copy. Use `select()` to add label matchers.
+	MatchLabels() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	MinReady() cdk8s.Duration
@@ -2773,10 +2797,8 @@ type Deployment interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this workload.
-	//
-	// Pods that have the label will be selected by workloads configured with this spec.
-	SelectByLabel(key *string, value *string)
+	// Configure selectors for this workload.
+	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -2856,11 +2878,21 @@ func (j *jsiiProxy_Deployment) InitContainers() *[]Container {
 	return returns
 }
 
-func (j *jsiiProxy_Deployment) LabelSelector() *map[string]*string {
+func (j *jsiiProxy_Deployment) MatchExpressions() *[]*LabelSelectorRequirement {
+	var returns *[]*LabelSelectorRequirement
+	_jsii_.Get(
+		j,
+		"matchExpressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) MatchLabels() *map[string]*string {
 	var returns *map[string]*string
 	_jsii_.Get(
 		j,
-		"labelSelector",
+		"matchLabels",
 		&returns,
 	)
 	return returns
@@ -3098,11 +3130,16 @@ func (d *jsiiProxy_Deployment) OnValidate() *[]*string {
 	return returns
 }
 
-func (d *jsiiProxy_Deployment) SelectByLabel(key *string, value *string) {
+func (d *jsiiProxy_Deployment) Select(selectors ...LabelSelector) {
+	args := []interface{}{}
+	for _, a := range selectors {
+		args = append(args, a)
+	}
+
 	_jsii_.InvokeVoid(
 		d,
-		"selectByLabel",
-		[]interface{}{key, value},
+		"select",
+		args,
 	)
 }
 
@@ -3179,10 +3216,13 @@ type DeploymentProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// Automatically allocates a pod selector for this workload.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
+	//
+	// This ensures this workload manages pods created by
+	// its pod template.
+	Select *bool `json:"select" yaml:"select"`
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	//
 	// Zero means the pod will be considered available as soon as it is ready.
@@ -4750,10 +4790,14 @@ type Job interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
-	// The labels this workload will match against in order to select pods.
+	// The expression matchers this workload will use in order to select pods.
 	//
-	// Returns a a copy. Use `selectByLabel()` to add labels.
-	LabelSelector() *map[string]*string
+	// Returns a a copy. Use `select()` to add expression matchers.
+	MatchExpressions() *[]*LabelSelectorRequirement
+	// The label matchers this workload will use in order to select pods.
+	//
+	// Returns a a copy. Use `select()` to add label matchers.
+	MatchLabels() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -4792,10 +4836,8 @@ type Job interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this workload.
-	//
-	// Pods that have the label will be selected by workloads configured with this spec.
-	SelectByLabel(key *string, value *string)
+	// Configure selectors for this workload.
+	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -4895,11 +4937,21 @@ func (j *jsiiProxy_Job) InitContainers() *[]Container {
 	return returns
 }
 
-func (j *jsiiProxy_Job) LabelSelector() *map[string]*string {
+func (j *jsiiProxy_Job) MatchExpressions() *[]*LabelSelectorRequirement {
+	var returns *[]*LabelSelectorRequirement
+	_jsii_.Get(
+		j,
+		"matchExpressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) MatchLabels() *map[string]*string {
 	var returns *map[string]*string
 	_jsii_.Get(
 		j,
-		"labelSelector",
+		"matchLabels",
 		&returns,
 	)
 	return returns
@@ -5081,11 +5133,16 @@ func (j *jsiiProxy_Job) OnValidate() *[]*string {
 	return returns
 }
 
-func (j *jsiiProxy_Job) SelectByLabel(key *string, value *string) {
+func (j *jsiiProxy_Job) Select(selectors ...LabelSelector) {
+	args := []interface{}{}
+	for _, a := range selectors {
+		args = append(args, a)
+	}
+
 	_jsii_.InvokeVoid(
 		j,
-		"selectByLabel",
-		[]interface{}{key, value},
+		"select",
+		args,
 	)
 }
 
@@ -5162,10 +5219,13 @@ type JobProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// Automatically allocates a pod selector for this workload.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
+	//
+	// This ensures this workload manages pods created by
+	// its pod template.
+	Select *bool `json:"select" yaml:"select"`
 	// Specifies the duration the job may be active before the system tries to terminate it.
 	ActiveDeadline cdk8s.Duration `json:"activeDeadline" yaml:"activeDeadline"`
 	// Specifies the number of retries before marking this job failed.
@@ -5180,6 +5240,172 @@ type JobProps struct {
 	// `TTLAfterFinished` feature.
 	TtlAfterFinished cdk8s.Duration `json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
 }
+
+// A label selector is a label query over a set of resources.
+// See: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+//
+type LabelSelector interface {
+	ApplyToTemplate() *bool
+	Key() *string
+	Operator() LabelSelectorRequirementOperator
+	Values() *[]*string
+}
+
+// The jsii proxy struct for LabelSelector
+type jsiiProxy_LabelSelector struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_LabelSelector) ApplyToTemplate() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"applyToTemplate",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_LabelSelector) Key() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"key",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_LabelSelector) Operator() LabelSelectorRequirementOperator {
+	var returns LabelSelectorRequirementOperator
+	_jsii_.Get(
+		j,
+		"operator",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_LabelSelector) Values() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"values",
+		&returns,
+	)
+	return returns
+}
+
+
+// Creates a `matchExpressions` "DoesNotExist" entry.
+func LabelSelector_DoesNotExist(key *string) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.LabelSelector",
+		"doesNotExist",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+// Creates a `matchExpressions` "Exists" entry.
+func LabelSelector_Exists(key *string) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.LabelSelector",
+		"exists",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+// Creates a `matchExpressions` "In" entry.
+func LabelSelector_In(key *string, values *[]*string) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.LabelSelector",
+		"in",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// Creates a `matchLabels` entry from the key and value.
+//
+// Use `applyToTemplate` to also add this label to the pod metadata of the workload.
+func LabelSelector_Is(key *string, value *string, applyToTemplate *bool) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.LabelSelector",
+		"is",
+		[]interface{}{key, value, applyToTemplate},
+		&returns,
+	)
+
+	return returns
+}
+
+// Creates a `matchExpressions` "NotIn" entry.
+func LabelSelector_NotIn(key *string, values *[]*string) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.LabelSelector",
+		"notIn",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+type LabelSelectorRequirement struct {
+	// The label key that the selector applies to.
+	Key *string `json:"key" yaml:"key"`
+	// Represents a key's relationship to a set of values.
+	Operator LabelSelectorRequirementOperator `json:"operator" yaml:"operator"`
+	// An array of string values.
+	//
+	// If the operator is In or NotIn, the values array
+	// must be non-empty. If the operator is Exists or DoesNotExist,
+	// the values array must be empty. This array is replaced during a strategic merge patch.
+	Values *[]*string `json:"values" yaml:"values"`
+}
+
+// Possible operators.
+type LabelSelectorRequirementOperator string
+
+const (
+	// In.
+	LabelSelectorRequirementOperator_IN LabelSelectorRequirementOperator = "IN"
+	// NotIn.
+	LabelSelectorRequirementOperator_NOT_IN LabelSelectorRequirementOperator = "NOT_IN"
+	// Exists.
+	LabelSelectorRequirementOperator_EXISTS LabelSelectorRequirementOperator = "EXISTS"
+	// DoesNotExist.
+	LabelSelectorRequirementOperator_DOES_NOT_EXIST LabelSelectorRequirementOperator = "DOES_NOT_EXIST"
+)
 
 // Memory request and limit.
 type MemoryResources struct {
@@ -8310,10 +8536,14 @@ type StatefulSet interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
-	// The labels this workload will match against in order to select pods.
+	// The expression matchers this workload will use in order to select pods.
 	//
-	// Returns a a copy. Use `selectByLabel()` to add labels.
-	LabelSelector() *map[string]*string
+	// Returns a a copy. Use `select()` to add expression matchers.
+	MatchExpressions() *[]*LabelSelectorRequirement
+	// The label matchers this workload will use in order to select pods.
+	//
+	// Returns a a copy. Use `select()` to add label matchers.
+	MatchLabels() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -8356,10 +8586,8 @@ type StatefulSet interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this workload.
-	//
-	// Pods that have the label will be selected by workloads configured with this spec.
-	SelectByLabel(key *string, value *string)
+	// Configure selectors for this workload.
+	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -8439,11 +8667,21 @@ func (j *jsiiProxy_StatefulSet) InitContainers() *[]Container {
 	return returns
 }
 
-func (j *jsiiProxy_StatefulSet) LabelSelector() *map[string]*string {
+func (j *jsiiProxy_StatefulSet) MatchExpressions() *[]*LabelSelectorRequirement {
+	var returns *[]*LabelSelectorRequirement
+	_jsii_.Get(
+		j,
+		"matchExpressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) MatchLabels() *map[string]*string {
 	var returns *map[string]*string
 	_jsii_.Get(
 		j,
-		"labelSelector",
+		"matchLabels",
 		&returns,
 	)
 	return returns
@@ -8645,11 +8883,16 @@ func (s *jsiiProxy_StatefulSet) OnValidate() *[]*string {
 	return returns
 }
 
-func (s *jsiiProxy_StatefulSet) SelectByLabel(key *string, value *string) {
+func (s *jsiiProxy_StatefulSet) Select(selectors ...LabelSelector) {
+	args := []interface{}{}
+	for _, a := range selectors {
+		args = append(args, a)
+	}
+
 	_jsii_.InvokeVoid(
 		s,
-		"selectByLabel",
-		[]interface{}{key, value},
+		"select",
+		args,
 	)
 }
 
@@ -8726,10 +8969,13 @@ type StatefulSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// Automatically allocates a pod selector for this workload.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
+	//
+	// This ensures this workload manages pods created by
+	// its pod template.
+	Select *bool `json:"select" yaml:"select"`
 	// Service to associate with the statefulset.
 	Service Service `json:"service" yaml:"service"`
 	// Pod management policy to use for this statefulset.
@@ -9321,10 +9567,14 @@ type Workload interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
-	// The labels this workload will match against in order to select pods.
+	// The expression matchers this workload will use in order to select pods.
 	//
-	// Returns a a copy. Use `selectByLabel()` to add labels.
-	LabelSelector() *map[string]*string
+	// Returns a a copy. Use `select()` to add expression matchers.
+	MatchExpressions() *[]*LabelSelectorRequirement
+	// The label matchers this workload will use in order to select pods.
+	//
+	// Returns a a copy. Use `select()` to add label matchers.
+	MatchLabels() *map[string]*string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -9361,10 +9611,8 @@ type Workload interface {
 	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
 	// instead of overriding this method.
 	OnValidate() *[]*string
-	// Configure a label selector to this workload.
-	//
-	// Pods that have the label will be selected by workloads configured with this spec.
-	SelectByLabel(key *string, value *string)
+	// Configure selectors for this workload.
+	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -9444,11 +9692,21 @@ func (j *jsiiProxy_Workload) InitContainers() *[]Container {
 	return returns
 }
 
-func (j *jsiiProxy_Workload) LabelSelector() *map[string]*string {
+func (j *jsiiProxy_Workload) MatchExpressions() *[]*LabelSelectorRequirement {
+	var returns *[]*LabelSelectorRequirement
+	_jsii_.Get(
+		j,
+		"matchExpressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) MatchLabels() *map[string]*string {
 	var returns *map[string]*string
 	_jsii_.Get(
 		j,
-		"labelSelector",
+		"matchLabels",
 		&returns,
 	)
 	return returns
@@ -9606,11 +9864,16 @@ func (w *jsiiProxy_Workload) OnValidate() *[]*string {
 	return returns
 }
 
-func (w *jsiiProxy_Workload) SelectByLabel(key *string, value *string) {
+func (w *jsiiProxy_Workload) Select(selectors ...LabelSelector) {
+	args := []interface{}{}
+	for _, a := range selectors {
+		args = append(args, a)
+	}
+
 	_jsii_.InvokeVoid(
 		w,
-		"selectByLabel",
-		[]interface{}{key, value},
+		"select",
+		args,
 	)
 }
 
@@ -9687,9 +9950,12 @@ type WorkloadProps struct {
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
 	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
-	// Automatically allocates a pod selector for this workload.
-	DefaultSelector *bool `json:"defaultSelector" yaml:"defaultSelector"`
 	// The pod metadata of this workload.
 	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
+	//
+	// This ensures this workload manages pods created by
+	// its pod template.
+	Select *bool `json:"select" yaml:"select"`
 }
 
