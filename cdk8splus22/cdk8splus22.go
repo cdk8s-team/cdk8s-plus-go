@@ -12,17 +12,29 @@ import (
 
 type AbstractPod interface {
 	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -31,6 +43,10 @@ type AbstractPod interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -63,11 +79,31 @@ type jsiiProxy_AbstractPod struct {
 	jsiiProxy_Resource
 }
 
+func (j *jsiiProxy_AbstractPod) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AbstractPod) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -133,6 +169,16 @@ func (j *jsiiProxy_AbstractPod) InitContainers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_AbstractPod) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AbstractPod) Metadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -148,6 +194,26 @@ func (j *jsiiProxy_AbstractPod) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -244,6 +310,32 @@ func (a *jsiiProxy_AbstractPod) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (a *jsiiProxy_AbstractPod) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		a,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (a *jsiiProxy_AbstractPod) OnPrepare() {
@@ -386,6 +478,714 @@ type AddDirectoryOptions struct {
 	KeyPrefix *string `json:"keyPrefix" yaml:"keyPrefix"`
 }
 
+// Represents information about an API resource type.
+type ApiResource interface {
+	IApiEndpoint
+	IApiResource
+	// The group portion of the API version (e.g. `authorization.k8s.io`).
+	ApiGroup() *string
+	// The name of the resource type as it appears in the relevant API endpoint.
+	//
+	// Example:
+	//   - "pods" or "pods/log"
+	//
+	// See: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-resources
+	//
+	ResourceType() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+}
+
+// The jsii proxy struct for ApiResource
+type jsiiProxy_ApiResource struct {
+	jsiiProxy_IApiEndpoint
+	jsiiProxy_IApiResource
+}
+
+func (j *jsiiProxy_ApiResource) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ApiResource) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+
+// API resource information for a custom resource type.
+func ApiResource_Custom(options *ApiResourceOptions) ApiResource {
+	_init_.Initialize()
+
+	var returns ApiResource
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.ApiResource",
+		"custom",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+func ApiResource_API_SERVICES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"API_SERVICES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_BINDINGS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"BINDINGS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CERTIFICATE_SIGNING_REQUESTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CERTIFICATE_SIGNING_REQUESTS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CLUSTER_ROLE_BINDINGS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CLUSTER_ROLE_BINDINGS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CLUSTER_ROLES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CLUSTER_ROLES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_COMPONENT_STATUSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"COMPONENT_STATUSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CONFIG_MAPS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CONFIG_MAPS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CONTROLLER_REVISIONS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CONTROLLER_REVISIONS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CRON_JOBS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CRON_JOBS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CSI_DRIVERS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CSI_DRIVERS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CSI_NODES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CSI_NODES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CSI_STORAGE_CAPACITIES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CSI_STORAGE_CAPACITIES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_CUSTOM_RESOURCE_DEFINITIONS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"CUSTOM_RESOURCE_DEFINITIONS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_DAEMON_SETS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"DAEMON_SETS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_DEPLOYMENTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"DEPLOYMENTS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_ENDPOINT_SLICES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"ENDPOINT_SLICES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_ENDPOINTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"ENDPOINTS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_EVENTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"EVENTS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_FLOW_SCHEMAS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"FLOW_SCHEMAS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_HORIZONTAL_POD_AUTOSCALERS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"HORIZONTAL_POD_AUTOSCALERS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_INGRESS_CLASSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"INGRESS_CLASSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_INGRESSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"INGRESSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_JOBS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"JOBS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_LEASES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"LEASES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_LIMIT_RANGES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"LIMIT_RANGES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_LOCAL_SUBJECT_ACCESS_REVIEWS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"LOCAL_SUBJECT_ACCESS_REVIEWS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_MUTATING_WEBHOOK_CONFIGURATIONS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"MUTATING_WEBHOOK_CONFIGURATIONS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_NAMESPACES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"NAMESPACES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_NETWORK_POLICIES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"NETWORK_POLICIES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_NODES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"NODES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_PERSISTENT_VOLUME_CLAIMS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"PERSISTENT_VOLUME_CLAIMS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_PERSISTENT_VOLUMES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"PERSISTENT_VOLUMES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_POD_DISRUPTION_BUDGETS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"POD_DISRUPTION_BUDGETS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_POD_SECURITY_POLICIES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"POD_SECURITY_POLICIES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_POD_TEMPLATES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"POD_TEMPLATES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_PODS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"PODS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_PRIORITY_CLASSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"PRIORITY_CLASSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_PRIORITY_LEVEL_CONFIGURATIONS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"PRIORITY_LEVEL_CONFIGURATIONS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_REPLICA_SETS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"REPLICA_SETS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_REPLICATION_CONTROLLERS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"REPLICATION_CONTROLLERS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_RESOURCE_QUOTAS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"RESOURCE_QUOTAS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_ROLE_BINDINGS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"ROLE_BINDINGS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_ROLES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"ROLES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_RUNTIME_CLASSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"RUNTIME_CLASSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SECRETS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SECRETS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SELF_SUBJECT_ACCESS_REVIEWS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SELF_SUBJECT_ACCESS_REVIEWS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SELF_SUBJECT_RULES_REVIEWS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SELF_SUBJECT_RULES_REVIEWS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SERVICE_ACCOUNTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SERVICE_ACCOUNTS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SERVICES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SERVICES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_STATEFUL_SETS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"STATEFUL_SETS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_STORAGE_CLASSES() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"STORAGE_CLASSES",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_SUBJECT_ACCESS_REVIEWS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"SUBJECT_ACCESS_REVIEWS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_TOKEN_REVIEWS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"TOKEN_REVIEWS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_VALIDATING_WEBHOOK_CONFIGURATIONS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"VALIDATING_WEBHOOK_CONFIGURATIONS",
+		&returns,
+	)
+	return returns
+}
+
+func ApiResource_VOLUME_ATTACHMENTS() ApiResource {
+	_init_.Initialize()
+	var returns ApiResource
+	_jsii_.StaticGet(
+		"cdk8s-plus-22.ApiResource",
+		"VOLUME_ATTACHMENTS",
+		&returns,
+	)
+	return returns
+}
+
+func (a *jsiiProxy_ApiResource) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		a,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_ApiResource) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `ApiResource`.
+type ApiResourceOptions struct {
+	// The group portion of the API version (e.g. `authorization.k8s.io`).
+	ApiGroup *string `json:"apiGroup" yaml:"apiGroup"`
+	// The name of the resource type as it appears in the relevant API endpoint.
+	//
+	// Example:
+	//   - "pods" or "pods/log"
+	//
+	// See: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-resources
+	//
+	ResourceType *string `json:"resourceType" yaml:"resourceType"`
+}
+
 // Represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod.
 // See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 //
@@ -393,10 +1193,14 @@ type AwsElasticBlockStorePersistentVolume interface {
 	PersistentVolume
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// PVC this volume is bound to.
 	//
 	// Undefined means this volume is not yet
@@ -404,6 +1208,8 @@ type AwsElasticBlockStorePersistentVolume interface {
 	Claim() IPersistentVolumeClaim
 	// File system type of this volume.
 	FsType() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// Volume mode of this volume.
 	Mode() PersistentVolumeMode
@@ -417,12 +1223,22 @@ type AwsElasticBlockStorePersistentVolume interface {
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Storage size of this volume.
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
 	// Volume id of this volume.
 	VolumeId() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
 	// Bind a volume to a specific claim.
@@ -479,11 +1295,31 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) AccessModes() *[]Persis
 	return returns
 }
 
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -504,6 +1340,16 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) FsType() *string {
 	_jsii_.Get(
 		j,
 		"fsType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -579,6 +1425,26 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ReclaimPolicy() Persist
 	return returns
 }
 
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Storage() cdk8s.Size {
 	var returns cdk8s.Size
 	_jsii_.Get(
@@ -644,6 +1510,32 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *s
 		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		a,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"asNonApiResource",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -810,10 +1702,16 @@ type AzureDiskPersistentVolume interface {
 	PersistentVolume
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// Azure kind of this volume.
+	AzureKind() AzureDiskPersistentVolumeKind
 	// Caching mode of this volume.
 	CachingMode() AzureDiskPersistentVolumeCachingMode
 	// PVC this volume is bound to.
@@ -827,8 +1725,8 @@ type AzureDiskPersistentVolume interface {
 	DiskUri() *string
 	// File system type of this volume.
 	FsType() *string
-	// Azure kind of this volume.
-	Kind() AzureDiskPersistentVolumeKind
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// Volume mode of this volume.
 	Mode() PersistentVolumeMode
@@ -840,10 +1738,20 @@ type AzureDiskPersistentVolume interface {
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Storage size of this volume.
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
 	// Bind a volume to a specific claim.
@@ -900,11 +1808,41 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) AccessModes() *[]PersistentVolumeA
 	return returns
 }
 
+func (j *jsiiProxy_AzureDiskPersistentVolume) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AzureDiskPersistentVolume) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) AzureKind() AzureDiskPersistentVolumeKind {
+	var returns AzureDiskPersistentVolumeKind
+	_jsii_.Get(
+		j,
+		"azureKind",
 		&returns,
 	)
 	return returns
@@ -960,8 +1898,8 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) FsType() *string {
 	return returns
 }
 
-func (j *jsiiProxy_AzureDiskPersistentVolume) Kind() AzureDiskPersistentVolumeKind {
-	var returns AzureDiskPersistentVolumeKind
+func (j *jsiiProxy_AzureDiskPersistentVolume) Kind() *string {
+	var returns *string
 	_jsii_.Get(
 		j,
 		"kind",
@@ -1030,6 +1968,26 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) ReclaimPolicy() PersistentVolumeRe
 	return returns
 }
 
+func (j *jsiiProxy_AzureDiskPersistentVolume) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AzureDiskPersistentVolume) Storage() cdk8s.Size {
 	var returns cdk8s.Size
 	_jsii_.Get(
@@ -1085,6 +2043,32 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPer
 		"cdk8s-plus-22.AzureDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		a,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AzureDiskPersistentVolume) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		a,
+		"asNonApiResource",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -1261,17 +2245,33 @@ type AzureDiskVolumeOptions struct {
 //
 type BasicAuthSecret interface {
 	Secret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -1306,6 +2306,16 @@ type jsiiProxy_BasicAuthSecret struct {
 	jsiiProxy_Secret
 }
 
+func (j *jsiiProxy_BasicAuthSecret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_BasicAuthSecret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -1316,11 +2326,31 @@ func (j *jsiiProxy_BasicAuthSecret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_BasicAuthSecret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_BasicAuthSecret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -1341,6 +2371,26 @@ func (j *jsiiProxy_BasicAuthSecret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -1393,6 +2443,32 @@ func (b *jsiiProxy_BasicAuthSecret) AddStringData(key *string, value *string) {
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (b *jsiiProxy_BasicAuthSecret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		b,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (b *jsiiProxy_BasicAuthSecret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		b,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (b *jsiiProxy_BasicAuthSecret) GetStringData(key *string) *string {
@@ -1464,6 +2540,797 @@ type BasicAuthSecretProps struct {
 	Username *string `json:"username" yaml:"username"`
 }
 
+// ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.
+type ClusterRole interface {
+	Resource
+	IClusterRole
+	IRole
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	// Rules associaated with this Role.
+	//
+	// Returns a copy, use `allow` to add rules.
+	Rules() *[]*ClusterRolePolicyRule
+	// Aggregate rules from roles matching this label selector.
+	Aggregate(key *string, value *string)
+	// Add permission to perform a list of HTTP verbs on a collection of resources.
+	// See: https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb
+	//
+	Allow(verbs *[]*string, endpoints ...IApiEndpoint)
+	// Add "create" permission for the resources.
+	AllowCreate(endpoints ...IApiEndpoint)
+	// Add "delete" permission for the resources.
+	AllowDelete(endpoints ...IApiEndpoint)
+	// Add "deletecollection" permission for the resources.
+	AllowDeleteCollection(endpoints ...IApiEndpoint)
+	// Add "get" permission for the resources.
+	AllowGet(endpoints ...IApiEndpoint)
+	// Add "list" permission for the resources.
+	AllowList(endpoints ...IApiEndpoint)
+	// Add "patch" permission for the resources.
+	AllowPatch(endpoints ...IApiEndpoint)
+	// Add "get", "list", and "watch" permissions for the resources.
+	AllowRead(endpoints ...IApiEndpoint)
+	// Add "get", "list", "watch", "create", "update", "patch", "delete", and "deletecollection" permissions for the resources.
+	AllowReadWrite(endpoints ...IApiEndpoint)
+	// Add "update" permission for the resources.
+	AllowUpdate(endpoints ...IApiEndpoint)
+	// Add "watch" permission for the resources.
+	AllowWatch(endpoints ...IApiEndpoint)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Create a ClusterRoleBinding that binds the permissions in this ClusterRole to a list of subjects, without namespace restrictions.
+	Bind(subjects ...ISubject) ClusterRoleBinding
+	// Create a RoleBinding that binds the permissions in this ClusterRole to a list of subjects, that will only apply to the given namespace.
+	BindInNamespace(namespace *string, subjects ...ISubject) RoleBinding
+	// Combines the rules of the argument ClusterRole into this ClusterRole using aggregation labels.
+	Combine(rol ClusterRole)
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for ClusterRole
+type jsiiProxy_ClusterRole struct {
+	jsiiProxy_Resource
+	jsiiProxy_IClusterRole
+	jsiiProxy_IRole
+}
+
+func (j *jsiiProxy_ClusterRole) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) Rules() *[]*ClusterRolePolicyRule {
+	var returns *[]*ClusterRolePolicyRule
+	_jsii_.Get(
+		j,
+		"rules",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewClusterRole(scope constructs.Construct, id *string, props *ClusterRoleProps) ClusterRole {
+	_init_.Initialize()
+
+	j := jsiiProxy_ClusterRole{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ClusterRole",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewClusterRole_Override(c ClusterRole, scope constructs.Construct, id *string, props *ClusterRoleProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ClusterRole",
+		[]interface{}{scope, id, props},
+		c,
+	)
+}
+
+// Imports a role from the cluster as a reference.
+func ClusterRole_FromClusterRoleName(name *string) IClusterRole {
+	_init_.Initialize()
+
+	var returns IClusterRole
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.ClusterRole",
+		"fromClusterRoleName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) Aggregate(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		c,
+		"aggregate",
+		[]interface{}{key, value},
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) Allow(verbs *[]*string, endpoints ...IApiEndpoint) {
+	args := []interface{}{verbs}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allow",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowCreate(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowCreate",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowDelete(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowDelete",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowDeleteCollection(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowDeleteCollection",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowGet(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowGet",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowList(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowList",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowPatch(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowPatch",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowRead(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowRead",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowReadWrite(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowReadWrite",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowUpdate(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowUpdate",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AllowWatch(endpoints ...IApiEndpoint) {
+	args := []interface{}{}
+	for _, a := range endpoints {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"allowWatch",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		c,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		c,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) Bind(subjects ...ISubject) ClusterRoleBinding {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	var returns ClusterRoleBinding
+
+	_jsii_.Invoke(
+		c,
+		"bind",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) BindInNamespace(namespace *string, subjects ...ISubject) RoleBinding {
+	args := []interface{}{namespace}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	var returns RoleBinding
+
+	_jsii_.Invoke(
+		c,
+		"bindInNamespace",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) Combine(rol ClusterRole) {
+	_jsii_.InvokeVoid(
+		c,
+		"combine",
+		[]interface{}{rol},
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) OnPrepare() {
+	_jsii_.InvokeVoid(
+		c,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		c,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (c *jsiiProxy_ClusterRole) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		c,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRole) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		c,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// A ClusterRoleBinding grants permissions cluster-wide to a user or set of users.
+type ClusterRoleBinding interface {
+	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	Role() IClusterRole
+	Subjects() *[]ISubject
+	// Adds a subject to the role.
+	AddSubjects(subjects ...ISubject)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for ClusterRoleBinding
+type jsiiProxy_ClusterRoleBinding struct {
+	jsiiProxy_Resource
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Role() IClusterRole {
+	var returns IClusterRole
+	_jsii_.Get(
+		j,
+		"role",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Subjects() *[]ISubject {
+	var returns *[]ISubject
+	_jsii_.Get(
+		j,
+		"subjects",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewClusterRoleBinding(scope constructs.Construct, id *string, props *ClusterRoleBindingProps) ClusterRoleBinding {
+	_init_.Initialize()
+
+	j := jsiiProxy_ClusterRoleBinding{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ClusterRoleBinding",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewClusterRoleBinding_Override(c ClusterRoleBinding, scope constructs.Construct, id *string, props *ClusterRoleBindingProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ClusterRoleBinding",
+		[]interface{}{scope, id, props},
+		c,
+	)
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) AddSubjects(subjects ...ISubject) {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		c,
+		"addSubjects",
+		args,
+	)
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		c,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		c,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) OnPrepare() {
+	_jsii_.InvokeVoid(
+		c,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		c,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		c,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ClusterRoleBinding) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		c,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `ClusterRoleBinding`.
+type ClusterRoleBindingProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The role to bind to.
+	Role IClusterRole `json:"role" yaml:"role"`
+}
+
+// Policy rule of a `ClusterRole.
+type ClusterRolePolicyRule struct {
+	// Endpoints this rule applies to.
+	//
+	// Can be either api resources
+	// or non api resources.
+	Endpoints *[]IApiEndpoint `json:"endpoints" yaml:"endpoints"`
+	// Verbs to allow.
+	//
+	// (e.g ['get', 'watch'])
+	Verbs *[]*string `json:"verbs" yaml:"verbs"`
+}
+
+// Properties for `ClusterRole`.
+type ClusterRoleProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// Specify labels that should be used to locate ClusterRoles, whose rules will be automatically filled into this ClusterRole's rules.
+	AggregationLabels *map[string]*string `json:"aggregationLabels" yaml:"aggregationLabels"`
+	// A list of rules the role should allow.
+	Rules *[]*ClusterRolePolicyRule `json:"rules" yaml:"rules"`
+}
+
 // Options for `Probe.fromCommand()`.
 type CommandProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
@@ -1504,10 +3371,14 @@ type CommonSecretProps struct {
 type ConfigMap interface {
 	Resource
 	IConfigMap
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// The binary data associated with this config map.
 	//
 	// Returns a copy. To add data records, use `addBinaryData()` or `addData()`.
@@ -1518,9 +3389,17 @@ type ConfigMap interface {
 	Data() *map[string]*string
 	// Whether or not this config map is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a binary data entry to the config map.
 	//
 	// BinaryData can contain byte
@@ -1532,6 +3411,10 @@ type ConfigMap interface {
 	AddDirectory(localDir *string, options *AddDirectoryOptions)
 	// Adds a file to the ConfigMap.
 	AddFile(localFile *string, key *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -1565,11 +3448,31 @@ type jsiiProxy_ConfigMap struct {
 	jsiiProxy_IConfigMap
 }
 
+func (j *jsiiProxy_ConfigMap) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ConfigMap) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ConfigMap) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -1605,6 +3508,16 @@ func (j *jsiiProxy_ConfigMap) Immutable() *bool {
 	return returns
 }
 
+func (j *jsiiProxy_ConfigMap) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ConfigMap) Metadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -1620,6 +3533,26 @@ func (j *jsiiProxy_ConfigMap) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ConfigMap) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ConfigMap) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -1696,6 +3629,32 @@ func (c *jsiiProxy_ConfigMap) AddFile(localFile *string, key *string) {
 		"addFile",
 		[]interface{}{localFile, key},
 	)
+}
+
+func (c *jsiiProxy_ConfigMap) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		c,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (c *jsiiProxy_ConfigMap) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		c,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (c *jsiiProxy_ConfigMap) OnPrepare() {
@@ -1818,7 +3777,7 @@ type Container interface {
 	// Compute resources (CPU and memory requests and limits) required by the container.
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
-	Resources() *Resources
+	Resources() *ContainerResources
 	// The security context of the container.
 	SecurityContext() ContainerSecurityContext
 	// The working directory inside the container.
@@ -1921,8 +3880,8 @@ func (j *jsiiProxy_Container) Port() *float64 {
 	return returns
 }
 
-func (j *jsiiProxy_Container) Resources() *Resources {
-	var returns *Resources
+func (j *jsiiProxy_Container) Resources() *ContainerResources {
+	var returns *ContainerResources
 	_jsii_.Get(
 		j,
 		"resources",
@@ -2059,7 +4018,7 @@ type ContainerProps struct {
 	// Compute resources (CPU and memory requests and limits) required by the container.
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
-	Resources *Resources `json:"resources" yaml:"resources"`
+	Resources *ContainerResources `json:"resources" yaml:"resources"`
 	// SecurityContext defines the security options the container should be run with.
 	//
 	// If set, the fields override equivalent fields of the pod's security context.
@@ -2078,6 +4037,12 @@ type ContainerProps struct {
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 	WorkingDir *string `json:"workingDir" yaml:"workingDir"`
+}
+
+// CPU and memory compute resources.
+type ContainerResources struct {
+	Cpu *CpuResources `json:"cpu" yaml:"cpu"`
+	Memory *MemoryResources `json:"memory" yaml:"memory"`
 }
 
 // Container security attributes and settings.
@@ -2273,16 +4238,22 @@ type CpuResources struct {
 // but with different flags and/or different memory and cpu requests for different hardware types.
 type DaemonSet interface {
 	Workload
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
 	//
 	// Returns a a copy. Use `select()` to add expression matchers.
@@ -2297,6 +4268,12 @@ type DaemonSet interface {
 	Name() *string
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -2305,6 +4282,10 @@ type DaemonSet interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -2339,11 +4320,31 @@ type jsiiProxy_DaemonSet struct {
 	jsiiProxy_Workload
 }
 
+func (j *jsiiProxy_DaemonSet) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DaemonSet) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -2409,6 +4410,16 @@ func (j *jsiiProxy_DaemonSet) InitContainers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_DaemonSet) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DaemonSet) MatchExpressions() *[]*LabelSelectorRequirement {
 	var returns *[]*LabelSelectorRequirement
 	_jsii_.Get(
@@ -2464,6 +4475,26 @@ func (j *jsiiProxy_DaemonSet) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	_jsii_.Get(
 		j,
 		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -2574,6 +4605,32 @@ func (d *jsiiProxy_DaemonSet) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (d *jsiiProxy_DaemonSet) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		d,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DaemonSet) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		d,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (d *jsiiProxy_DaemonSet) OnPrepare() {
@@ -2728,16 +4785,22 @@ type DaemonSetProps struct {
 // - Clean up older ReplicaSets that you don't need anymore.
 type Deployment interface {
 	Workload
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
 	//
 	// Returns a a copy. Use `select()` to add expression matchers.
@@ -2757,6 +4820,12 @@ type Deployment interface {
 	ProgressDeadline() cdk8s.Duration
 	// Number of desired pods.
 	Replicas() *float64
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -2766,6 +4835,10 @@ type Deployment interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Expose a deployment via an ingress.
 	//
 	// This will first expose the deployment with a service, and then expose the service via an ingress.
@@ -2808,11 +4881,31 @@ type jsiiProxy_Deployment struct {
 	jsiiProxy_Workload
 }
 
+func (j *jsiiProxy_Deployment) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Deployment) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -2873,6 +4966,16 @@ func (j *jsiiProxy_Deployment) InitContainers() *[]Container {
 	_jsii_.Get(
 		j,
 		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -2953,6 +5056,26 @@ func (j *jsiiProxy_Deployment) Replicas() *float64 {
 	_jsii_.Get(
 		j,
 		"replicas",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -3073,6 +5196,32 @@ func (d *jsiiProxy_Deployment) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (d *jsiiProxy_Deployment) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		d,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_Deployment) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		d,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) Ingress {
@@ -3343,17 +5492,33 @@ const (
 //
 type DockerConfigSecret interface {
 	Secret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -3388,6 +5553,16 @@ type jsiiProxy_DockerConfigSecret struct {
 	jsiiProxy_Secret
 }
 
+func (j *jsiiProxy_DockerConfigSecret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DockerConfigSecret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -3398,11 +5573,31 @@ func (j *jsiiProxy_DockerConfigSecret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_DockerConfigSecret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DockerConfigSecret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -3423,6 +5618,26 @@ func (j *jsiiProxy_DockerConfigSecret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -3475,6 +5690,32 @@ func (d *jsiiProxy_DockerConfigSecret) AddStringData(key *string, value *string)
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (d *jsiiProxy_DockerConfigSecret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		d,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DockerConfigSecret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		d,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (d *jsiiProxy_DockerConfigSecret) GetStringData(key *string) *string {
@@ -3836,10 +6077,14 @@ type GCEPersistentDiskPersistentVolume interface {
 	PersistentVolume
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// PVC this volume is bound to.
 	//
 	// Undefined means this volume is not yet
@@ -3847,6 +6092,8 @@ type GCEPersistentDiskPersistentVolume interface {
 	Claim() IPersistentVolumeClaim
 	// File system type of this volume.
 	FsType() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// Volume mode of this volume.
 	Mode() PersistentVolumeMode
@@ -3862,10 +6109,20 @@ type GCEPersistentDiskPersistentVolume interface {
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Storage size of this volume.
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
 	// Bind a volume to a specific claim.
@@ -3922,11 +6179,31 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) AccessModes() *[]Persisten
 	return returns
 }
 
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -3947,6 +6224,16 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) FsType() *string {
 	_jsii_.Get(
 		j,
 		"fsType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -4032,6 +6319,26 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ReclaimPolicy() Persistent
 	return returns
 }
 
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Storage() cdk8s.Size {
 	var returns cdk8s.Size
 	_jsii_.Get(
@@ -4087,6 +6394,32 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *stri
 		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		g,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		g,
+		"asNonApiResource",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -4248,6 +6581,91 @@ type GCEPersistentDiskVolumeOptions struct {
 	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
 }
 
+// Represents a group.
+type Group interface {
+	ISubject
+	// APIGroup holds the API group of the referenced subject.
+	//
+	// Defaults to "" for
+	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
+	// and Group subjects.
+	ApiGroup() *string
+	// Kind of object being referenced.
+	//
+	// Values defined by this API group are
+	// "User", "Group", and "ServiceAccount". If the Authorizer does not
+	// recognized the kind value, the Authorizer should report an error.
+	Kind() *string
+	// Name of the object being referenced.
+	Name() *string
+}
+
+// The jsii proxy struct for Group
+type jsiiProxy_Group struct {
+	jsiiProxy_ISubject
+}
+
+func (j *jsiiProxy_Group) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Group) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Group) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewGroup(props *GroupProps) Group {
+	_init_.Initialize()
+
+	j := jsiiProxy_Group{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Group",
+		[]interface{}{props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewGroup_Override(g Group, props *GroupProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Group",
+		[]interface{}{props},
+		g,
+	)
+}
+
+// Properties for `Group`.
+type GroupProps struct {
+	// The name of the group.
+	Name *string `json:"name" yaml:"name"`
+}
+
 // Defines a specific action that should be taken.
 type Handler interface {
 }
@@ -4369,6 +6787,108 @@ const (
 	HttpIngressPathType_IMPLEMENTATION_SPECIFIC HttpIngressPathType = "IMPLEMENTATION_SPECIFIC"
 )
 
+// An API Endpoint can either be a resource descriptor (e.g /pods) or a non resource url (e.g /healthz). It must be one or the other, and not both.
+type IApiEndpoint interface {
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+}
+
+// The jsii proxy for IApiEndpoint
+type jsiiProxy_IApiEndpoint struct {
+	_ byte // padding
+}
+
+func (i *jsiiProxy_IApiEndpoint) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		i,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (i *jsiiProxy_IApiEndpoint) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		i,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Represents a resource or collection of resources.
+type IApiResource interface {
+	// The group portion of the API version (e.g. `authorization.k8s.io`).
+	ApiGroup() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	//
+	// Example:
+	//   - "pods" or "pods/log"
+	//
+	// See: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-resources
+	//
+	ResourceType() *string
+}
+
+// The jsii proxy for IApiResource
+type jsiiProxy_IApiResource struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_IApiResource) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IApiResource) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IApiResource) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+// Represents a cluster-level role.
+type IClusterRole interface {
+	IResource
+}
+
+// The jsii proxy for IClusterRole
+type jsiiProxy_IClusterRole struct {
+	jsiiProxy_IResource
+}
+
 // Represents a config map.
 type IConfigMap interface {
 	IResource
@@ -4401,6 +6921,12 @@ type jsiiProxy_IPersistentVolumeClaim struct {
 
 // Represents a resource.
 type IResource interface {
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The Kubernetes name of this resource.
 	Name() *string
 }
@@ -4408,6 +6934,36 @@ type IResource interface {
 // The jsii proxy for IResource
 type jsiiProxy_IResource struct {
 	_ byte // padding
+}
+
+func (j *jsiiProxy_IResource) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
 }
 
 func (j *jsiiProxy_IResource) Name() *string {
@@ -4418,6 +6974,16 @@ func (j *jsiiProxy_IResource) Name() *string {
 		&returns,
 	)
 	return returns
+}
+
+// A reference to any Role or ClusterRole.
+type IRole interface {
+	IResource
+}
+
+// The jsii proxy for IRole
+type jsiiProxy_IRole struct {
+	jsiiProxy_IResource
 }
 
 type ISecret interface {
@@ -4462,6 +7028,78 @@ func (i *jsiiProxy_IStorage) AsVolume() Volume {
 	return returns
 }
 
+// Subject contains a reference to the object or user identities a role binding applies to.
+//
+// This can either hold a direct API object reference, or a value
+// for non-objects such as user and group names.
+type ISubject interface {
+	// APIGroup holds the API group of the referenced subject.
+	//
+	// Defaults to "" for
+	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
+	// and Group subjects.
+	ApiGroup() *string
+	// Kind of object being referenced.
+	//
+	// Values defined by this API group are
+	// "User", "Group", and "ServiceAccount". If the Authorizer does not
+	// recognized the kind value, the Authorizer should report an error.
+	Kind() *string
+	// Name of the object being referenced.
+	Name() *string
+	// Namespace of the referenced object.
+	//
+	// If the object kind is non-namespace,
+	// such as "User" or "Group", and this value is not empty the Authorizer
+	// should report an error.
+	Namespace() *string
+}
+
+// The jsii proxy for ISubject
+type jsiiProxy_ISubject struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_ISubject) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ISubject) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ISubject) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ISubject) Namespace() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"namespace",
+		&returns,
+	)
+	return returns
+}
+
 type ImagePullPolicy string
 
 const (
@@ -4492,13 +7130,25 @@ const (
 // based virtual hosting etc.
 type Ingress interface {
 	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Defines the default backend for this ingress.
 	//
 	// A default backend capable of
@@ -4516,6 +7166,10 @@ type Ingress interface {
 	// Adds rules to this ingress.
 	AddRules(rules ...*IngressRule)
 	AddTls(tls *[]*IngressTls)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -4544,11 +7198,41 @@ type jsiiProxy_Ingress struct {
 	jsiiProxy_Resource
 }
 
+func (j *jsiiProxy_Ingress) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Ingress) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Ingress) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Ingress) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -4569,6 +7253,26 @@ func (j *jsiiProxy_Ingress) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Ingress) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Ingress) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -4650,6 +7354,32 @@ func (i *jsiiProxy_Ingress) AddTls(tls *[]*IngressTls) {
 		"addTls",
 		[]interface{}{tls},
 	)
+}
+
+func (i *jsiiProxy_Ingress) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		i,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (i *jsiiProxy_Ingress) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		i,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (i *jsiiProxy_Ingress) OnPrepare() {
@@ -4803,10 +7533,14 @@ type Job interface {
 	//
 	// If undefined, there is no deadline.
 	ActiveDeadline() cdk8s.Duration
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	// Number of retries before marking failed.
 	BackoffLimit() *float64
@@ -4815,6 +7549,8 @@ type Job interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
 	//
 	// Returns a a copy. Use `select()` to add expression matchers.
@@ -4828,6 +7564,12 @@ type Job interface {
 	Name() *string
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -4838,6 +7580,10 @@ type Job interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -4882,11 +7628,31 @@ func (j *jsiiProxy_Job) ActiveDeadline() cdk8s.Duration {
 	return returns
 }
 
+func (j *jsiiProxy_Job) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Job) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -4962,6 +7728,16 @@ func (j *jsiiProxy_Job) InitContainers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_Job) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Job) MatchExpressions() *[]*LabelSelectorRequirement {
 	var returns *[]*LabelSelectorRequirement
 	_jsii_.Get(
@@ -5007,6 +7783,26 @@ func (j *jsiiProxy_Job) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	_jsii_.Get(
 		j,
 		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -5127,6 +7923,32 @@ func (j *jsiiProxy_Job) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (j *jsiiProxy_Job) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		j,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (j *jsiiProxy_Job) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		j,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (j *jsiiProxy_Job) OnPrepare() {
@@ -5508,6 +8330,61 @@ const (
 	MountPropagation_BIDIRECTIONAL MountPropagation = "BIDIRECTIONAL"
 )
 
+// Factory for creating non api resources.
+type NonApiResource interface {
+	IApiEndpoint
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+}
+
+// The jsii proxy struct for NonApiResource
+type jsiiProxy_NonApiResource struct {
+	jsiiProxy_IApiEndpoint
+}
+
+func NonApiResource_Of(url *string) NonApiResource {
+	_init_.Initialize()
+
+	var returns NonApiResource
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.NonApiResource",
+		"of",
+		[]interface{}{url},
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NonApiResource) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		n,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NonApiResource) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Maps a string key to a path within a volume.
 type PathMapping struct {
 	// The relative path of the file to map the key to.
@@ -5604,15 +8481,21 @@ type PersistentVolume interface {
 	IStorage
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// PVC this volume is bound to.
 	//
 	// Undefined means this volume is not yet
 	// claimed by any PVC.
 	Claim() IPersistentVolumeClaim
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// Volume mode of this volume.
 	Mode() PersistentVolumeMode
@@ -5622,10 +8505,20 @@ type PersistentVolume interface {
 	Name() *string
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Storage size of this volume.
 	Storage() cdk8s.Size
 	// Storage class this volume belongs to.
 	StorageClassName() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
 	// Bind a volume to a specific claim.
@@ -5684,6 +8577,16 @@ func (j *jsiiProxy_PersistentVolume) AccessModes() *[]PersistentVolumeAccessMode
 	return returns
 }
 
+func (j *jsiiProxy_PersistentVolume) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_PersistentVolume) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -5694,11 +8597,31 @@ func (j *jsiiProxy_PersistentVolume) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_PersistentVolume) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_PersistentVolume) Claim() IPersistentVolumeClaim {
 	var returns IPersistentVolumeClaim
 	_jsii_.Get(
 		j,
 		"claim",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -5749,6 +8672,26 @@ func (j *jsiiProxy_PersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPoli
 	_jsii_.Get(
 		j,
 		"reclaimPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -5809,6 +8752,32 @@ func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVo
 		"cdk8s-plus-22.PersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		p,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolume) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"asNonApiResource",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -5922,13 +8891,25 @@ type PersistentVolumeClaim interface {
 	IPersistentVolumeClaim
 	// Access modes requirement of this claim.
 	AccessModes() *[]PersistentVolumeAccessMode
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Storage requirement of this claim.
 	Storage() cdk8s.Size
 	// Storage class requirment of this claim.
@@ -5940,6 +8921,10 @@ type PersistentVolumeClaim interface {
 	Volume() IPersistentVolume
 	// Volume mode requirement of this claim.
 	VolumeMode() PersistentVolumeMode
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Bind a claim to a specific volume.
 	//
 	// Note that you must also bind the volume to the claim.
@@ -5989,11 +8974,41 @@ func (j *jsiiProxy_PersistentVolumeClaim) AccessModes() *[]PersistentVolumeAcces
 	return returns
 }
 
+func (j *jsiiProxy_PersistentVolumeClaim) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_PersistentVolumeClaim) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -6014,6 +9029,26 @@ func (j *jsiiProxy_PersistentVolumeClaim) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -6094,6 +9129,32 @@ func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeCla
 		"cdk8s-plus-22.PersistentVolumeClaim",
 		"fromClaimName",
 		[]interface{}{claimName},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		p,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_PersistentVolumeClaim) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"asNonApiResource",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -6283,19 +9344,31 @@ const (
 // created by clients and scheduled onto hosts.
 type Pod interface {
 	AbstractPod
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -6304,6 +9377,10 @@ type Pod interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -6336,11 +9413,31 @@ type jsiiProxy_Pod struct {
 	jsiiProxy_AbstractPod
 }
 
+func (j *jsiiProxy_Pod) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Pod) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -6406,6 +9503,16 @@ func (j *jsiiProxy_Pod) InitContainers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_Pod) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Pod) Metadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -6421,6 +9528,26 @@ func (j *jsiiProxy_Pod) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -6531,6 +9658,32 @@ func (p *jsiiProxy_Pod) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (p *jsiiProxy_Pod) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		p,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pod) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (p *jsiiProxy_Pod) OnPrepare() {
@@ -7079,12 +10232,30 @@ const (
 // resource.
 type Resource interface {
 	constructs.Construct
+	IApiEndpoint
+	IApiResource
 	IResource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -7115,7 +10286,19 @@ type Resource interface {
 // The jsii proxy struct for Resource
 type jsiiProxy_Resource struct {
 	internal.Type__constructsConstruct
+	jsiiProxy_IApiEndpoint
+	jsiiProxy_IApiResource
 	jsiiProxy_IResource
+}
+
+func (j *jsiiProxy_Resource) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
 }
 
 func (j *jsiiProxy_Resource) ApiObject() cdk8s.ApiObject {
@@ -7123,6 +10306,26 @@ func (j *jsiiProxy_Resource) ApiObject() cdk8s.ApiObject {
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Resource) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Resource) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -7148,6 +10351,26 @@ func (j *jsiiProxy_Resource) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Resource) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Resource) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
 
 // Creates a new construct node.
 func NewResource_Override(r Resource, scope constructs.Construct, id *string, options *constructs.ConstructOptions) {
@@ -7158,6 +10381,32 @@ func NewResource_Override(r Resource, scope constructs.Construct, id *string, op
 		[]interface{}{scope, id, options},
 		r,
 	)
+}
+
+func (r *jsiiProxy_Resource) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		r,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Resource) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		r,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (r *jsiiProxy_Resource) OnPrepare() {
@@ -7225,12 +10474,6 @@ type ResourceProps struct {
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
 }
 
-// CPU and memory compute resources.
-type Resources struct {
-	Cpu *CpuResources `json:"cpu" yaml:"cpu"`
-	Memory *MemoryResources `json:"memory" yaml:"memory"`
-}
-
 // Restart policy for all containers within the pod.
 type RestartPolicy string
 
@@ -7243,6 +10486,752 @@ const (
 	RestartPolicy_NEVER RestartPolicy = "NEVER"
 )
 
+// Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding.
+type Role interface {
+	Resource
+	IRole
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	// Rules associaated with this Role.
+	//
+	// Returns a copy, use `allow` to add rules.
+	Rules() *[]*RolePolicyRule
+	// Add permission to perform a list of HTTP verbs on a collection of resources.
+	// See: https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb
+	//
+	Allow(verbs *[]*string, resources ...IApiResource)
+	// Add "create" permission for the resources.
+	AllowCreate(resources ...IApiResource)
+	// Add "delete" permission for the resources.
+	AllowDelete(resources ...IApiResource)
+	// Add "deletecollection" permission for the resources.
+	AllowDeleteCollection(resources ...IApiResource)
+	// Add "get" permission for the resources.
+	AllowGet(resources ...IApiResource)
+	// Add "list" permission for the resources.
+	AllowList(resources ...IApiResource)
+	// Add "patch" permission for the resources.
+	AllowPatch(resources ...IApiResource)
+	// Add "get", "list", and "watch" permissions for the resources.
+	AllowRead(resources ...IApiResource)
+	// Add "get", "list", "watch", "create", "update", "patch", "delete", and "deletecollection" permissions for the resources.
+	AllowReadWrite(resources ...IApiResource)
+	// Add "update" permission for the resources.
+	AllowUpdate(resources ...IApiResource)
+	// Add "watch" permission for the resources.
+	AllowWatch(resources ...IApiResource)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Create a RoleBinding that binds the permissions in this Role to a list of subjects, that will only apply this role's namespace.
+	Bind(subjects ...ISubject) RoleBinding
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for Role
+type jsiiProxy_Role struct {
+	jsiiProxy_Resource
+	jsiiProxy_IRole
+}
+
+func (j *jsiiProxy_Role) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) Rules() *[]*RolePolicyRule {
+	var returns *[]*RolePolicyRule
+	_jsii_.Get(
+		j,
+		"rules",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewRole(scope constructs.Construct, id *string, props *RoleProps) Role {
+	_init_.Initialize()
+
+	j := jsiiProxy_Role{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Role",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewRole_Override(r Role, scope constructs.Construct, id *string, props *RoleProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Role",
+		[]interface{}{scope, id, props},
+		r,
+	)
+}
+
+// Imports a role from the cluster as a reference.
+func Role_FromRoleName(name *string) IRole {
+	_init_.Initialize()
+
+	var returns IRole
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Role",
+		"fromRoleName",
+		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Role) Allow(verbs *[]*string, resources ...IApiResource) {
+	args := []interface{}{verbs}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allow",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowCreate(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowCreate",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowDelete(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowDelete",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowDeleteCollection(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowDeleteCollection",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowGet(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowGet",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowList(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowList",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowPatch(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowPatch",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowRead(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowRead",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowReadWrite(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowReadWrite",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowUpdate(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowUpdate",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AllowWatch(resources ...IApiResource) {
+	args := []interface{}{}
+	for _, a := range resources {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"allowWatch",
+		args,
+	)
+}
+
+func (r *jsiiProxy_Role) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		r,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Role) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		r,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Role) Bind(subjects ...ISubject) RoleBinding {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	var returns RoleBinding
+
+	_jsii_.Invoke(
+		r,
+		"bind",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Role) OnPrepare() {
+	_jsii_.InvokeVoid(
+		r,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (r *jsiiProxy_Role) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		r,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (r *jsiiProxy_Role) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		r,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_Role) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		r,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// A RoleBinding grants permissions within a specific namespace to a user or set of users.
+type RoleBinding interface {
+	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	Role() IRole
+	Subjects() *[]ISubject
+	// Adds a subject to the role.
+	AddSubjects(subjects ...ISubject)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Perform final modifications before synthesis.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// final changes before synthesis. prepare() will be called after child
+	// constructs have been prepared.
+	//
+	// This is an advanced framework feature. Only use this if you
+	// understand the implications.
+	OnPrepare()
+	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
+	//
+	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
+	// as they participate in synthesizing the cloud assembly.
+	OnSynthesize(session constructs.ISynthesisSession)
+	// Validate the current construct.
+	//
+	// This method can be implemented by derived constructs in order to perform
+	// validation logic. It is called on all constructs before synthesis.
+	//
+	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
+	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
+	// instead of overriding this method.
+	OnValidate() *[]*string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for RoleBinding
+type jsiiProxy_RoleBinding struct {
+	jsiiProxy_Resource
+}
+
+func (j *jsiiProxy_RoleBinding) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Role() IRole {
+	var returns IRole
+	_jsii_.Get(
+		j,
+		"role",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Subjects() *[]ISubject {
+	var returns *[]ISubject
+	_jsii_.Get(
+		j,
+		"subjects",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewRoleBinding(scope constructs.Construct, id *string, props *RoleBindingProps) RoleBinding {
+	_init_.Initialize()
+
+	j := jsiiProxy_RoleBinding{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.RoleBinding",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewRoleBinding_Override(r RoleBinding, scope constructs.Construct, id *string, props *RoleBindingProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.RoleBinding",
+		[]interface{}{scope, id, props},
+		r,
+	)
+}
+
+func (r *jsiiProxy_RoleBinding) AddSubjects(subjects ...ISubject) {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	_jsii_.InvokeVoid(
+		r,
+		"addSubjects",
+		args,
+	)
+}
+
+func (r *jsiiProxy_RoleBinding) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		r,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_RoleBinding) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		r,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_RoleBinding) OnPrepare() {
+	_jsii_.InvokeVoid(
+		r,
+		"onPrepare",
+		nil, // no parameters
+	)
+}
+
+func (r *jsiiProxy_RoleBinding) OnSynthesize(session constructs.ISynthesisSession) {
+	_jsii_.InvokeVoid(
+		r,
+		"onSynthesize",
+		[]interface{}{session},
+	)
+}
+
+func (r *jsiiProxy_RoleBinding) OnValidate() *[]*string {
+	var returns *[]*string
+
+	_jsii_.Invoke(
+		r,
+		"onValidate",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_RoleBinding) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		r,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `RoleBinding`.
+type RoleBindingProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// The role to bind to.
+	//
+	// A RoleBinding can reference a Role or a ClusterRole.
+	Role IRole `json:"role" yaml:"role"`
+}
+
+// Policy rule of a `Role.
+type RolePolicyRule struct {
+	// Resources this rule applies to.
+	Resources *[]IApiResource `json:"resources" yaml:"resources"`
+	// Verbs to allow.
+	//
+	// (e.g ['get', 'watch'])
+	Verbs *[]*string `json:"verbs" yaml:"verbs"`
+}
+
+// Properties for `Role`.
+type RoleProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	// A list of rules the role should allow.
+	Rules *[]*RolePolicyRule `json:"rules" yaml:"rules"`
+}
+
 // Kubernetes Secrets let you store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
 //
 // Storing confidential information in a
@@ -7253,17 +11242,33 @@ const (
 type Secret interface {
 	Resource
 	ISecret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -7299,6 +11304,16 @@ type jsiiProxy_Secret struct {
 	jsiiProxy_ISecret
 }
 
+func (j *jsiiProxy_Secret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Secret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -7309,11 +11324,31 @@ func (j *jsiiProxy_Secret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_Secret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Secret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Secret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -7334,6 +11369,26 @@ func (j *jsiiProxy_Secret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Secret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Secret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -7386,6 +11441,32 @@ func (s *jsiiProxy_Secret) AddStringData(key *string, value *string) {
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (s *jsiiProxy_Secret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_Secret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_Secret) GetStringData(key *string) *string {
@@ -7511,14 +11592,20 @@ type SecretVolumeOptions struct {
 // or load balancer in between your application and the backend Pods.
 type Service interface {
 	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// The IP address of the service and is usually assigned randomly by the master.
 	ClusterIP() *string
 	// The externalName to be used for EXTERNAL_NAME types.
 	ExternalName() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
@@ -7526,6 +11613,12 @@ type Service interface {
 	//
 	// Use `serve()` to expose additional service ports.
 	Ports() *[]*ServicePort
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Returns the labels which are used to select pods for this service.
 	Selector() *map[string]*string
 	// Determines how the Service is exposed.
@@ -7538,6 +11631,10 @@ type Service interface {
 	AddDeployment(depl Deployment, options *AddDeploymentOptions)
 	// Services defined using this spec will select pods according the provided label.
 	AddSelector(label *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Expose a service via an ingress using the specified path.
 	//
 	// Returns: The `Ingress` resource that was used.
@@ -7578,11 +11675,31 @@ type jsiiProxy_Service struct {
 	jsiiProxy_Resource
 }
 
+func (j *jsiiProxy_Service) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Service) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -7603,6 +11720,16 @@ func (j *jsiiProxy_Service) ExternalName() *string {
 	_jsii_.Get(
 		j,
 		"externalName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -7633,6 +11760,26 @@ func (j *jsiiProxy_Service) Ports() *[]*ServicePort {
 	_jsii_.Get(
 		j,
 		"ports",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -7697,6 +11844,32 @@ func (s *jsiiProxy_Service) AddSelector(label *string, value *string) {
 		"addSelector",
 		[]interface{}{label, value},
 	)
+}
+
+func (s *jsiiProxy_Service) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_Service) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) Ingress {
@@ -7775,21 +11948,38 @@ func (s *jsiiProxy_Service) ToString() *string {
 type ServiceAccount interface {
 	Resource
 	IServiceAccount
+	ISubject
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not a token is automatically mounted for this service account.
 	AutomountToken() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// List of secrets allowed to be used by pods running using this service account.
 	//
 	// Returns a copy. To add a secret, use `addSecret()`.
 	Secrets() *[]ISecret
 	// Allow a secret to be accessed by pods using this service account.
 	AddSecret(secr ISecret)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -7821,6 +12011,17 @@ type ServiceAccount interface {
 type jsiiProxy_ServiceAccount struct {
 	jsiiProxy_Resource
 	jsiiProxy_IServiceAccount
+	jsiiProxy_ISubject
+}
+
+func (j *jsiiProxy_ServiceAccount) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
 }
 
 func (j *jsiiProxy_ServiceAccount) ApiObject() cdk8s.ApiObject {
@@ -7833,11 +12034,31 @@ func (j *jsiiProxy_ServiceAccount) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_ServiceAccount) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ServiceAccount) AutomountToken() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"automountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccount) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -7858,6 +12079,26 @@ func (j *jsiiProxy_ServiceAccount) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccount) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccount) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -7922,6 +12163,32 @@ func (s *jsiiProxy_ServiceAccount) AddSecret(secr ISecret) {
 	)
 }
 
+func (s *jsiiProxy_ServiceAccount) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccount) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_ServiceAccount) OnPrepare() {
 	_jsii_.InvokeVoid(
 		s,
@@ -7965,8 +12232,6 @@ func (s *jsiiProxy_ServiceAccount) ToString() *string {
 }
 
 // Properties for initialization of `ServiceAccount`.
-//
-// Properties for initialization of `ServiceAccount`.
 type ServiceAccountProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
@@ -7987,17 +12252,33 @@ type ServiceAccountProps struct {
 //
 type ServiceAccountTokenSecret interface {
 	Secret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -8032,6 +12313,16 @@ type jsiiProxy_ServiceAccountTokenSecret struct {
 	jsiiProxy_Secret
 }
 
+func (j *jsiiProxy_ServiceAccountTokenSecret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ServiceAccountTokenSecret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -8042,11 +12333,31 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_ServiceAccountTokenSecret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ServiceAccountTokenSecret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -8067,6 +12378,26 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -8119,6 +12450,32 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) AddStringData(key *string, value *
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_ServiceAccountTokenSecret) GetStringData(key *string) *string {
@@ -8324,17 +12681,33 @@ const (
 //
 type SshAuthSecret interface {
 	Secret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -8369,6 +12742,16 @@ type jsiiProxy_SshAuthSecret struct {
 	jsiiProxy_Secret
 }
 
+func (j *jsiiProxy_SshAuthSecret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_SshAuthSecret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -8379,11 +12762,31 @@ func (j *jsiiProxy_SshAuthSecret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_SshAuthSecret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_SshAuthSecret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -8404,6 +12807,26 @@ func (j *jsiiProxy_SshAuthSecret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -8456,6 +12879,32 @@ func (s *jsiiProxy_SshAuthSecret) AddStringData(key *string, value *string) {
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (s *jsiiProxy_SshAuthSecret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_SshAuthSecret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_SshAuthSecret) GetStringData(key *string) *string {
@@ -8551,16 +13000,22 @@ type SshAuthSecretProps struct {
 // - Ordered, automated rolling updates.
 type StatefulSet interface {
 	Workload
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
 	//
 	// Returns a a copy. Use `select()` to add expression matchers.
@@ -8580,6 +13035,12 @@ type StatefulSet interface {
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// Number of desired pods.
 	Replicas() *float64
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -8590,6 +13051,10 @@ type StatefulSet interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -8624,11 +13089,31 @@ type jsiiProxy_StatefulSet struct {
 	jsiiProxy_Workload
 }
 
+func (j *jsiiProxy_StatefulSet) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_StatefulSet) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -8689,6 +13174,16 @@ func (j *jsiiProxy_StatefulSet) InitContainers() *[]Container {
 	_jsii_.Get(
 		j,
 		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -8769,6 +13264,26 @@ func (j *jsiiProxy_StatefulSet) Replicas() *float64 {
 	_jsii_.Get(
 		j,
 		"replicas",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -8889,6 +13404,32 @@ func (s *jsiiProxy_StatefulSet) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (s *jsiiProxy_StatefulSet) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		s,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_StatefulSet) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		s,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_StatefulSet) OnPrepare() {
@@ -9134,17 +13675,33 @@ type TcpSocketProbeOptions struct {
 //
 type TlsSecret interface {
 	Secret
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	// See: base.Resource.apiObject
 	//
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	// Whether or not the secret is immutable.
 	Immutable() *bool
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	// Adds a string data field to the secert.
 	AddStringData(key *string, value *string)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Perform final modifications before synthesis.
@@ -9179,6 +13736,16 @@ type jsiiProxy_TlsSecret struct {
 	jsiiProxy_Secret
 }
 
+func (j *jsiiProxy_TlsSecret) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_TlsSecret) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
@@ -9189,11 +13756,31 @@ func (j *jsiiProxy_TlsSecret) ApiObject() cdk8s.ApiObject {
 	return returns
 }
 
+func (j *jsiiProxy_TlsSecret) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_TlsSecret) Immutable() *bool {
 	var returns *bool
 	_jsii_.Get(
 		j,
 		"immutable",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
 		&returns,
 	)
 	return returns
@@ -9214,6 +13801,26 @@ func (j *jsiiProxy_TlsSecret) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -9266,6 +13873,32 @@ func (t *jsiiProxy_TlsSecret) AddStringData(key *string, value *string) {
 		"addStringData",
 		[]interface{}{key, value},
 	)
+}
+
+func (t *jsiiProxy_TlsSecret) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		t,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (t *jsiiProxy_TlsSecret) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		t,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (t *jsiiProxy_TlsSecret) GetStringData(key *string) *string {
@@ -9335,6 +13968,91 @@ type TlsSecretProps struct {
 	TlsCert *string `json:"tlsCert" yaml:"tlsCert"`
 	// The TLS key.
 	TlsKey *string `json:"tlsKey" yaml:"tlsKey"`
+}
+
+// Represents a user.
+type User interface {
+	ISubject
+	// APIGroup holds the API group of the referenced subject.
+	//
+	// Defaults to "" for
+	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
+	// and Group subjects.
+	ApiGroup() *string
+	// Kind of object being referenced.
+	//
+	// Values defined by this API group are
+	// "User", "Group", and "ServiceAccount". If the Authorizer does not
+	// recognized the kind value, the Authorizer should report an error.
+	Kind() *string
+	// Name of the object being referenced.
+	Name() *string
+}
+
+// The jsii proxy struct for User
+type jsiiProxy_User struct {
+	jsiiProxy_ISubject
+}
+
+func (j *jsiiProxy_User) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_User) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_User) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewUser(props *UserProps) User {
+	_init_.Initialize()
+
+	j := jsiiProxy_User{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.User",
+		[]interface{}{props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewUser_Override(u User, props *UserProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.User",
+		[]interface{}{props},
+		u,
+	)
+}
+
+// Properties for `User`.
+type UserProps struct {
+	// The name of the user.
+	Name *string `json:"name" yaml:"name"`
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
@@ -9604,14 +14322,20 @@ type VolumeMount struct {
 // In Kubernetes, a Pod represents a set of running containers on your cluster.
 type Workload interface {
 	AbstractPod
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
 	// The underlying cdk8s API object.
 	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	// The object kind (e.g. "Deployment").
+	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
 	//
 	// Returns a a copy. Use `select()` to add expression matchers.
@@ -9625,6 +14349,12 @@ type Workload interface {
 	Name() *string
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -9633,6 +14363,10 @@ type Workload interface {
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
 	// Perform final modifications before synthesis.
 	//
 	// This method can be implemented by derived constructs in order to perform
@@ -9667,11 +14401,31 @@ type jsiiProxy_Workload struct {
 	jsiiProxy_AbstractPod
 }
 
+func (j *jsiiProxy_Workload) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Workload) ApiObject() cdk8s.ApiObject {
 	var returns cdk8s.ApiObject
 	_jsii_.Get(
 		j,
 		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
 		&returns,
 	)
 	return returns
@@ -9737,6 +14491,16 @@ func (j *jsiiProxy_Workload) InitContainers() *[]Container {
 	return returns
 }
 
+func (j *jsiiProxy_Workload) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Workload) MatchExpressions() *[]*LabelSelectorRequirement {
 	var returns *[]*LabelSelectorRequirement
 	_jsii_.Get(
@@ -9782,6 +14546,26 @@ func (j *jsiiProxy_Workload) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	_jsii_.Get(
 		j,
 		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
@@ -9878,6 +14662,32 @@ func (w *jsiiProxy_Workload) AddVolume(vol Volume) {
 		"addVolume",
 		[]interface{}{vol},
 	)
+}
+
+func (w *jsiiProxy_Workload) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		w,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		w,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (w *jsiiProxy_Workload) OnPrepare() {
