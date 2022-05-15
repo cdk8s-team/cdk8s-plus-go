@@ -360,7 +360,6 @@ func init() {
 		"cdk8s-plus-21.Container",
 		reflect.TypeOf((*Container)(nil)).Elem(),
 		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addEnv", GoMethod: "AddEnv"},
 			_jsii_.MemberProperty{JsiiProperty: "args", GoGetter: "Args"},
 			_jsii_.MemberProperty{JsiiProperty: "command", GoGetter: "Command"},
 			_jsii_.MemberProperty{JsiiProperty: "env", GoGetter: "Env"},
@@ -593,6 +592,19 @@ func init() {
 		"cdk8s-plus-21.EmptyDirVolumeOptions",
 		reflect.TypeOf((*EmptyDirVolumeOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.Env",
+		reflect.TypeOf((*Env)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addVariable", GoMethod: "AddVariable"},
+			_jsii_.MemberMethod{JsiiMethod: "copyFrom", GoMethod: "CopyFrom"},
+			_jsii_.MemberProperty{JsiiProperty: "sources", GoGetter: "Sources"},
+			_jsii_.MemberProperty{JsiiProperty: "variables", GoGetter: "Variables"},
+		},
+		func() interface{} {
+			return &jsiiProxy_Env{}
+		},
+	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-21.EnvFieldPaths",
 		reflect.TypeOf((*EnvFieldPaths)(nil)).Elem(),
@@ -607,6 +619,14 @@ func init() {
 			"NODE_NAME": EnvFieldPaths_NODE_NAME,
 			"NODE_IP": EnvFieldPaths_NODE_IP,
 			"POD_IPS": EnvFieldPaths_POD_IPS,
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-21.EnvFrom",
+		reflect.TypeOf((*EnvFrom)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_EnvFrom{}
 		},
 	)
 	_jsii_.RegisterClass(
