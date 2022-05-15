@@ -7415,6 +7415,25 @@ type jsiiProxy_IngressV1Beta1Backend struct {
 	_ byte // padding
 }
 
+// A Resource backend is an ObjectRef to another Kubernetes resource within the same namespace as the Ingress object.
+//
+// A common usage for a Resource backend is to ingress data to an object
+// storage backend with static assets.
+func IngressV1Beta1Backend_FromResource(resource IResource) IngressV1Beta1Backend {
+	_init_.Initialize()
+
+	var returns IngressV1Beta1Backend
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-20.IngressV1Beta1Backend",
+		"fromResource",
+		[]interface{}{resource},
+		&returns,
+	)
+
+	return returns
+}
+
 // A Kubernetes `Service` to use as the backend for this path.
 func IngressV1Beta1Backend_FromService(serv Service, options *ServiceIngressV1BetaBackendOptions) IngressV1Beta1Backend {
 	_init_.Initialize()
