@@ -3760,10 +3760,8 @@ type Container interface {
 	//
 	// Returns: a copy of the entrypoint array, cannot be modified.
 	Command() *[]*string
-	// The environment variables for this container.
-	//
-	// Returns a copy. To add environment variables use `addEnv()`.
-	Env() *map[string]EnvValue
+	// The environment of the container.
+	Env() Env
 	// The container image.
 	Image() *string
 	// Image pull policy for this container.
@@ -3782,13 +3780,6 @@ type Container interface {
 	SecurityContext() ContainerSecurityContext
 	// The working directory inside the container.
 	WorkingDir() *string
-	// Add an environment value to the container.
-	//
-	// The variable value can come
-	// from various dynamic sources such a secrets of config maps.
-	// See: EnvValue.fromXXX
-	//
-	AddEnv(name *string, value EnvValue)
 	// Mount a volume to a specific path so that it is accessible by the container.
 	//
 	// Every pod that is configured to use this container will autmoatically have access to the volume.
@@ -3820,8 +3811,8 @@ func (j *jsiiProxy_Container) Command() *[]*string {
 	return returns
 }
 
-func (j *jsiiProxy_Container) Env() *map[string]EnvValue {
-	var returns *map[string]EnvValue
+func (j *jsiiProxy_Container) Env() Env {
+	var returns Env
 	_jsii_.Get(
 		j,
 		"env",
@@ -3935,14 +3926,6 @@ func NewContainer_Override(c Container, props *ContainerProps) {
 	)
 }
 
-func (c *jsiiProxy_Container) AddEnv(name *string, value EnvValue) {
-	_jsii_.InvokeVoid(
-		c,
-		"addEnv",
-		[]interface{}{name, value},
-	)
-}
-
 func (c *jsiiProxy_Container) Mount(path *string, storage IStorage, options *MountOptions) {
 	_jsii_.InvokeVoid(
 		c,
@@ -3993,10 +3976,14 @@ type ContainerProps struct {
 	// Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated.
 	// More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	Command *[]*string `json:"command" yaml:"command"`
-	// List of environment variables to set in the container.
+	// List of sources to populate environment variables in the container.
 	//
-	// Cannot be updated.
-	Env *map[string]EnvValue `json:"env" yaml:"env"`
+	// When a key exists in multiple sources, the value associated with
+	// the last source will take precedence. Values defined by the `envVariables` property
+	// with a duplicate key will take precedence.
+	EnvFrom *[]EnvFrom `json:"envFrom" yaml:"envFrom"`
+	// Environment variables to set in the container.
+	EnvVariables *map[string]EnvValue `json:"envVariables" yaml:"envVariables"`
 	// Image pull policy for this container.
 	ImagePullPolicy ImagePullPolicy `json:"imagePullPolicy" yaml:"imagePullPolicy"`
 	// Describes actions that the management system should take in response to container lifecycle events.
@@ -5820,6 +5807,131 @@ type EmptyDirVolumeOptions struct {
 	SizeLimit cdk8s.Size `json:"sizeLimit" yaml:"sizeLimit"`
 }
 
+// Container environment variables.
+type Env interface {
+	// The list of sources used to populate the container environment, in addition to the `variables`.
+	//
+	// Returns a copy. To add a source use `container.env.copyFrom()`.
+	Sources() *[]EnvFrom
+	// The environment variables for this container.
+	//
+	// Returns a copy. To add environment variables use `container.env.addVariable()`.
+	Variables() *map[string]EnvValue
+	// Add a single variable by name and value.
+	//
+	// The variable value can come from various dynamic sources such a secrets of config maps.
+	// Use `EnvValue.fromXXX` to select sources.
+	AddVariable(name *string, value EnvValue)
+	// Add a collection of variables by copying from another source.
+	//
+	// Use `Env.fromXXX` functions to select sources.
+	CopyFrom(from EnvFrom)
+}
+
+// The jsii proxy struct for Env
+type jsiiProxy_Env struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_Env) Sources() *[]EnvFrom {
+	var returns *[]EnvFrom
+	_jsii_.Get(
+		j,
+		"sources",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Env) Variables() *map[string]EnvValue {
+	var returns *map[string]EnvValue
+	_jsii_.Get(
+		j,
+		"variables",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewEnv(sources *[]EnvFrom, variables *map[string]EnvValue) Env {
+	_init_.Initialize()
+
+	j := jsiiProxy_Env{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Env",
+		[]interface{}{sources, variables},
+		&j,
+	)
+
+	return &j
+}
+
+func NewEnv_Override(e Env, sources *[]EnvFrom, variables *map[string]EnvValue) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.Env",
+		[]interface{}{sources, variables},
+		e,
+	)
+}
+
+// Selects a ConfigMap to populate the environment variables with.
+//
+// The contents of the target ConfigMap's Data field will represent
+// the key-value pairs as environment variables.
+func Env_FromConfigMap(configMap IConfigMap, prefix *string) EnvFrom {
+	_init_.Initialize()
+
+	var returns EnvFrom
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Env",
+		"fromConfigMap",
+		[]interface{}{configMap, prefix},
+		&returns,
+	)
+
+	return returns
+}
+
+// Selects a Secret to populate the environment variables with.
+//
+// The contents of the target Secret's Data field will represent
+// the key-value pairs as environment variables.
+func Env_FromSecret(secr ISecret) EnvFrom {
+	_init_.Initialize()
+
+	var returns EnvFrom
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Env",
+		"fromSecret",
+		[]interface{}{secr},
+		&returns,
+	)
+
+	return returns
+}
+
+func (e *jsiiProxy_Env) AddVariable(name *string, value EnvValue) {
+	_jsii_.InvokeVoid(
+		e,
+		"addVariable",
+		[]interface{}{name, value},
+	)
+}
+
+func (e *jsiiProxy_Env) CopyFrom(from EnvFrom) {
+	_jsii_.InvokeVoid(
+		e,
+		"copyFrom",
+		[]interface{}{from},
+	)
+}
+
 type EnvFieldPaths string
 
 const (
@@ -5844,6 +5956,39 @@ const (
 	// The ipAddresess of the pod.
 	EnvFieldPaths_POD_IPS EnvFieldPaths = "POD_IPS"
 )
+
+// A collection of env variables defined in other resources.
+type EnvFrom interface {
+}
+
+// The jsii proxy struct for EnvFrom
+type jsiiProxy_EnvFrom struct {
+	_ byte // padding
+}
+
+func NewEnvFrom(configMap IConfigMap, prefix *string, sec ISecret) EnvFrom {
+	_init_.Initialize()
+
+	j := jsiiProxy_EnvFrom{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.EnvFrom",
+		[]interface{}{configMap, prefix, sec},
+		&j,
+	)
+
+	return &j
+}
+
+func NewEnvFrom_Override(e EnvFrom, configMap IConfigMap, prefix *string, sec ISecret) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.EnvFrom",
+		[]interface{}{configMap, prefix, sec},
+		e,
+	)
+}
 
 // Utility class for creating reading env values from various sources.
 type EnvValue interface {
