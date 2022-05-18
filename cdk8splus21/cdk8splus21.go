@@ -3,11 +3,11 @@ package cdk8splus21
 
 import (
 	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
-	_init_ "github.com/cdk8s-team/cdk8s-plus-go/cdk8splus21/jsii"
+	_init_ "github.com/cdk8s-team/cdk8s-plus-go/cdk8splus21/v2/jsii"
 
-	"github.com/aws/constructs-go/constructs/v3"
-	"github.com/cdk8s-team/cdk8s-core-go/cdk8s"
-	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus21/internal"
+	"github.com/aws/constructs-go/constructs/v10"
+	"github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2"
+	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus21/v2/internal"
 )
 
 type AbstractPod interface {
@@ -29,6 +29,8 @@ type AbstractPod interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -47,29 +49,6 @@ type AbstractPod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -199,6 +178,16 @@ func (j *jsiiProxy_AbstractPod) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_AbstractPod) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AbstractPod) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -270,6 +259,38 @@ func NewAbstractPod_Override(a AbstractPod, scope constructs.Construct, id *stri
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func AbstractPod_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.AbstractPod",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (a *jsiiProxy_AbstractPod) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -331,35 +352,6 @@ func (a *jsiiProxy_AbstractPod) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		a,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (a *jsiiProxy_AbstractPod) OnPrepare() {
-	_jsii_.InvokeVoid(
-		a,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (a *jsiiProxy_AbstractPod) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		a,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (a *jsiiProxy_AbstractPod) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		a,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -1217,6 +1209,8 @@ type AwsElasticBlockStorePersistentVolume interface {
 	MountOptions() *[]*string
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Partition of this volume.
 	Partition() *float64
 	// Whether or not it is mounted as a read-only volume.
@@ -1247,29 +1241,6 @@ type AwsElasticBlockStorePersistentVolume interface {
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
 	Bind(claim IPersistentVolumeClaim)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
 	//
 	// Note that this method will throw in case the volume is already claimed.
@@ -1390,6 +1361,16 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -1516,6 +1497,38 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *s
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func AwsElasticBlockStorePersistentVolume_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.AwsElasticBlockStorePersistentVolume",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -1561,35 +1574,6 @@ func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(claim IPersistentV
 		"bind",
 		[]interface{}{claim},
 	)
-}
-
-func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnPrepare() {
-	_jsii_.InvokeVoid(
-		a,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		a,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		a,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
 }
 
 func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Reserve() PersistentVolumeClaim {
@@ -1734,6 +1718,8 @@ type AzureDiskPersistentVolume interface {
 	MountOptions() *[]*string
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Whether or not it is mounted as a read-only volume.
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
@@ -1760,29 +1746,6 @@ type AzureDiskPersistentVolume interface {
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
 	Bind(claim IPersistentVolumeClaim)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
 	//
 	// Note that this method will throw in case the volume is already claimed.
@@ -1948,6 +1911,16 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_AzureDiskPersistentVolume) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_AzureDiskPersistentVolume) ReadOnly() *bool {
 	var returns *bool
 	_jsii_.Get(
@@ -2049,6 +2022,38 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPer
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func AzureDiskPersistentVolume_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.AzureDiskPersistentVolume",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (a *jsiiProxy_AzureDiskPersistentVolume) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -2094,35 +2099,6 @@ func (a *jsiiProxy_AzureDiskPersistentVolume) Bind(claim IPersistentVolumeClaim)
 		"bind",
 		[]interface{}{claim},
 	)
-}
-
-func (a *jsiiProxy_AzureDiskPersistentVolume) OnPrepare() {
-	_jsii_.InvokeVoid(
-		a,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (a *jsiiProxy_AzureDiskPersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		a,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (a *jsiiProxy_AzureDiskPersistentVolume) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		a,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
 }
 
 func (a *jsiiProxy_AzureDiskPersistentVolume) Reserve() PersistentVolumeClaim {
@@ -2260,6 +2236,8 @@ type BasicAuthSecret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -2274,29 +2252,6 @@ type BasicAuthSecret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -2376,6 +2331,16 @@ func (j *jsiiProxy_BasicAuthSecret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_BasicAuthSecret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_BasicAuthSecret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -2437,6 +2402,38 @@ func BasicAuthSecret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func BasicAuthSecret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.BasicAuthSecret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (b *jsiiProxy_BasicAuthSecret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		b,
@@ -2478,35 +2475,6 @@ func (b *jsiiProxy_BasicAuthSecret) GetStringData(key *string) *string {
 		b,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (b *jsiiProxy_BasicAuthSecret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		b,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (b *jsiiProxy_BasicAuthSecret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		b,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (b *jsiiProxy_BasicAuthSecret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		b,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -2558,6 +2526,8 @@ type ClusterRole interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -2604,29 +2574,6 @@ type ClusterRole interface {
 	BindInNamespace(namespace *string, subjects ...ISubject) RoleBinding
 	// Combines the rules of the argument ClusterRole into this ClusterRole using aggregation labels.
 	Combine(rol ClusterRole)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -2698,6 +2645,16 @@ func (j *jsiiProxy_ClusterRole) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_ClusterRole) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ClusterRole) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -2763,6 +2720,38 @@ func ClusterRole_FromClusterRoleName(name *string) IClusterRole {
 		"cdk8s-plus-21.ClusterRole",
 		"fromClusterRoleName",
 		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func ClusterRole_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ClusterRole",
+		"isConstruct",
+		[]interface{}{x},
 		&returns,
 	)
 
@@ -2990,35 +2979,6 @@ func (c *jsiiProxy_ClusterRole) Combine(rol ClusterRole) {
 	)
 }
 
-func (c *jsiiProxy_ClusterRole) OnPrepare() {
-	_jsii_.InvokeVoid(
-		c,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (c *jsiiProxy_ClusterRole) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		c,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (c *jsiiProxy_ClusterRole) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		c,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
 func (c *jsiiProxy_ClusterRole) ToString() *string {
 	var returns *string
 
@@ -3048,6 +3008,8 @@ type ClusterRoleBinding interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -3062,29 +3024,6 @@ type ClusterRoleBinding interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -3149,6 +3088,16 @@ func (j *jsiiProxy_ClusterRoleBinding) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -3219,6 +3168,38 @@ func NewClusterRoleBinding_Override(c ClusterRoleBinding, scope constructs.Const
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func ClusterRoleBinding_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ClusterRoleBinding",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (c *jsiiProxy_ClusterRoleBinding) AddSubjects(subjects ...ISubject) {
 	args := []interface{}{}
 	for _, a := range subjects {
@@ -3251,35 +3232,6 @@ func (c *jsiiProxy_ClusterRoleBinding) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		c,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (c *jsiiProxy_ClusterRoleBinding) OnPrepare() {
-	_jsii_.InvokeVoid(
-		c,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (c *jsiiProxy_ClusterRoleBinding) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		c,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (c *jsiiProxy_ClusterRoleBinding) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		c,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -3394,6 +3346,8 @@ type ConfigMap interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -3415,29 +3369,6 @@ type ConfigMap interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -3538,6 +3469,16 @@ func (j *jsiiProxy_ConfigMap) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_ConfigMap) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ConfigMap) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -3599,6 +3540,38 @@ func ConfigMap_FromConfigMapName(name *string) IConfigMap {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func ConfigMap_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ConfigMap",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (c *jsiiProxy_ConfigMap) AddBinaryData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		c,
@@ -3650,35 +3623,6 @@ func (c *jsiiProxy_ConfigMap) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		c,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (c *jsiiProxy_ConfigMap) OnPrepare() {
-	_jsii_.InvokeVoid(
-		c,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (c *jsiiProxy_ConfigMap) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		c,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (c *jsiiProxy_ConfigMap) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		c,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -4253,6 +4197,8 @@ type DaemonSet interface {
 	MinReadySeconds() *float64
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -4273,29 +4219,6 @@ type DaemonSet interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
@@ -4457,6 +4380,16 @@ func (j *jsiiProxy_DaemonSet) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_DaemonSet) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DaemonSet) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -4552,6 +4485,38 @@ func NewDaemonSet_Override(d DaemonSet, scope constructs.Construct, id *string, 
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func DaemonSet_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.DaemonSet",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_DaemonSet) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -4613,35 +4578,6 @@ func (d *jsiiProxy_DaemonSet) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		d,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (d *jsiiProxy_DaemonSet) OnPrepare() {
-	_jsii_.InvokeVoid(
-		d,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (d *jsiiProxy_DaemonSet) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		d,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (d *jsiiProxy_DaemonSet) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		d,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -4801,6 +4737,8 @@ type Deployment interface {
 	MinReady() cdk8s.Duration
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The maximum duration for a deployment to make progress before it is considered to be failed.
@@ -4834,29 +4772,6 @@ type Deployment interface {
 	//
 	// This is equivalent to running `kubectl expose deployment <deployment-name>`.
 	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
@@ -5018,6 +4933,16 @@ func (j *jsiiProxy_Deployment) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Deployment) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Deployment) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -5143,6 +5068,38 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Deployment_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Deployment",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_Deployment) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -5231,35 +5188,6 @@ func (d *jsiiProxy_Deployment) ExposeViaService(options *ExposeDeploymentViaServ
 		d,
 		"exposeViaService",
 		[]interface{}{options},
-		&returns,
-	)
-
-	return returns
-}
-
-func (d *jsiiProxy_Deployment) OnPrepare() {
-	_jsii_.InvokeVoid(
-		d,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (d *jsiiProxy_Deployment) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		d,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (d *jsiiProxy_Deployment) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		d,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -5494,6 +5422,8 @@ type DockerConfigSecret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -5508,29 +5438,6 @@ type DockerConfigSecret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -5610,6 +5517,16 @@ func (j *jsiiProxy_DockerConfigSecret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_DockerConfigSecret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DockerConfigSecret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -5671,6 +5588,38 @@ func DockerConfigSecret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func DockerConfigSecret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.DockerConfigSecret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_DockerConfigSecret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		d,
@@ -5712,35 +5661,6 @@ func (d *jsiiProxy_DockerConfigSecret) GetStringData(key *string) *string {
 		d,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (d *jsiiProxy_DockerConfigSecret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		d,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (d *jsiiProxy_DockerConfigSecret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		d,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (d *jsiiProxy_DockerConfigSecret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		d,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -6242,6 +6162,8 @@ type GCEPersistentDiskPersistentVolume interface {
 	MountOptions() *[]*string
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Partition of this volume.
 	Partition() *float64
 	// PD resource in GCE of this volume.
@@ -6272,29 +6194,6 @@ type GCEPersistentDiskPersistentVolume interface {
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
 	Bind(claim IPersistentVolumeClaim)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
 	//
 	// Note that this method will throw in case the volume is already claimed.
@@ -6415,6 +6314,16 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -6541,6 +6450,38 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *stri
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func GCEPersistentDiskPersistentVolume_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.GCEPersistentDiskPersistentVolume",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -6586,35 +6527,6 @@ func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Bind(claim IPersistentVolu
 		"bind",
 		[]interface{}{claim},
 	)
-}
-
-func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnPrepare() {
-	_jsii_.InvokeVoid(
-		g,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		g,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		g,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
 }
 
 func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Reserve() PersistentVolumeClaim {
@@ -7270,6 +7182,8 @@ type IngressV1Beta1 interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -7297,25 +7211,6 @@ type IngressV1Beta1 interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -7385,6 +7280,16 @@ func (j *jsiiProxy_IngressV1Beta1) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_IngressV1Beta1) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_IngressV1Beta1) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -7428,6 +7333,38 @@ func NewIngressV1Beta1_Override(i IngressV1Beta1, scope constructs.Construct, id
 		[]interface{}{scope, id, props},
 		i,
 	)
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func IngressV1Beta1_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.IngressV1Beta1",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
 }
 
 func (i *jsiiProxy_IngressV1Beta1) AddDefaultBackend(backend IngressV1Beta1Backend) {
@@ -7502,35 +7439,6 @@ func (i *jsiiProxy_IngressV1Beta1) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		i,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (i *jsiiProxy_IngressV1Beta1) OnPrepare() {
-	_jsii_.InvokeVoid(
-		i,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (i *jsiiProxy_IngressV1Beta1) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		i,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (i *jsiiProxy_IngressV1Beta1) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		i,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -7701,6 +7609,8 @@ type Job interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -7723,29 +7633,6 @@ type Job interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
@@ -7917,6 +7804,16 @@ func (j *jsiiProxy_Job) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Job) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Job) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -8022,6 +7919,38 @@ func NewJob_Override(j Job, scope constructs.Construct, id *string, props *JobPr
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Job_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Job",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (j *jsiiProxy_Job) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -8083,35 +8012,6 @@ func (j *jsiiProxy_Job) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		j,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (j *jsiiProxy_Job) OnPrepare() {
-	_jsii_.InvokeVoid(
-		j,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (j *jsiiProxy_Job) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		j,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (j *jsiiProxy_Job) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		j,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -8642,6 +8542,8 @@ type PersistentVolume interface {
 	MountOptions() *[]*string
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -8666,29 +8568,6 @@ type PersistentVolume interface {
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
 	Bind(claim IPersistentVolumeClaim)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Reserve a `PersistentVolume` by creating a `PersistentVolumeClaim` that is wired to claim this volume.
 	//
 	// Note that this method will throw in case the volume is already claimed.
@@ -8806,6 +8685,16 @@ func (j *jsiiProxy_PersistentVolume) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_PersistentVolume) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_PersistentVolume) ReclaimPolicy() PersistentVolumeReclaimPolicy {
 	var returns PersistentVolumeReclaimPolicy
 	_jsii_.Get(
@@ -8897,6 +8786,38 @@ func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVo
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func PersistentVolume_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.PersistentVolume",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_PersistentVolume) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -8942,35 +8863,6 @@ func (p *jsiiProxy_PersistentVolume) Bind(claim IPersistentVolumeClaim) {
 		"bind",
 		[]interface{}{claim},
 	)
-}
-
-func (p *jsiiProxy_PersistentVolume) OnPrepare() {
-	_jsii_.InvokeVoid(
-		p,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (p *jsiiProxy_PersistentVolume) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		p,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (p *jsiiProxy_PersistentVolume) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		p,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
 }
 
 func (p *jsiiProxy_PersistentVolume) Reserve() PersistentVolumeClaim {
@@ -9043,6 +8935,8 @@ type PersistentVolumeClaim interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -9070,29 +8964,6 @@ type PersistentVolumeClaim interface {
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding
 	//
 	Bind(vol IPersistentVolume)
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -9168,6 +9039,16 @@ func (j *jsiiProxy_PersistentVolumeClaim) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -9274,6 +9155,38 @@ func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeCla
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func PersistentVolumeClaim_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.PersistentVolumeClaim",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_PersistentVolumeClaim) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -9306,35 +9219,6 @@ func (p *jsiiProxy_PersistentVolumeClaim) Bind(vol IPersistentVolume) {
 		"bind",
 		[]interface{}{vol},
 	)
-}
-
-func (p *jsiiProxy_PersistentVolumeClaim) OnPrepare() {
-	_jsii_.InvokeVoid(
-		p,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (p *jsiiProxy_PersistentVolumeClaim) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		p,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (p *jsiiProxy_PersistentVolumeClaim) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		p,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
 }
 
 func (p *jsiiProxy_PersistentVolumeClaim) ToString() *string {
@@ -9502,6 +9386,8 @@ type Pod interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -9520,29 +9406,6 @@ type Pod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -9672,6 +9535,16 @@ func (j *jsiiProxy_Pod) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Pod) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Pod) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -9757,6 +9630,38 @@ func NewPod_Override(p Pod, scope constructs.Construct, id *string, props *PodPr
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Pod_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Pod",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_Pod) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -9818,35 +9723,6 @@ func (p *jsiiProxy_Pod) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		p,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (p *jsiiProxy_Pod) OnPrepare() {
-	_jsii_.InvokeVoid(
-		p,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (p *jsiiProxy_Pod) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		p,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (p *jsiiProxy_Pod) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		p,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -10385,6 +10261,8 @@ type Resource interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -10395,29 +10273,6 @@ type Resource interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -10490,6 +10345,16 @@ func (j *jsiiProxy_Resource) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Resource) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Resource) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -10512,14 +10377,46 @@ func (j *jsiiProxy_Resource) ResourceType() *string {
 
 
 // Creates a new construct node.
-func NewResource_Override(r Resource, scope constructs.Construct, id *string, options *constructs.ConstructOptions) {
+func NewResource_Override(r Resource, scope constructs.Construct, id *string) {
 	_init_.Initialize()
 
 	_jsii_.Create(
 		"cdk8s-plus-21.Resource",
-		[]interface{}{scope, id, options},
+		[]interface{}{scope, id},
 		r,
 	)
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Resource_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Resource",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
 }
 
 func (r *jsiiProxy_Resource) AsApiResource() IApiResource {
@@ -10541,35 +10438,6 @@ func (r *jsiiProxy_Resource) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		r,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (r *jsiiProxy_Resource) OnPrepare() {
-	_jsii_.InvokeVoid(
-		r,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (r *jsiiProxy_Resource) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		r,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (r *jsiiProxy_Resource) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		r,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -10642,6 +10510,8 @@ type Role interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -10682,29 +10552,6 @@ type Role interface {
 	AsNonApiResource() *string
 	// Create a RoleBinding that binds the permissions in this Role to a list of subjects, that will only apply this role's namespace.
 	Bind(subjects ...ISubject) RoleBinding
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -10775,6 +10622,16 @@ func (j *jsiiProxy_Role) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Role) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Role) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -10840,6 +10697,38 @@ func Role_FromRoleName(name *string) IRole {
 		"cdk8s-plus-21.Role",
 		"fromRoleName",
 		[]interface{}{name},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Role_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Role",
+		"isConstruct",
+		[]interface{}{x},
 		&returns,
 	)
 
@@ -11033,35 +10922,6 @@ func (r *jsiiProxy_Role) Bind(subjects ...ISubject) RoleBinding {
 	return returns
 }
 
-func (r *jsiiProxy_Role) OnPrepare() {
-	_jsii_.InvokeVoid(
-		r,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (r *jsiiProxy_Role) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		r,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (r *jsiiProxy_Role) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		r,
-		"onValidate",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
 func (r *jsiiProxy_Role) ToString() *string {
 	var returns *string
 
@@ -11091,6 +10951,8 @@ type RoleBinding interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -11105,29 +10967,6 @@ type RoleBinding interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -11192,6 +11031,16 @@ func (j *jsiiProxy_RoleBinding) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -11262,6 +11111,38 @@ func NewRoleBinding_Override(r RoleBinding, scope constructs.Construct, id *stri
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func RoleBinding_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.RoleBinding",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (r *jsiiProxy_RoleBinding) AddSubjects(subjects ...ISubject) {
 	args := []interface{}{}
 	for _, a := range subjects {
@@ -11294,35 +11175,6 @@ func (r *jsiiProxy_RoleBinding) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		r,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (r *jsiiProxy_RoleBinding) OnPrepare() {
-	_jsii_.InvokeVoid(
-		r,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (r *jsiiProxy_RoleBinding) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		r,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (r *jsiiProxy_RoleBinding) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		r,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -11396,6 +11248,8 @@ type Secret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -11410,29 +11264,6 @@ type Secret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -11513,6 +11344,16 @@ func (j *jsiiProxy_Secret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Secret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Secret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -11574,6 +11415,38 @@ func Secret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Secret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Secret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_Secret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -11615,35 +11488,6 @@ func (s *jsiiProxy_Secret) GetStringData(key *string) *string {
 		s,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_Secret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_Secret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_Secret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -11748,6 +11592,8 @@ type Service interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Ports for this service.
 	//
 	// Use `serve()` to expose additional service ports.
@@ -11778,29 +11624,6 @@ type Service interface {
 	//
 	// Returns: The `Ingress` resource that was used.
 	ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) IngressV1Beta1
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure a port the service will bind to.
 	//
 	// This method can be called multiple times.
@@ -11894,6 +11717,16 @@ func (j *jsiiProxy_Service) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Service) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Service) Ports() *[]*ServicePort {
 	var returns *[]*ServicePort
 	_jsii_.Get(
@@ -11969,6 +11802,38 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Service_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Service",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_Service) AddDeployment(depl Deployment, options *AddDeploymentOptions) {
 	_jsii_.InvokeVoid(
 		s,
@@ -12018,35 +11883,6 @@ func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServic
 		s,
 		"exposeViaIngress",
 		[]interface{}{path, options},
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_Service) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_Service) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_Service) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -12103,6 +11939,8 @@ type ServiceAccount interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -12119,29 +11957,6 @@ type ServiceAccount interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -12223,6 +12038,16 @@ func (j *jsiiProxy_ServiceAccount) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_ServiceAccount) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ServiceAccount) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -12294,6 +12119,38 @@ func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func ServiceAccount_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ServiceAccount",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_ServiceAccount) AddSecret(secr ISecret) {
 	_jsii_.InvokeVoid(
 		s,
@@ -12321,35 +12178,6 @@ func (s *jsiiProxy_ServiceAccount) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		s,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_ServiceAccount) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_ServiceAccount) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_ServiceAccount) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -12406,6 +12234,8 @@ type ServiceAccountTokenSecret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -12420,29 +12250,6 @@ type ServiceAccountTokenSecret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -12522,6 +12329,16 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_ServiceAccountTokenSecret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_ServiceAccountTokenSecret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -12583,6 +12400,38 @@ func ServiceAccountTokenSecret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func ServiceAccountTokenSecret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.ServiceAccountTokenSecret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_ServiceAccountTokenSecret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -12624,35 +12473,6 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) GetStringData(key *string) *string
 		s,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_ServiceAccountTokenSecret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_ServiceAccountTokenSecret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_ServiceAccountTokenSecret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -12835,6 +12655,8 @@ type SshAuthSecret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -12849,29 +12671,6 @@ type SshAuthSecret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -12951,6 +12750,16 @@ func (j *jsiiProxy_SshAuthSecret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_SshAuthSecret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_SshAuthSecret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -13012,6 +12821,38 @@ func SshAuthSecret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func SshAuthSecret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.SshAuthSecret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_SshAuthSecret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		s,
@@ -13053,35 +12894,6 @@ func (s *jsiiProxy_SshAuthSecret) GetStringData(key *string) *string {
 		s,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_SshAuthSecret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_SshAuthSecret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_SshAuthSecret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -13166,6 +12978,8 @@ type StatefulSet interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Management policy to use for the set.
 	PodManagementPolicy() PodManagementPolicy
 	// The metadata of pods in this workload.
@@ -13192,29 +13006,6 @@ type StatefulSet interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
@@ -13366,6 +13157,16 @@ func (j *jsiiProxy_StatefulSet) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_StatefulSet) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_StatefulSet) PodManagementPolicy() PodManagementPolicy {
 	var returns PodManagementPolicy
 	_jsii_.Get(
@@ -13491,6 +13292,38 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func StatefulSet_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.StatefulSet",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_StatefulSet) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -13552,35 +13385,6 @@ func (s *jsiiProxy_StatefulSet) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		s,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (s *jsiiProxy_StatefulSet) OnPrepare() {
-	_jsii_.InvokeVoid(
-		s,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (s *jsiiProxy_StatefulSet) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		s,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (s *jsiiProxy_StatefulSet) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		s,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
@@ -13809,6 +13613,8 @@ type TlsSecret interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -13823,29 +13629,6 @@ type TlsSecret interface {
 	AsNonApiResource() *string
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -13925,6 +13708,16 @@ func (j *jsiiProxy_TlsSecret) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_TlsSecret) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_TlsSecret) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -13986,6 +13779,38 @@ func TlsSecret_FromSecretName(name *string) ISecret {
 	return returns
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func TlsSecret_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.TlsSecret",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (t *jsiiProxy_TlsSecret) AddStringData(key *string, value *string) {
 	_jsii_.InvokeVoid(
 		t,
@@ -14027,35 +13852,6 @@ func (t *jsiiProxy_TlsSecret) GetStringData(key *string) *string {
 		t,
 		"getStringData",
 		[]interface{}{key},
-		&returns,
-	)
-
-	return returns
-}
-
-func (t *jsiiProxy_TlsSecret) OnPrepare() {
-	_jsii_.InvokeVoid(
-		t,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (t *jsiiProxy_TlsSecret) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		t,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (t *jsiiProxy_TlsSecret) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		t,
-		"onValidate",
-		nil, // no parameters
 		&returns,
 	)
 
@@ -14466,6 +14262,8 @@ type Workload interface {
 	Metadata() cdk8s.ApiObjectMetadataDefinition
 	// The name of this API object.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -14486,29 +14284,6 @@ type Workload interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
-	// Perform final modifications before synthesis.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// final changes before synthesis. prepare() will be called after child
-	// constructs have been prepared.
-	//
-	// This is an advanced framework feature. Only use this if you
-	// understand the implications.
-	OnPrepare()
-	// Allows this construct to emit artifacts into the cloud assembly during synthesis.
-	//
-	// This method is usually implemented by framework-level constructs such as `Stack` and `Asset`
-	// as they participate in synthesizing the cloud assembly.
-	OnSynthesize(session constructs.ISynthesisSession)
-	// Validate the current construct.
-	//
-	// This method can be implemented by derived constructs in order to perform
-	// validation logic. It is called on all constructs before synthesis.
-	//
-	// Returns: An array of validation error messages, or an empty array if there the construct is valid.
-	// Deprecated: use `Node.addValidation()` to subscribe validation functions on this construct
-	// instead of overriding this method.
-	OnValidate() *[]*string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Returns a string representation of this construct.
@@ -14660,6 +14435,16 @@ func (j *jsiiProxy_Workload) Name() *string {
 	return returns
 }
 
+func (j *jsiiProxy_Workload) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Workload) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
 	var returns cdk8s.ApiObjectMetadataDefinition
 	_jsii_.Get(
@@ -14741,6 +14526,38 @@ func NewWorkload_Override(w Workload, scope constructs.Construct, id *string, pr
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Workload_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Workload",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 func (w *jsiiProxy_Workload) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -14802,35 +14619,6 @@ func (w *jsiiProxy_Workload) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		w,
 		"asNonApiResource",
-		nil, // no parameters
-		&returns,
-	)
-
-	return returns
-}
-
-func (w *jsiiProxy_Workload) OnPrepare() {
-	_jsii_.InvokeVoid(
-		w,
-		"onPrepare",
-		nil, // no parameters
-	)
-}
-
-func (w *jsiiProxy_Workload) OnSynthesize(session constructs.ISynthesisSession) {
-	_jsii_.InvokeVoid(
-		w,
-		"onSynthesize",
-		[]interface{}{session},
-	)
-}
-
-func (w *jsiiProxy_Workload) OnValidate() *[]*string {
-	var returns *[]*string
-
-	_jsii_.Invoke(
-		w,
-		"onValidate",
 		nil, // no parameters
 		&returns,
 	)
