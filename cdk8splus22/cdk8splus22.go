@@ -375,26 +375,26 @@ func (a *jsiiProxy_AbstractPod) ToString() *string {
 // Properties for `AbstractPod`.
 type AbstractPodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -408,13 +408,13 @@ type AbstractPodProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -425,13 +425,13 @@ type AbstractPodProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 }
 
 // Options to add a deployment to a service.
@@ -442,7 +442,7 @@ type AddDeploymentOptions struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -451,23 +451,23 @@ type AddDeploymentOptions struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
+	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol" yaml:"protocol"`
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 	// The port number the service will bind to.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // Options for `configmap.addDirectory()`.
 type AddDirectoryOptions struct {
 	// Glob patterns to exclude when adding files.
-	Exclude *[]*string `json:"exclude" yaml:"exclude"`
+	Exclude *[]*string `field:"optional" json:"exclude" yaml:"exclude"`
 	// A prefix to add to all keys in the config map.
-	KeyPrefix *string `json:"keyPrefix" yaml:"keyPrefix"`
+	KeyPrefix *string `field:"optional" json:"keyPrefix" yaml:"keyPrefix"`
 }
 
 // Represents information about an API resource type.
@@ -1167,7 +1167,7 @@ func (a *jsiiProxy_ApiResource) AsNonApiResource() *string {
 // Options for `ApiResource`.
 type ApiResourceOptions struct {
 	// The group portion of the API version (e.g. `authorization.k8s.io`).
-	ApiGroup *string `json:"apiGroup" yaml:"apiGroup"`
+	ApiGroup *string `field:"required" json:"apiGroup" yaml:"apiGroup"`
 	// The name of the resource type as it appears in the relevant API endpoint.
 	//
 	// Example:
@@ -1175,7 +1175,7 @@ type ApiResourceOptions struct {
 	//
 	// See: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-resources
 	//
-	ResourceType *string `json:"resourceType" yaml:"resourceType"`
+	ResourceType *string `field:"required" json:"resourceType" yaml:"resourceType"`
 }
 
 // Represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod.
@@ -1605,58 +1605,58 @@ func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) ToString() *string {
 // Properties for `AwsElasticBlockStorePersistentVolume`.
 type AwsElasticBlockStorePersistentVolumeProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Contains all ways the volume can be mounted.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
 	//
-	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
 	//
 	// Expected to be non-nil when bound.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
 	//
-	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	Claim IPersistentVolumeClaim `field:"optional" json:"claim" yaml:"claim"`
 	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
 	//
-	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	MountOptions *[]*string `field:"optional" json:"mountOptions" yaml:"mountOptions"`
 	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
 	//
 	// The reclaim policy tells the cluster what to do with
 	// the volume after it has been released of its claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
 	//
-	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	ReclaimPolicy PersistentVolumeReclaimPolicy `field:"optional" json:"reclaimPolicy" yaml:"reclaimPolicy"`
 	// What is the storage capacity of this volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
 	//
-	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of StorageClass to which this persistent volume belongs.
-	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// Defines what type of volume is required by the claim.
-	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 	// Unique ID of the persistent disk resource in AWS (Amazon EBS volume).
 	//
 	// More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	VolumeId *string `json:"volumeId" yaml:"volumeId"`
+	VolumeId *string `field:"required" json:"volumeId" yaml:"volumeId"`
 	// Filesystem type of the volume that you want to mount.
 	//
 	// Tip: Ensure that the filesystem type is supported by the host operating system.
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// The partition in the volume that you want to mount.
 	//
 	// If omitted, the default is to mount by volume name.
 	// Examples: For volume /dev/sda1, you specify the partition as "1".
 	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
-	Partition *float64 `json:"partition" yaml:"partition"`
+	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Options of `Volume.fromAwsElasticBlockStore`.
@@ -1666,19 +1666,19 @@ type AwsElasticBlockStoreVolumeOptions struct {
 	// Tip: Ensure that the filesystem type is supported by the host operating system.
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The partition in the volume that you want to mount.
 	//
 	// If omitted, the default is to mount by volume name.
 	// Examples: For volume /dev/sda1, you specify the partition as "1".
 	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
-	Partition *float64 `json:"partition" yaml:"partition"`
+	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
@@ -2154,66 +2154,66 @@ const (
 // Properties for `AzureDiskPersistentVolume`.
 type AzureDiskPersistentVolumeProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Contains all ways the volume can be mounted.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
 	//
-	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
 	//
 	// Expected to be non-nil when bound.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
 	//
-	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	Claim IPersistentVolumeClaim `field:"optional" json:"claim" yaml:"claim"`
 	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
 	//
-	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	MountOptions *[]*string `field:"optional" json:"mountOptions" yaml:"mountOptions"`
 	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
 	//
 	// The reclaim policy tells the cluster what to do with
 	// the volume after it has been released of its claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
 	//
-	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	ReclaimPolicy PersistentVolumeReclaimPolicy `field:"optional" json:"reclaimPolicy" yaml:"reclaimPolicy"`
 	// What is the storage capacity of this volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
 	//
-	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of StorageClass to which this persistent volume belongs.
-	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// Defines what type of volume is required by the claim.
-	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 	// The Name of the data disk in the blob storage.
-	DiskName *string `json:"diskName" yaml:"diskName"`
+	DiskName *string `field:"required" json:"diskName" yaml:"diskName"`
 	// The URI the data disk in the blob storage.
-	DiskUri *string `json:"diskUri" yaml:"diskUri"`
+	DiskUri *string `field:"required" json:"diskUri" yaml:"diskUri"`
 	// Host Caching mode.
-	CachingMode AzureDiskPersistentVolumeCachingMode `json:"cachingMode" yaml:"cachingMode"`
+	CachingMode AzureDiskPersistentVolumeCachingMode `field:"optional" json:"cachingMode" yaml:"cachingMode"`
 	// Filesystem type to mount.
 	//
 	// Must be a filesystem type supported by the host operating system.
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// Kind of disk.
-	Kind AzureDiskPersistentVolumeKind `json:"kind" yaml:"kind"`
+	Kind AzureDiskPersistentVolumeKind `field:"optional" json:"kind" yaml:"kind"`
 	// Force the ReadOnly setting in VolumeMounts.
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Options of `Volume.fromAzureDisk`.
 type AzureDiskVolumeOptions struct {
 	// Host Caching mode.
-	CachingMode AzureDiskPersistentVolumeCachingMode `json:"cachingMode" yaml:"cachingMode"`
+	CachingMode AzureDiskPersistentVolumeCachingMode `field:"optional" json:"cachingMode" yaml:"cachingMode"`
 	// Filesystem type to mount.
 	//
 	// Must be a filesystem type supported by the host operating system.
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// Kind of disk.
-	Kind AzureDiskPersistentVolumeKind `json:"kind" yaml:"kind"`
+	Kind AzureDiskPersistentVolumeKind `field:"optional" json:"kind" yaml:"kind"`
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// Force the ReadOnly setting in VolumeMounts.
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Create a secret for basic authentication.
@@ -2497,15 +2497,15 @@ func (b *jsiiProxy_BasicAuthSecret) ToString() *string {
 // Options for `BasicAuthSecret`.
 type BasicAuthSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// The password or token for authentication.
-	Password *string `json:"password" yaml:"password"`
+	Password *string `field:"required" json:"password" yaml:"password"`
 	// The user name for authentication.
-	Username *string `json:"username" yaml:"username"`
+	Username *string `field:"required" json:"username" yaml:"username"`
 }
 
 // ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.
@@ -3255,9 +3255,9 @@ func (c *jsiiProxy_ClusterRoleBinding) ToString() *string {
 // Properties for `ClusterRoleBinding`.
 type ClusterRoleBindingProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// The role to bind to.
-	Role IClusterRole `json:"role" yaml:"role"`
+	Role IClusterRole `field:"required" json:"role" yaml:"role"`
 }
 
 // Policy rule of a `ClusterRole.
@@ -3266,21 +3266,21 @@ type ClusterRolePolicyRule struct {
 	//
 	// Can be either api resources
 	// or non api resources.
-	Endpoints *[]IApiEndpoint `json:"endpoints" yaml:"endpoints"`
+	Endpoints *[]IApiEndpoint `field:"required" json:"endpoints" yaml:"endpoints"`
 	// Verbs to allow.
 	//
 	// (e.g ['get', 'watch'])
-	Verbs *[]*string `json:"verbs" yaml:"verbs"`
+	Verbs *[]*string `field:"required" json:"verbs" yaml:"verbs"`
 }
 
 // Properties for `ClusterRole`.
 type ClusterRoleProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Specify labels that should be used to locate ClusterRoles, whose rules will be automatically filled into this ClusterRole's rules.
-	AggregationLabels *map[string]*string `json:"aggregationLabels" yaml:"aggregationLabels"`
+	AggregationLabels *map[string]*string `field:"optional" json:"aggregationLabels" yaml:"aggregationLabels"`
 	// A list of rules the role should allow.
-	Rules *[]*ClusterRolePolicyRule `json:"rules" yaml:"rules"`
+	Rules *[]*ClusterRolePolicyRule `field:"optional" json:"rules" yaml:"rules"`
 }
 
 // Options for `Probe.fromCommand()`.
@@ -3288,35 +3288,35 @@ type CommandProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
+	FailureThreshold *float64 `field:"optional" json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `field:"optional" json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `field:"optional" json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
+	SuccessThreshold *float64 `field:"optional" json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
 }
 
 // Common properties for `Secret`.
 type CommonSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 }
 
 // ConfigMap holds configuration data for pods to consume.
@@ -3646,7 +3646,7 @@ func (c *jsiiProxy_ConfigMap) ToString() *string {
 // Properties for initialization of `ConfigMap`.
 type ConfigMapProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// BinaryData contains the binary data.
 	//
 	// Each key must consist of alphanumeric characters, '-', '_' or '.'.
@@ -3655,7 +3655,7 @@ type ConfigMapProps struct {
 	// this is enforced during validation process.
 	//
 	// You can also add binary data using `configMap.addBinaryData()`.
-	BinaryData *map[string]*string `json:"binaryData" yaml:"binaryData"`
+	BinaryData *map[string]*string `field:"optional" json:"binaryData" yaml:"binaryData"`
 	// Data contains the configuration data.
 	//
 	// Each key must consist of alphanumeric characters, '-', '_' or '.'. Values
@@ -3664,11 +3664,11 @@ type ConfigMapProps struct {
 	// is enforced during validation process.
 	//
 	// You can also add data using `configMap.addData()`.
-	Data *map[string]*string `json:"data" yaml:"data"`
+	Data *map[string]*string `field:"optional" json:"data" yaml:"data"`
 	// If set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 }
 
 // Options for the ConfigMap-based volume.
@@ -3679,7 +3679,7 @@ type ConfigMapVolumeOptions struct {
 	// 0777. Defaults to 0644. Directories within the path are not affected by
 	// this setting. This might be in conflict with other options that affect the
 	// file mode, like fsGroup, and the result can be other mode bits set.
-	DefaultMode *float64 `json:"defaultMode" yaml:"defaultMode"`
+	DefaultMode *float64 `field:"optional" json:"defaultMode" yaml:"defaultMode"`
 	// If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value.
 	//
 	// If specified, the listed keys will be projected
@@ -3687,11 +3687,11 @@ type ConfigMapVolumeOptions struct {
 	// is specified which is not present in the ConfigMap, the volume setup will
 	// error unless it is marked optional. Paths must be relative and may not
 	// contain the '..' path or start with '..'.
-	Items *map[string]*PathMapping `json:"items" yaml:"items"`
+	Items *map[string]*PathMapping `field:"optional" json:"items" yaml:"items"`
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// Specify whether the ConfigMap or its keys must be defined.
-	Optional *bool `json:"optional" yaml:"optional"`
+	Optional *bool `field:"optional" json:"optional" yaml:"optional"`
 }
 
 // A single application container that you want to run within a pod.
@@ -3884,7 +3884,7 @@ type ContainerLifecycle struct {
 	//
 	// However,
 	// there is no guarantee that the hook will execute before the container ENTRYPOINT.
-	PostStart Handler `json:"postStart" yaml:"postStart"`
+	PostStart Handler `field:"optional" json:"postStart" yaml:"postStart"`
 	// This hook is called immediately before a container is terminated due to an API request or management event such as a liveness/startup probe failure, preemption, resource contention and others.
 	//
 	// A call to the PreStop hook fails if the container is already in a terminated or completed state
@@ -3894,13 +3894,13 @@ type ContainerLifecycle struct {
 	// within the Pod's termination grace period. No parameters are passed to the handler.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination
 	//
-	PreStop Handler `json:"preStop" yaml:"preStop"`
+	PreStop Handler `field:"optional" json:"preStop" yaml:"preStop"`
 }
 
 // Properties for creating a container.
 type ContainerProps struct {
 	// Docker image name.
-	Image *string `json:"image" yaml:"image"`
+	Image *string `field:"required" json:"image" yaml:"image"`
 	// Arguments to the entrypoint. The docker image's CMD is used if `command` is not provided.
 	//
 	// Variable references $(VAR_NAME) are expanded using the container's
@@ -3912,68 +3912,68 @@ type ContainerProps struct {
 	// Cannot be updated.
 	// See: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	//
-	Args *[]*string `json:"args" yaml:"args"`
+	Args *[]*string `field:"optional" json:"args" yaml:"args"`
 	// Entrypoint array.
 	//
 	// Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment.
 	// If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME).
 	// Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated.
 	// More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-	Command *[]*string `json:"command" yaml:"command"`
+	Command *[]*string `field:"optional" json:"command" yaml:"command"`
 	// List of sources to populate environment variables in the container.
 	//
 	// When a key exists in multiple sources, the value associated with
 	// the last source will take precedence. Values defined by the `envVariables` property
 	// with a duplicate key will take precedence.
-	EnvFrom *[]EnvFrom `json:"envFrom" yaml:"envFrom"`
+	EnvFrom *[]EnvFrom `field:"optional" json:"envFrom" yaml:"envFrom"`
 	// Environment variables to set in the container.
-	EnvVariables *map[string]EnvValue `json:"envVariables" yaml:"envVariables"`
+	EnvVariables *map[string]EnvValue `field:"optional" json:"envVariables" yaml:"envVariables"`
 	// Image pull policy for this container.
-	ImagePullPolicy ImagePullPolicy `json:"imagePullPolicy" yaml:"imagePullPolicy"`
+	ImagePullPolicy ImagePullPolicy `field:"optional" json:"imagePullPolicy" yaml:"imagePullPolicy"`
 	// Describes actions that the management system should take in response to container lifecycle events.
-	Lifecycle *ContainerLifecycle `json:"lifecycle" yaml:"lifecycle"`
+	Lifecycle *ContainerLifecycle `field:"optional" json:"lifecycle" yaml:"lifecycle"`
 	// Periodic probe of container liveness.
 	//
 	// Container will be restarted if the probe fails.
-	Liveness Probe `json:"liveness" yaml:"liveness"`
+	Liveness Probe `field:"optional" json:"liveness" yaml:"liveness"`
 	// Name of the container specified as a DNS_LABEL.
 	//
 	// Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// Number of port to expose on the pod's IP address.
 	//
 	// This must be a valid port number, 0 < x < 65536.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 	// Determines when the container is ready to serve traffic.
-	Readiness Probe `json:"readiness" yaml:"readiness"`
+	Readiness Probe `field:"optional" json:"readiness" yaml:"readiness"`
 	// Compute resources (CPU and memory requests and limits) required by the container.
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
-	Resources *ContainerResources `json:"resources" yaml:"resources"`
+	Resources *ContainerResources `field:"optional" json:"resources" yaml:"resources"`
 	// SecurityContext defines the security options the container should be run with.
 	//
 	// If set, the fields override equivalent fields of the pod's security context.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 	//
-	SecurityContext *ContainerSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *ContainerSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// StartupProbe indicates that the Pod has successfully initialized.
 	//
 	// If specified, no other probes are executed until this completes successfully.
-	Startup Probe `json:"startup" yaml:"startup"`
+	Startup Probe `field:"optional" json:"startup" yaml:"startup"`
 	// Pod volumes to mount into the container's filesystem.
 	//
 	// Cannot be updated.
-	VolumeMounts *[]*VolumeMount `json:"volumeMounts" yaml:"volumeMounts"`
+	VolumeMounts *[]*VolumeMount `field:"optional" json:"volumeMounts" yaml:"volumeMounts"`
 	// Container's working directory.
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
-	WorkingDir *string `json:"workingDir" yaml:"workingDir"`
+	WorkingDir *string `field:"optional" json:"workingDir" yaml:"workingDir"`
 }
 
 // CPU and memory compute resources.
 type ContainerResources struct {
-	Cpu *CpuResources `json:"cpu" yaml:"cpu"`
-	Memory *MemoryResources `json:"memory" yaml:"memory"`
+	Cpu *CpuResources `field:"required" json:"cpu" yaml:"cpu"`
+	Memory *MemoryResources `field:"required" json:"memory" yaml:"memory"`
 }
 
 // Container security attributes and settings.
@@ -4071,17 +4071,17 @@ type ContainerSecurityContextProps struct {
 	//
 	// If true, the Kubelet will validate the image at runtime to ensure that it does
 	// not run as UID 0 (root) and fail to start the container if it does.
-	EnsureNonRoot *bool `json:"ensureNonRoot" yaml:"ensureNonRoot"`
+	EnsureNonRoot *bool `field:"optional" json:"ensureNonRoot" yaml:"ensureNonRoot"`
 	// The GID to run the entrypoint of the container process.
-	Group *float64 `json:"group" yaml:"group"`
+	Group *float64 `field:"optional" json:"group" yaml:"group"`
 	// Run container in privileged mode.
 	//
 	// Processes in privileged containers are essentially equivalent to root on the host.
-	Privileged *bool `json:"privileged" yaml:"privileged"`
+	Privileged *bool `field:"optional" json:"privileged" yaml:"privileged"`
 	// Whether this container has a read-only root filesystem.
-	ReadOnlyRootFilesystem *bool `json:"readOnlyRootFilesystem" yaml:"readOnlyRootFilesystem"`
+	ReadOnlyRootFilesystem *bool `field:"optional" json:"readOnlyRootFilesystem" yaml:"readOnlyRootFilesystem"`
 	// The UID to run the entrypoint of the container process.
-	User *float64 `json:"user" yaml:"user"`
+	User *float64 `field:"optional" json:"user" yaml:"user"`
 }
 
 // Represents the amount of CPU.
@@ -4148,8 +4148,8 @@ func Cpu_Units(amount *float64) Cpu {
 
 // CPU request and limit.
 type CpuResources struct {
-	Limit Cpu `json:"limit" yaml:"limit"`
-	Request Cpu `json:"request" yaml:"request"`
+	Limit Cpu `field:"required" json:"limit" yaml:"limit"`
+	Request Cpu `field:"required" json:"request" yaml:"request"`
 }
 
 // A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
@@ -4614,26 +4614,26 @@ func (d *jsiiProxy_DaemonSet) ToString() *string {
 // Properties for `DaemonSet`.
 type DaemonSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -4647,13 +4647,13 @@ type DaemonSetProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -4664,22 +4664,22 @@ type DaemonSetProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `field:"optional" json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
-	Select *bool `json:"select" yaml:"select"`
+	Select *bool `field:"optional" json:"select" yaml:"select"`
 	// Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
-	MinReadySeconds *float64 `json:"minReadySeconds" yaml:"minReadySeconds"`
+	MinReadySeconds *float64 `field:"optional" json:"minReadySeconds" yaml:"minReadySeconds"`
 }
 
 // A Deployment provides declarative updates for Pods and ReplicaSets.
@@ -5223,26 +5223,26 @@ func (d *jsiiProxy_Deployment) ToString() *string {
 // Properties for `Deployment`.
 type DeploymentProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -5256,13 +5256,13 @@ type DeploymentProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -5273,26 +5273,26 @@ type DeploymentProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `field:"optional" json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
-	Select *bool `json:"select" yaml:"select"`
+	Select *bool `field:"optional" json:"select" yaml:"select"`
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	//
 	// Zero means the pod will be considered available as soon as it is ready.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds
 	//
-	MinReady cdk8s.Duration `json:"minReady" yaml:"minReady"`
+	MinReady cdk8s.Duration `field:"optional" json:"minReady" yaml:"minReady"`
 	// The maximum duration for a deployment to make progress before it is considered to be failed.
 	//
 	// The deployment controller will continue
@@ -5302,11 +5302,11 @@ type DeploymentProps struct {
 	// Note that progress will not be estimated during the time a deployment is paused.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#progress-deadline-seconds
 	//
-	ProgressDeadline cdk8s.Duration `json:"progressDeadline" yaml:"progressDeadline"`
+	ProgressDeadline cdk8s.Duration `field:"optional" json:"progressDeadline" yaml:"progressDeadline"`
 	// Number of desired pods.
-	Replicas *float64 `json:"replicas" yaml:"replicas"`
+	Replicas *float64 `field:"optional" json:"replicas" yaml:"replicas"`
 	// Specifies the strategy used to replace old Pods by new ones.
-	Strategy DeploymentStrategy `json:"strategy" yaml:"strategy"`
+	Strategy DeploymentStrategy `field:"optional" json:"strategy" yaml:"strategy"`
 }
 
 // Deployment strategies.
@@ -5363,7 +5363,7 @@ type DeploymentStrategyRollingUpdateOptions struct {
 	// starts, such that the total number of old and new pods do not exceed 130% of desired pods.
 	// Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that
 	// total number of pods running at any time during the update is at most 130% of desired pods.
-	MaxSurge PercentOrAbsolute `json:"maxSurge" yaml:"maxSurge"`
+	MaxSurge PercentOrAbsolute `field:"optional" json:"maxSurge" yaml:"maxSurge"`
 	// The maximum number of pods that can be unavailable during the update.
 	//
 	// Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).
@@ -5374,15 +5374,15 @@ type DeploymentStrategyRollingUpdateOptions struct {
 	// pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can
 	// be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total
 	// number of pods available at all times during the update is at least 70% of desired pods.
-	MaxUnavailable PercentOrAbsolute `json:"maxUnavailable" yaml:"maxUnavailable"`
+	MaxUnavailable PercentOrAbsolute `field:"optional" json:"maxUnavailable" yaml:"maxUnavailable"`
 }
 
 // Custom DNS option.
 type DnsOption struct {
 	// Option name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"required" json:"name" yaml:"name"`
 	// Option value.
-	Value *string `json:"value" yaml:"value"`
+	Value *string `field:"optional" json:"value" yaml:"value"`
 }
 
 // Pod DNS policies.
@@ -5683,15 +5683,15 @@ func (d *jsiiProxy_DockerConfigSecret) ToString() *string {
 // Options for `DockerConfigSecret`.
 type DockerConfigSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// JSON content to provide for the `~/.docker/config.json` file. This will be stringified and inserted as stringData.
 	// See: https://docs.docker.com/engine/reference/commandline/cli/#sample-configuration-file
 	//
-	Data *map[string]interface{} `json:"data" yaml:"data"`
+	Data *map[string]interface{} `field:"required" json:"data" yaml:"data"`
 }
 
 // The medium on which to store the volume.
@@ -5717,14 +5717,14 @@ type EmptyDirVolumeOptions struct {
 	// filesystem) for you instead. While tmpfs is very fast, be aware that unlike
 	// disks, tmpfs is cleared on node reboot and any files you write will count
 	// against your Container's memory limit.
-	Medium EmptyDirMedium `json:"medium" yaml:"medium"`
+	Medium EmptyDirMedium `field:"optional" json:"medium" yaml:"medium"`
 	// Total amount of local storage required for this EmptyDir volume.
 	//
 	// The size
 	// limit is also applicable for memory medium. The maximum usage on memory
 	// medium EmptyDir would be the minimum value between the SizeLimit specified
 	// here and the sum of memory limits of all containers in a pod.
-	SizeLimit cdk8s.Size `json:"sizeLimit" yaml:"sizeLimit"`
+	SizeLimit cdk8s.Size `field:"optional" json:"sizeLimit" yaml:"sizeLimit"`
 }
 
 // Container environment variables.
@@ -6041,15 +6041,15 @@ func EnvValue_FromValue(value *string) EnvValue {
 // Options to specify an envionment variable value from a ConfigMap key.
 type EnvValueFromConfigMapOptions struct {
 	// Specify whether the ConfigMap or its key must be defined.
-	Optional *bool `json:"optional" yaml:"optional"`
+	Optional *bool `field:"optional" json:"optional" yaml:"optional"`
 }
 
 // Options to specify an environment variable value from a field reference.
 type EnvValueFromFieldRefOptions struct {
 	// Version of the schema the FieldPath is written in terms of.
-	ApiVersion *string `json:"apiVersion" yaml:"apiVersion"`
+	ApiVersion *string `field:"optional" json:"apiVersion" yaml:"apiVersion"`
 	// The key to select the pod label or annotation.
-	Key *string `json:"key" yaml:"key"`
+	Key *string `field:"optional" json:"key" yaml:"key"`
 }
 
 // Options to specify an environment variable value from the process environment.
@@ -6057,21 +6057,21 @@ type EnvValueFromProcessOptions struct {
 	// Specify whether the key must exist in the environment.
 	//
 	// If this is set to true, and the key does not exist, an error will thrown.
-	Required *bool `json:"required" yaml:"required"`
+	Required *bool `field:"optional" json:"required" yaml:"required"`
 }
 
 // Options to specify an environment variable value from a resource.
 type EnvValueFromResourceOptions struct {
 	// The container to select the value from.
-	Container Container `json:"container" yaml:"container"`
+	Container Container `field:"optional" json:"container" yaml:"container"`
 	// The output format of the exposed resource.
-	Divisor *string `json:"divisor" yaml:"divisor"`
+	Divisor *string `field:"optional" json:"divisor" yaml:"divisor"`
 }
 
 // Options to specify an environment variable value from a Secret.
 type EnvValueFromSecretOptions struct {
 	// Specify whether the Secret or its key must be defined.
-	Optional *bool `json:"optional" yaml:"optional"`
+	Optional *bool `field:"optional" json:"optional" yaml:"optional"`
 }
 
 // Options for exposing a deployment via an ingress.
@@ -6079,21 +6079,21 @@ type ExposeDeploymentViaIngressOptions struct {
 	// The name of the service to expose.
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The port that the service should serve on.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol" yaml:"protocol"`
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The type of the exposed service.
-	ServiceType ServiceType `json:"serviceType" yaml:"serviceType"`
+	ServiceType ServiceType `field:"optional" json:"serviceType" yaml:"serviceType"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 	// The ingress to add rules to.
-	Ingress Ingress `json:"ingress" yaml:"ingress"`
+	Ingress Ingress `field:"optional" json:"ingress" yaml:"ingress"`
 	// The type of the path.
-	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
+	PathType HttpIngressPathType `field:"optional" json:"pathType" yaml:"pathType"`
 }
 
 // Options for exposing a deployment via a service.
@@ -6101,25 +6101,25 @@ type ExposeDeploymentViaServiceOptions struct {
 	// The name of the service to expose.
 	//
 	// This will be set on the Service.metadata and must be a DNS_LABEL
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The port that the service should serve on.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol" yaml:"protocol"`
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The type of the exposed service.
-	ServiceType ServiceType `json:"serviceType" yaml:"serviceType"`
+	ServiceType ServiceType `field:"optional" json:"serviceType" yaml:"serviceType"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 }
 
 // Options for exposing a service using an ingress.
 type ExposeServiceViaIngressOptions struct {
 	// The ingress to add rules to.
-	Ingress Ingress `json:"ingress" yaml:"ingress"`
+	Ingress Ingress `field:"optional" json:"ingress" yaml:"ingress"`
 	// The type of the path.
-	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
+	PathType HttpIngressPathType `field:"optional" json:"pathType" yaml:"pathType"`
 }
 
 type FsGroupChangePolicy string
@@ -6562,58 +6562,58 @@ func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) ToString() *string {
 // Properties for `GCEPersistentDiskPersistentVolume`.
 type GCEPersistentDiskPersistentVolumeProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Contains all ways the volume can be mounted.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
 	//
-	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
 	//
 	// Expected to be non-nil when bound.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
 	//
-	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	Claim IPersistentVolumeClaim `field:"optional" json:"claim" yaml:"claim"`
 	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
 	//
-	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	MountOptions *[]*string `field:"optional" json:"mountOptions" yaml:"mountOptions"`
 	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
 	//
 	// The reclaim policy tells the cluster what to do with
 	// the volume after it has been released of its claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
 	//
-	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	ReclaimPolicy PersistentVolumeReclaimPolicy `field:"optional" json:"reclaimPolicy" yaml:"reclaimPolicy"`
 	// What is the storage capacity of this volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
 	//
-	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of StorageClass to which this persistent volume belongs.
-	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// Defines what type of volume is required by the claim.
-	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 	// Unique name of the PD resource in GCE.
 	//
 	// Used to identify the disk in GCE.
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 	//
-	PdName *string `json:"pdName" yaml:"pdName"`
+	PdName *string `field:"required" json:"pdName" yaml:"pdName"`
 	// Filesystem type of the volume that you want to mount.
 	//
 	// Tip: Ensure that the filesystem type is supported by the host operating system.
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// The partition in the volume that you want to mount.
 	//
 	// If omitted, the default is to mount by volume name.
 	// Examples: For volume /dev/sda1, you specify the partition as "1".
 	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
-	Partition *float64 `json:"partition" yaml:"partition"`
+	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Options of `Volume.fromGcePersistentDisk`.
@@ -6623,19 +6623,19 @@ type GCEPersistentDiskVolumeOptions struct {
 	// Tip: Ensure that the filesystem type is supported by the host operating system.
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	FsType *string `json:"fsType" yaml:"fsType"`
+	FsType *string `field:"optional" json:"fsType" yaml:"fsType"`
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The partition in the volume that you want to mount.
 	//
 	// If omitted, the default is to mount by volume name.
 	// Examples: For volume /dev/sda1, you specify the partition as "1".
 	// Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
-	Partition *float64 `json:"partition" yaml:"partition"`
+	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 	// Specify "true" to force and set the ReadOnly property in VolumeMounts to "true".
 	// See: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 	//
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Represents a group.
@@ -6720,7 +6720,7 @@ func NewGroup_Override(g Group, props *GroupProps) {
 // Properties for `Group`.
 type GroupProps struct {
 	// The name of the group.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"required" json:"name" yaml:"name"`
 }
 
 // Defines a specific action that should be taken.
@@ -6783,23 +6783,23 @@ func Handler_FromTcpSocket(options *HandlerFromTcpSocketOptions) Handler {
 // Options for `Handler.fromHttpGet`.
 type HandlerFromHttpGetOptions struct {
 	// The TCP port to use when sending the GET request.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // Options for `Handler.fromTcpSocket`.
 type HandlerFromTcpSocketOptions struct {
 	// The host name to connect to on the container.
-	Host *string `json:"host" yaml:"host"`
+	Host *string `field:"optional" json:"host" yaml:"host"`
 	// The TCP port to connect to on the container.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's /etc/hosts file.
 type HostAlias struct {
 	// Hostnames for the chosen IP address.
-	Hostnames *[]*string `json:"hostnames" yaml:"hostnames"`
+	Hostnames *[]*string `field:"required" json:"hostnames" yaml:"hostnames"`
 	// IP address of the host file entry.
-	Ip *string `json:"ip" yaml:"ip"`
+	Ip *string `field:"required" json:"ip" yaml:"ip"`
 }
 
 // Options for `Probe.fromHttpGet()`.
@@ -6807,27 +6807,27 @@ type HttpGetProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
+	FailureThreshold *float64 `field:"optional" json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `field:"optional" json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `field:"optional" json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
+	SuccessThreshold *float64 `field:"optional" json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
 	// The TCP port to use when sending the GET request.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // Specify how the path is matched against request paths.
@@ -7524,12 +7524,12 @@ func IngressBackend_FromService(serv Service, options *ServiceIngressBackendOpti
 // Properties for `Ingress`.
 type IngressProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// The default backend services requests that do not match any rule.
 	//
 	// Using this option or the `addDefaultBackend()` method is equivalent to
 	// adding a rule with both `path` and `host` undefined.
-	DefaultBackend IngressBackend `json:"defaultBackend" yaml:"defaultBackend"`
+	DefaultBackend IngressBackend `field:"optional" json:"defaultBackend" yaml:"defaultBackend"`
 	// Routing rules for this ingress.
 	//
 	// Each rule must define an `IngressBackend` that will receive the requests
@@ -7538,7 +7538,7 @@ type IngressProps struct {
 	//
 	// You can also add rules later using `addRule()`, `addHostRule()`,
 	// `addDefaultBackend()` and `addHostDefaultBackend()`.
-	Rules *[]*IngressRule `json:"rules" yaml:"rules"`
+	Rules *[]*IngressRule `field:"optional" json:"rules" yaml:"rules"`
 	// TLS settings for this ingress.
 	//
 	// Using this option tells the ingress controller to expose a TLS endpoint.
@@ -7546,7 +7546,7 @@ type IngressProps struct {
 	// members of this list specify different hosts, they will be multiplexed on
 	// the same port according to the hostname specified through the SNI TLS
 	// extension, if the ingress controller fulfilling the ingress supports SNI.
-	Tls *[]*IngressTls `json:"tls" yaml:"tls"`
+	Tls *[]*IngressTls `field:"optional" json:"tls" yaml:"tls"`
 }
 
 // Represents the rules mapping the paths under a specified host to the related backend services.
@@ -7555,7 +7555,7 @@ type IngressProps struct {
 // then routed to the backend associated with the matching path.
 type IngressRule struct {
 	// Backend defines the referenced service endpoint to which the traffic will be forwarded to.
-	Backend IngressBackend `json:"backend" yaml:"backend"`
+	Backend IngressBackend `field:"required" json:"backend" yaml:"backend"`
 	// Host is the fully qualified domain name of a network host, as defined by RFC 3986.
 	//
 	// Note the following deviations from the "host" part of the URI as
@@ -7565,16 +7565,16 @@ type IngressRule struct {
 	// port of an Ingress is implicitly :80 for http and :443 for https. Both
 	// these may change in the future. Incoming requests are matched against the
 	// host before the IngressRuleValue.
-	Host *string `json:"host" yaml:"host"`
+	Host *string `field:"optional" json:"host" yaml:"host"`
 	// Path is an extended POSIX regex as defined by IEEE Std 1003.1, (i.e this follows the egrep/unix syntax, not the perl syntax) matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'.
-	Path *string `json:"path" yaml:"path"`
+	Path *string `field:"optional" json:"path" yaml:"path"`
 	// Specify how the path is matched against request paths.
 	//
 	// By default, path
 	// types will be matched by prefix.
 	// See: https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types
 	//
-	PathType HttpIngressPathType `json:"pathType" yaml:"pathType"`
+	PathType HttpIngressPathType `field:"optional" json:"pathType" yaml:"pathType"`
 }
 
 // Represents the TLS configuration mapping that is passed to the ingress controller for SSL termination.
@@ -7583,13 +7583,13 @@ type IngressTls struct {
 	//
 	// The values in
 	// this list must match the name/s used in the TLS Secret.
-	Hosts *[]*string `json:"hosts" yaml:"hosts"`
+	Hosts *[]*string `field:"optional" json:"hosts" yaml:"hosts"`
 	// Secret is the secret that contains the certificate and key used to terminate SSL traffic on 443.
 	//
 	// If the SNI host in a listener conflicts with
 	// the "Host" header field used by an IngressRule, the SNI host is used for
 	// termination and value of the Host header is used for routing.
-	Secret ISecret `json:"secret" yaml:"secret"`
+	Secret ISecret `field:"optional" json:"secret" yaml:"secret"`
 }
 
 // A Job creates one or more Pods and ensures that a specified number of them successfully terminate.
@@ -8073,26 +8073,26 @@ func (j *jsiiProxy_Job) ToString() *string {
 // Properties for `Job`.
 type JobProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -8106,13 +8106,13 @@ type JobProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -8123,24 +8123,24 @@ type JobProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `field:"optional" json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
-	Select *bool `json:"select" yaml:"select"`
+	Select *bool `field:"optional" json:"select" yaml:"select"`
 	// Specifies the duration the job may be active before the system tries to terminate it.
-	ActiveDeadline cdk8s.Duration `json:"activeDeadline" yaml:"activeDeadline"`
+	ActiveDeadline cdk8s.Duration `field:"optional" json:"activeDeadline" yaml:"activeDeadline"`
 	// Specifies the number of retries before marking this job failed.
-	BackoffLimit *float64 `json:"backoffLimit" yaml:"backoffLimit"`
+	BackoffLimit *float64 `field:"optional" json:"backoffLimit" yaml:"backoffLimit"`
 	// Limits the lifetime of a Job that has finished execution (either Complete or Failed).
 	//
 	// If this field is set, after the Job finishes, it is eligible to
@@ -8149,7 +8149,7 @@ type JobProps struct {
 	// the Job becomes eligible to be deleted immediately after it finishes. This
 	// field is alpha-level and is only honored by servers that enable the
 	// `TTLAfterFinished` feature.
-	TtlAfterFinished cdk8s.Duration `json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
+	TtlAfterFinished cdk8s.Duration `field:"optional" json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
 }
 
 // A label selector is a label query over a set of resources.
@@ -8293,15 +8293,15 @@ func LabelSelector_NotIn(key *string, values *[]*string) LabelSelector {
 // A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
 type LabelSelectorRequirement struct {
 	// The label key that the selector applies to.
-	Key *string `json:"key" yaml:"key"`
+	Key *string `field:"required" json:"key" yaml:"key"`
 	// Represents a key's relationship to a set of values.
-	Operator LabelSelectorRequirementOperator `json:"operator" yaml:"operator"`
+	Operator LabelSelectorRequirementOperator `field:"required" json:"operator" yaml:"operator"`
 	// An array of string values.
 	//
 	// If the operator is In or NotIn, the values array
 	// must be non-empty. If the operator is Exists or DoesNotExist,
 	// the values array must be empty. This array is replaced during a strategic merge patch.
-	Values *[]*string `json:"values" yaml:"values"`
+	Values *[]*string `field:"optional" json:"values" yaml:"values"`
 }
 
 // Possible operators.
@@ -8320,8 +8320,8 @@ const (
 
 // Memory request and limit.
 type MemoryResources struct {
-	Limit cdk8s.Size `json:"limit" yaml:"limit"`
-	Request cdk8s.Size `json:"request" yaml:"request"`
+	Limit cdk8s.Size `field:"required" json:"limit" yaml:"limit"`
+	Request cdk8s.Size `field:"required" json:"request" yaml:"request"`
 }
 
 // Options for mounts.
@@ -8332,13 +8332,13 @@ type MountOptions struct {
 	//
 	// Mount propagation allows for sharing volumes mounted by a Container to
 	// other Containers in the same Pod, or even to other Pods on the same node.
-	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
+	Propagation MountPropagation `field:"optional" json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
 	// Defaults to false.
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 	// Path within the volume from which the container's volume should be mounted.).
-	SubPath *string `json:"subPath" yaml:"subPath"`
+	SubPath *string `field:"optional" json:"subPath" yaml:"subPath"`
 	// Expanded path within the volume from which the container's volume should be mounted.
 	//
 	// Behaves similarly to SubPath but environment variable references
@@ -8346,7 +8346,7 @@ type MountOptions struct {
 	// (volume's root).
 	//
 	// `subPathExpr` and `subPath` are mutually exclusive.
-	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
+	SubPathExpr *string `field:"optional" json:"subPathExpr" yaml:"subPathExpr"`
 }
 
 type MountPropagation string
@@ -8456,13 +8456,13 @@ type PathMapping struct {
 	// May not be an absolute
 	// path. May not contain the path element '..'. May not start with the string
 	// '..'.
-	Path *string `json:"path" yaml:"path"`
+	Path *string `field:"required" json:"path" yaml:"path"`
 	// Optional: mode bits to use on this file, must be a value between 0 and 0777.
 	//
 	// If not specified, the volume defaultMode will be used. This might be
 	// in conflict with other options that affect the file mode, like fsGroup, and
 	// the result can be other mode bits set.
-	Mode *float64 `json:"mode" yaml:"mode"`
+	Mode *float64 `field:"optional" json:"mode" yaml:"mode"`
 }
 
 // Union like class repsenting either a ration in percents or an absolute number.
@@ -9262,22 +9262,22 @@ func (p *jsiiProxy_PersistentVolumeClaim) ToString() *string {
 // Properties for `PersistentVolumeClaim`.
 type PersistentVolumeClaimProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Contains the access modes the volume should support.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 	//
-	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Minimum storage size the volume should have.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
 	//
-	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of the StorageClass required by the claim. When this property is not set, the behavior is as follows:.
 	//
 	// - If the admission plugin is turned on, the storage class marked as default will be used.
 	// - If the admission plugin is turned off, the pvc can only be bound to volumes without a storage class.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
 	//
-	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// The PersistentVolume backing this claim.
 	//
 	// The control plane still checks that storage class, access modes,
@@ -9291,17 +9291,17 @@ type PersistentVolumeClaimProps struct {
 	// create a bi-directional bounded claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding.
 	//
-	Volume IPersistentVolume `json:"volume" yaml:"volume"`
+	Volume IPersistentVolume `field:"optional" json:"volume" yaml:"volume"`
 	// Defines what type of volume is required by the claim.
-	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 }
 
 // Options for a PersistentVolumeClaim-based volume.
 type PersistentVolumeClaimVolumeOptions struct {
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// Will force the ReadOnly setting in VolumeMounts.
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 }
 
 // Volume Modes.
@@ -9327,36 +9327,36 @@ const (
 // Properties for `PersistentVolume`.
 type PersistentVolumeProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Contains all ways the volume can be mounted.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
 	//
-	AccessModes *[]PersistentVolumeAccessMode `json:"accessModes" yaml:"accessModes"`
+	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim.
 	//
 	// Expected to be non-nil when bound.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
 	//
-	Claim IPersistentVolumeClaim `json:"claim" yaml:"claim"`
+	Claim IPersistentVolumeClaim `field:"optional" json:"claim" yaml:"claim"`
 	// A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
 	//
-	MountOptions *[]*string `json:"mountOptions" yaml:"mountOptions"`
+	MountOptions *[]*string `field:"optional" json:"mountOptions" yaml:"mountOptions"`
 	// When a user is done with their volume, they can delete the PVC objects from the API that allows reclamation of the resource.
 	//
 	// The reclaim policy tells the cluster what to do with
 	// the volume after it has been released of its claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
 	//
-	ReclaimPolicy PersistentVolumeReclaimPolicy `json:"reclaimPolicy" yaml:"reclaimPolicy"`
+	ReclaimPolicy PersistentVolumeReclaimPolicy `field:"optional" json:"reclaimPolicy" yaml:"reclaimPolicy"`
 	// What is the storage capacity of this volume.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
 	//
-	Storage cdk8s.Size `json:"storage" yaml:"storage"`
+	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of StorageClass to which this persistent volume belongs.
-	StorageClassName *string `json:"storageClassName" yaml:"storageClassName"`
+	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// Defines what type of volume is required by the claim.
-	VolumeMode PersistentVolumeMode `json:"volumeMode" yaml:"volumeMode"`
+	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 }
 
 // Reclaim Policies.
@@ -9936,14 +9936,14 @@ func (p *jsiiProxy_PodDns) AddSearch(searches ...*string) {
 // Properties for `PodDns`.
 type PodDnsProps struct {
 	// Specifies the hostname of the Pod.
-	Hostname *string `json:"hostname" yaml:"hostname"`
+	Hostname *string `field:"optional" json:"hostname" yaml:"hostname"`
 	// If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).
 	//
 	// In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).
 	// In Windows containers, this means setting the registry value of hostname for the registry
 	// key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters to FQDN.
 	// If a pod does not have FQDN, this has no effect.
-	HostnameAsFQDN *bool `json:"hostnameAsFQDN" yaml:"hostnameAsFQDN"`
+	HostnameAsFQDN *bool `field:"optional" json:"hostnameAsFQDN" yaml:"hostnameAsFQDN"`
 	// A list of IP addresses that will be used as DNS servers for the Pod.
 	//
 	// There can be at most 3 IP addresses specified.
@@ -9951,17 +9951,17 @@ type PodDnsProps struct {
 	// otherwise this property is optional.
 	// The servers listed will be combined to the base nameservers generated from
 	// the specified DNS policy with duplicate addresses removed.
-	Nameservers *[]*string `json:"nameservers" yaml:"nameservers"`
+	Nameservers *[]*string `field:"optional" json:"nameservers" yaml:"nameservers"`
 	// List of objects where each object may have a name property (required) and a value property (optional).
 	//
 	// The contents in this property
 	// will be merged to the options generated from the specified DNS policy.
 	// Duplicate entries are removed.
-	Options *[]*DnsOption `json:"options" yaml:"options"`
+	Options *[]*DnsOption `field:"optional" json:"options" yaml:"options"`
 	// Set DNS policy for the pod.
 	//
 	// If policy is set to `None`, other configuration must be supplied.
-	Policy DnsPolicy `json:"policy" yaml:"policy"`
+	Policy DnsPolicy `field:"optional" json:"policy" yaml:"policy"`
 	// A list of DNS search domains for hostname lookup in the Pod.
 	//
 	// When specified, the provided list will be merged into the base
@@ -9969,9 +9969,9 @@ type PodDnsProps struct {
 	// Duplicate domain names are removed.
 	//
 	// Kubernetes allows for at most 6 search domains.
-	Searches *[]*string `json:"searches" yaml:"searches"`
+	Searches *[]*string `field:"optional" json:"searches" yaml:"searches"`
 	// If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>".
-	Subdomain *string `json:"subdomain" yaml:"subdomain"`
+	Subdomain *string `field:"optional" json:"subdomain" yaml:"subdomain"`
 }
 
 // Controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
@@ -9992,26 +9992,26 @@ const (
 // Properties for `Pod`.
 type PodProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -10025,13 +10025,13 @@ type PodProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -10042,13 +10042,13 @@ type PodProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 }
 
 // Holds pod-level security attributes and common container settings.
@@ -10157,22 +10157,22 @@ type PodSecurityContextProps struct {
 	//
 	// If true, the Kubelet will validate the image at runtime to ensure that it does
 	// not run as UID 0 (root) and fail to start the container if it does.
-	EnsureNonRoot *bool `json:"ensureNonRoot" yaml:"ensureNonRoot"`
+	EnsureNonRoot *bool `field:"optional" json:"ensureNonRoot" yaml:"ensureNonRoot"`
 	// Modify the ownership and permissions of pod volumes to this GID.
-	FsGroup *float64 `json:"fsGroup" yaml:"fsGroup"`
+	FsGroup *float64 `field:"optional" json:"fsGroup" yaml:"fsGroup"`
 	// Defines behavior of changing ownership and permission of the volume before being exposed inside Pod.
 	//
 	// This field will only apply to volume types which support fsGroup based ownership(and permissions).
 	// It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir.
-	FsGroupChangePolicy FsGroupChangePolicy `json:"fsGroupChangePolicy" yaml:"fsGroupChangePolicy"`
+	FsGroupChangePolicy FsGroupChangePolicy `field:"optional" json:"fsGroupChangePolicy" yaml:"fsGroupChangePolicy"`
 	// The GID to run the entrypoint of the container process.
-	Group *float64 `json:"group" yaml:"group"`
+	Group *float64 `field:"optional" json:"group" yaml:"group"`
 	// Sysctls hold a list of namespaced sysctls used for the pod.
 	//
 	// Pods with unsupported sysctls (by the container runtime) might fail to launch.
-	Sysctls *[]*Sysctl `json:"sysctls" yaml:"sysctls"`
+	Sysctls *[]*Sysctl `field:"optional" json:"sysctls" yaml:"sysctls"`
 	// The UID to run the entrypoint of the container process.
-	User *float64 `json:"user" yaml:"user"`
+	User *float64 `field:"optional" json:"user" yaml:"user"`
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -10237,25 +10237,25 @@ type ProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
+	FailureThreshold *float64 `field:"optional" json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `field:"optional" json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `field:"optional" json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
+	SuccessThreshold *float64 `field:"optional" json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
 }
 
 type Protocol string
@@ -10503,7 +10503,7 @@ const (
 // Initialization properties for resources.
 type ResourceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 }
 
 // Restart policy for all containers within the pod.
@@ -11223,29 +11223,29 @@ func (r *jsiiProxy_RoleBinding) ToString() *string {
 // Properties for `RoleBinding`.
 type RoleBindingProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// The role to bind to.
 	//
 	// A RoleBinding can reference a Role or a ClusterRole.
-	Role IRole `json:"role" yaml:"role"`
+	Role IRole `field:"required" json:"role" yaml:"role"`
 }
 
 // Policy rule of a `Role.
 type RolePolicyRule struct {
 	// Resources this rule applies to.
-	Resources *[]IApiResource `json:"resources" yaml:"resources"`
+	Resources *[]IApiResource `field:"required" json:"resources" yaml:"resources"`
 	// Verbs to allow.
 	//
 	// (e.g ['get', 'watch'])
-	Verbs *[]*string `json:"verbs" yaml:"verbs"`
+	Verbs *[]*string `field:"required" json:"verbs" yaml:"verbs"`
 }
 
 // Properties for `Role`.
 type RoleProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// A list of rules the role should allow.
-	Rules *[]*RolePolicyRule `json:"rules" yaml:"rules"`
+	Rules *[]*RolePolicyRule `field:"optional" json:"rules" yaml:"rules"`
 }
 
 // Kubernetes Secrets let you store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
@@ -11535,31 +11535,31 @@ func (s *jsiiProxy_Secret) ToString() *string {
 // Options for `Secret`.
 type SecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// stringData allows specifying non-binary secret data in string form.
 	//
 	// It is
 	// provided as a write-only convenience method. All keys and values are merged
 	// into the data field on write, overwriting any existing values. It is never
 	// output when reading from the API.
-	StringData *map[string]*string `json:"stringData" yaml:"stringData"`
+	StringData *map[string]*string `field:"optional" json:"stringData" yaml:"stringData"`
 	// Optional type associated with the secret.
 	//
 	// Used to facilitate programmatic
 	// handling of secret data by various controllers.
-	Type *string `json:"type" yaml:"type"`
+	Type *string `field:"optional" json:"type" yaml:"type"`
 }
 
 // Represents a specific value in JSON secret.
 type SecretValue struct {
 	// The JSON key.
-	Key *string `json:"key" yaml:"key"`
+	Key *string `field:"required" json:"key" yaml:"key"`
 	// The secret.
-	Secret ISecret `json:"secret" yaml:"secret"`
+	Secret ISecret `field:"required" json:"secret" yaml:"secret"`
 }
 
 // Options for the Secret-based volume.
@@ -11570,7 +11570,7 @@ type SecretVolumeOptions struct {
 	// 0777. Defaults to 0644. Directories within the path are not affected by
 	// this setting. This might be in conflict with other options that affect the
 	// file mode, like fsGroup, and the result can be other mode bits set.
-	DefaultMode *float64 `json:"defaultMode" yaml:"defaultMode"`
+	DefaultMode *float64 `field:"optional" json:"defaultMode" yaml:"defaultMode"`
 	// If unspecified, each key-value pair in the Data field of the referenced secret will be projected into the volume as a file whose name is the key and content is the value.
 	//
 	// If specified, the listed keys will be projected
@@ -11578,11 +11578,11 @@ type SecretVolumeOptions struct {
 	// is specified which is not present in the secret, the volume setup will
 	// error unless it is marked optional. Paths must be relative and may not
 	// contain the '..' path or start with '..'.
-	Items *map[string]*PathMapping `json:"items" yaml:"items"`
+	Items *map[string]*PathMapping `field:"optional" json:"items" yaml:"items"`
 	// The volume name.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// Specify whether the secret or its keys must be defined.
-	Optional *bool `json:"optional" yaml:"optional"`
+	Optional *bool `field:"optional" json:"optional" yaml:"optional"`
 }
 
 // An abstract way to expose an application running on a set of Pods as a network service.
@@ -12226,17 +12226,17 @@ func (s *jsiiProxy_ServiceAccount) ToString() *string {
 // Properties for initialization of `ServiceAccount`.
 type ServiceAccountProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether pods running as this service account should have an API token automatically mounted.
 	//
 	// Can be overridden at the pod level.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountToken *bool `json:"automountToken" yaml:"automountToken"`
+	AutomountToken *bool `field:"optional" json:"automountToken" yaml:"automountToken"`
 	// List of secrets allowed to be used by pods running using this ServiceAccount.
 	// See: https://kubernetes.io/docs/concepts/configuration/secret
 	//
-	Secrets *[]ISecret `json:"secrets" yaml:"secrets"`
+	Secrets *[]ISecret `field:"optional" json:"secrets" yaml:"secrets"`
 }
 
 // Create a secret for a service account token.
@@ -12520,13 +12520,13 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) ToString() *string {
 // Options for `ServiceAccountTokenSecret`.
 type ServiceAccountTokenSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// The service account to store a secret for.
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"required" json:"serviceAccount" yaml:"serviceAccount"`
 }
 
 // Options for setting up backends for ingress rules.
@@ -12537,7 +12537,7 @@ type ServiceIngressBackendOptions struct {
 	// - If the service exposes multiple ports, this option must be specified.
 	// - If the service exposes a single port, this option is optional and if
 	//    specified, it must be the same port exposed by the service.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // Definition of a service port.
@@ -12548,7 +12548,7 @@ type ServicePort struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -12557,15 +12557,15 @@ type ServicePort struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
+	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol" yaml:"protocol"`
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 	// The port number the service will bind to.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"required" json:"port" yaml:"port"`
 }
 
 type ServicePortOptions struct {
@@ -12575,7 +12575,7 @@ type ServicePortOptions struct {
 	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
 	// field in EndpointPort objects. Optional if only one ServicePort is defined
 	// on this service.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"optional" json:"name" yaml:"name"`
 	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
 	//
 	// Usually assigned by the system. If specified, it will be
@@ -12584,19 +12584,19 @@ type ServicePortOptions struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
-	NodePort *float64 `json:"nodePort" yaml:"nodePort"`
+	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `json:"protocol" yaml:"protocol"`
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
-	TargetPort *float64 `json:"targetPort" yaml:"targetPort"`
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 }
 
 // Properties for initialization of `Service`.
 type ServiceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// The IP address of the service and is usually assigned randomly by the master.
 	//
 	// If an address is specified manually and is not in use by others, it
@@ -12607,28 +12607,28 @@ type ServiceProps struct {
 	// ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 	//
-	ClusterIP *string `json:"clusterIP" yaml:"clusterIP"`
+	ClusterIP *string `field:"optional" json:"clusterIP" yaml:"clusterIP"`
 	// A list of IP addresses for which nodes in the cluster will also accept traffic for this service.
 	//
 	// These IPs are not managed by Kubernetes. The user
 	// is responsible for ensuring that traffic arrives at a node with this IP. A
 	// common example is external load-balancers that are not part of the
 	// Kubernetes system.
-	ExternalIPs *[]*string `json:"externalIPs" yaml:"externalIPs"`
+	ExternalIPs *[]*string `field:"optional" json:"externalIPs" yaml:"externalIPs"`
 	// The externalName to be used when ServiceType.EXTERNAL_NAME is set.
-	ExternalName *string `json:"externalName" yaml:"externalName"`
+	ExternalName *string `field:"optional" json:"externalName" yaml:"externalName"`
 	// A list of CIDR IP addresses, if specified and supported by the platform, will restrict traffic through the cloud-provider load-balancer to the specified client IPs.
 	//
 	// More info: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
-	LoadBalancerSourceRanges *[]*string `json:"loadBalancerSourceRanges" yaml:"loadBalancerSourceRanges"`
+	LoadBalancerSourceRanges *[]*string `field:"optional" json:"loadBalancerSourceRanges" yaml:"loadBalancerSourceRanges"`
 	// The port exposed by this service.
 	//
 	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-	Ports *[]*ServicePort `json:"ports" yaml:"ports"`
+	Ports *[]*ServicePort `field:"optional" json:"ports" yaml:"ports"`
 	// Determines how the Service is exposed.
 	//
 	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-	Type ServiceType `json:"type" yaml:"type"`
+	Type ServiceType `field:"optional" json:"type" yaml:"type"`
 }
 
 // For some parts of your application (for example, frontends) you may want to expose a Service onto an external IP address, that's outside of your cluster.
@@ -12941,13 +12941,13 @@ func (s *jsiiProxy_SshAuthSecret) ToString() *string {
 // Options for `SshAuthSecret`.
 type SshAuthSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// The SSH private key to use.
-	SshPrivateKey *string `json:"sshPrivateKey" yaml:"sshPrivateKey"`
+	SshPrivateKey *string `field:"required" json:"sshPrivateKey" yaml:"sshPrivateKey"`
 }
 
 // StatefulSet is the workload API object used to manage stateful applications.
@@ -13458,26 +13458,26 @@ func (s *jsiiProxy_StatefulSet) ToString() *string {
 // Properties for initialization of `StatefulSet`.
 type StatefulSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -13491,13 +13491,13 @@ type StatefulSetProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -13508,22 +13508,22 @@ type StatefulSetProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `field:"optional" json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
-	Select *bool `json:"select" yaml:"select"`
+	Select *bool `field:"optional" json:"select" yaml:"select"`
 	// Service to associate with the statefulset.
-	Service Service `json:"service" yaml:"service"`
+	Service Service `field:"required" json:"service" yaml:"service"`
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	//
 	// Zero means the pod will be considered available as soon as it is ready.
@@ -13531,13 +13531,13 @@ type StatefulSetProps struct {
 	// This is an alpha field and requires enabling StatefulSetMinReadySeconds feature gate.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds
 	//
-	MinReady cdk8s.Duration `json:"minReady" yaml:"minReady"`
+	MinReady cdk8s.Duration `field:"optional" json:"minReady" yaml:"minReady"`
 	// Pod management policy to use for this statefulset.
-	PodManagementPolicy PodManagementPolicy `json:"podManagementPolicy" yaml:"podManagementPolicy"`
+	PodManagementPolicy PodManagementPolicy `field:"optional" json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
-	Replicas *float64 `json:"replicas" yaml:"replicas"`
+	Replicas *float64 `field:"optional" json:"replicas" yaml:"replicas"`
 	// Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
-	Strategy StatefulSetUpdateStrategy `json:"strategy" yaml:"strategy"`
+	Strategy StatefulSetUpdateStrategy `field:"optional" json:"strategy" yaml:"strategy"`
 }
 
 // StatefulSet update strategies.
@@ -13597,15 +13597,15 @@ type StatefulSetUpdateStrategyRollingUpdateOptions struct {
 	// update, roll out a canary, or perform a phased roll out.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#partitions
 	//
-	Partition *float64 `json:"partition" yaml:"partition"`
+	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 }
 
 // Sysctl defines a kernel parameter to be set.
 type Sysctl struct {
 	// Name of a property to set.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"required" json:"name" yaml:"name"`
 	// Value of a property to set.
-	Value *string `json:"value" yaml:"value"`
+	Value *string `field:"required" json:"value" yaml:"value"`
 }
 
 // Options for `Probe.fromTcpSocket()`.
@@ -13613,29 +13613,29 @@ type TcpSocketProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
 	//
 	// Defaults to 3. Minimum value is 1.
-	FailureThreshold *float64 `json:"failureThreshold" yaml:"failureThreshold"`
+	FailureThreshold *float64 `field:"optional" json:"failureThreshold" yaml:"failureThreshold"`
 	// Number of seconds after the container has started before liveness probes are initiated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	InitialDelaySeconds cdk8s.Duration `json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
+	InitialDelaySeconds cdk8s.Duration `field:"optional" json:"initialDelaySeconds" yaml:"initialDelaySeconds"`
 	// How often (in seconds) to perform the probe.
 	//
 	// Default to 10 seconds. Minimum value is 1.
-	PeriodSeconds cdk8s.Duration `json:"periodSeconds" yaml:"periodSeconds"`
+	PeriodSeconds cdk8s.Duration `field:"optional" json:"periodSeconds" yaml:"periodSeconds"`
 	// Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1.
 	//
 	// Must be 1 for liveness and startup. Minimum value is 1.
-	SuccessThreshold *float64 `json:"successThreshold" yaml:"successThreshold"`
+	SuccessThreshold *float64 `field:"optional" json:"successThreshold" yaml:"successThreshold"`
 	// Number of seconds after which the probe times out.
 	//
 	// Defaults to 1 second. Minimum value is 1.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 	//
-	TimeoutSeconds cdk8s.Duration `json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
 	// The host name to connect to on the container.
-	Host *string `json:"host" yaml:"host"`
+	Host *string `field:"optional" json:"host" yaml:"host"`
 	// The TCP port to connect to on the container.
-	Port *float64 `json:"port" yaml:"port"`
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 }
 
 // Create a secret for storing a TLS certificate and its associated key.
@@ -13919,15 +13919,15 @@ func (t *jsiiProxy_TlsSecret) ToString() *string {
 // Options for `TlsSecret`.
 type TlsSecretProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
-	Immutable *bool `json:"immutable" yaml:"immutable"`
+	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// The TLS cert.
-	TlsCert *string `json:"tlsCert" yaml:"tlsCert"`
+	TlsCert *string `field:"required" json:"tlsCert" yaml:"tlsCert"`
 	// The TLS key.
-	TlsKey *string `json:"tlsKey" yaml:"tlsKey"`
+	TlsKey *string `field:"required" json:"tlsKey" yaml:"tlsKey"`
 }
 
 // Represents a user.
@@ -14012,7 +14012,7 @@ func NewUser_Override(u User, props *UserProps) {
 // Properties for `User`.
 type UserProps struct {
 	// The name of the user.
-	Name *string `json:"name" yaml:"name"`
+	Name *string `field:"required" json:"name" yaml:"name"`
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
@@ -14251,13 +14251,13 @@ type VolumeMount struct {
 	//
 	// Mount propagation allows for sharing volumes mounted by a Container to
 	// other Containers in the same Pod, or even to other Pods on the same node.
-	Propagation MountPropagation `json:"propagation" yaml:"propagation"`
+	Propagation MountPropagation `field:"optional" json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
 	// Defaults to false.
-	ReadOnly *bool `json:"readOnly" yaml:"readOnly"`
+	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 	// Path within the volume from which the container's volume should be mounted.).
-	SubPath *string `json:"subPath" yaml:"subPath"`
+	SubPath *string `field:"optional" json:"subPath" yaml:"subPath"`
 	// Expanded path within the volume from which the container's volume should be mounted.
 	//
 	// Behaves similarly to SubPath but environment variable references
@@ -14265,14 +14265,14 @@ type VolumeMount struct {
 	// (volume's root).
 	//
 	// `subPathExpr` and `subPath` are mutually exclusive.
-	SubPathExpr *string `json:"subPathExpr" yaml:"subPathExpr"`
+	SubPathExpr *string `field:"optional" json:"subPathExpr" yaml:"subPathExpr"`
 	// Path within the container at which the volume should be mounted.
 	//
 	// Must not
 	// contain ':'.
-	Path *string `json:"path" yaml:"path"`
+	Path *string `field:"required" json:"path" yaml:"path"`
 	// The volume to mount.
-	Volume Volume `json:"volume" yaml:"volume"`
+	Volume Volume `field:"required" json:"volume" yaml:"volume"`
 }
 
 // A workload is an application running on Kubernetes.
@@ -14700,26 +14700,26 @@ func (w *jsiiProxy_Workload) ToString() *string {
 // Properties for `Workload`.
 type WorkloadProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
-	Metadata *cdk8s.ApiObjectMetadata `json:"metadata" yaml:"metadata"`
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
-	AutomountServiceAccountToken *bool `json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
+	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
 	// Containers cannot currently be
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
-	Containers *[]*ContainerProps `json:"containers" yaml:"containers"`
+	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
-	Dns *PodDnsProps `json:"dns" yaml:"dns"`
+	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
-	HostAliases *[]*HostAlias `json:"hostAliases" yaml:"hostAliases"`
+	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
@@ -14733,13 +14733,13 @@ type WorkloadProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
-	InitContainers *[]*ContainerProps `json:"initContainers" yaml:"initContainers"`
+	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
-	RestartPolicy RestartPolicy `json:"restartPolicy" yaml:"restartPolicy"`
+	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
-	SecurityContext *PodSecurityContextProps `json:"securityContext" yaml:"securityContext"`
+	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
 	// When you (a human) access the cluster (for example, using kubectl), you are
@@ -14750,19 +14750,19 @@ type WorkloadProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
-	ServiceAccount IServiceAccount `json:"serviceAccount" yaml:"serviceAccount"`
+	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
 	//
-	Volumes *[]Volume `json:"volumes" yaml:"volumes"`
+	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
-	PodMetadata *cdk8s.ApiObjectMetadata `json:"podMetadata" yaml:"podMetadata"`
+	PodMetadata *cdk8s.ApiObjectMetadata `field:"optional" json:"podMetadata" yaml:"podMetadata"`
 	// Automatically allocates a pod label selector for this workload and add it to the pod metadata.
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
-	Select *bool `json:"select" yaml:"select"`
+	Select *bool `field:"optional" json:"select" yaml:"select"`
 }
 
