@@ -12,6 +12,7 @@ import (
 
 type AbstractPod interface {
 	Resource
+	IPodSelector
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The underlying cdk8s API object.
@@ -31,6 +32,7 @@ type AbstractPod interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -49,6 +51,10 @@ type AbstractPod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -56,6 +62,7 @@ type AbstractPod interface {
 // The jsii proxy struct for AbstractPod
 type jsiiProxy_AbstractPod struct {
 	jsiiProxy_Resource
+	jsiiProxy_IPodSelector
 }
 
 func (j *jsiiProxy_AbstractPod) ApiGroup() *string {
@@ -183,6 +190,16 @@ func (j *jsiiProxy_AbstractPod) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"podMetadata",
 		&returns,
 	)
 	return returns
@@ -352,6 +369,19 @@ func (a *jsiiProxy_AbstractPod) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		a,
 		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		a,
+		"toPodSelectorConfig",
 		nil, // no parameters
 		&returns,
 	)
@@ -4208,6 +4238,7 @@ type DaemonSet interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	Volumes() *[]Volume
@@ -4221,6 +4252,10 @@ type DaemonSet interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -4430,6 +4465,16 @@ func (j *jsiiProxy_DaemonSet) RestartPolicy() RestartPolicy {
 	return returns
 }
 
+func (j *jsiiProxy_DaemonSet) Scheduling() WorkloadScheduling {
+	var returns WorkloadScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_DaemonSet) SecurityContext() PodSecurityContext {
 	var returns PodSecurityContext
 	_jsii_.Get(
@@ -4598,6 +4643,19 @@ func (d *jsiiProxy_DaemonSet) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (d *jsiiProxy_DaemonSet) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		d,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_DaemonSet) ToString() *string {
 	var returns *string
 
@@ -4752,6 +4810,7 @@ type Deployment interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	Strategy() DeploymentStrategy
@@ -4774,6 +4833,10 @@ type Deployment interface {
 	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -5003,6 +5066,16 @@ func (j *jsiiProxy_Deployment) RestartPolicy() RestartPolicy {
 	return returns
 }
 
+func (j *jsiiProxy_Deployment) Scheduling() WorkloadScheduling {
+	var returns WorkloadScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Deployment) SecurityContext() PodSecurityContext {
 	var returns PodSecurityContext
 	_jsii_.Get(
@@ -5205,6 +5278,19 @@ func (d *jsiiProxy_Deployment) Select(selectors ...LabelSelector) {
 		"select",
 		args,
 	)
+}
+
+func (d *jsiiProxy_Deployment) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		d,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (d *jsiiProxy_Deployment) ToString() *string {
@@ -6938,6 +7024,30 @@ type jsiiProxy_IConfigMap struct {
 	jsiiProxy_IResource
 }
 
+// Represents an object that can select namespaces.
+type INamespaceSelector interface {
+	// Return the configuration of this selector.
+	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+}
+
+// The jsii proxy for INamespaceSelector
+type jsiiProxy_INamespaceSelector struct {
+	_ byte // padding
+}
+
+func (i *jsiiProxy_INamespaceSelector) ToNamespaceSelectorConfig() *NamespaceSelectorConfig {
+	var returns *NamespaceSelectorConfig
+
+	_jsii_.Invoke(
+		i,
+		"toNamespaceSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Contract of a `PersistentVolumeClaim`.
 type IPersistentVolume interface {
 	IResource
@@ -6956,6 +7066,30 @@ type IPersistentVolumeClaim interface {
 // The jsii proxy for IPersistentVolumeClaim
 type jsiiProxy_IPersistentVolumeClaim struct {
 	jsiiProxy_IResource
+}
+
+// Represents an object that can select pods.
+type IPodSelector interface {
+	// Return the configuration of this selector.
+	ToPodSelectorConfig() *PodSelectorConfig
+}
+
+// The jsii proxy for IPodSelector
+type jsiiProxy_IPodSelector struct {
+	_ byte // padding
+}
+
+func (i *jsiiProxy_IPodSelector) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		i,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 // Represents a resource.
@@ -7620,6 +7754,7 @@ type Job interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	// TTL before the job is deleted after it is finished.
@@ -7635,6 +7770,10 @@ type Job interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -7854,6 +7993,16 @@ func (j *jsiiProxy_Job) RestartPolicy() RestartPolicy {
 	return returns
 }
 
+func (j *jsiiProxy_Job) Scheduling() WorkloadScheduling {
+	var returns WorkloadScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Job) SecurityContext() PodSecurityContext {
 	var returns PodSecurityContext
 	_jsii_.Get(
@@ -8032,6 +8181,19 @@ func (j *jsiiProxy_Job) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (j *jsiiProxy_Job) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		j,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (j *jsiiProxy_Job) ToString() *string {
 	var returns *string
 
@@ -8127,32 +8289,19 @@ type JobProps struct {
 	TtlAfterFinished cdk8s.Duration `field:"optional" json:"ttlAfterFinished" yaml:"ttlAfterFinished"`
 }
 
-// A label selector is a label query over a set of resources.
-// See: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
-//
-type LabelSelector interface {
-	ApplyToTemplate() *bool
+// Represents a query that can be performed against resources with labels.
+type LabelExpression interface {
 	Key() *string
-	Operator() LabelSelectorRequirementOperator
+	Operator() *string
 	Values() *[]*string
 }
 
-// The jsii proxy struct for LabelSelector
-type jsiiProxy_LabelSelector struct {
+// The jsii proxy struct for LabelExpression
+type jsiiProxy_LabelExpression struct {
 	_ byte // padding
 }
 
-func (j *jsiiProxy_LabelSelector) ApplyToTemplate() *bool {
-	var returns *bool
-	_jsii_.Get(
-		j,
-		"applyToTemplate",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_LabelSelector) Key() *string {
+func (j *jsiiProxy_LabelExpression) Key() *string {
 	var returns *string
 	_jsii_.Get(
 		j,
@@ -8162,8 +8311,8 @@ func (j *jsiiProxy_LabelSelector) Key() *string {
 	return returns
 }
 
-func (j *jsiiProxy_LabelSelector) Operator() LabelSelectorRequirementOperator {
-	var returns LabelSelectorRequirementOperator
+func (j *jsiiProxy_LabelExpression) Operator() *string {
+	var returns *string
 	_jsii_.Get(
 		j,
 		"operator",
@@ -8172,7 +8321,7 @@ func (j *jsiiProxy_LabelSelector) Operator() LabelSelectorRequirementOperator {
 	return returns
 }
 
-func (j *jsiiProxy_LabelSelector) Values() *[]*string {
+func (j *jsiiProxy_LabelExpression) Values() *[]*string {
 	var returns *[]*string
 	_jsii_.Get(
 		j,
@@ -8183,14 +8332,14 @@ func (j *jsiiProxy_LabelSelector) Values() *[]*string {
 }
 
 
-// Creates a `matchExpressions` "DoesNotExist" entry.
-func LabelSelector_DoesNotExist(key *string) LabelSelector {
+// Requires label `key` to not exist.
+func LabelExpression_DoesNotExist(key *string) LabelExpression {
 	_init_.Initialize()
 
-	var returns LabelSelector
+	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-21.LabelSelector",
+		"cdk8s-plus-21.LabelExpression",
 		"doesNotExist",
 		[]interface{}{key},
 		&returns,
@@ -8199,14 +8348,14 @@ func LabelSelector_DoesNotExist(key *string) LabelSelector {
 	return returns
 }
 
-// Creates a `matchExpressions` "Exists" entry.
-func LabelSelector_Exists(key *string) LabelSelector {
+// Requires label `key` to exist.
+func LabelExpression_Exists(key *string) LabelExpression {
 	_init_.Initialize()
 
-	var returns LabelSelector
+	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-21.LabelSelector",
+		"cdk8s-plus-21.LabelExpression",
 		"exists",
 		[]interface{}{key},
 		&returns,
@@ -8215,14 +8364,14 @@ func LabelSelector_Exists(key *string) LabelSelector {
 	return returns
 }
 
-// Creates a `matchExpressions` "In" entry.
-func LabelSelector_In(key *string, values *[]*string) LabelSelector {
+// Requires value of label `key` to be one of `values`.
+func LabelExpression_In(key *string, values *[]*string) LabelExpression {
 	_init_.Initialize()
 
-	var returns LabelSelector
+	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-21.LabelSelector",
+		"cdk8s-plus-21.LabelExpression",
 		"in",
 		[]interface{}{key, values},
 		&returns,
@@ -8231,32 +8380,14 @@ func LabelSelector_In(key *string, values *[]*string) LabelSelector {
 	return returns
 }
 
-// Creates a `matchLabels` entry from the key and value.
-//
-// Use `applyToTemplate` to also add this label to the pod metadata of the workload.
-func LabelSelector_Is(key *string, value *string, applyToTemplate *bool) LabelSelector {
+// Requires value of label `key` to be none of `values`.
+func LabelExpression_NotIn(key *string, values *[]*string) LabelExpression {
 	_init_.Initialize()
 
-	var returns LabelSelector
+	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-21.LabelSelector",
-		"is",
-		[]interface{}{key, value, applyToTemplate},
-		&returns,
-	)
-
-	return returns
-}
-
-// Creates a `matchExpressions` "NotIn" entry.
-func LabelSelector_NotIn(key *string, values *[]*string) LabelSelector {
-	_init_.Initialize()
-
-	var returns LabelSelector
-
-	_jsii_.StaticInvoke(
-		"cdk8s-plus-21.LabelSelector",
+		"cdk8s-plus-21.LabelExpression",
 		"notIn",
 		[]interface{}{key, values},
 		&returns,
@@ -8265,12 +8396,94 @@ func LabelSelector_NotIn(key *string, values *[]*string) LabelSelector {
 	return returns
 }
 
+// Match a resource by labels.
+type LabelSelector interface {
+}
+
+// The jsii proxy struct for LabelSelector
+type jsiiProxy_LabelSelector struct {
+	_ byte // padding
+}
+
+func LabelSelector_Of(options LabelSelectorOptions) LabelSelector {
+	_init_.Initialize()
+
+	var returns LabelSelector
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.LabelSelector",
+		"of",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `LabelSelector.of`.
+type LabelSelectorOptions interface {
+	// Expression based label matchers.
+	Expressions() *[]LabelExpression
+	// Strict label matchers.
+	Labels() *map[string]*string
+}
+
+// The jsii proxy struct for LabelSelectorOptions
+type jsiiProxy_LabelSelectorOptions struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_LabelSelectorOptions) Expressions() *[]LabelExpression {
+	var returns *[]LabelExpression
+	_jsii_.Get(
+		j,
+		"expressions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_LabelSelectorOptions) Labels() *map[string]*string {
+	var returns *map[string]*string
+	_jsii_.Get(
+		j,
+		"labels",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewLabelSelectorOptions() LabelSelectorOptions {
+	_init_.Initialize()
+
+	j := jsiiProxy_LabelSelectorOptions{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.LabelSelectorOptions",
+		nil, // no parameters
+		&j,
+	)
+
+	return &j
+}
+
+func NewLabelSelectorOptions_Override(l LabelSelectorOptions) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.LabelSelectorOptions",
+		nil, // no parameters
+		l,
+	)
+}
+
 // A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
 type LabelSelectorRequirement struct {
 	// The label key that the selector applies to.
 	Key *string `field:"required" json:"key" yaml:"key"`
 	// Represents a key's relationship to a set of values.
-	Operator LabelSelectorRequirementOperator `field:"required" json:"operator" yaml:"operator"`
+	Operator *string `field:"required" json:"operator" yaml:"operator"`
 	// An array of string values.
 	//
 	// If the operator is In or NotIn, the values array
@@ -8279,19 +8492,50 @@ type LabelSelectorRequirement struct {
 	Values *[]*string `field:"optional" json:"values" yaml:"values"`
 }
 
-// Possible operators.
-type LabelSelectorRequirementOperator string
+// A node that is matched by label selectors.
+type LabeledNode interface {
+	LabelSelector() *[]NodeLabelQuery
+}
 
-const (
-	// In.
-	LabelSelectorRequirementOperator_IN LabelSelectorRequirementOperator = "IN"
-	// NotIn.
-	LabelSelectorRequirementOperator_NOT_IN LabelSelectorRequirementOperator = "NOT_IN"
-	// Exists.
-	LabelSelectorRequirementOperator_EXISTS LabelSelectorRequirementOperator = "EXISTS"
-	// DoesNotExist.
-	LabelSelectorRequirementOperator_DOES_NOT_EXIST LabelSelectorRequirementOperator = "DOES_NOT_EXIST"
-)
+// The jsii proxy struct for LabeledNode
+type jsiiProxy_LabeledNode struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_LabeledNode) LabelSelector() *[]NodeLabelQuery {
+	var returns *[]NodeLabelQuery
+	_jsii_.Get(
+		j,
+		"labelSelector",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewLabeledNode(labelSelector *[]NodeLabelQuery) LabeledNode {
+	_init_.Initialize()
+
+	j := jsiiProxy_LabeledNode{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.LabeledNode",
+		[]interface{}{labelSelector},
+		&j,
+	)
+
+	return &j
+}
+
+func NewLabeledNode_Override(l LabeledNode, labelSelector *[]NodeLabelQuery) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.LabeledNode",
+		[]interface{}{labelSelector},
+		l,
+	)
+}
 
 // Memory request and limit.
 type MemoryResources struct {
@@ -8368,6 +8612,789 @@ const (
 	// destroyed (unmounted) by the Containers on termination.
 	MountPropagation_BIDIRECTIONAL MountPropagation = "BIDIRECTIONAL"
 )
+
+// A node that is matched by its name.
+type NamedNode interface {
+	Name() *string
+}
+
+// The jsii proxy struct for NamedNode
+type jsiiProxy_NamedNode struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_NamedNode) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewNamedNode(name *string) NamedNode {
+	_init_.Initialize()
+
+	j := jsiiProxy_NamedNode{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.NamedNode",
+		[]interface{}{name},
+		&j,
+	)
+
+	return &j
+}
+
+func NewNamedNode_Override(n NamedNode, name *string) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.NamedNode",
+		[]interface{}{name},
+		n,
+	)
+}
+
+// In Kubernetes, namespaces provides a mechanism for isolating groups of resources within a single cluster.
+//
+// Names of resources need to be unique within a namespace, but not across namespaces.
+// Namespace-based scoping is applicable only for namespaced objects (e.g. Deployments, Services, etc) and
+// not for cluster-wide objects (e.g. StorageClass, Nodes, PersistentVolumes, etc).
+type Namespace interface {
+	Resource
+	INamespaceSelector
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The tree node.
+	Node() constructs.Node
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Return the configuration of this selector.
+	// See: INamespaceSelector.toNamespaceSelectorConfig()
+	//
+	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for Namespace
+type jsiiProxy_Namespace struct {
+	jsiiProxy_Resource
+	jsiiProxy_INamespaceSelector
+}
+
+func (j *jsiiProxy_Namespace) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewNamespace(scope constructs.Construct, id *string, props *NamespaceProps) Namespace {
+	_init_.Initialize()
+
+	j := jsiiProxy_Namespace{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Namespace",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewNamespace_Override(n Namespace, scope constructs.Construct, id *string, props *NamespaceProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Namespace",
+		[]interface{}{scope, id, props},
+		n,
+	)
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Namespace_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Namespace",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
+func Namespace_NAME_LABEL() *string {
+	_init_.Initialize()
+	var returns *string
+	_jsii_.StaticGet(
+		"cdk8s-plus-21.Namespace",
+		"NAME_LABEL",
+		&returns,
+	)
+	return returns
+}
+
+func (n *jsiiProxy_Namespace) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		n,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespace) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespace) ToNamespaceSelectorConfig() *NamespaceSelectorConfig {
+	var returns *NamespaceSelectorConfig
+
+	_jsii_.Invoke(
+		n,
+		"toNamespaceSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespace) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `Namespace`.
+type NamespaceProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
+}
+
+// Configuration for selecting namespaces.
+type NamespaceSelectorConfig struct {
+	// A selector to select namespaces by labels.
+	LabelSelector LabelSelector `field:"optional" json:"labelSelector" yaml:"labelSelector"`
+	// A list of names to select namespaces by names.
+	Names *[]*string `field:"optional" json:"names" yaml:"names"`
+}
+
+// Represents a group of namespaces.
+type Namespaces interface {
+	INamespaceSelector
+	// Return the configuration of this selector.
+	// See: INamespaceSelector.toNamespaceSelectorConfig()
+	//
+	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+}
+
+// The jsii proxy struct for Namespaces
+type jsiiProxy_Namespaces struct {
+	jsiiProxy_INamespaceSelector
+}
+
+func NewNamespaces(expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) Namespaces {
+	_init_.Initialize()
+
+	j := jsiiProxy_Namespaces{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Namespaces",
+		[]interface{}{expressions, names, labels},
+		&j,
+	)
+
+	return &j
+}
+
+func NewNamespaces_Override(n Namespaces, expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Namespaces",
+		[]interface{}{expressions, names, labels},
+		n,
+	)
+}
+
+// Select all namespaces.
+func Namespaces_All() Namespaces {
+	_init_.Initialize()
+
+	var returns Namespaces
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Namespaces",
+		"all",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Select specific namespaces.
+func Namespaces_Select(options *NamespacesSelectOptions) Namespaces {
+	_init_.Initialize()
+
+	var returns Namespaces
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Namespaces",
+		"select",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespaces) ToNamespaceSelectorConfig() *NamespaceSelectorConfig {
+	var returns *NamespaceSelectorConfig
+
+	_jsii_.Invoke(
+		n,
+		"toNamespaceSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `Namespaces.select`.
+type NamespacesSelectOptions struct {
+	// Namespaces must satisfy these selectors.
+	//
+	// The selectors query labels, just like the `labels` property, but they
+	// provide a more advanced matching mechanism.
+	Expressions *[]LabelExpression `field:"optional" json:"expressions" yaml:"expressions"`
+	// Labels the namespaces must have.
+	//
+	// This is equivalent to using an 'Is' selector.
+	Labels *map[string]*string `field:"optional" json:"labels" yaml:"labels"`
+	// Namespaces names must be one of these.
+	Names *[]*string `field:"optional" json:"names" yaml:"names"`
+}
+
+// Represents a node in the cluster.
+type Node interface {
+}
+
+// The jsii proxy struct for Node
+type jsiiProxy_Node struct {
+	_ byte // padding
+}
+
+func NewNode() Node {
+	_init_.Initialize()
+
+	j := jsiiProxy_Node{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Node",
+		nil, // no parameters
+		&j,
+	)
+
+	return &j
+}
+
+func NewNode_Override(n Node) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Node",
+		nil, // no parameters
+		n,
+	)
+}
+
+// Match a node by its labels.
+func Node_Labeled(labelSelector ...NodeLabelQuery) LabeledNode {
+	_init_.Initialize()
+
+	args := []interface{}{}
+	for _, a := range labelSelector {
+		args = append(args, a)
+	}
+
+	var returns LabeledNode
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Node",
+		"labeled",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+// Match a node by its name.
+func Node_Named(nodeName *string) NamedNode {
+	_init_.Initialize()
+
+	var returns NamedNode
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Node",
+		"named",
+		[]interface{}{nodeName},
+		&returns,
+	)
+
+	return returns
+}
+
+// Match a node by its taints.
+func Node_Tainted(taintSelector ...NodeTaintQuery) TaintedNode {
+	_init_.Initialize()
+
+	args := []interface{}{}
+	for _, a := range taintSelector {
+		args = append(args, a)
+	}
+
+	var returns TaintedNode
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Node",
+		"tainted",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+// Represents a query that can be performed against nodes with labels.
+type NodeLabelQuery interface {
+	Key() *string
+	Operator() *string
+	Values() *[]*string
+}
+
+// The jsii proxy struct for NodeLabelQuery
+type jsiiProxy_NodeLabelQuery struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_NodeLabelQuery) Key() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"key",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeLabelQuery) Operator() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"operator",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeLabelQuery) Values() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"values",
+		&returns,
+	)
+	return returns
+}
+
+
+// Requires label `key` to not exist.
+func NodeLabelQuery_DoesNotExist(key *string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"doesNotExist",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires label `key` to exist.
+func NodeLabelQuery_Exists(key *string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"exists",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires value of label `key` to greater than all elements in `values`.
+func NodeLabelQuery_Gt(key *string, values *[]*string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"gt",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires value of label `key` to be one of `values`.
+func NodeLabelQuery_In(key *string, values *[]*string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"in",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires value of label `key` to equal `value`.
+func NodeLabelQuery_Is(key *string, value *string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"is",
+		[]interface{}{key, value},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires value of label `key` to less than all elements in `values`.
+func NodeLabelQuery_Lt(key *string, values *[]*string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"lt",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// Requires value of label `key` to be none of `values`.
+func NodeLabelQuery_NotIn(key *string, values *[]*string) NodeLabelQuery {
+	_init_.Initialize()
+
+	var returns NodeLabelQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeLabelQuery",
+		"notIn",
+		[]interface{}{key, values},
+		&returns,
+	)
+
+	return returns
+}
+
+// Taint queries that can be perfomed against nodes.
+type NodeTaintQuery interface {
+	Effect() *string
+	EvictAfter() cdk8s.Duration
+	Key() *string
+	Operator() *string
+	Value() *string
+}
+
+// The jsii proxy struct for NodeTaintQuery
+type jsiiProxy_NodeTaintQuery struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_NodeTaintQuery) Effect() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"effect",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeTaintQuery) EvictAfter() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"evictAfter",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeTaintQuery) Key() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"key",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeTaintQuery) Operator() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"operator",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NodeTaintQuery) Value() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"value",
+		&returns,
+	)
+	return returns
+}
+
+
+// Matches any taint.
+func NodeTaintQuery_Any() NodeTaintQuery {
+	_init_.Initialize()
+
+	var returns NodeTaintQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeTaintQuery",
+		"any",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Matches a tain with any value of a specific key.
+func NodeTaintQuery_Exists(key *string, options *NodeTaintQueryOptions) NodeTaintQuery {
+	_init_.Initialize()
+
+	var returns NodeTaintQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeTaintQuery",
+		"exists",
+		[]interface{}{key, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Matches a taint with a specific key and value.
+func NodeTaintQuery_Is(key *string, value *string, options *NodeTaintQueryOptions) NodeTaintQuery {
+	_init_.Initialize()
+
+	var returns NodeTaintQuery
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.NodeTaintQuery",
+		"is",
+		[]interface{}{key, value, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `NodeTaintQuery`.
+type NodeTaintQueryOptions struct {
+	// The taint effect to match.
+	Effect TaintEffect `field:"optional" json:"effect" yaml:"effect"`
+	// How much time should a pod that tolerates the `NO_EXECUTE` effect be bound to the node.
+	//
+	// Only applies for the `NO_EXECUTE` effect.
+	EvictAfter cdk8s.Duration `field:"optional" json:"evictAfter" yaml:"evictAfter"`
+}
 
 // Factory for creating non api resources.
 type NonApiResource interface {
@@ -9388,6 +10415,7 @@ type Pod interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -9395,6 +10423,7 @@ type Pod interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() PodScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	Volumes() *[]Volume
@@ -9406,6 +10435,10 @@ type Pod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -9545,6 +10578,16 @@ func (j *jsiiProxy_Pod) Node() constructs.Node {
 	return returns
 }
 
+func (j *jsiiProxy_Pod) PodMetadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"podMetadata",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Pod) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -9570,6 +10613,16 @@ func (j *jsiiProxy_Pod) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) Scheduling() PodScheduling {
+	var returns PodScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
 		&returns,
 	)
 	return returns
@@ -9662,6 +10715,17 @@ func Pod_IsConstruct(x interface{}) *bool {
 	return returns
 }
 
+func Pod_ADDRESS_LABEL() *string {
+	_init_.Initialize()
+	var returns *string
+	_jsii_.StaticGet(
+		"cdk8s-plus-21.Pod",
+		"ADDRESS_LABEL",
+		&returns,
+	)
+	return returns
+}
+
 func (p *jsiiProxy_Pod) AddContainer(cont *ContainerProps) Container {
 	var returns Container
 
@@ -9723,6 +10787,19 @@ func (p *jsiiProxy_Pod) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		p,
 		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pod) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		p,
+		"toPodSelectorConfig",
 		nil, // no parameters
 		&returns,
 	)
@@ -10026,6 +11103,189 @@ type PodProps struct {
 	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 }
 
+// Controls the pod scheduling strategy.
+type PodScheduling interface {
+	Instance() AbstractPod
+	// Assign this pod a specific node by name.
+	//
+	// The scheduler ignores the Pod, and the kubelet on the named node
+	// tries to place the Pod on that node. Overrules any affinity rules of the pod.
+	//
+	// Some limitations of static assignment are:
+	//
+	// - If the named node does not exist, the Pod will not run, and in some
+	//    cases may be automatically deleted.
+	// - If the named node does not have the resources to accommodate the Pod,
+	//    the Pod will fail and its reason will indicate why, for example OutOfmemory or OutOfcpu.
+	// - Node names in cloud environments are not always predictable or stable.
+	//
+	// Will throw is the pod is already assigned to named node.
+	//
+	// Under the hood, this method utilizes the `nodeName` property.
+	Assign(node NamedNode)
+	// Attract this pod to a node matched by selectors. You can select a node by using `Node.labeled()`.
+	//
+	// Attracting to multiple nodes (i.e invoking this method multiple times) acts as
+	// an OR condition, meaning the pod will be assigned to either one of the nodes.
+	//
+	// Under the hood, this method utilizes the `nodeAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+	//
+	Attract(node LabeledNode, options *PodSchedulingAttractOptions)
+	// Co-locate this pod with a scheduling selection.
+	//
+	// A selection can be one of:
+	//
+	// - An instance of a `Pod`.
+	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
+	// - An un-managed pod that can be selected via `Pod.select()`.
+	//
+	// Co-locating with multiple selections ((i.e invoking this method multiple times)) acts as
+	// an AND condition. meaning the pod will be assigned to a node that satisfies all
+	// selections (i.e runs at least one pod that satisifies each selection).
+	//
+	// Under the hood, this method utilizes the `podAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+	//
+	Colocate(selector IPodSelector, options *PodSchedulingColocateOptions)
+	// Seperate this pod from a scheduling selection.
+	//
+	// A selection can be one of:
+	//
+	// - An instance of a `Pod`.
+	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
+	// - An un-managed pod that can be selected via `Pod.select()`.
+	//
+	// Seperating from multiple selections acts as an AND condition. meaning the pod
+	// will not be assigned to a node that satisfies all selections (i.e runs at least one pod that satisifies each selection).
+	//
+	// Under the hood, this method utilizes the `podAntiAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+	//
+	Separate(selector IPodSelector, options *PodSchedulingSeparateOptions)
+	// Allow this pod to tolerate taints matching these tolerations.
+	//
+	// You can put multiple taints on the same node and multiple tolerations on the same pod.
+	// The way Kubernetes processes multiple taints and tolerations is like a filter: start with
+	// all of a node's taints, then ignore the ones for which the pod has a matching toleration;
+	// the remaining un-ignored taints have the indicated effects on the pod. In particular:
+	//
+	// - if there is at least one un-ignored taint with effect NoSchedule then Kubernetes will
+	//    not schedule the pod onto that node
+	// - if there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored
+	//    taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node
+	// - if there is at least one un-ignored taint with effect NoExecute then the pod will be evicted from
+	//    the node (if it is already running on the node), and will not be scheduled onto the node (if it is
+	//    not yet running on the node).
+	//
+	// Under the hood, this method utilizes the `tolerations` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+	//
+	Tolerate(node TaintedNode)
+}
+
+// The jsii proxy struct for PodScheduling
+type jsiiProxy_PodScheduling struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_PodScheduling) Instance() AbstractPod {
+	var returns AbstractPod
+	_jsii_.Get(
+		j,
+		"instance",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPodScheduling(instance AbstractPod) PodScheduling {
+	_init_.Initialize()
+
+	j := jsiiProxy_PodScheduling{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.PodScheduling",
+		[]interface{}{instance},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPodScheduling_Override(p PodScheduling, instance AbstractPod) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.PodScheduling",
+		[]interface{}{instance},
+		p,
+	)
+}
+
+func (p *jsiiProxy_PodScheduling) Assign(node NamedNode) {
+	_jsii_.InvokeVoid(
+		p,
+		"assign",
+		[]interface{}{node},
+	)
+}
+
+func (p *jsiiProxy_PodScheduling) Attract(node LabeledNode, options *PodSchedulingAttractOptions) {
+	_jsii_.InvokeVoid(
+		p,
+		"attract",
+		[]interface{}{node, options},
+	)
+}
+
+func (p *jsiiProxy_PodScheduling) Colocate(selector IPodSelector, options *PodSchedulingColocateOptions) {
+	_jsii_.InvokeVoid(
+		p,
+		"colocate",
+		[]interface{}{selector, options},
+	)
+}
+
+func (p *jsiiProxy_PodScheduling) Separate(selector IPodSelector, options *PodSchedulingSeparateOptions) {
+	_jsii_.InvokeVoid(
+		p,
+		"separate",
+		[]interface{}{selector, options},
+	)
+}
+
+func (p *jsiiProxy_PodScheduling) Tolerate(node TaintedNode) {
+	_jsii_.InvokeVoid(
+		p,
+		"tolerate",
+		[]interface{}{node},
+	)
+}
+
+// Options for `PodScheduling.attract`.
+type PodSchedulingAttractOptions struct {
+	// Indicates the attraction is optional (soft), with this weight score.
+	Weight *float64 `field:"optional" json:"weight" yaml:"weight"`
+}
+
+// Options for `PodScheduling.colocate`.
+type PodSchedulingColocateOptions struct {
+	// Which topology to coloate on.
+	Topology Topology `field:"optional" json:"topology" yaml:"topology"`
+	// Indicates the co-location is optional (soft), with this weight score.
+	Weight *float64 `field:"optional" json:"weight" yaml:"weight"`
+}
+
+// Options for `PodScheduling.separate`.
+type PodSchedulingSeparateOptions struct {
+	// Which topology to separate on.
+	Topology Topology `field:"optional" json:"topology" yaml:"topology"`
+	// Indicates the separation is optional (soft), with this weight score.
+	Weight *float64 `field:"optional" json:"weight" yaml:"weight"`
+}
+
 // Holds pod-level security attributes and common container settings.
 type PodSecurityContext interface {
 	EnsureNonRoot() *bool
@@ -10148,6 +11408,91 @@ type PodSecurityContextProps struct {
 	Sysctls *[]*Sysctl `field:"optional" json:"sysctls" yaml:"sysctls"`
 	// The UID to run the entrypoint of the container process.
 	User *float64 `field:"optional" json:"user" yaml:"user"`
+}
+
+// Options for `Pods.select`.
+type PodSelectOptions struct {
+	// Expressions the pods must satisify.
+	Expressions *[]LabelExpression `field:"optional" json:"expressions" yaml:"expressions"`
+	// Labels the pods must have.
+	Labels *map[string]*string `field:"optional" json:"labels" yaml:"labels"`
+	// Namespaces the pods are allowed to be in.
+	//
+	// Use `Namespaces.all()` to allow all namespaces.
+	Namespaces Namespaces `field:"optional" json:"namespaces" yaml:"namespaces"`
+}
+
+// Configuration for selecting pods, optionally in particular namespaces.
+type PodSelectorConfig struct {
+	// A selector to select pods by labels.
+	LabelSelector LabelSelector `field:"required" json:"labelSelector" yaml:"labelSelector"`
+	// Configuration for selecting which namepsaces are the pods allowed to be in.
+	Namespaces *NamespaceSelectorConfig `field:"optional" json:"namespaces" yaml:"namespaces"`
+}
+
+// Represents a group of pods.
+type Pods interface {
+	IPodSelector
+	// Return the configuration of this selector.
+	ToPodSelectorConfig() *PodSelectorConfig
+}
+
+// The jsii proxy struct for Pods
+type jsiiProxy_Pods struct {
+	jsiiProxy_IPodSelector
+}
+
+func NewPods(expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) Pods {
+	_init_.Initialize()
+
+	j := jsiiProxy_Pods{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Pods",
+		[]interface{}{expressions, labels, namespaces},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPods_Override(p Pods, expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.Pods",
+		[]interface{}{expressions, labels, namespaces},
+		p,
+	)
+}
+
+// Select pods in the cluster with various selectors.
+func Pods_Select(options *PodSelectOptions) Pods {
+	_init_.Initialize()
+
+	var returns Pods
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Pods",
+		"select",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pods) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		p,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -12993,6 +14338,7 @@ type StatefulSet interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	// The update startegy of this stateful set.
@@ -13008,6 +14354,10 @@ type StatefulSet interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -13227,6 +14577,16 @@ func (j *jsiiProxy_StatefulSet) RestartPolicy() RestartPolicy {
 	return returns
 }
 
+func (j *jsiiProxy_StatefulSet) Scheduling() WorkloadScheduling {
+	var returns WorkloadScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_StatefulSet) SecurityContext() PodSecurityContext {
 	var returns PodSecurityContext
 	_jsii_.Get(
@@ -13405,6 +14765,19 @@ func (s *jsiiProxy_StatefulSet) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (s *jsiiProxy_StatefulSet) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		s,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (s *jsiiProxy_StatefulSet) ToString() *string {
 	var returns *string
 
@@ -13561,6 +14934,68 @@ type Sysctl struct {
 	Name *string `field:"required" json:"name" yaml:"name"`
 	// Value of a property to set.
 	Value *string `field:"required" json:"value" yaml:"value"`
+}
+
+// Taint effects.
+type TaintEffect string
+
+const (
+	// This means that no pod will be able to schedule onto the node unless it has a matching toleration.
+	TaintEffect_NO_SCHEDULE TaintEffect = "NO_SCHEDULE"
+	// This is a "preference" or "soft" version of `NO_SCHEDULE` -- the system will try to avoid placing a pod that does not tolerate the taint on the node, but it is not required.
+	TaintEffect_PREFER_NO_SCHEDULE TaintEffect = "PREFER_NO_SCHEDULE"
+	// This affects pods that are already running on the node as follows:.
+	//
+	// - Pods that do not tolerate the taint are evicted immediately.
+	// - Pods that tolerate the taint without specifying `duration` remain bound forever.
+	// - Pods that tolerate the taint with a specified `duration` remain bound for
+	//    the specified amount of time.
+	TaintEffect_NO_EXECUTE TaintEffect = "NO_EXECUTE"
+)
+
+// A node that is matched by taint selectors.
+type TaintedNode interface {
+	TaintSelector() *[]NodeTaintQuery
+}
+
+// The jsii proxy struct for TaintedNode
+type jsiiProxy_TaintedNode struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_TaintedNode) TaintSelector() *[]NodeTaintQuery {
+	var returns *[]NodeTaintQuery
+	_jsii_.Get(
+		j,
+		"taintSelector",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewTaintedNode(taintSelector *[]NodeTaintQuery) TaintedNode {
+	_init_.Initialize()
+
+	j := jsiiProxy_TaintedNode{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.TaintedNode",
+		[]interface{}{taintSelector},
+		&j,
+	)
+
+	return &j
+}
+
+func NewTaintedNode_Override(t TaintedNode, taintSelector *[]NodeTaintQuery) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.TaintedNode",
+		[]interface{}{taintSelector},
+		t,
+	)
 }
 
 // Options for `Probe.fromTcpSocket()`.
@@ -13883,6 +15318,76 @@ type TlsSecretProps struct {
 	TlsCert *string `field:"required" json:"tlsCert" yaml:"tlsCert"`
 	// The TLS key.
 	TlsKey *string `field:"required" json:"tlsKey" yaml:"tlsKey"`
+}
+
+// Available topology domains.
+type Topology interface {
+	Key() *string
+}
+
+// The jsii proxy struct for Topology
+type jsiiProxy_Topology struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_Topology) Key() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"key",
+		&returns,
+	)
+	return returns
+}
+
+
+// Custom key for the node label that the system uses to denote the topology domain.
+func Topology_Custom(key *string) Topology {
+	_init_.Initialize()
+
+	var returns Topology
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-21.Topology",
+		"custom",
+		[]interface{}{key},
+		&returns,
+	)
+
+	return returns
+}
+
+func Topology_HOSTNAME() Topology {
+	_init_.Initialize()
+	var returns Topology
+	_jsii_.StaticGet(
+		"cdk8s-plus-21.Topology",
+		"HOSTNAME",
+		&returns,
+	)
+	return returns
+}
+
+func Topology_REGION() Topology {
+	_init_.Initialize()
+	var returns Topology
+	_jsii_.StaticGet(
+		"cdk8s-plus-21.Topology",
+		"REGION",
+		&returns,
+	)
+	return returns
+}
+
+func Topology_ZONE() Topology {
+	_init_.Initialize()
+	var returns Topology
+	_jsii_.StaticGet(
+		"cdk8s-plus-21.Topology",
+		"ZONE",
+		&returns,
+	)
+	return returns
 }
 
 // Represents a user.
@@ -14273,6 +15778,7 @@ type Workload interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	Volumes() *[]Volume
@@ -14286,6 +15792,10 @@ type Workload interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
+	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -14485,6 +15995,16 @@ func (j *jsiiProxy_Workload) RestartPolicy() RestartPolicy {
 	return returns
 }
 
+func (j *jsiiProxy_Workload) Scheduling() WorkloadScheduling {
+	var returns WorkloadScheduling
+	_jsii_.Get(
+		j,
+		"scheduling",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Workload) SecurityContext() PodSecurityContext {
 	var returns PodSecurityContext
 	_jsii_.Get(
@@ -14639,6 +16159,19 @@ func (w *jsiiProxy_Workload) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (w *jsiiProxy_Workload) ToPodSelectorConfig() *PodSelectorConfig {
+	var returns *PodSelectorConfig
+
+	_jsii_.Invoke(
+		w,
+		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (w *jsiiProxy_Workload) ToString() *string {
 	var returns *string
 
@@ -14719,5 +16252,190 @@ type WorkloadProps struct {
 	// This ensures this workload manages pods created by
 	// its pod template.
 	Select *bool `field:"optional" json:"select" yaml:"select"`
+}
+
+// Controls the pod scheduling strategy of this workload.
+//
+// It offers some additional API's on top of the core pod scheduling.
+type WorkloadScheduling interface {
+	PodScheduling
+	Instance() AbstractPod
+	// Assign this pod a specific node by name.
+	//
+	// The scheduler ignores the Pod, and the kubelet on the named node
+	// tries to place the Pod on that node. Overrules any affinity rules of the pod.
+	//
+	// Some limitations of static assignment are:
+	//
+	// - If the named node does not exist, the Pod will not run, and in some
+	//    cases may be automatically deleted.
+	// - If the named node does not have the resources to accommodate the Pod,
+	//    the Pod will fail and its reason will indicate why, for example OutOfmemory or OutOfcpu.
+	// - Node names in cloud environments are not always predictable or stable.
+	//
+	// Will throw is the pod is already assigned to named node.
+	//
+	// Under the hood, this method utilizes the `nodeName` property.
+	Assign(node NamedNode)
+	// Attract this pod to a node matched by selectors. You can select a node by using `Node.labeled()`.
+	//
+	// Attracting to multiple nodes (i.e invoking this method multiple times) acts as
+	// an OR condition, meaning the pod will be assigned to either one of the nodes.
+	//
+	// Under the hood, this method utilizes the `nodeAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+	//
+	Attract(node LabeledNode, options *PodSchedulingAttractOptions)
+	// Co-locate this pod with a scheduling selection.
+	//
+	// A selection can be one of:
+	//
+	// - An instance of a `Pod`.
+	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
+	// - An un-managed pod that can be selected via `Pod.select()`.
+	//
+	// Co-locating with multiple selections ((i.e invoking this method multiple times)) acts as
+	// an AND condition. meaning the pod will be assigned to a node that satisfies all
+	// selections (i.e runs at least one pod that satisifies each selection).
+	//
+	// Under the hood, this method utilizes the `podAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+	//
+	Colocate(selector IPodSelector, options *PodSchedulingColocateOptions)
+	// Seperate this pod from a scheduling selection.
+	//
+	// A selection can be one of:
+	//
+	// - An instance of a `Pod`.
+	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
+	// - An un-managed pod that can be selected via `Pod.select()`.
+	//
+	// Seperating from multiple selections acts as an AND condition. meaning the pod
+	// will not be assigned to a node that satisfies all selections (i.e runs at least one pod that satisifies each selection).
+	//
+	// Under the hood, this method utilizes the `podAntiAffinity` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+	//
+	Separate(selector IPodSelector, options *PodSchedulingSeparateOptions)
+	// Spread the pods in this workload by the topology key.
+	//
+	// A spread is a separation of the pod from itself and is used to
+	// balance out pod replicas across a given topology.
+	Spread(options *WorkloadSchedulingSpreadOptions)
+	// Allow this pod to tolerate taints matching these tolerations.
+	//
+	// You can put multiple taints on the same node and multiple tolerations on the same pod.
+	// The way Kubernetes processes multiple taints and tolerations is like a filter: start with
+	// all of a node's taints, then ignore the ones for which the pod has a matching toleration;
+	// the remaining un-ignored taints have the indicated effects on the pod. In particular:
+	//
+	// - if there is at least one un-ignored taint with effect NoSchedule then Kubernetes will
+	//    not schedule the pod onto that node
+	// - if there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored
+	//    taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node
+	// - if there is at least one un-ignored taint with effect NoExecute then the pod will be evicted from
+	//    the node (if it is already running on the node), and will not be scheduled onto the node (if it is
+	//    not yet running on the node).
+	//
+	// Under the hood, this method utilizes the `tolerations` property.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+	//
+	Tolerate(node TaintedNode)
+}
+
+// The jsii proxy struct for WorkloadScheduling
+type jsiiProxy_WorkloadScheduling struct {
+	jsiiProxy_PodScheduling
+}
+
+func (j *jsiiProxy_WorkloadScheduling) Instance() AbstractPod {
+	var returns AbstractPod
+	_jsii_.Get(
+		j,
+		"instance",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewWorkloadScheduling(instance AbstractPod) WorkloadScheduling {
+	_init_.Initialize()
+
+	j := jsiiProxy_WorkloadScheduling{}
+
+	_jsii_.Create(
+		"cdk8s-plus-21.WorkloadScheduling",
+		[]interface{}{instance},
+		&j,
+	)
+
+	return &j
+}
+
+func NewWorkloadScheduling_Override(w WorkloadScheduling, instance AbstractPod) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-21.WorkloadScheduling",
+		[]interface{}{instance},
+		w,
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Assign(node NamedNode) {
+	_jsii_.InvokeVoid(
+		w,
+		"assign",
+		[]interface{}{node},
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Attract(node LabeledNode, options *PodSchedulingAttractOptions) {
+	_jsii_.InvokeVoid(
+		w,
+		"attract",
+		[]interface{}{node, options},
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Colocate(selector IPodSelector, options *PodSchedulingColocateOptions) {
+	_jsii_.InvokeVoid(
+		w,
+		"colocate",
+		[]interface{}{selector, options},
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Separate(selector IPodSelector, options *PodSchedulingSeparateOptions) {
+	_jsii_.InvokeVoid(
+		w,
+		"separate",
+		[]interface{}{selector, options},
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Spread(options *WorkloadSchedulingSpreadOptions) {
+	_jsii_.InvokeVoid(
+		w,
+		"spread",
+		[]interface{}{options},
+	)
+}
+
+func (w *jsiiProxy_WorkloadScheduling) Tolerate(node TaintedNode) {
+	_jsii_.InvokeVoid(
+		w,
+		"tolerate",
+		[]interface{}{node},
+	)
+}
+
+// Options for `WorkloadScheduling.spread`.
+type WorkloadSchedulingSpreadOptions struct {
+	// Which topology to spread on.
+	Topology Topology `field:"optional" json:"topology" yaml:"topology"`
+	// Indicates the spread is optional, with this weight score.
+	Weight *float64 `field:"optional" json:"weight" yaml:"weight"`
 }
 
