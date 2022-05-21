@@ -30,17 +30,20 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
 		func() interface{} {
 			j := jsiiProxy_AbstractPod{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSelector)
 			return &j
 		},
 	)
@@ -437,9 +440,11 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -487,10 +492,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -810,6 +817,16 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
+		"cdk8s-plus-22.INamespaceSelector",
+		reflect.TypeOf((*INamespaceSelector)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+		},
+		func() interface{} {
+			return &jsiiProxy_INamespaceSelector{}
+		},
+	)
+	_jsii_.RegisterInterface(
 		"cdk8s-plus-22.IPersistentVolume",
 		reflect.TypeOf((*IPersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -837,6 +854,16 @@ func init() {
 			j := jsiiProxy_IPersistentVolumeClaim{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
 			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"cdk8s-plus-22.IPodSelector",
+		reflect.TypeOf((*IPodSelector)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+		},
+		func() interface{} {
+			return &jsiiProxy_IPodSelector{}
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -1009,9 +1036,11 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "ttlAfterFinished", GoGetter: "TtlAfterFinished"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -1027,30 +1056,48 @@ func init() {
 		reflect.TypeOf((*JobProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.LabelSelector",
-		reflect.TypeOf((*LabelSelector)(nil)).Elem(),
+		"cdk8s-plus-22.LabelExpression",
+		reflect.TypeOf((*LabelExpression)(nil)).Elem(),
 		[]_jsii_.Member{
-			_jsii_.MemberProperty{JsiiProperty: "applyToTemplate", GoGetter: "ApplyToTemplate"},
 			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
 			_jsii_.MemberProperty{JsiiProperty: "operator", GoGetter: "Operator"},
 			_jsii_.MemberProperty{JsiiProperty: "values", GoGetter: "Values"},
 		},
 		func() interface{} {
+			return &jsiiProxy_LabelExpression{}
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.LabelSelector",
+		reflect.TypeOf((*LabelSelector)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
 			return &jsiiProxy_LabelSelector{}
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.LabelSelectorOptions",
+		reflect.TypeOf((*LabelSelectorOptions)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "expressions", GoGetter: "Expressions"},
+			_jsii_.MemberProperty{JsiiProperty: "labels", GoGetter: "Labels"},
+		},
+		func() interface{} {
+			return &jsiiProxy_LabelSelectorOptions{}
 		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.LabelSelectorRequirement",
 		reflect.TypeOf((*LabelSelectorRequirement)(nil)).Elem(),
 	)
-	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.LabelSelectorRequirementOperator",
-		reflect.TypeOf((*LabelSelectorRequirementOperator)(nil)).Elem(),
-		map[string]interface{}{
-			"IN": LabelSelectorRequirementOperator_IN,
-			"NOT_IN": LabelSelectorRequirementOperator_NOT_IN,
-			"EXISTS": LabelSelectorRequirementOperator_EXISTS,
-			"DOES_NOT_EXIST": LabelSelectorRequirementOperator_DOES_NOT_EXIST,
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.LabeledNode",
+		reflect.TypeOf((*LabeledNode)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
+		},
+		func() interface{} {
+			return &jsiiProxy_LabeledNode{}
 		},
 	)
 	_jsii_.RegisterStruct(
@@ -1069,6 +1116,103 @@ func init() {
 			"HOST_TO_CONTAINER": MountPropagation_HOST_TO_CONTAINER,
 			"BIDIRECTIONAL": MountPropagation_BIDIRECTIONAL,
 		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.NamedNode",
+		reflect.TypeOf((*NamedNode)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+		},
+		func() interface{} {
+			return &jsiiProxy_NamedNode{}
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Namespace",
+		reflect.TypeOf((*Namespace)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
+			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
+			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
+			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Namespace{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INamespaceSelector)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.NamespaceProps",
+		reflect.TypeOf((*NamespaceProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.NamespaceSelectorConfig",
+		reflect.TypeOf((*NamespaceSelectorConfig)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Namespaces",
+		reflect.TypeOf((*Namespaces)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Namespaces{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INamespaceSelector)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.NamespacesSelectOptions",
+		reflect.TypeOf((*NamespacesSelectOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Node",
+		reflect.TypeOf((*Node)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_Node{}
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.NodeLabelQuery",
+		reflect.TypeOf((*NodeLabelQuery)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
+			_jsii_.MemberProperty{JsiiProperty: "operator", GoGetter: "Operator"},
+			_jsii_.MemberProperty{JsiiProperty: "values", GoGetter: "Values"},
+		},
+		func() interface{} {
+			return &jsiiProxy_NodeLabelQuery{}
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.NodeTaintQuery",
+		reflect.TypeOf((*NodeTaintQuery)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "effect", GoGetter: "Effect"},
+			_jsii_.MemberProperty{JsiiProperty: "evictAfter", GoGetter: "EvictAfter"},
+			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
+			_jsii_.MemberProperty{JsiiProperty: "operator", GoGetter: "Operator"},
+			_jsii_.MemberProperty{JsiiProperty: "value", GoGetter: "Value"},
+		},
+		func() interface{} {
+			return &jsiiProxy_NodeTaintQuery{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.NodeTaintQueryOptions",
+		reflect.TypeOf((*NodeTaintQueryOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.NonApiResource",
@@ -1224,11 +1368,14 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -1274,6 +1421,33 @@ func init() {
 		reflect.TypeOf((*PodProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-22.PodScheduling",
+		reflect.TypeOf((*PodScheduling)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "assign", GoMethod: "Assign"},
+			_jsii_.MemberMethod{JsiiMethod: "attract", GoMethod: "Attract"},
+			_jsii_.MemberMethod{JsiiMethod: "colocate", GoMethod: "Colocate"},
+			_jsii_.MemberProperty{JsiiProperty: "instance", GoGetter: "Instance"},
+			_jsii_.MemberMethod{JsiiMethod: "separate", GoMethod: "Separate"},
+			_jsii_.MemberMethod{JsiiMethod: "tolerate", GoMethod: "Tolerate"},
+		},
+		func() interface{} {
+			return &jsiiProxy_PodScheduling{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodSchedulingAttractOptions",
+		reflect.TypeOf((*PodSchedulingAttractOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodSchedulingColocateOptions",
+		reflect.TypeOf((*PodSchedulingColocateOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodSchedulingSeparateOptions",
+		reflect.TypeOf((*PodSchedulingSeparateOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-22.PodSecurityContext",
 		reflect.TypeOf((*PodSecurityContext)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -1291,6 +1465,26 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.PodSecurityContextProps",
 		reflect.TypeOf((*PodSecurityContextProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodSelectOptions",
+		reflect.TypeOf((*PodSelectOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.PodSelectorConfig",
+		reflect.TypeOf((*PodSelectorConfig)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Pods",
+		reflect.TypeOf((*Pods)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Pods{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSelector)
+			return &j
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Probe",
@@ -1660,10 +1854,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -1692,6 +1888,25 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.Sysctl",
 		reflect.TypeOf((*Sysctl)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.TaintEffect",
+		reflect.TypeOf((*TaintEffect)(nil)).Elem(),
+		map[string]interface{}{
+			"NO_SCHEDULE": TaintEffect_NO_SCHEDULE,
+			"PREFER_NO_SCHEDULE": TaintEffect_PREFER_NO_SCHEDULE,
+			"NO_EXECUTE": TaintEffect_NO_EXECUTE,
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.TaintedNode",
+		reflect.TypeOf((*TaintedNode)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "taintSelector", GoGetter: "TaintSelector"},
+		},
+		func() interface{} {
+			return &jsiiProxy_TaintedNode{}
+		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.TcpSocketProbeOptions",
@@ -1726,6 +1941,16 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.TlsSecretProps",
 		reflect.TypeOf((*TlsSecretProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.Topology",
+		reflect.TypeOf((*Topology)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
+		},
+		func() interface{} {
+			return &jsiiProxy_Topology{}
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.User",
@@ -1791,9 +2016,11 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
@@ -1806,5 +2033,27 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.WorkloadProps",
 		reflect.TypeOf((*WorkloadProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.WorkloadScheduling",
+		reflect.TypeOf((*WorkloadScheduling)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "assign", GoMethod: "Assign"},
+			_jsii_.MemberMethod{JsiiMethod: "attract", GoMethod: "Attract"},
+			_jsii_.MemberMethod{JsiiMethod: "colocate", GoMethod: "Colocate"},
+			_jsii_.MemberProperty{JsiiProperty: "instance", GoGetter: "Instance"},
+			_jsii_.MemberMethod{JsiiMethod: "separate", GoMethod: "Separate"},
+			_jsii_.MemberMethod{JsiiMethod: "spread", GoMethod: "Spread"},
+			_jsii_.MemberMethod{JsiiMethod: "tolerate", GoMethod: "Tolerate"},
+		},
+		func() interface{} {
+			j := jsiiProxy_WorkloadScheduling{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_PodScheduling)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.WorkloadSchedulingSpreadOptions",
+		reflect.TypeOf((*WorkloadSchedulingSpreadOptions)(nil)).Elem(),
 	)
 }
