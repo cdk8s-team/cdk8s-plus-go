@@ -1,4 +1,4 @@
-module github.com/cdk8s-team/cdk8s-plus-go/cdk8splus22/v2
+module github.com/cdk8s-team/cdk8s-plus-go/cdk8splus24/v2
 
 go 1.16
 

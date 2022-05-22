@@ -1,13 +1,13 @@
-// cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-22 synthesizes Kubernetes manifests for Kubernetes 1.22.0
-package cdk8splus22
+// cdk8s+ is a software development framework that provides high level abstractions for authoring Kubernetes applications. cdk8s-plus-24 synthesizes Kubernetes manifests for Kubernetes 1.24.0
+package cdk8splus24
 
 import (
 	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
-	_init_ "github.com/cdk8s-team/cdk8s-plus-go/cdk8splus22/v2/jsii"
+	_init_ "github.com/cdk8s-team/cdk8s-plus-go/cdk8splus24/v2/jsii"
 
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2"
-	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus22/v2/internal"
+	"github.com/cdk8s-team/cdk8s-plus-go/cdk8splus24/v2/internal"
 )
 
 type AbstractPod interface {
@@ -270,7 +270,7 @@ func NewAbstractPod_Override(a AbstractPod, scope constructs.Construct, id *stri
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.AbstractPod",
+		"cdk8s-plus-24.AbstractPod",
 		[]interface{}{scope, id, props},
 		a,
 	)
@@ -299,7 +299,7 @@ func AbstractPod_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.AbstractPod",
+		"cdk8s-plus-24.AbstractPod",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -554,7 +554,7 @@ func ApiResource_Custom(options *ApiResourceOptions) ApiResource {
 	var returns ApiResource
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"custom",
 		[]interface{}{options},
 		&returns,
@@ -567,7 +567,7 @@ func ApiResource_API_SERVICES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"API_SERVICES",
 		&returns,
 	)
@@ -578,7 +578,7 @@ func ApiResource_BINDINGS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"BINDINGS",
 		&returns,
 	)
@@ -589,7 +589,7 @@ func ApiResource_CERTIFICATE_SIGNING_REQUESTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CERTIFICATE_SIGNING_REQUESTS",
 		&returns,
 	)
@@ -600,7 +600,7 @@ func ApiResource_CLUSTER_ROLE_BINDINGS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CLUSTER_ROLE_BINDINGS",
 		&returns,
 	)
@@ -611,7 +611,7 @@ func ApiResource_CLUSTER_ROLES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CLUSTER_ROLES",
 		&returns,
 	)
@@ -622,7 +622,7 @@ func ApiResource_COMPONENT_STATUSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"COMPONENT_STATUSES",
 		&returns,
 	)
@@ -633,7 +633,7 @@ func ApiResource_CONFIG_MAPS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CONFIG_MAPS",
 		&returns,
 	)
@@ -644,7 +644,7 @@ func ApiResource_CONTROLLER_REVISIONS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CONTROLLER_REVISIONS",
 		&returns,
 	)
@@ -655,7 +655,7 @@ func ApiResource_CRON_JOBS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CRON_JOBS",
 		&returns,
 	)
@@ -666,7 +666,7 @@ func ApiResource_CSI_DRIVERS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CSI_DRIVERS",
 		&returns,
 	)
@@ -677,7 +677,7 @@ func ApiResource_CSI_NODES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CSI_NODES",
 		&returns,
 	)
@@ -688,7 +688,7 @@ func ApiResource_CSI_STORAGE_CAPACITIES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CSI_STORAGE_CAPACITIES",
 		&returns,
 	)
@@ -699,7 +699,7 @@ func ApiResource_CUSTOM_RESOURCE_DEFINITIONS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"CUSTOM_RESOURCE_DEFINITIONS",
 		&returns,
 	)
@@ -710,7 +710,7 @@ func ApiResource_DAEMON_SETS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"DAEMON_SETS",
 		&returns,
 	)
@@ -721,7 +721,7 @@ func ApiResource_DEPLOYMENTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"DEPLOYMENTS",
 		&returns,
 	)
@@ -732,7 +732,7 @@ func ApiResource_ENDPOINT_SLICES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"ENDPOINT_SLICES",
 		&returns,
 	)
@@ -743,7 +743,7 @@ func ApiResource_ENDPOINTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"ENDPOINTS",
 		&returns,
 	)
@@ -754,7 +754,7 @@ func ApiResource_EVENTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"EVENTS",
 		&returns,
 	)
@@ -765,7 +765,7 @@ func ApiResource_FLOW_SCHEMAS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"FLOW_SCHEMAS",
 		&returns,
 	)
@@ -776,7 +776,7 @@ func ApiResource_HORIZONTAL_POD_AUTOSCALERS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"HORIZONTAL_POD_AUTOSCALERS",
 		&returns,
 	)
@@ -787,7 +787,7 @@ func ApiResource_INGRESS_CLASSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"INGRESS_CLASSES",
 		&returns,
 	)
@@ -798,7 +798,7 @@ func ApiResource_INGRESSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"INGRESSES",
 		&returns,
 	)
@@ -809,7 +809,7 @@ func ApiResource_JOBS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"JOBS",
 		&returns,
 	)
@@ -820,7 +820,7 @@ func ApiResource_LEASES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"LEASES",
 		&returns,
 	)
@@ -831,7 +831,7 @@ func ApiResource_LIMIT_RANGES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"LIMIT_RANGES",
 		&returns,
 	)
@@ -842,7 +842,7 @@ func ApiResource_LOCAL_SUBJECT_ACCESS_REVIEWS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"LOCAL_SUBJECT_ACCESS_REVIEWS",
 		&returns,
 	)
@@ -853,7 +853,7 @@ func ApiResource_MUTATING_WEBHOOK_CONFIGURATIONS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"MUTATING_WEBHOOK_CONFIGURATIONS",
 		&returns,
 	)
@@ -864,7 +864,7 @@ func ApiResource_NAMESPACES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"NAMESPACES",
 		&returns,
 	)
@@ -875,7 +875,7 @@ func ApiResource_NETWORK_POLICIES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"NETWORK_POLICIES",
 		&returns,
 	)
@@ -886,7 +886,7 @@ func ApiResource_NODES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"NODES",
 		&returns,
 	)
@@ -897,7 +897,7 @@ func ApiResource_PERSISTENT_VOLUME_CLAIMS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"PERSISTENT_VOLUME_CLAIMS",
 		&returns,
 	)
@@ -908,7 +908,7 @@ func ApiResource_PERSISTENT_VOLUMES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"PERSISTENT_VOLUMES",
 		&returns,
 	)
@@ -919,7 +919,7 @@ func ApiResource_POD_DISRUPTION_BUDGETS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"POD_DISRUPTION_BUDGETS",
 		&returns,
 	)
@@ -930,7 +930,7 @@ func ApiResource_POD_SECURITY_POLICIES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"POD_SECURITY_POLICIES",
 		&returns,
 	)
@@ -941,7 +941,7 @@ func ApiResource_POD_TEMPLATES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"POD_TEMPLATES",
 		&returns,
 	)
@@ -952,7 +952,7 @@ func ApiResource_PODS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"PODS",
 		&returns,
 	)
@@ -963,7 +963,7 @@ func ApiResource_PRIORITY_CLASSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"PRIORITY_CLASSES",
 		&returns,
 	)
@@ -974,7 +974,7 @@ func ApiResource_PRIORITY_LEVEL_CONFIGURATIONS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"PRIORITY_LEVEL_CONFIGURATIONS",
 		&returns,
 	)
@@ -985,7 +985,7 @@ func ApiResource_REPLICA_SETS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"REPLICA_SETS",
 		&returns,
 	)
@@ -996,7 +996,7 @@ func ApiResource_REPLICATION_CONTROLLERS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"REPLICATION_CONTROLLERS",
 		&returns,
 	)
@@ -1007,7 +1007,7 @@ func ApiResource_RESOURCE_QUOTAS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"RESOURCE_QUOTAS",
 		&returns,
 	)
@@ -1018,7 +1018,7 @@ func ApiResource_ROLE_BINDINGS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"ROLE_BINDINGS",
 		&returns,
 	)
@@ -1029,7 +1029,7 @@ func ApiResource_ROLES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"ROLES",
 		&returns,
 	)
@@ -1040,7 +1040,7 @@ func ApiResource_RUNTIME_CLASSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"RUNTIME_CLASSES",
 		&returns,
 	)
@@ -1051,7 +1051,7 @@ func ApiResource_SECRETS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SECRETS",
 		&returns,
 	)
@@ -1062,7 +1062,7 @@ func ApiResource_SELF_SUBJECT_ACCESS_REVIEWS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SELF_SUBJECT_ACCESS_REVIEWS",
 		&returns,
 	)
@@ -1073,7 +1073,7 @@ func ApiResource_SELF_SUBJECT_RULES_REVIEWS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SELF_SUBJECT_RULES_REVIEWS",
 		&returns,
 	)
@@ -1084,7 +1084,7 @@ func ApiResource_SERVICE_ACCOUNTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SERVICE_ACCOUNTS",
 		&returns,
 	)
@@ -1095,7 +1095,7 @@ func ApiResource_SERVICES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SERVICES",
 		&returns,
 	)
@@ -1106,7 +1106,7 @@ func ApiResource_STATEFUL_SETS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"STATEFUL_SETS",
 		&returns,
 	)
@@ -1117,7 +1117,7 @@ func ApiResource_STORAGE_CLASSES() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"STORAGE_CLASSES",
 		&returns,
 	)
@@ -1128,7 +1128,7 @@ func ApiResource_SUBJECT_ACCESS_REVIEWS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"SUBJECT_ACCESS_REVIEWS",
 		&returns,
 	)
@@ -1139,7 +1139,7 @@ func ApiResource_TOKEN_REVIEWS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"TOKEN_REVIEWS",
 		&returns,
 	)
@@ -1150,7 +1150,7 @@ func ApiResource_VALIDATING_WEBHOOK_CONFIGURATIONS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"VALIDATING_WEBHOOK_CONFIGURATIONS",
 		&returns,
 	)
@@ -1161,7 +1161,7 @@ func ApiResource_VOLUME_ATTACHMENTS() ApiResource {
 	_init_.Initialize()
 	var returns ApiResource
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-24.ApiResource",
 		"VOLUME_ATTACHMENTS",
 		&returns,
 	)
@@ -1493,7 +1493,7 @@ func NewAwsElasticBlockStorePersistentVolume(scope constructs.Construct, id *str
 	j := jsiiProxy_AwsElasticBlockStorePersistentVolume{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"cdk8s-plus-24.AwsElasticBlockStorePersistentVolume",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -1505,7 +1505,7 @@ func NewAwsElasticBlockStorePersistentVolume_Override(a AwsElasticBlockStorePers
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"cdk8s-plus-24.AwsElasticBlockStorePersistentVolume",
 		[]interface{}{scope, id, props},
 		a,
 	)
@@ -1518,7 +1518,7 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *s
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"cdk8s-plus-24.AwsElasticBlockStorePersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
 		&returns,
@@ -1550,7 +1550,7 @@ func AwsElasticBlockStorePersistentVolume_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"cdk8s-plus-24.AwsElasticBlockStorePersistentVolume",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -2018,7 +2018,7 @@ func NewAzureDiskPersistentVolume(scope constructs.Construct, id *string, props 
 	j := jsiiProxy_AzureDiskPersistentVolume{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"cdk8s-plus-24.AzureDiskPersistentVolume",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -2030,7 +2030,7 @@ func NewAzureDiskPersistentVolume_Override(a AzureDiskPersistentVolume, scope co
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"cdk8s-plus-24.AzureDiskPersistentVolume",
 		[]interface{}{scope, id, props},
 		a,
 	)
@@ -2043,7 +2043,7 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPer
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"cdk8s-plus-24.AzureDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
 		&returns,
@@ -2075,7 +2075,7 @@ func AzureDiskPersistentVolume_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"cdk8s-plus-24.AzureDiskPersistentVolume",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -2398,7 +2398,7 @@ func NewBasicAuthSecret(scope constructs.Construct, id *string, props *BasicAuth
 	j := jsiiProxy_BasicAuthSecret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.BasicAuthSecret",
+		"cdk8s-plus-24.BasicAuthSecret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -2410,7 +2410,7 @@ func NewBasicAuthSecret_Override(b BasicAuthSecret, scope constructs.Construct, 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.BasicAuthSecret",
+		"cdk8s-plus-24.BasicAuthSecret",
 		[]interface{}{scope, id, props},
 		b,
 	)
@@ -2423,7 +2423,7 @@ func BasicAuthSecret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.BasicAuthSecret",
+		"cdk8s-plus-24.BasicAuthSecret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -2455,7 +2455,7 @@ func BasicAuthSecret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.BasicAuthSecret",
+		"cdk8s-plus-24.BasicAuthSecret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -2722,7 +2722,7 @@ func NewClusterRole(scope constructs.Construct, id *string, props *ClusterRolePr
 	j := jsiiProxy_ClusterRole{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ClusterRole",
+		"cdk8s-plus-24.ClusterRole",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -2734,7 +2734,7 @@ func NewClusterRole_Override(c ClusterRole, scope constructs.Construct, id *stri
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ClusterRole",
+		"cdk8s-plus-24.ClusterRole",
 		[]interface{}{scope, id, props},
 		c,
 	)
@@ -2747,7 +2747,7 @@ func ClusterRole_FromClusterRoleName(name *string) IClusterRole {
 	var returns IClusterRole
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ClusterRole",
+		"cdk8s-plus-24.ClusterRole",
 		"fromClusterRoleName",
 		[]interface{}{name},
 		&returns,
@@ -2779,7 +2779,7 @@ func ClusterRole_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ClusterRole",
+		"cdk8s-plus-24.ClusterRole",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -3180,7 +3180,7 @@ func NewClusterRoleBinding(scope constructs.Construct, id *string, props *Cluste
 	j := jsiiProxy_ClusterRoleBinding{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ClusterRoleBinding",
+		"cdk8s-plus-24.ClusterRoleBinding",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -3192,7 +3192,7 @@ func NewClusterRoleBinding_Override(c ClusterRoleBinding, scope constructs.Const
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ClusterRoleBinding",
+		"cdk8s-plus-24.ClusterRoleBinding",
 		[]interface{}{scope, id, props},
 		c,
 	)
@@ -3221,7 +3221,7 @@ func ClusterRoleBinding_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ClusterRoleBinding",
+		"cdk8s-plus-24.ClusterRoleBinding",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -3536,7 +3536,7 @@ func NewConfigMap(scope constructs.Construct, id *string, props *ConfigMapProps)
 	j := jsiiProxy_ConfigMap{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ConfigMap",
+		"cdk8s-plus-24.ConfigMap",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -3548,7 +3548,7 @@ func NewConfigMap_Override(c ConfigMap, scope constructs.Construct, id *string, 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ConfigMap",
+		"cdk8s-plus-24.ConfigMap",
 		[]interface{}{scope, id, props},
 		c,
 	)
@@ -3561,7 +3561,7 @@ func ConfigMap_FromConfigMapName(name *string) IConfigMap {
 	var returns IConfigMap
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ConfigMap",
+		"cdk8s-plus-24.ConfigMap",
 		"fromConfigMapName",
 		[]interface{}{name},
 		&returns,
@@ -3593,7 +3593,7 @@ func ConfigMap_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ConfigMap",
+		"cdk8s-plus-24.ConfigMap",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -3882,7 +3882,7 @@ func NewContainer(props *ContainerProps) Container {
 	j := jsiiProxy_Container{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Container",
+		"cdk8s-plus-24.Container",
 		[]interface{}{props},
 		&j,
 	)
@@ -3894,7 +3894,7 @@ func NewContainer_Override(c Container, props *ContainerProps) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Container",
+		"cdk8s-plus-24.Container",
 		[]interface{}{props},
 		c,
 	)
@@ -4077,7 +4077,7 @@ func NewContainerSecurityContext(props *ContainerSecurityContextProps) Container
 	j := jsiiProxy_ContainerSecurityContext{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ContainerSecurityContext",
+		"cdk8s-plus-24.ContainerSecurityContext",
 		[]interface{}{props},
 		&j,
 	)
@@ -4089,7 +4089,7 @@ func NewContainerSecurityContext_Override(c ContainerSecurityContext, props *Con
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ContainerSecurityContext",
+		"cdk8s-plus-24.ContainerSecurityContext",
 		[]interface{}{props},
 		c,
 	)
@@ -4152,7 +4152,7 @@ func Cpu_Millis(amount *float64) Cpu {
 	var returns Cpu
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Cpu",
+		"cdk8s-plus-24.Cpu",
 		"millis",
 		[]interface{}{amount},
 		&returns,
@@ -4167,7 +4167,7 @@ func Cpu_Units(amount *float64) Cpu {
 	var returns Cpu
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Cpu",
+		"cdk8s-plus-24.Cpu",
 		"units",
 		[]interface{}{amount},
 		&returns,
@@ -4512,7 +4512,7 @@ func NewDaemonSet(scope constructs.Construct, id *string, props *DaemonSetProps)
 	j := jsiiProxy_DaemonSet{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.DaemonSet",
+		"cdk8s-plus-24.DaemonSet",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -4524,7 +4524,7 @@ func NewDaemonSet_Override(d DaemonSet, scope constructs.Construct, id *string, 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.DaemonSet",
+		"cdk8s-plus-24.DaemonSet",
 		[]interface{}{scope, id, props},
 		d,
 	)
@@ -4553,7 +4553,7 @@ func DaemonSet_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.DaemonSet",
+		"cdk8s-plus-24.DaemonSet",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -5123,7 +5123,7 @@ func NewDeployment(scope constructs.Construct, id *string, props *DeploymentProp
 	j := jsiiProxy_Deployment{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Deployment",
+		"cdk8s-plus-24.Deployment",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -5135,7 +5135,7 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Deployment",
+		"cdk8s-plus-24.Deployment",
 		[]interface{}{scope, id, props},
 		d,
 	)
@@ -5164,7 +5164,7 @@ func Deployment_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Deployment",
+		"cdk8s-plus-24.Deployment",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -5413,7 +5413,7 @@ func DeploymentStrategy_Recreate() DeploymentStrategy {
 	var returns DeploymentStrategy
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.DeploymentStrategy",
+		"cdk8s-plus-24.DeploymentStrategy",
 		"recreate",
 		nil, // no parameters
 		&returns,
@@ -5428,7 +5428,7 @@ func DeploymentStrategy_RollingUpdate(options *DeploymentStrategyRollingUpdateOp
 	var returns DeploymentStrategy
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.DeploymentStrategy",
+		"cdk8s-plus-24.DeploymentStrategy",
 		"rollingUpdate",
 		[]interface{}{options},
 		&returns,
@@ -5640,7 +5640,7 @@ func NewDockerConfigSecret(scope constructs.Construct, id *string, props *Docker
 	j := jsiiProxy_DockerConfigSecret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.DockerConfigSecret",
+		"cdk8s-plus-24.DockerConfigSecret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -5652,7 +5652,7 @@ func NewDockerConfigSecret_Override(d DockerConfigSecret, scope constructs.Const
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.DockerConfigSecret",
+		"cdk8s-plus-24.DockerConfigSecret",
 		[]interface{}{scope, id, props},
 		d,
 	)
@@ -5665,7 +5665,7 @@ func DockerConfigSecret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.DockerConfigSecret",
+		"cdk8s-plus-24.DockerConfigSecret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -5697,7 +5697,7 @@ func DockerConfigSecret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.DockerConfigSecret",
+		"cdk8s-plus-24.DockerConfigSecret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -5866,7 +5866,7 @@ func NewEnv(sources *[]EnvFrom, variables *map[string]EnvValue) Env {
 	j := jsiiProxy_Env{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Env",
+		"cdk8s-plus-24.Env",
 		[]interface{}{sources, variables},
 		&j,
 	)
@@ -5878,7 +5878,7 @@ func NewEnv_Override(e Env, sources *[]EnvFrom, variables *map[string]EnvValue) 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Env",
+		"cdk8s-plus-24.Env",
 		[]interface{}{sources, variables},
 		e,
 	)
@@ -5894,7 +5894,7 @@ func Env_FromConfigMap(configMap IConfigMap, prefix *string) EnvFrom {
 	var returns EnvFrom
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Env",
+		"cdk8s-plus-24.Env",
 		"fromConfigMap",
 		[]interface{}{configMap, prefix},
 		&returns,
@@ -5913,7 +5913,7 @@ func Env_FromSecret(secr ISecret) EnvFrom {
 	var returns EnvFrom
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Env",
+		"cdk8s-plus-24.Env",
 		"fromSecret",
 		[]interface{}{secr},
 		&returns,
@@ -5978,7 +5978,7 @@ func NewEnvFrom(configMap IConfigMap, prefix *string, sec ISecret) EnvFrom {
 	j := jsiiProxy_EnvFrom{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.EnvFrom",
+		"cdk8s-plus-24.EnvFrom",
 		[]interface{}{configMap, prefix, sec},
 		&j,
 	)
@@ -5990,7 +5990,7 @@ func NewEnvFrom_Override(e EnvFrom, configMap IConfigMap, prefix *string, sec IS
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.EnvFrom",
+		"cdk8s-plus-24.EnvFrom",
 		[]interface{}{configMap, prefix, sec},
 		e,
 	)
@@ -6035,7 +6035,7 @@ func EnvValue_FromConfigMap(configMap IConfigMap, key *string, options *EnvValue
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromConfigMap",
 		[]interface{}{configMap, key, options},
 		&returns,
@@ -6051,7 +6051,7 @@ func EnvValue_FromFieldRef(fieldPath EnvFieldPaths, options *EnvValueFromFieldRe
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromFieldRef",
 		[]interface{}{fieldPath, options},
 		&returns,
@@ -6067,7 +6067,7 @@ func EnvValue_FromProcess(key *string, options *EnvValueFromProcessOptions) EnvV
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromProcess",
 		[]interface{}{key, options},
 		&returns,
@@ -6083,7 +6083,7 @@ func EnvValue_FromResource(resource ResourceFieldPaths, options *EnvValueFromRes
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromResource",
 		[]interface{}{resource, options},
 		&returns,
@@ -6099,7 +6099,7 @@ func EnvValue_FromSecretValue(secretValue *SecretValue, options *EnvValueFromSec
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromSecretValue",
 		[]interface{}{secretValue, options},
 		&returns,
@@ -6115,7 +6115,7 @@ func EnvValue_FromValue(value *string) EnvValue {
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-24.EnvValue",
 		"fromValue",
 		[]interface{}{value},
 		&returns,
@@ -6506,7 +6506,7 @@ func NewGCEPersistentDiskPersistentVolume(scope constructs.Construct, id *string
 	j := jsiiProxy_GCEPersistentDiskPersistentVolume{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"cdk8s-plus-24.GCEPersistentDiskPersistentVolume",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -6518,7 +6518,7 @@ func NewGCEPersistentDiskPersistentVolume_Override(g GCEPersistentDiskPersistent
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"cdk8s-plus-24.GCEPersistentDiskPersistentVolume",
 		[]interface{}{scope, id, props},
 		g,
 	)
@@ -6531,7 +6531,7 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *stri
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"cdk8s-plus-24.GCEPersistentDiskPersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
 		&returns,
@@ -6563,7 +6563,7 @@ func GCEPersistentDiskPersistentVolume_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"cdk8s-plus-24.GCEPersistentDiskPersistentVolume",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -6785,7 +6785,7 @@ func NewGroup(props *GroupProps) Group {
 	j := jsiiProxy_Group{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Group",
+		"cdk8s-plus-24.Group",
 		[]interface{}{props},
 		&j,
 	)
@@ -6797,7 +6797,7 @@ func NewGroup_Override(g Group, props *GroupProps) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Group",
+		"cdk8s-plus-24.Group",
 		[]interface{}{props},
 		g,
 	)
@@ -6825,7 +6825,7 @@ func Handler_FromCommand(command *[]*string) Handler {
 	var returns Handler
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Handler",
+		"cdk8s-plus-24.Handler",
 		"fromCommand",
 		[]interface{}{command},
 		&returns,
@@ -6841,7 +6841,7 @@ func Handler_FromHttpGet(path *string, options *HandlerFromHttpGetOptions) Handl
 	var returns Handler
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Handler",
+		"cdk8s-plus-24.Handler",
 		"fromHttpGet",
 		[]interface{}{path, options},
 		&returns,
@@ -6857,7 +6857,7 @@ func Handler_FromTcpSocket(options *HandlerFromTcpSocketOptions) Handler {
 	var returns Handler
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Handler",
+		"cdk8s-plus-24.Handler",
 		"fromTcpSocket",
 		[]interface{}{options},
 		&returns,
@@ -7469,7 +7469,7 @@ func NewIngress(scope constructs.Construct, id *string, props *IngressProps) Ing
 	j := jsiiProxy_Ingress{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Ingress",
+		"cdk8s-plus-24.Ingress",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -7481,7 +7481,7 @@ func NewIngress_Override(i Ingress, scope constructs.Construct, id *string, prop
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Ingress",
+		"cdk8s-plus-24.Ingress",
 		[]interface{}{scope, id, props},
 		i,
 	)
@@ -7510,7 +7510,7 @@ func Ingress_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Ingress",
+		"cdk8s-plus-24.Ingress",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -7630,7 +7630,7 @@ func IngressBackend_FromResource(resource IResource) IngressBackend {
 	var returns IngressBackend
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.IngressBackend",
+		"cdk8s-plus-24.IngressBackend",
 		"fromResource",
 		[]interface{}{resource},
 		&returns,
@@ -7646,7 +7646,7 @@ func IngressBackend_FromService(serv Service, options *ServiceIngressBackendOpti
 	var returns IngressBackend
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.IngressBackend",
+		"cdk8s-plus-24.IngressBackend",
 		"fromService",
 		[]interface{}{serv, options},
 		&returns,
@@ -8075,7 +8075,7 @@ func NewJob(scope constructs.Construct, id *string, props *JobProps) Job {
 	j := jsiiProxy_Job{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Job",
+		"cdk8s-plus-24.Job",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -8087,7 +8087,7 @@ func NewJob_Override(j Job, scope constructs.Construct, id *string, props *JobPr
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Job",
+		"cdk8s-plus-24.Job",
 		[]interface{}{scope, id, props},
 		j,
 	)
@@ -8116,7 +8116,7 @@ func Job_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Job",
+		"cdk8s-plus-24.Job",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -8364,7 +8364,7 @@ func LabelExpression_DoesNotExist(key *string) LabelExpression {
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.LabelExpression",
+		"cdk8s-plus-24.LabelExpression",
 		"doesNotExist",
 		[]interface{}{key},
 		&returns,
@@ -8380,7 +8380,7 @@ func LabelExpression_Exists(key *string) LabelExpression {
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.LabelExpression",
+		"cdk8s-plus-24.LabelExpression",
 		"exists",
 		[]interface{}{key},
 		&returns,
@@ -8396,7 +8396,7 @@ func LabelExpression_In(key *string, values *[]*string) LabelExpression {
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.LabelExpression",
+		"cdk8s-plus-24.LabelExpression",
 		"in",
 		[]interface{}{key, values},
 		&returns,
@@ -8412,7 +8412,7 @@ func LabelExpression_NotIn(key *string, values *[]*string) LabelExpression {
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.LabelExpression",
+		"cdk8s-plus-24.LabelExpression",
 		"notIn",
 		[]interface{}{key, values},
 		&returns,
@@ -8436,7 +8436,7 @@ func LabelSelector_Of(options LabelSelectorOptions) LabelSelector {
 	var returns LabelSelector
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.LabelSelector",
+		"cdk8s-plus-24.LabelSelector",
 		"of",
 		[]interface{}{options},
 		&returns,
@@ -8485,7 +8485,7 @@ func NewLabelSelectorOptions() LabelSelectorOptions {
 	j := jsiiProxy_LabelSelectorOptions{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.LabelSelectorOptions",
+		"cdk8s-plus-24.LabelSelectorOptions",
 		nil, // no parameters
 		&j,
 	)
@@ -8497,7 +8497,7 @@ func NewLabelSelectorOptions_Override(l LabelSelectorOptions) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.LabelSelectorOptions",
+		"cdk8s-plus-24.LabelSelectorOptions",
 		nil, // no parameters
 		l,
 	)
@@ -8544,7 +8544,7 @@ func NewLabeledNode(labelSelector *[]NodeLabelQuery) LabeledNode {
 	j := jsiiProxy_LabeledNode{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.LabeledNode",
+		"cdk8s-plus-24.LabeledNode",
 		[]interface{}{labelSelector},
 		&j,
 	)
@@ -8556,7 +8556,7 @@ func NewLabeledNode_Override(l LabeledNode, labelSelector *[]NodeLabelQuery) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.LabeledNode",
+		"cdk8s-plus-24.LabeledNode",
 		[]interface{}{labelSelector},
 		l,
 	)
@@ -8665,7 +8665,7 @@ func NewNamedNode(name *string) NamedNode {
 	j := jsiiProxy_NamedNode{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.NamedNode",
+		"cdk8s-plus-24.NamedNode",
 		[]interface{}{name},
 		&j,
 	)
@@ -8677,7 +8677,7 @@ func NewNamedNode_Override(n NamedNode, name *string) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.NamedNode",
+		"cdk8s-plus-24.NamedNode",
 		[]interface{}{name},
 		n,
 	)
@@ -8827,7 +8827,7 @@ func NewNamespace(scope constructs.Construct, id *string, props *NamespaceProps)
 	j := jsiiProxy_Namespace{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Namespace",
+		"cdk8s-plus-24.Namespace",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -8839,7 +8839,7 @@ func NewNamespace_Override(n Namespace, scope constructs.Construct, id *string, 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Namespace",
+		"cdk8s-plus-24.Namespace",
 		[]interface{}{scope, id, props},
 		n,
 	)
@@ -8868,7 +8868,7 @@ func Namespace_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Namespace",
+		"cdk8s-plus-24.Namespace",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -8881,7 +8881,7 @@ func Namespace_NAME_LABEL() *string {
 	_init_.Initialize()
 	var returns *string
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.Namespace",
+		"cdk8s-plus-24.Namespace",
 		"NAME_LABEL",
 		&returns,
 	)
@@ -8974,7 +8974,7 @@ func NewNamespaces(expressions *[]LabelExpression, names *[]*string, labels *map
 	j := jsiiProxy_Namespaces{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Namespaces",
+		"cdk8s-plus-24.Namespaces",
 		[]interface{}{expressions, names, labels},
 		&j,
 	)
@@ -8986,7 +8986,7 @@ func NewNamespaces_Override(n Namespaces, expressions *[]LabelExpression, names 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Namespaces",
+		"cdk8s-plus-24.Namespaces",
 		[]interface{}{expressions, names, labels},
 		n,
 	)
@@ -8999,7 +8999,7 @@ func Namespaces_All() Namespaces {
 	var returns Namespaces
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Namespaces",
+		"cdk8s-plus-24.Namespaces",
 		"all",
 		nil, // no parameters
 		&returns,
@@ -9015,7 +9015,7 @@ func Namespaces_Select(options *NamespacesSelectOptions) Namespaces {
 	var returns Namespaces
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Namespaces",
+		"cdk8s-plus-24.Namespaces",
 		"select",
 		[]interface{}{options},
 		&returns,
@@ -9067,7 +9067,7 @@ func NewNode() Node {
 	j := jsiiProxy_Node{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-24.Node",
 		nil, // no parameters
 		&j,
 	)
@@ -9079,7 +9079,7 @@ func NewNode_Override(n Node) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-24.Node",
 		nil, // no parameters
 		n,
 	)
@@ -9097,7 +9097,7 @@ func Node_Labeled(labelSelector ...NodeLabelQuery) LabeledNode {
 	var returns LabeledNode
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-24.Node",
 		"labeled",
 		args,
 		&returns,
@@ -9113,7 +9113,7 @@ func Node_Named(nodeName *string) NamedNode {
 	var returns NamedNode
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-24.Node",
 		"named",
 		[]interface{}{nodeName},
 		&returns,
@@ -9134,7 +9134,7 @@ func Node_Tainted(taintSelector ...NodeTaintQuery) TaintedNode {
 	var returns TaintedNode
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-24.Node",
 		"tainted",
 		args,
 		&returns,
@@ -9145,46 +9145,12 @@ func Node_Tainted(taintSelector ...NodeTaintQuery) TaintedNode {
 
 // Represents a query that can be performed against nodes with labels.
 type NodeLabelQuery interface {
-	Key() *string
-	Operator() *string
-	Values() *[]*string
 }
 
 // The jsii proxy struct for NodeLabelQuery
 type jsiiProxy_NodeLabelQuery struct {
 	_ byte // padding
 }
-
-func (j *jsiiProxy_NodeLabelQuery) Key() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"key",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeLabelQuery) Operator() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"operator",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeLabelQuery) Values() *[]*string {
-	var returns *[]*string
-	_jsii_.Get(
-		j,
-		"values",
-		&returns,
-	)
-	return returns
-}
-
 
 // Requires label `key` to not exist.
 func NodeLabelQuery_DoesNotExist(key *string) NodeLabelQuery {
@@ -9193,7 +9159,7 @@ func NodeLabelQuery_DoesNotExist(key *string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"doesNotExist",
 		[]interface{}{key},
 		&returns,
@@ -9209,7 +9175,7 @@ func NodeLabelQuery_Exists(key *string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"exists",
 		[]interface{}{key},
 		&returns,
@@ -9225,7 +9191,7 @@ func NodeLabelQuery_Gt(key *string, values *[]*string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"gt",
 		[]interface{}{key, values},
 		&returns,
@@ -9241,7 +9207,7 @@ func NodeLabelQuery_In(key *string, values *[]*string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"in",
 		[]interface{}{key, values},
 		&returns,
@@ -9257,7 +9223,7 @@ func NodeLabelQuery_Is(key *string, value *string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"is",
 		[]interface{}{key, value},
 		&returns,
@@ -9273,7 +9239,7 @@ func NodeLabelQuery_Lt(key *string, values *[]*string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"lt",
 		[]interface{}{key, values},
 		&returns,
@@ -9289,7 +9255,7 @@ func NodeLabelQuery_NotIn(key *string, values *[]*string) NodeLabelQuery {
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-24.NodeLabelQuery",
 		"notIn",
 		[]interface{}{key, values},
 		&returns,
@@ -9300,68 +9266,12 @@ func NodeLabelQuery_NotIn(key *string, values *[]*string) NodeLabelQuery {
 
 // Taint queries that can be perfomed against nodes.
 type NodeTaintQuery interface {
-	Effect() *string
-	EvictAfter() cdk8s.Duration
-	Key() *string
-	Operator() *string
-	Value() *string
 }
 
 // The jsii proxy struct for NodeTaintQuery
 type jsiiProxy_NodeTaintQuery struct {
 	_ byte // padding
 }
-
-func (j *jsiiProxy_NodeTaintQuery) Effect() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"effect",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeTaintQuery) EvictAfter() cdk8s.Duration {
-	var returns cdk8s.Duration
-	_jsii_.Get(
-		j,
-		"evictAfter",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeTaintQuery) Key() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"key",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeTaintQuery) Operator() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"operator",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_NodeTaintQuery) Value() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"value",
-		&returns,
-	)
-	return returns
-}
-
 
 // Matches any taint.
 func NodeTaintQuery_Any() NodeTaintQuery {
@@ -9370,7 +9280,7 @@ func NodeTaintQuery_Any() NodeTaintQuery {
 	var returns NodeTaintQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeTaintQuery",
+		"cdk8s-plus-24.NodeTaintQuery",
 		"any",
 		nil, // no parameters
 		&returns,
@@ -9386,7 +9296,7 @@ func NodeTaintQuery_Exists(key *string, options *NodeTaintQueryOptions) NodeTain
 	var returns NodeTaintQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeTaintQuery",
+		"cdk8s-plus-24.NodeTaintQuery",
 		"exists",
 		[]interface{}{key, options},
 		&returns,
@@ -9402,7 +9312,7 @@ func NodeTaintQuery_Is(key *string, value *string, options *NodeTaintQueryOption
 	var returns NodeTaintQuery
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NodeTaintQuery",
+		"cdk8s-plus-24.NodeTaintQuery",
 		"is",
 		[]interface{}{key, value, options},
 		&returns,
@@ -9441,7 +9351,7 @@ func NonApiResource_Of(url *string) NonApiResource {
 	var returns NonApiResource
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.NonApiResource",
+		"cdk8s-plus-24.NonApiResource",
 		"of",
 		[]interface{}{url},
 		&returns,
@@ -9521,7 +9431,7 @@ func PercentOrAbsolute_Absolute(num *float64) PercentOrAbsolute {
 	var returns PercentOrAbsolute
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PercentOrAbsolute",
+		"cdk8s-plus-24.PercentOrAbsolute",
 		"absolute",
 		[]interface{}{num},
 		&returns,
@@ -9537,7 +9447,7 @@ func PercentOrAbsolute_Percent(percent *float64) PercentOrAbsolute {
 	var returns PercentOrAbsolute
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PercentOrAbsolute",
+		"cdk8s-plus-24.PercentOrAbsolute",
 		"percent",
 		[]interface{}{percent},
 		&returns,
@@ -9804,7 +9714,7 @@ func NewPersistentVolume(scope constructs.Construct, id *string, props *Persiste
 	j := jsiiProxy_PersistentVolume{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PersistentVolume",
+		"cdk8s-plus-24.PersistentVolume",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -9816,7 +9726,7 @@ func NewPersistentVolume_Override(p PersistentVolume, scope constructs.Construct
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PersistentVolume",
+		"cdk8s-plus-24.PersistentVolume",
 		[]interface{}{scope, id, props},
 		p,
 	)
@@ -9829,7 +9739,7 @@ func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVo
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PersistentVolume",
+		"cdk8s-plus-24.PersistentVolume",
 		"fromPersistentVolumeName",
 		[]interface{}{volumeName},
 		&returns,
@@ -9861,7 +9771,7 @@ func PersistentVolume_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PersistentVolume",
+		"cdk8s-plus-24.PersistentVolume",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -10173,7 +10083,7 @@ func NewPersistentVolumeClaim(scope constructs.Construct, id *string, props *Per
 	j := jsiiProxy_PersistentVolumeClaim{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PersistentVolumeClaim",
+		"cdk8s-plus-24.PersistentVolumeClaim",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -10185,7 +10095,7 @@ func NewPersistentVolumeClaim_Override(p PersistentVolumeClaim, scope constructs
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PersistentVolumeClaim",
+		"cdk8s-plus-24.PersistentVolumeClaim",
 		[]interface{}{scope, id, props},
 		p,
 	)
@@ -10198,7 +10108,7 @@ func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeCla
 	var returns IPersistentVolumeClaim
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PersistentVolumeClaim",
+		"cdk8s-plus-24.PersistentVolumeClaim",
 		"fromClaimName",
 		[]interface{}{claimName},
 		&returns,
@@ -10230,7 +10140,7 @@ func PersistentVolumeClaim_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.PersistentVolumeClaim",
+		"cdk8s-plus-24.PersistentVolumeClaim",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -10690,7 +10600,7 @@ func NewPod(scope constructs.Construct, id *string, props *PodProps) Pod {
 	j := jsiiProxy_Pod{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Pod",
+		"cdk8s-plus-24.Pod",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -10702,7 +10612,7 @@ func NewPod_Override(p Pod, scope constructs.Construct, id *string, props *PodPr
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Pod",
+		"cdk8s-plus-24.Pod",
 		[]interface{}{scope, id, props},
 		p,
 	)
@@ -10731,7 +10641,7 @@ func Pod_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Pod",
+		"cdk8s-plus-24.Pod",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -10744,7 +10654,7 @@ func Pod_ADDRESS_LABEL() *string {
 	_init_.Initialize()
 	var returns *string
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.Pod",
+		"cdk8s-plus-24.Pod",
 		"ADDRESS_LABEL",
 		&returns,
 	)
@@ -10953,7 +10863,7 @@ func NewPodDns(props *PodDnsProps) PodDns {
 	j := jsiiProxy_PodDns{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodDns",
+		"cdk8s-plus-24.PodDns",
 		[]interface{}{props},
 		&j,
 	)
@@ -10965,7 +10875,7 @@ func NewPodDns_Override(p PodDns, props *PodDnsProps) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodDns",
+		"cdk8s-plus-24.PodDns",
 		[]interface{}{props},
 		p,
 	)
@@ -11231,7 +11141,7 @@ func NewPodScheduling(instance AbstractPod) PodScheduling {
 	j := jsiiProxy_PodScheduling{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodScheduling",
+		"cdk8s-plus-24.PodScheduling",
 		[]interface{}{instance},
 		&j,
 	)
@@ -11243,7 +11153,7 @@ func NewPodScheduling_Override(p PodScheduling, instance AbstractPod) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodScheduling",
+		"cdk8s-plus-24.PodScheduling",
 		[]interface{}{instance},
 		p,
 	)
@@ -11393,7 +11303,7 @@ func NewPodSecurityContext(props *PodSecurityContextProps) PodSecurityContext {
 	j := jsiiProxy_PodSecurityContext{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodSecurityContext",
+		"cdk8s-plus-24.PodSecurityContext",
 		[]interface{}{props},
 		&j,
 	)
@@ -11405,7 +11315,7 @@ func NewPodSecurityContext_Override(p PodSecurityContext, props *PodSecurityCont
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.PodSecurityContext",
+		"cdk8s-plus-24.PodSecurityContext",
 		[]interface{}{props},
 		p,
 	)
@@ -11473,7 +11383,7 @@ func NewPods(expressions *[]LabelExpression, labels *map[string]*string, namespa
 	j := jsiiProxy_Pods{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Pods",
+		"cdk8s-plus-24.Pods",
 		[]interface{}{expressions, labels, namespaces},
 		&j,
 	)
@@ -11485,7 +11395,7 @@ func NewPods_Override(p Pods, expressions *[]LabelExpression, labels *map[string
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Pods",
+		"cdk8s-plus-24.Pods",
 		[]interface{}{expressions, labels, namespaces},
 		p,
 	)
@@ -11498,7 +11408,7 @@ func Pods_Select(options *PodSelectOptions) Pods {
 	var returns Pods
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Pods",
+		"cdk8s-plus-24.Pods",
 		"select",
 		[]interface{}{options},
 		&returns,
@@ -11536,7 +11446,7 @@ func Probe_FromCommand(command *[]*string, options *CommandProbeOptions) Probe {
 	var returns Probe
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Probe",
+		"cdk8s-plus-24.Probe",
 		"fromCommand",
 		[]interface{}{command, options},
 		&returns,
@@ -11552,7 +11462,7 @@ func Probe_FromHttpGet(path *string, options *HttpGetProbeOptions) Probe {
 	var returns Probe
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Probe",
+		"cdk8s-plus-24.Probe",
 		"fromHttpGet",
 		[]interface{}{path, options},
 		&returns,
@@ -11568,7 +11478,7 @@ func Probe_FromTcpSocket(options *TcpSocketProbeOptions) Probe {
 	var returns Probe
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Probe",
+		"cdk8s-plus-24.Probe",
 		"fromTcpSocket",
 		[]interface{}{options},
 		&returns,
@@ -11751,7 +11661,7 @@ func NewResource_Override(r Resource, scope constructs.Construct, id *string) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Resource",
+		"cdk8s-plus-24.Resource",
 		[]interface{}{scope, id},
 		r,
 	)
@@ -11780,7 +11690,7 @@ func Resource_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Resource",
+		"cdk8s-plus-24.Resource",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -12039,7 +11949,7 @@ func NewRole(scope constructs.Construct, id *string, props *RoleProps) Role {
 	j := jsiiProxy_Role{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Role",
+		"cdk8s-plus-24.Role",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -12051,7 +11961,7 @@ func NewRole_Override(r Role, scope constructs.Construct, id *string, props *Rol
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Role",
+		"cdk8s-plus-24.Role",
 		[]interface{}{scope, id, props},
 		r,
 	)
@@ -12064,7 +11974,7 @@ func Role_FromRoleName(name *string) IRole {
 	var returns IRole
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Role",
+		"cdk8s-plus-24.Role",
 		"fromRoleName",
 		[]interface{}{name},
 		&returns,
@@ -12096,7 +12006,7 @@ func Role_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Role",
+		"cdk8s-plus-24.Role",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -12463,7 +12373,7 @@ func NewRoleBinding(scope constructs.Construct, id *string, props *RoleBindingPr
 	j := jsiiProxy_RoleBinding{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.RoleBinding",
+		"cdk8s-plus-24.RoleBinding",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -12475,7 +12385,7 @@ func NewRoleBinding_Override(r RoleBinding, scope constructs.Construct, id *stri
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.RoleBinding",
+		"cdk8s-plus-24.RoleBinding",
 		[]interface{}{scope, id, props},
 		r,
 	)
@@ -12504,7 +12414,7 @@ func RoleBinding_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.RoleBinding",
+		"cdk8s-plus-24.RoleBinding",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -12751,7 +12661,7 @@ func NewSecret(scope constructs.Construct, id *string, props *SecretProps) Secre
 	j := jsiiProxy_Secret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Secret",
+		"cdk8s-plus-24.Secret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -12763,7 +12673,7 @@ func NewSecret_Override(s Secret, scope constructs.Construct, id *string, props 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Secret",
+		"cdk8s-plus-24.Secret",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -12776,7 +12686,7 @@ func Secret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Secret",
+		"cdk8s-plus-24.Secret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -12808,7 +12718,7 @@ func Secret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Secret",
+		"cdk8s-plus-24.Secret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -13154,7 +13064,7 @@ func NewService(scope constructs.Construct, id *string, props *ServiceProps) Ser
 	j := jsiiProxy_Service{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Service",
+		"cdk8s-plus-24.Service",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -13166,7 +13076,7 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Service",
+		"cdk8s-plus-24.Service",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -13195,7 +13105,7 @@ func Service_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Service",
+		"cdk8s-plus-24.Service",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -13455,7 +13365,7 @@ func NewServiceAccount(scope constructs.Construct, id *string, props *ServiceAcc
 	j := jsiiProxy_ServiceAccount{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ServiceAccount",
+		"cdk8s-plus-24.ServiceAccount",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -13467,7 +13377,7 @@ func NewServiceAccount_Override(s ServiceAccount, scope constructs.Construct, id
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ServiceAccount",
+		"cdk8s-plus-24.ServiceAccount",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -13480,7 +13390,7 @@ func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
 	var returns IServiceAccount
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ServiceAccount",
+		"cdk8s-plus-24.ServiceAccount",
 		"fromServiceAccountName",
 		[]interface{}{name},
 		&returns,
@@ -13512,7 +13422,7 @@ func ServiceAccount_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ServiceAccount",
+		"cdk8s-plus-24.ServiceAccount",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -13736,7 +13646,7 @@ func NewServiceAccountTokenSecret(scope constructs.Construct, id *string, props 
 	j := jsiiProxy_ServiceAccountTokenSecret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		"cdk8s-plus-24.ServiceAccountTokenSecret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -13748,7 +13658,7 @@ func NewServiceAccountTokenSecret_Override(s ServiceAccountTokenSecret, scope co
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		"cdk8s-plus-24.ServiceAccountTokenSecret",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -13761,7 +13671,7 @@ func ServiceAccountTokenSecret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		"cdk8s-plus-24.ServiceAccountTokenSecret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -13793,7 +13703,7 @@ func ServiceAccountTokenSecret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		"cdk8s-plus-24.ServiceAccountTokenSecret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -14157,7 +14067,7 @@ func NewSshAuthSecret(scope constructs.Construct, id *string, props *SshAuthSecr
 	j := jsiiProxy_SshAuthSecret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.SshAuthSecret",
+		"cdk8s-plus-24.SshAuthSecret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -14169,7 +14079,7 @@ func NewSshAuthSecret_Override(s SshAuthSecret, scope constructs.Construct, id *
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.SshAuthSecret",
+		"cdk8s-plus-24.SshAuthSecret",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -14182,7 +14092,7 @@ func SshAuthSecret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.SshAuthSecret",
+		"cdk8s-plus-24.SshAuthSecret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -14214,7 +14124,7 @@ func SshAuthSecret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.SshAuthSecret",
+		"cdk8s-plus-24.SshAuthSecret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -14671,7 +14581,7 @@ func NewStatefulSet(scope constructs.Construct, id *string, props *StatefulSetPr
 	j := jsiiProxy_StatefulSet{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.StatefulSet",
+		"cdk8s-plus-24.StatefulSet",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -14683,7 +14593,7 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.StatefulSet",
+		"cdk8s-plus-24.StatefulSet",
 		[]interface{}{scope, id, props},
 		s,
 	)
@@ -14712,7 +14622,7 @@ func StatefulSet_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.StatefulSet",
+		"cdk8s-plus-24.StatefulSet",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -14932,7 +14842,7 @@ func StatefulSetUpdateStrategy_OnDelete() StatefulSetUpdateStrategy {
 	var returns StatefulSetUpdateStrategy
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.StatefulSetUpdateStrategy",
+		"cdk8s-plus-24.StatefulSetUpdateStrategy",
 		"onDelete",
 		nil, // no parameters
 		&returns,
@@ -14952,7 +14862,7 @@ func StatefulSetUpdateStrategy_RollingUpdate(options *StatefulSetUpdateStrategyR
 	var returns StatefulSetUpdateStrategy
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.StatefulSetUpdateStrategy",
+		"cdk8s-plus-24.StatefulSetUpdateStrategy",
 		"rollingUpdate",
 		[]interface{}{options},
 		&returns,
@@ -15025,7 +14935,7 @@ func NewTaintedNode(taintSelector *[]NodeTaintQuery) TaintedNode {
 	j := jsiiProxy_TaintedNode{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.TaintedNode",
+		"cdk8s-plus-24.TaintedNode",
 		[]interface{}{taintSelector},
 		&j,
 	)
@@ -15037,7 +14947,7 @@ func NewTaintedNode_Override(t TaintedNode, taintSelector *[]NodeTaintQuery) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.TaintedNode",
+		"cdk8s-plus-24.TaintedNode",
 		[]interface{}{taintSelector},
 		t,
 	)
@@ -15225,7 +15135,7 @@ func NewTlsSecret(scope constructs.Construct, id *string, props *TlsSecretProps)
 	j := jsiiProxy_TlsSecret{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.TlsSecret",
+		"cdk8s-plus-24.TlsSecret",
 		[]interface{}{scope, id, props},
 		&j,
 	)
@@ -15237,7 +15147,7 @@ func NewTlsSecret_Override(t TlsSecret, scope constructs.Construct, id *string, 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.TlsSecret",
+		"cdk8s-plus-24.TlsSecret",
 		[]interface{}{scope, id, props},
 		t,
 	)
@@ -15250,7 +15160,7 @@ func TlsSecret_FromSecretName(name *string) ISecret {
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.TlsSecret",
+		"cdk8s-plus-24.TlsSecret",
 		"fromSecretName",
 		[]interface{}{name},
 		&returns,
@@ -15282,7 +15192,7 @@ func TlsSecret_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.TlsSecret",
+		"cdk8s-plus-24.TlsSecret",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -15393,7 +15303,7 @@ func Topology_Custom(key *string) Topology {
 	var returns Topology
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Topology",
+		"cdk8s-plus-24.Topology",
 		"custom",
 		[]interface{}{key},
 		&returns,
@@ -15406,7 +15316,7 @@ func Topology_HOSTNAME() Topology {
 	_init_.Initialize()
 	var returns Topology
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.Topology",
+		"cdk8s-plus-24.Topology",
 		"HOSTNAME",
 		&returns,
 	)
@@ -15417,7 +15327,7 @@ func Topology_REGION() Topology {
 	_init_.Initialize()
 	var returns Topology
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.Topology",
+		"cdk8s-plus-24.Topology",
 		"REGION",
 		&returns,
 	)
@@ -15428,7 +15338,7 @@ func Topology_ZONE() Topology {
 	_init_.Initialize()
 	var returns Topology
 	_jsii_.StaticGet(
-		"cdk8s-plus-22.Topology",
+		"cdk8s-plus-24.Topology",
 		"ZONE",
 		&returns,
 	)
@@ -15496,7 +15406,7 @@ func NewUser(props *UserProps) User {
 	j := jsiiProxy_User{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.User",
+		"cdk8s-plus-24.User",
 		[]interface{}{props},
 		&j,
 	)
@@ -15508,7 +15418,7 @@ func NewUser_Override(u User, props *UserProps) {
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.User",
+		"cdk8s-plus-24.User",
 		[]interface{}{props},
 		u,
 	)
@@ -15590,7 +15500,7 @@ func Volume_FromAwsElasticBlockStore(volumeId *string, options *AwsElasticBlockS
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromAwsElasticBlockStore",
 		[]interface{}{volumeId, options},
 		&returns,
@@ -15606,7 +15516,7 @@ func Volume_FromAzureDisk(diskName *string, diskUri *string, options *AzureDiskV
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromAzureDisk",
 		[]interface{}{diskName, diskUri, options},
 		&returns,
@@ -15631,7 +15541,7 @@ func Volume_FromConfigMap(configMap IConfigMap, options *ConfigMapVolumeOptions)
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromConfigMap",
 		[]interface{}{configMap, options},
 		&returns,
@@ -15655,7 +15565,7 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromEmptyDir",
 		[]interface{}{name, options},
 		&returns,
@@ -15680,7 +15590,7 @@ func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolu
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromGcePersistentDisk",
 		[]interface{}{pdName, options},
 		&returns,
@@ -15701,7 +15611,7 @@ func Volume_FromPersistentVolumeClaim(claim IPersistentVolumeClaim, options *Per
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromPersistentVolumeClaim",
 		[]interface{}{claim, options},
 		&returns,
@@ -15726,7 +15636,7 @@ func Volume_FromSecret(secr ISecret, options *SecretVolumeOptions) Volume {
 	var returns Volume
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-24.Volume",
 		"fromSecret",
 		[]interface{}{secr, options},
 		&returns,
@@ -16085,7 +15995,7 @@ func NewWorkload_Override(w Workload, scope constructs.Construct, id *string, pr
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.Workload",
+		"cdk8s-plus-24.Workload",
 		[]interface{}{scope, id, props},
 		w,
 	)
@@ -16114,7 +16024,7 @@ func Workload_IsConstruct(x interface{}) *bool {
 	var returns *bool
 
 	_jsii_.StaticInvoke(
-		"cdk8s-plus-22.Workload",
+		"cdk8s-plus-24.Workload",
 		"isConstruct",
 		[]interface{}{x},
 		&returns,
@@ -16410,7 +16320,7 @@ func NewWorkloadScheduling(instance AbstractPod) WorkloadScheduling {
 	j := jsiiProxy_WorkloadScheduling{}
 
 	_jsii_.Create(
-		"cdk8s-plus-22.WorkloadScheduling",
+		"cdk8s-plus-24.WorkloadScheduling",
 		[]interface{}{instance},
 		&j,
 	)
@@ -16422,7 +16332,7 @@ func NewWorkloadScheduling_Override(w WorkloadScheduling, instance AbstractPod) 
 	_init_.Initialize()
 
 	_jsii_.Create(
-		"cdk8s-plus-22.WorkloadScheduling",
+		"cdk8s-plus-24.WorkloadScheduling",
 		[]interface{}{instance},
 		w,
 	)
