@@ -1,4 +1,4 @@
-package cdk8splus22
+package cdk8splus23
 
 import (
 	"reflect"
@@ -8,7 +8,7 @@ import (
 
 func init() {
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.AbstractPod",
+		"cdk8s-plus-23.AbstractPod",
 		reflect.TypeOf((*AbstractPod)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -48,19 +48,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AbstractPodProps",
+		"cdk8s-plus-23.AbstractPodProps",
 		reflect.TypeOf((*AbstractPodProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AddDeploymentOptions",
+		"cdk8s-plus-23.AddDeploymentOptions",
 		reflect.TypeOf((*AddDeploymentOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AddDirectoryOptions",
+		"cdk8s-plus-23.AddDirectoryOptions",
 		reflect.TypeOf((*AddDirectoryOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ApiResource",
+		"cdk8s-plus-23.ApiResource",
 		reflect.TypeOf((*ApiResource)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -76,11 +76,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ApiResourceOptions",
+		"cdk8s-plus-23.ApiResourceOptions",
 		reflect.TypeOf((*ApiResourceOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
+		"cdk8s-plus-23.AwsElasticBlockStorePersistentVolume",
 		reflect.TypeOf((*AwsElasticBlockStorePersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
@@ -117,15 +117,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolumeProps",
+		"cdk8s-plus-23.AwsElasticBlockStorePersistentVolumeProps",
 		reflect.TypeOf((*AwsElasticBlockStorePersistentVolumeProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AwsElasticBlockStoreVolumeOptions",
+		"cdk8s-plus-23.AwsElasticBlockStoreVolumeOptions",
 		reflect.TypeOf((*AwsElasticBlockStoreVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.AzureDiskPersistentVolume",
+		"cdk8s-plus-23.AzureDiskPersistentVolume",
 		reflect.TypeOf((*AzureDiskPersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
@@ -164,7 +164,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.AzureDiskPersistentVolumeCachingMode",
+		"cdk8s-plus-23.AzureDiskPersistentVolumeCachingMode",
 		reflect.TypeOf((*AzureDiskPersistentVolumeCachingMode)(nil)).Elem(),
 		map[string]interface{}{
 			"NONE": AzureDiskPersistentVolumeCachingMode_NONE,
@@ -173,7 +173,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.AzureDiskPersistentVolumeKind",
+		"cdk8s-plus-23.AzureDiskPersistentVolumeKind",
 		reflect.TypeOf((*AzureDiskPersistentVolumeKind)(nil)).Elem(),
 		map[string]interface{}{
 			"SHARED": AzureDiskPersistentVolumeKind_SHARED,
@@ -182,15 +182,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AzureDiskPersistentVolumeProps",
+		"cdk8s-plus-23.AzureDiskPersistentVolumeProps",
 		reflect.TypeOf((*AzureDiskPersistentVolumeProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.AzureDiskVolumeOptions",
+		"cdk8s-plus-23.AzureDiskVolumeOptions",
 		reflect.TypeOf((*AzureDiskVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.BasicAuthSecret",
+		"cdk8s-plus-23.BasicAuthSecret",
 		reflect.TypeOf((*BasicAuthSecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -216,11 +216,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.BasicAuthSecretProps",
+		"cdk8s-plus-23.BasicAuthSecretProps",
 		reflect.TypeOf((*BasicAuthSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ClusterRole",
+		"cdk8s-plus-23.ClusterRole",
 		reflect.TypeOf((*ClusterRole)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "aggregate", GoMethod: "Aggregate"},
@@ -261,7 +261,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ClusterRoleBinding",
+		"cdk8s-plus-23.ClusterRoleBinding",
 		reflect.TypeOf((*ClusterRoleBinding)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addSubjects", GoMethod: "AddSubjects"},
@@ -287,27 +287,27 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ClusterRoleBindingProps",
+		"cdk8s-plus-23.ClusterRoleBindingProps",
 		reflect.TypeOf((*ClusterRoleBindingProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ClusterRolePolicyRule",
+		"cdk8s-plus-23.ClusterRolePolicyRule",
 		reflect.TypeOf((*ClusterRolePolicyRule)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ClusterRoleProps",
+		"cdk8s-plus-23.ClusterRoleProps",
 		reflect.TypeOf((*ClusterRoleProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.CommandProbeOptions",
+		"cdk8s-plus-23.CommandProbeOptions",
 		reflect.TypeOf((*CommandProbeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.CommonSecretProps",
+		"cdk8s-plus-23.CommonSecretProps",
 		reflect.TypeOf((*CommonSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ConfigMap",
+		"cdk8s-plus-23.ConfigMap",
 		reflect.TypeOf((*ConfigMap)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addBinaryData", GoMethod: "AddBinaryData"},
@@ -338,15 +338,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ConfigMapProps",
+		"cdk8s-plus-23.ConfigMapProps",
 		reflect.TypeOf((*ConfigMapProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ConfigMapVolumeOptions",
+		"cdk8s-plus-23.ConfigMapVolumeOptions",
 		reflect.TypeOf((*ConfigMapVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Container",
+		"cdk8s-plus-23.Container",
 		reflect.TypeOf((*Container)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "args", GoGetter: "Args"},
@@ -367,19 +367,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ContainerLifecycle",
+		"cdk8s-plus-23.ContainerLifecycle",
 		reflect.TypeOf((*ContainerLifecycle)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ContainerProps",
+		"cdk8s-plus-23.ContainerProps",
 		reflect.TypeOf((*ContainerProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ContainerResources",
+		"cdk8s-plus-23.ContainerResources",
 		reflect.TypeOf((*ContainerResources)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ContainerSecurityContext",
+		"cdk8s-plus-23.ContainerSecurityContext",
 		reflect.TypeOf((*ContainerSecurityContext)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
@@ -393,11 +393,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ContainerSecurityContextProps",
+		"cdk8s-plus-23.ContainerSecurityContextProps",
 		reflect.TypeOf((*ContainerSecurityContextProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Cpu",
+		"cdk8s-plus-23.Cpu",
 		reflect.TypeOf((*Cpu)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "amount", GoGetter: "Amount"},
@@ -407,11 +407,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.CpuResources",
+		"cdk8s-plus-23.CpuResources",
 		reflect.TypeOf((*CpuResources)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.DaemonSet",
+		"cdk8s-plus-23.DaemonSet",
 		reflect.TypeOf((*DaemonSet)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -455,11 +455,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.DaemonSetProps",
+		"cdk8s-plus-23.DaemonSetProps",
 		reflect.TypeOf((*DaemonSetProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Deployment",
+		"cdk8s-plus-23.Deployment",
 		reflect.TypeOf((*Deployment)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -508,11 +508,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.DeploymentProps",
+		"cdk8s-plus-23.DeploymentProps",
 		reflect.TypeOf((*DeploymentProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.DeploymentStrategy",
+		"cdk8s-plus-23.DeploymentStrategy",
 		reflect.TypeOf((*DeploymentStrategy)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -520,15 +520,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.DeploymentStrategyRollingUpdateOptions",
+		"cdk8s-plus-23.DeploymentStrategyRollingUpdateOptions",
 		reflect.TypeOf((*DeploymentStrategyRollingUpdateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.DnsOption",
+		"cdk8s-plus-23.DnsOption",
 		reflect.TypeOf((*DnsOption)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.DnsPolicy",
+		"cdk8s-plus-23.DnsPolicy",
 		reflect.TypeOf((*DnsPolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"CLUSTER_FIRST": DnsPolicy_CLUSTER_FIRST,
@@ -538,7 +538,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.DockerConfigSecret",
+		"cdk8s-plus-23.DockerConfigSecret",
 		reflect.TypeOf((*DockerConfigSecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -564,11 +564,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.DockerConfigSecretProps",
+		"cdk8s-plus-23.DockerConfigSecretProps",
 		reflect.TypeOf((*DockerConfigSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.EmptyDirMedium",
+		"cdk8s-plus-23.EmptyDirMedium",
 		reflect.TypeOf((*EmptyDirMedium)(nil)).Elem(),
 		map[string]interface{}{
 			"DEFAULT": EmptyDirMedium_DEFAULT,
@@ -576,11 +576,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EmptyDirVolumeOptions",
+		"cdk8s-plus-23.EmptyDirVolumeOptions",
 		reflect.TypeOf((*EmptyDirVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Env",
+		"cdk8s-plus-23.Env",
 		reflect.TypeOf((*Env)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addVariable", GoMethod: "AddVariable"},
@@ -593,7 +593,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.EnvFieldPaths",
+		"cdk8s-plus-23.EnvFieldPaths",
 		reflect.TypeOf((*EnvFieldPaths)(nil)).Elem(),
 		map[string]interface{}{
 			"POD_NAME": EnvFieldPaths_POD_NAME,
@@ -609,7 +609,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.EnvFrom",
+		"cdk8s-plus-23.EnvFrom",
 		reflect.TypeOf((*EnvFrom)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -617,7 +617,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.EnvValue",
+		"cdk8s-plus-23.EnvValue",
 		reflect.TypeOf((*EnvValue)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "value", GoGetter: "Value"},
@@ -628,39 +628,39 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EnvValueFromConfigMapOptions",
+		"cdk8s-plus-23.EnvValueFromConfigMapOptions",
 		reflect.TypeOf((*EnvValueFromConfigMapOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EnvValueFromFieldRefOptions",
+		"cdk8s-plus-23.EnvValueFromFieldRefOptions",
 		reflect.TypeOf((*EnvValueFromFieldRefOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EnvValueFromProcessOptions",
+		"cdk8s-plus-23.EnvValueFromProcessOptions",
 		reflect.TypeOf((*EnvValueFromProcessOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EnvValueFromResourceOptions",
+		"cdk8s-plus-23.EnvValueFromResourceOptions",
 		reflect.TypeOf((*EnvValueFromResourceOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.EnvValueFromSecretOptions",
+		"cdk8s-plus-23.EnvValueFromSecretOptions",
 		reflect.TypeOf((*EnvValueFromSecretOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ExposeDeploymentViaIngressOptions",
+		"cdk8s-plus-23.ExposeDeploymentViaIngressOptions",
 		reflect.TypeOf((*ExposeDeploymentViaIngressOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ExposeDeploymentViaServiceOptions",
+		"cdk8s-plus-23.ExposeDeploymentViaServiceOptions",
 		reflect.TypeOf((*ExposeDeploymentViaServiceOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ExposeServiceViaIngressOptions",
+		"cdk8s-plus-23.ExposeServiceViaIngressOptions",
 		reflect.TypeOf((*ExposeServiceViaIngressOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.FsGroupChangePolicy",
+		"cdk8s-plus-23.FsGroupChangePolicy",
 		reflect.TypeOf((*FsGroupChangePolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"ON_ROOT_MISMATCH": FsGroupChangePolicy_ON_ROOT_MISMATCH,
@@ -668,7 +668,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
+		"cdk8s-plus-23.GCEPersistentDiskPersistentVolume",
 		reflect.TypeOf((*GCEPersistentDiskPersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
@@ -705,15 +705,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.GCEPersistentDiskPersistentVolumeProps",
+		"cdk8s-plus-23.GCEPersistentDiskPersistentVolumeProps",
 		reflect.TypeOf((*GCEPersistentDiskPersistentVolumeProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.GCEPersistentDiskVolumeOptions",
+		"cdk8s-plus-23.GCEPersistentDiskVolumeOptions",
 		reflect.TypeOf((*GCEPersistentDiskVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Group",
+		"cdk8s-plus-23.Group",
 		reflect.TypeOf((*Group)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -727,11 +727,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.GroupProps",
+		"cdk8s-plus-23.GroupProps",
 		reflect.TypeOf((*GroupProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Handler",
+		"cdk8s-plus-23.Handler",
 		reflect.TypeOf((*Handler)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -739,23 +739,23 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.HandlerFromHttpGetOptions",
+		"cdk8s-plus-23.HandlerFromHttpGetOptions",
 		reflect.TypeOf((*HandlerFromHttpGetOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.HandlerFromTcpSocketOptions",
+		"cdk8s-plus-23.HandlerFromTcpSocketOptions",
 		reflect.TypeOf((*HandlerFromTcpSocketOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.HostAlias",
+		"cdk8s-plus-23.HostAlias",
 		reflect.TypeOf((*HostAlias)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.HttpGetProbeOptions",
+		"cdk8s-plus-23.HttpGetProbeOptions",
 		reflect.TypeOf((*HttpGetProbeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.HttpIngressPathType",
+		"cdk8s-plus-23.HttpIngressPathType",
 		reflect.TypeOf((*HttpIngressPathType)(nil)).Elem(),
 		map[string]interface{}{
 			"PREFIX": HttpIngressPathType_PREFIX,
@@ -764,7 +764,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IApiEndpoint",
+		"cdk8s-plus-23.IApiEndpoint",
 		reflect.TypeOf((*IApiEndpoint)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
@@ -775,7 +775,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IApiResource",
+		"cdk8s-plus-23.IApiResource",
 		reflect.TypeOf((*IApiResource)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -787,7 +787,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IClusterRole",
+		"cdk8s-plus-23.IClusterRole",
 		reflect.TypeOf((*IClusterRole)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -802,7 +802,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IConfigMap",
+		"cdk8s-plus-23.IConfigMap",
 		reflect.TypeOf((*IConfigMap)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -817,7 +817,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.INamespaceSelector",
+		"cdk8s-plus-23.INamespaceSelector",
 		reflect.TypeOf((*INamespaceSelector)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
@@ -827,7 +827,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IPersistentVolume",
+		"cdk8s-plus-23.IPersistentVolume",
 		reflect.TypeOf((*IPersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -842,7 +842,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IPersistentVolumeClaim",
+		"cdk8s-plus-23.IPersistentVolumeClaim",
 		reflect.TypeOf((*IPersistentVolumeClaim)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -857,7 +857,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IPodSelector",
+		"cdk8s-plus-23.IPodSelector",
 		reflect.TypeOf((*IPodSelector)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
@@ -867,7 +867,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IResource",
+		"cdk8s-plus-23.IResource",
 		reflect.TypeOf((*IResource)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -880,7 +880,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IRole",
+		"cdk8s-plus-23.IRole",
 		reflect.TypeOf((*IRole)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -895,7 +895,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.ISecret",
+		"cdk8s-plus-23.ISecret",
 		reflect.TypeOf((*ISecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -910,7 +910,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IServiceAccount",
+		"cdk8s-plus-23.IServiceAccount",
 		reflect.TypeOf((*IServiceAccount)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -925,7 +925,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.IStorage",
+		"cdk8s-plus-23.IStorage",
 		reflect.TypeOf((*IStorage)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
@@ -935,7 +935,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
-		"cdk8s-plus-22.ISubject",
+		"cdk8s-plus-23.ISubject",
 		reflect.TypeOf((*ISubject)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -948,7 +948,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.ImagePullPolicy",
+		"cdk8s-plus-23.ImagePullPolicy",
 		reflect.TypeOf((*ImagePullPolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"ALWAYS": ImagePullPolicy_ALWAYS,
@@ -957,7 +957,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Ingress",
+		"cdk8s-plus-23.Ingress",
 		reflect.TypeOf((*Ingress)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addDefaultBackend", GoMethod: "AddDefaultBackend"},
@@ -986,7 +986,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.IngressBackend",
+		"cdk8s-plus-23.IngressBackend",
 		reflect.TypeOf((*IngressBackend)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -994,19 +994,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.IngressProps",
+		"cdk8s-plus-23.IngressProps",
 		reflect.TypeOf((*IngressProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.IngressRule",
+		"cdk8s-plus-23.IngressRule",
 		reflect.TypeOf((*IngressRule)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.IngressTls",
+		"cdk8s-plus-23.IngressTls",
 		reflect.TypeOf((*IngressTls)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Job",
+		"cdk8s-plus-23.Job",
 		reflect.TypeOf((*Job)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "activeDeadline", GoGetter: "ActiveDeadline"},
@@ -1052,11 +1052,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.JobProps",
+		"cdk8s-plus-23.JobProps",
 		reflect.TypeOf((*JobProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.LabelExpression",
+		"cdk8s-plus-23.LabelExpression",
 		reflect.TypeOf((*LabelExpression)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
@@ -1068,7 +1068,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.LabelSelector",
+		"cdk8s-plus-23.LabelSelector",
 		reflect.TypeOf((*LabelSelector)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -1076,7 +1076,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.LabelSelectorOptions",
+		"cdk8s-plus-23.LabelSelectorOptions",
 		reflect.TypeOf((*LabelSelectorOptions)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "expressions", GoGetter: "Expressions"},
@@ -1087,11 +1087,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.LabelSelectorRequirement",
+		"cdk8s-plus-23.LabelSelectorRequirement",
 		reflect.TypeOf((*LabelSelectorRequirement)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.LabeledNode",
+		"cdk8s-plus-23.LabeledNode",
 		reflect.TypeOf((*LabeledNode)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "labelSelector", GoGetter: "LabelSelector"},
@@ -1101,15 +1101,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.MemoryResources",
+		"cdk8s-plus-23.MemoryResources",
 		reflect.TypeOf((*MemoryResources)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.MountOptions",
+		"cdk8s-plus-23.MountOptions",
 		reflect.TypeOf((*MountOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.MountPropagation",
+		"cdk8s-plus-23.MountPropagation",
 		reflect.TypeOf((*MountPropagation)(nil)).Elem(),
 		map[string]interface{}{
 			"NONE": MountPropagation_NONE,
@@ -1118,7 +1118,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.NamedNode",
+		"cdk8s-plus-23.NamedNode",
 		reflect.TypeOf((*NamedNode)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
@@ -1128,7 +1128,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Namespace",
+		"cdk8s-plus-23.Namespace",
 		reflect.TypeOf((*Namespace)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -1153,15 +1153,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.NamespaceProps",
+		"cdk8s-plus-23.NamespaceProps",
 		reflect.TypeOf((*NamespaceProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.NamespaceSelectorConfig",
+		"cdk8s-plus-23.NamespaceSelectorConfig",
 		reflect.TypeOf((*NamespaceSelectorConfig)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Namespaces",
+		"cdk8s-plus-23.Namespaces",
 		reflect.TypeOf((*Namespaces)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
@@ -1173,11 +1173,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.NamespacesSelectOptions",
+		"cdk8s-plus-23.NamespacesSelectOptions",
 		reflect.TypeOf((*NamespacesSelectOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Node",
+		"cdk8s-plus-23.Node",
 		reflect.TypeOf((*Node)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -1185,37 +1185,27 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.NodeLabelQuery",
+		"cdk8s-plus-23.NodeLabelQuery",
 		reflect.TypeOf((*NodeLabelQuery)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
-			_jsii_.MemberProperty{JsiiProperty: "operator", GoGetter: "Operator"},
-			_jsii_.MemberProperty{JsiiProperty: "values", GoGetter: "Values"},
-		},
+		nil, // no members
 		func() interface{} {
 			return &jsiiProxy_NodeLabelQuery{}
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.NodeTaintQuery",
+		"cdk8s-plus-23.NodeTaintQuery",
 		reflect.TypeOf((*NodeTaintQuery)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberProperty{JsiiProperty: "effect", GoGetter: "Effect"},
-			_jsii_.MemberProperty{JsiiProperty: "evictAfter", GoGetter: "EvictAfter"},
-			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
-			_jsii_.MemberProperty{JsiiProperty: "operator", GoGetter: "Operator"},
-			_jsii_.MemberProperty{JsiiProperty: "value", GoGetter: "Value"},
-		},
+		nil, // no members
 		func() interface{} {
 			return &jsiiProxy_NodeTaintQuery{}
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.NodeTaintQueryOptions",
+		"cdk8s-plus-23.NodeTaintQueryOptions",
 		reflect.TypeOf((*NodeTaintQueryOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.NonApiResource",
+		"cdk8s-plus-23.NonApiResource",
 		reflect.TypeOf((*NonApiResource)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
@@ -1228,11 +1218,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PathMapping",
+		"cdk8s-plus-23.PathMapping",
 		reflect.TypeOf((*PathMapping)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PercentOrAbsolute",
+		"cdk8s-plus-23.PercentOrAbsolute",
 		reflect.TypeOf((*PercentOrAbsolute)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "isZero", GoMethod: "IsZero"},
@@ -1243,7 +1233,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PersistentVolume",
+		"cdk8s-plus-23.PersistentVolume",
 		reflect.TypeOf((*PersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
@@ -1278,7 +1268,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.PersistentVolumeAccessMode",
+		"cdk8s-plus-23.PersistentVolumeAccessMode",
 		reflect.TypeOf((*PersistentVolumeAccessMode)(nil)).Elem(),
 		map[string]interface{}{
 			"READ_WRITE_ONCE": PersistentVolumeAccessMode_READ_WRITE_ONCE,
@@ -1288,7 +1278,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PersistentVolumeClaim",
+		"cdk8s-plus-23.PersistentVolumeClaim",
 		reflect.TypeOf((*PersistentVolumeClaim)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "accessModes", GoGetter: "AccessModes"},
@@ -1318,15 +1308,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PersistentVolumeClaimProps",
+		"cdk8s-plus-23.PersistentVolumeClaimProps",
 		reflect.TypeOf((*PersistentVolumeClaimProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PersistentVolumeClaimVolumeOptions",
+		"cdk8s-plus-23.PersistentVolumeClaimVolumeOptions",
 		reflect.TypeOf((*PersistentVolumeClaimVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.PersistentVolumeMode",
+		"cdk8s-plus-23.PersistentVolumeMode",
 		reflect.TypeOf((*PersistentVolumeMode)(nil)).Elem(),
 		map[string]interface{}{
 			"FILE_SYSTEM": PersistentVolumeMode_FILE_SYSTEM,
@@ -1334,11 +1324,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PersistentVolumeProps",
+		"cdk8s-plus-23.PersistentVolumeProps",
 		reflect.TypeOf((*PersistentVolumeProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.PersistentVolumeReclaimPolicy",
+		"cdk8s-plus-23.PersistentVolumeReclaimPolicy",
 		reflect.TypeOf((*PersistentVolumeReclaimPolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"RETAIN": PersistentVolumeReclaimPolicy_RETAIN,
@@ -1346,7 +1336,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Pod",
+		"cdk8s-plus-23.Pod",
 		reflect.TypeOf((*Pod)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -1386,7 +1376,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PodDns",
+		"cdk8s-plus-23.PodDns",
 		reflect.TypeOf((*PodDns)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addNameserver", GoMethod: "AddNameserver"},
@@ -1405,11 +1395,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodDnsProps",
+		"cdk8s-plus-23.PodDnsProps",
 		reflect.TypeOf((*PodDnsProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.PodManagementPolicy",
+		"cdk8s-plus-23.PodManagementPolicy",
 		reflect.TypeOf((*PodManagementPolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"ORDERED_READY": PodManagementPolicy_ORDERED_READY,
@@ -1417,11 +1407,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodProps",
+		"cdk8s-plus-23.PodProps",
 		reflect.TypeOf((*PodProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PodScheduling",
+		"cdk8s-plus-23.PodScheduling",
 		reflect.TypeOf((*PodScheduling)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "assign", GoMethod: "Assign"},
@@ -1436,19 +1426,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSchedulingAttractOptions",
+		"cdk8s-plus-23.PodSchedulingAttractOptions",
 		reflect.TypeOf((*PodSchedulingAttractOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSchedulingColocateOptions",
+		"cdk8s-plus-23.PodSchedulingColocateOptions",
 		reflect.TypeOf((*PodSchedulingColocateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSchedulingSeparateOptions",
+		"cdk8s-plus-23.PodSchedulingSeparateOptions",
 		reflect.TypeOf((*PodSchedulingSeparateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.PodSecurityContext",
+		"cdk8s-plus-23.PodSecurityContext",
 		reflect.TypeOf((*PodSecurityContext)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
@@ -1463,19 +1453,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSecurityContextProps",
+		"cdk8s-plus-23.PodSecurityContextProps",
 		reflect.TypeOf((*PodSecurityContextProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSelectOptions",
+		"cdk8s-plus-23.PodSelectOptions",
 		reflect.TypeOf((*PodSelectOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.PodSelectorConfig",
+		"cdk8s-plus-23.PodSelectorConfig",
 		reflect.TypeOf((*PodSelectorConfig)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Pods",
+		"cdk8s-plus-23.Pods",
 		reflect.TypeOf((*Pods)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
@@ -1487,7 +1477,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Probe",
+		"cdk8s-plus-23.Probe",
 		reflect.TypeOf((*Probe)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -1495,11 +1485,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ProbeOptions",
+		"cdk8s-plus-23.ProbeOptions",
 		reflect.TypeOf((*ProbeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.Protocol",
+		"cdk8s-plus-23.Protocol",
 		reflect.TypeOf((*Protocol)(nil)).Elem(),
 		map[string]interface{}{
 			"TCP": Protocol_TCP,
@@ -1508,7 +1498,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Resource",
+		"cdk8s-plus-23.Resource",
 		reflect.TypeOf((*Resource)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -1534,7 +1524,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.ResourceFieldPaths",
+		"cdk8s-plus-23.ResourceFieldPaths",
 		reflect.TypeOf((*ResourceFieldPaths)(nil)).Elem(),
 		map[string]interface{}{
 			"CPU_LIMIT": ResourceFieldPaths_CPU_LIMIT,
@@ -1546,11 +1536,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ResourceProps",
+		"cdk8s-plus-23.ResourceProps",
 		reflect.TypeOf((*ResourceProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.RestartPolicy",
+		"cdk8s-plus-23.RestartPolicy",
 		reflect.TypeOf((*RestartPolicy)(nil)).Elem(),
 		map[string]interface{}{
 			"ALWAYS": RestartPolicy_ALWAYS,
@@ -1559,7 +1549,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Role",
+		"cdk8s-plus-23.Role",
 		reflect.TypeOf((*Role)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "allow", GoMethod: "Allow"},
@@ -1596,7 +1586,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.RoleBinding",
+		"cdk8s-plus-23.RoleBinding",
 		reflect.TypeOf((*RoleBinding)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addSubjects", GoMethod: "AddSubjects"},
@@ -1622,19 +1612,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.RoleBindingProps",
+		"cdk8s-plus-23.RoleBindingProps",
 		reflect.TypeOf((*RoleBindingProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.RolePolicyRule",
+		"cdk8s-plus-23.RolePolicyRule",
 		reflect.TypeOf((*RolePolicyRule)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.RoleProps",
+		"cdk8s-plus-23.RoleProps",
 		reflect.TypeOf((*RoleProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Secret",
+		"cdk8s-plus-23.Secret",
 		reflect.TypeOf((*Secret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -1661,19 +1651,19 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.SecretProps",
+		"cdk8s-plus-23.SecretProps",
 		reflect.TypeOf((*SecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.SecretValue",
+		"cdk8s-plus-23.SecretValue",
 		reflect.TypeOf((*SecretValue)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.SecretVolumeOptions",
+		"cdk8s-plus-23.SecretVolumeOptions",
 		reflect.TypeOf((*SecretVolumeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Service",
+		"cdk8s-plus-23.Service",
 		reflect.TypeOf((*Service)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addDeployment", GoMethod: "AddDeployment"},
@@ -1705,7 +1695,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ServiceAccount",
+		"cdk8s-plus-23.ServiceAccount",
 		reflect.TypeOf((*ServiceAccount)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addSecret", GoMethod: "AddSecret"},
@@ -1733,11 +1723,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServiceAccountProps",
+		"cdk8s-plus-23.ServiceAccountProps",
 		reflect.TypeOf((*ServiceAccountProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.ServiceAccountTokenSecret",
+		"cdk8s-plus-23.ServiceAccountTokenSecret",
 		reflect.TypeOf((*ServiceAccountTokenSecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -1763,27 +1753,27 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServiceAccountTokenSecretProps",
+		"cdk8s-plus-23.ServiceAccountTokenSecretProps",
 		reflect.TypeOf((*ServiceAccountTokenSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServiceIngressBackendOptions",
+		"cdk8s-plus-23.ServiceIngressBackendOptions",
 		reflect.TypeOf((*ServiceIngressBackendOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServicePort",
+		"cdk8s-plus-23.ServicePort",
 		reflect.TypeOf((*ServicePort)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServicePortOptions",
+		"cdk8s-plus-23.ServicePortOptions",
 		reflect.TypeOf((*ServicePortOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.ServiceProps",
+		"cdk8s-plus-23.ServiceProps",
 		reflect.TypeOf((*ServiceProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.ServiceType",
+		"cdk8s-plus-23.ServiceType",
 		reflect.TypeOf((*ServiceType)(nil)).Elem(),
 		map[string]interface{}{
 			"CLUSTER_IP": ServiceType_CLUSTER_IP,
@@ -1793,7 +1783,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.SshAuthSecret",
+		"cdk8s-plus-23.SshAuthSecret",
 		reflect.TypeOf((*SshAuthSecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -1819,11 +1809,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.SshAuthSecretProps",
+		"cdk8s-plus-23.SshAuthSecretProps",
 		reflect.TypeOf((*SshAuthSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.StatefulSet",
+		"cdk8s-plus-23.StatefulSet",
 		reflect.TypeOf((*StatefulSet)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -1870,11 +1860,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.StatefulSetProps",
+		"cdk8s-plus-23.StatefulSetProps",
 		reflect.TypeOf((*StatefulSetProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.StatefulSetUpdateStrategy",
+		"cdk8s-plus-23.StatefulSetUpdateStrategy",
 		reflect.TypeOf((*StatefulSetUpdateStrategy)(nil)).Elem(),
 		nil, // no members
 		func() interface{} {
@@ -1882,15 +1872,15 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.StatefulSetUpdateStrategyRollingUpdateOptions",
+		"cdk8s-plus-23.StatefulSetUpdateStrategyRollingUpdateOptions",
 		reflect.TypeOf((*StatefulSetUpdateStrategyRollingUpdateOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.Sysctl",
+		"cdk8s-plus-23.Sysctl",
 		reflect.TypeOf((*Sysctl)(nil)).Elem(),
 	)
 	_jsii_.RegisterEnum(
-		"cdk8s-plus-22.TaintEffect",
+		"cdk8s-plus-23.TaintEffect",
 		reflect.TypeOf((*TaintEffect)(nil)).Elem(),
 		map[string]interface{}{
 			"NO_SCHEDULE": TaintEffect_NO_SCHEDULE,
@@ -1899,7 +1889,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.TaintedNode",
+		"cdk8s-plus-23.TaintedNode",
 		reflect.TypeOf((*TaintedNode)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "taintSelector", GoGetter: "TaintSelector"},
@@ -1909,11 +1899,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.TcpSocketProbeOptions",
+		"cdk8s-plus-23.TcpSocketProbeOptions",
 		reflect.TypeOf((*TcpSocketProbeOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.TlsSecret",
+		"cdk8s-plus-23.TlsSecret",
 		reflect.TypeOf((*TlsSecret)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addStringData", GoMethod: "AddStringData"},
@@ -1939,11 +1929,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.TlsSecretProps",
+		"cdk8s-plus-23.TlsSecretProps",
 		reflect.TypeOf((*TlsSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Topology",
+		"cdk8s-plus-23.Topology",
 		reflect.TypeOf((*Topology)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "key", GoGetter: "Key"},
@@ -1953,7 +1943,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.User",
+		"cdk8s-plus-23.User",
 		reflect.TypeOf((*User)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
@@ -1967,11 +1957,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.UserProps",
+		"cdk8s-plus-23.UserProps",
 		reflect.TypeOf((*UserProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Volume",
+		"cdk8s-plus-23.Volume",
 		reflect.TypeOf((*Volume)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
@@ -1984,11 +1974,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.VolumeMount",
+		"cdk8s-plus-23.VolumeMount",
 		reflect.TypeOf((*VolumeMount)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.Workload",
+		"cdk8s-plus-23.Workload",
 		reflect.TypeOf((*Workload)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
@@ -2031,11 +2021,11 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.WorkloadProps",
+		"cdk8s-plus-23.WorkloadProps",
 		reflect.TypeOf((*WorkloadProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
-		"cdk8s-plus-22.WorkloadScheduling",
+		"cdk8s-plus-23.WorkloadScheduling",
 		reflect.TypeOf((*WorkloadScheduling)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "assign", GoMethod: "Assign"},
@@ -2053,7 +2043,7 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.WorkloadSchedulingSpreadOptions",
+		"cdk8s-plus-23.WorkloadSchedulingSpreadOptions",
 		reflect.TypeOf((*WorkloadSchedulingSpreadOptions)(nil)).Elem(),
 	)
 }
