@@ -5037,7 +5037,7 @@ type Deployment interface {
 	// Expose a deployment via a service.
 	//
 	// This is equivalent to running `kubectl expose deployment <deployment-name>`.
-	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
+	ExposeViaService(options *DeploymentExposeViaServiceOptions) Service
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -5493,7 +5493,7 @@ func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDep
 	return returns
 }
 
-func (d *jsiiProxy_Deployment) ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service {
+func (d *jsiiProxy_Deployment) ExposeViaService(options *DeploymentExposeViaServiceOptions) Service {
 	var returns Service
 
 	_jsii_.Invoke(
@@ -5582,6 +5582,19 @@ func (d *jsiiProxy_Deployment) ToSubjectConfiguration() *SubjectConfiguration {
 	)
 
 	return returns
+}
+
+// Options for `Deployment.exposeViaService`.
+type DeploymentExposeViaServiceOptions struct {
+	// The name of the service to expose.
+	//
+	// If you'd like to expose the deployment multiple times,
+	// you must explicitly set a name starting from the second expose call.
+	Name *string `field:"optional" json:"name" yaml:"name"`
+	// The ports that the service should bind to.
+	Ports *[]*ServicePort `field:"optional" json:"ports" yaml:"ports"`
+	// The type of the exposed service.
+	ServiceType ServiceType `field:"optional" json:"serviceType" yaml:"serviceType"`
 }
 
 // Properties for `Deployment`.
@@ -6453,40 +6466,17 @@ type EnvValueFromSecretOptions struct {
 type ExposeDeploymentViaIngressOptions struct {
 	// The name of the service to expose.
 	//
-	// This will be set on the Service.metadata and must be a DNS_LABEL
+	// If you'd like to expose the deployment multiple times,
+	// you must explicitly set a name starting from the second expose call.
 	Name *string `field:"optional" json:"name" yaml:"name"`
-	// The port that the service should serve on.
-	Port *float64 `field:"optional" json:"port" yaml:"port"`
-	// The IP protocol for this port.
-	//
-	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
+	// The ports that the service should bind to.
+	Ports *[]*ServicePort `field:"optional" json:"ports" yaml:"ports"`
 	// The type of the exposed service.
 	ServiceType ServiceType `field:"optional" json:"serviceType" yaml:"serviceType"`
-	// The port number the service will redirect to.
-	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 	// The ingress to add rules to.
 	Ingress Ingress `field:"optional" json:"ingress" yaml:"ingress"`
 	// The type of the path.
 	PathType HttpIngressPathType `field:"optional" json:"pathType" yaml:"pathType"`
-}
-
-// Options for exposing a deployment via a service.
-type ExposeDeploymentViaServiceOptions struct {
-	// The name of the service to expose.
-	//
-	// This will be set on the Service.metadata and must be a DNS_LABEL
-	Name *string `field:"optional" json:"name" yaml:"name"`
-	// The port that the service should serve on.
-	Port *float64 `field:"optional" json:"port" yaml:"port"`
-	// The IP protocol for this port.
-	//
-	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
-	// The type of the exposed service.
-	ServiceType ServiceType `field:"optional" json:"serviceType" yaml:"serviceType"`
-	// The port number the service will redirect to.
-	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 }
 
 // Options for exposing a service using an ingress.
@@ -14717,7 +14707,7 @@ type Service interface {
 	Permissions() ResourcePermissions
 	// Ports for this service.
 	//
-	// Use `serve()` to expose additional service ports.
+	// Use `bind()` to bind additional service ports.
 	Ports() *[]*ServicePort
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
@@ -14725,30 +14715,30 @@ type Service interface {
 	ResourceName() *string
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
-	// Returns the labels which are used to select pods for this service.
-	Selector() *map[string]*string
 	// Determines how the Service is exposed.
 	Type() ServiceType
-	// Associate a deployment to this service.
-	//
-	// If not targetPort is specific in the portOptions, then requests will be routed
-	// to the port exposed by the first container in the deployment's pods.
-	// The deployment's `labelSelector` will be used to select pods.
-	AddDeployment(depl Deployment, options *AddDeploymentOptions)
-	// Services defined using this spec will select pods according the provided label.
-	AddSelector(label *string, value *string)
 	// Return the IApiResource this object represents.
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Configure a port the service will bind to.
+	//
+	// This method can be called multiple times.
+	Bind(port *float64, options *ServiceBindOptions)
 	// Expose a service via an ingress using the specified path.
 	//
 	// Returns: The `Ingress` resource that was used.
 	ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) Ingress
-	// Configure a port the service will bind to.
+	// Require this service to select pods matching the selector.
 	//
-	// This method can be called multiple times.
-	Serve(port *float64, options *ServicePortOptions)
+	// Note that invoking this method multiple times acts as an AND operator
+	// on the resulting labels.
+	Select(selector IPodSelector)
+	// Require this service to select pods with this label.
+	//
+	// Note that invoking this method multiple times acts as an AND operator
+	// on the resulting labels.
+	SelectLabel(key *string, value *string)
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -14888,16 +14878,6 @@ func (j *jsiiProxy_Service) ResourceType() *string {
 	return returns
 }
 
-func (j *jsiiProxy_Service) Selector() *map[string]*string {
-	var returns *map[string]*string
-	_jsii_.Get(
-		j,
-		"selector",
-		&returns,
-	)
-	return returns
-}
-
 func (j *jsiiProxy_Service) Type() ServiceType {
 	var returns ServiceType
 	_jsii_.Get(
@@ -14965,22 +14945,6 @@ func Service_IsConstruct(x interface{}) *bool {
 	return returns
 }
 
-func (s *jsiiProxy_Service) AddDeployment(depl Deployment, options *AddDeploymentOptions) {
-	_jsii_.InvokeVoid(
-		s,
-		"addDeployment",
-		[]interface{}{depl, options},
-	)
-}
-
-func (s *jsiiProxy_Service) AddSelector(label *string, value *string) {
-	_jsii_.InvokeVoid(
-		s,
-		"addSelector",
-		[]interface{}{label, value},
-	)
-}
-
 func (s *jsiiProxy_Service) AsApiResource() IApiResource {
 	var returns IApiResource
 
@@ -15007,6 +14971,14 @@ func (s *jsiiProxy_Service) AsNonApiResource() *string {
 	return returns
 }
 
+func (s *jsiiProxy_Service) Bind(port *float64, options *ServiceBindOptions) {
+	_jsii_.InvokeVoid(
+		s,
+		"bind",
+		[]interface{}{port, options},
+	)
+}
+
 func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) Ingress {
 	var returns Ingress
 
@@ -15020,11 +14992,19 @@ func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServic
 	return returns
 }
 
-func (s *jsiiProxy_Service) Serve(port *float64, options *ServicePortOptions) {
+func (s *jsiiProxy_Service) Select(selector IPodSelector) {
 	_jsii_.InvokeVoid(
 		s,
-		"serve",
-		[]interface{}{port, options},
+		"select",
+		[]interface{}{selector},
+	)
+}
+
+func (s *jsiiProxy_Service) SelectLabel(key *string, value *string) {
+	_jsii_.InvokeVoid(
+		s,
+		"selectLabel",
+		[]interface{}{key, value},
 	)
 }
 
@@ -15674,6 +15654,32 @@ type ServiceAccountTokenSecretProps struct {
 	ServiceAccount IServiceAccount `field:"required" json:"serviceAccount" yaml:"serviceAccount"`
 }
 
+// Options for `Service.bind`.
+type ServiceBindOptions struct {
+	// The name of this port within the service.
+	//
+	// This must be a DNS_LABEL. All
+	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
+	// field in EndpointPort objects. Optional if only one ServicePort is defined
+	// on this service.
+	Name *string `field:"optional" json:"name" yaml:"name"`
+	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
+	//
+	// Usually assigned by the system. If specified, it will be
+	// allocated to the service if unused or else creation of the service will
+	// fail. Default is to auto-allocate a port if the ServiceType of this Service
+	// requires one.
+	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+	//
+	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
+	// The IP protocol for this port.
+	//
+	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
+	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
+	// The port number the service will redirect to.
+	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
+}
+
 // Options for setting up backends for ingress rules.
 type ServiceIngressBackendOptions struct {
 	// The port to use to access the service.
@@ -15713,32 +15719,7 @@ type ServicePort struct {
 	Port *float64 `field:"required" json:"port" yaml:"port"`
 }
 
-type ServicePortOptions struct {
-	// The name of this port within the service.
-	//
-	// This must be a DNS_LABEL. All
-	// ports within a ServiceSpec must have unique names. This maps to the 'Name'
-	// field in EndpointPort objects. Optional if only one ServicePort is defined
-	// on this service.
-	Name *string `field:"optional" json:"name" yaml:"name"`
-	// The port on each node on which this service is exposed when type=NodePort or LoadBalancer.
-	//
-	// Usually assigned by the system. If specified, it will be
-	// allocated to the service if unused or else creation of the service will
-	// fail. Default is to auto-allocate a port if the ServiceType of this Service
-	// requires one.
-	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
-	//
-	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
-	// The IP protocol for this port.
-	//
-	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
-	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
-	// The port number the service will redirect to.
-	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
-}
-
-// Properties for initialization of `Service`.
+// Properties for `Service`.
 type ServiceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
@@ -15766,10 +15747,29 @@ type ServiceProps struct {
 	//
 	// More info: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
 	LoadBalancerSourceRanges *[]*string `field:"optional" json:"loadBalancerSourceRanges" yaml:"loadBalancerSourceRanges"`
-	// The port exposed by this service.
+	// The ports this service binds to.
 	//
-	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+	// If the selector of the service is a managed pod / workload,
+	// its ports will are automatically extracted and used as the default value.
+	// Otherwise, no ports are bound.
 	Ports *[]*ServicePort `field:"optional" json:"ports" yaml:"ports"`
+	// Which pods should the service select and route to.
+	//
+	// You can pass one of the following:
+	//
+	// - An instance of `Pod` or any workload resource (e.g `Deployment`, `StatefulSet`, ...)
+	// - Pods selected by the `Pods.select` function. Note that in this case only labels can be specified.
+	//
+	// Example:
+	//   // select the pods of a specific deployment
+	//   const backend = new kplus.Deployment(this, 'Backend', ...);
+	//   new kplus.Service(this, 'Service', { selector: backend });
+	//
+	//   // select all pods labeled with the `tier=backend` label
+	//   const backend = kplus.Pod.labeled({ tier: 'backend' });
+	//   new kplus.Service(this, 'Service', { selector: backend });
+	//
+	Selector IPodSelector `field:"optional" json:"selector" yaml:"selector"`
 	// Determines how the Service is exposed.
 	//
 	// More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
