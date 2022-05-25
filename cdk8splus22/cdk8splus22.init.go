@@ -719,16 +719,15 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Group{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_ISubject)
 			return &j
 		},
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.GroupProps",
-		reflect.TypeOf((*GroupProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Handler",
@@ -794,6 +793,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IClusterRole{}
@@ -809,6 +809,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IConfigMap{}
@@ -820,10 +821,13 @@ func init() {
 		"cdk8s-plus-22.INamespaceSelector",
 		reflect.TypeOf((*INamespaceSelector)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
 		},
 		func() interface{} {
-			return &jsiiProxy_INamespaceSelector{}
+			j := jsiiProxy_INamespaceSelector{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -834,6 +838,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IPersistentVolume{}
@@ -849,6 +854,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IPersistentVolumeClaim{}
@@ -860,10 +866,13 @@ func init() {
 		"cdk8s-plus-22.IPodSelector",
 		reflect.TypeOf((*IPodSelector)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 		},
 		func() interface{} {
-			return &jsiiProxy_IPodSelector{}
+			j := jsiiProxy_IPodSelector{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -874,9 +883,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
-			return &jsiiProxy_IResource{}
+			j := jsiiProxy_IResource{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -887,6 +899,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IRole{}
@@ -902,6 +915,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ISecret{}
@@ -917,6 +931,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IServiceAccount{}
@@ -929,9 +944,12 @@ func init() {
 		reflect.TypeOf((*IStorage)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
-			return &jsiiProxy_IStorage{}
+			j := jsiiProxy_IStorage{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -942,9 +960,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "namespace", GoGetter: "Namespace"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 		},
 		func() interface{} {
-			return &jsiiProxy_ISubject{}
+			j := jsiiProxy_ISubject{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
 		},
 	)
 	_jsii_.RegisterEnum(
@@ -1164,10 +1185,13 @@ func init() {
 		"cdk8s-plus-22.Namespaces",
 		reflect.TypeOf((*Namespaces)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Namespaces{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_INamespaceSelector)
 			return &j
 		},
@@ -1478,10 +1502,13 @@ func init() {
 		"cdk8s-plus-22.Pods",
 		reflect.TypeOf((*Pods)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Pods{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSelector)
 			return &j
 		},
@@ -1959,16 +1986,15 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_User{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_ISubject)
 			return &j
 		},
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-22.UserProps",
-		reflect.TypeOf((*UserProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Volume",
@@ -1976,9 +2002,12 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Volume{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IStorage)
 			return &j
 		},

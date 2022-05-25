@@ -1512,7 +1512,7 @@ func NewAwsElasticBlockStorePersistentVolume_Override(a AwsElasticBlockStorePers
 }
 
 // Imports a pv from the cluster as a reference.
-func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
 	var returns IPersistentVolume
@@ -1520,7 +1520,7 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(volumeName *s
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.AwsElasticBlockStorePersistentVolume",
 		"fromPersistentVolumeName",
-		[]interface{}{volumeName},
+		[]interface{}{scope, id, volumeName},
 		&returns,
 	)
 
@@ -2037,7 +2037,7 @@ func NewAzureDiskPersistentVolume_Override(a AzureDiskPersistentVolume, scope co
 }
 
 // Imports a pv from the cluster as a reference.
-func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+func AzureDiskPersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
 	var returns IPersistentVolume
@@ -2045,7 +2045,7 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPer
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.AzureDiskPersistentVolume",
 		"fromPersistentVolumeName",
-		[]interface{}{volumeName},
+		[]interface{}{scope, id, volumeName},
 		&returns,
 	)
 
@@ -2417,7 +2417,7 @@ func NewBasicAuthSecret_Override(b BasicAuthSecret, scope constructs.Construct, 
 }
 
 // Imports a secret from the cluster as a reference.
-func BasicAuthSecret_FromSecretName(name *string) ISecret {
+func BasicAuthSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -2425,7 +2425,7 @@ func BasicAuthSecret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.BasicAuthSecret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -2741,7 +2741,7 @@ func NewClusterRole_Override(c ClusterRole, scope constructs.Construct, id *stri
 }
 
 // Imports a role from the cluster as a reference.
-func ClusterRole_FromClusterRoleName(name *string) IClusterRole {
+func ClusterRole_FromClusterRoleName(scope constructs.Construct, id *string, name *string) IClusterRole {
 	_init_.Initialize()
 
 	var returns IClusterRole
@@ -2749,7 +2749,7 @@ func ClusterRole_FromClusterRoleName(name *string) IClusterRole {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.ClusterRole",
 		"fromClusterRoleName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -3555,7 +3555,7 @@ func NewConfigMap_Override(c ConfigMap, scope constructs.Construct, id *string, 
 }
 
 // Represents a ConfigMap created elsewhere.
-func ConfigMap_FromConfigMapName(name *string) IConfigMap {
+func ConfigMap_FromConfigMapName(scope constructs.Construct, id *string, name *string) IConfigMap {
 	_init_.Initialize()
 
 	var returns IConfigMap
@@ -3563,7 +3563,7 @@ func ConfigMap_FromConfigMapName(name *string) IConfigMap {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.ConfigMap",
 		"fromConfigMapName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -5659,7 +5659,7 @@ func NewDockerConfigSecret_Override(d DockerConfigSecret, scope constructs.Const
 }
 
 // Imports a secret from the cluster as a reference.
-func DockerConfigSecret_FromSecretName(name *string) ISecret {
+func DockerConfigSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -5667,7 +5667,7 @@ func DockerConfigSecret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.DockerConfigSecret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -6525,7 +6525,7 @@ func NewGCEPersistentDiskPersistentVolume_Override(g GCEPersistentDiskPersistent
 }
 
 // Imports a pv from the cluster as a reference.
-func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
 	var returns IPersistentVolume
@@ -6533,7 +6533,7 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(volumeName *stri
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.GCEPersistentDiskPersistentVolume",
 		"fromPersistentVolumeName",
-		[]interface{}{volumeName},
+		[]interface{}{scope, id, volumeName},
 		&returns,
 	)
 
@@ -6726,6 +6726,7 @@ type GCEPersistentDiskVolumeOptions struct {
 
 // Represents a group.
 type Group interface {
+	constructs.Construct
 	ISubject
 	// APIGroup holds the API group of the referenced subject.
 	//
@@ -6741,10 +6742,15 @@ type Group interface {
 	Kind() *string
 	// Name of the object being referenced.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
+	// Returns a string representation of this construct.
+	ToString() *string
 }
 
 // The jsii proxy struct for Group
 type jsiiProxy_Group struct {
+	internal.Type__constructsConstruct
 	jsiiProxy_ISubject
 }
 
@@ -6778,35 +6784,76 @@ func (j *jsiiProxy_Group) Name() *string {
 	return returns
 }
 
-
-func NewGroup(props *GroupProps) Group {
-	_init_.Initialize()
-
-	j := jsiiProxy_Group{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.Group",
-		[]interface{}{props},
-		&j,
+func (j *jsiiProxy_Group) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
 	)
-
-	return &j
+	return returns
 }
 
-func NewGroup_Override(g Group, props *GroupProps) {
+
+// Reference a group in the cluster by name.
+func Group_FromName(scope constructs.Construct, id *string, name *string) Group {
 	_init_.Initialize()
 
-	_jsii_.Create(
+	var returns Group
+
+	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Group",
-		[]interface{}{props},
+		"fromName",
+		[]interface{}{scope, id, name},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Group_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Group",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_Group) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
 		g,
+		"toString",
+		nil, // no parameters
+		&returns,
 	)
-}
 
-// Properties for `Group`.
-type GroupProps struct {
-	// The name of the group.
-	Name *string `field:"required" json:"name" yaml:"name"`
+	return returns
 }
 
 // Defines a specific action that should be taken.
@@ -7044,13 +7091,14 @@ type jsiiProxy_IConfigMap struct {
 
 // Represents an object that can select namespaces.
 type INamespaceSelector interface {
+	constructs.IConstruct
 	// Return the configuration of this selector.
 	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
 }
 
 // The jsii proxy for INamespaceSelector
 type jsiiProxy_INamespaceSelector struct {
-	_ byte // padding
+	internal.Type__constructsIConstruct
 }
 
 func (i *jsiiProxy_INamespaceSelector) ToNamespaceSelectorConfig() *NamespaceSelectorConfig {
@@ -7088,13 +7136,14 @@ type jsiiProxy_IPersistentVolumeClaim struct {
 
 // Represents an object that can select pods.
 type IPodSelector interface {
+	constructs.IConstruct
 	// Return the configuration of this selector.
 	ToPodSelectorConfig() *PodSelectorConfig
 }
 
 // The jsii proxy for IPodSelector
 type jsiiProxy_IPodSelector struct {
-	_ byte // padding
+	internal.Type__constructsIConstruct
 }
 
 func (i *jsiiProxy_IPodSelector) ToPodSelectorConfig() *PodSelectorConfig {
@@ -7112,6 +7161,7 @@ func (i *jsiiProxy_IPodSelector) ToPodSelectorConfig() *PodSelectorConfig {
 
 // Represents a resource.
 type IResource interface {
+	constructs.IConstruct
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The object's API version (e.g. "authorization.k8s.io/v1").
@@ -7124,7 +7174,7 @@ type IResource interface {
 
 // The jsii proxy for IResource
 type jsiiProxy_IResource struct {
-	_ byte // padding
+	internal.Type__constructsIConstruct
 }
 
 func (j *jsiiProxy_IResource) ApiGroup() *string {
@@ -7197,13 +7247,14 @@ type jsiiProxy_IServiceAccount struct {
 
 // Represents a piece of storage in the cluster.
 type IStorage interface {
+	constructs.IConstruct
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
 }
 
 // The jsii proxy for IStorage
 type jsiiProxy_IStorage struct {
-	_ byte // padding
+	internal.Type__constructsIConstruct
 }
 
 func (i *jsiiProxy_IStorage) AsVolume() Volume {
@@ -7224,6 +7275,7 @@ func (i *jsiiProxy_IStorage) AsVolume() Volume {
 // This can either hold a direct API object reference, or a value
 // for non-objects such as user and group names.
 type ISubject interface {
+	constructs.IConstruct
 	// APIGroup holds the API group of the referenced subject.
 	//
 	// Defaults to "" for
@@ -7248,7 +7300,7 @@ type ISubject interface {
 
 // The jsii proxy for ISubject
 type jsiiProxy_ISubject struct {
-	_ byte // padding
+	internal.Type__constructsIConstruct
 }
 
 func (j *jsiiProxy_ISubject) ApiGroup() *string {
@@ -8956,44 +9008,61 @@ type NamespaceSelectorConfig struct {
 
 // Represents a group of namespaces.
 type Namespaces interface {
+	constructs.Construct
 	INamespaceSelector
+	// The tree node.
+	Node() constructs.Node
 	// Return the configuration of this selector.
 	// See: INamespaceSelector.toNamespaceSelectorConfig()
 	//
 	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+	// Returns a string representation of this construct.
+	ToString() *string
 }
 
 // The jsii proxy struct for Namespaces
 type jsiiProxy_Namespaces struct {
+	internal.Type__constructsConstruct
 	jsiiProxy_INamespaceSelector
 }
 
-func NewNamespaces(expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) Namespaces {
+func (j *jsiiProxy_Namespaces) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewNamespaces(scope constructs.Construct, id *string, expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) Namespaces {
 	_init_.Initialize()
 
 	j := jsiiProxy_Namespaces{}
 
 	_jsii_.Create(
 		"cdk8s-plus-22.Namespaces",
-		[]interface{}{expressions, names, labels},
+		[]interface{}{scope, id, expressions, names, labels},
 		&j,
 	)
 
 	return &j
 }
 
-func NewNamespaces_Override(n Namespaces, expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) {
+func NewNamespaces_Override(n Namespaces, scope constructs.Construct, id *string, expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) {
 	_init_.Initialize()
 
 	_jsii_.Create(
 		"cdk8s-plus-22.Namespaces",
-		[]interface{}{expressions, names, labels},
+		[]interface{}{scope, id, expressions, names, labels},
 		n,
 	)
 }
 
 // Select all namespaces.
-func Namespaces_All() Namespaces {
+func Namespaces_All(scope constructs.Construct, id *string) Namespaces {
 	_init_.Initialize()
 
 	var returns Namespaces
@@ -9001,7 +9070,39 @@ func Namespaces_All() Namespaces {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Namespaces",
 		"all",
-		nil, // no parameters
+		[]interface{}{scope, id},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Namespaces_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Namespaces",
+		"isConstruct",
+		[]interface{}{x},
 		&returns,
 	)
 
@@ -9009,7 +9110,7 @@ func Namespaces_All() Namespaces {
 }
 
 // Select specific namespaces.
-func Namespaces_Select(options *NamespacesSelectOptions) Namespaces {
+func Namespaces_Select(scope constructs.Construct, id *string, options *NamespacesSelectOptions) Namespaces {
 	_init_.Initialize()
 
 	var returns Namespaces
@@ -9017,7 +9118,7 @@ func Namespaces_Select(options *NamespacesSelectOptions) Namespaces {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Namespaces",
 		"select",
-		[]interface{}{options},
+		[]interface{}{scope, id, options},
 		&returns,
 	)
 
@@ -9030,6 +9131,19 @@ func (n *jsiiProxy_Namespaces) ToNamespaceSelectorConfig() *NamespaceSelectorCon
 	_jsii_.Invoke(
 		n,
 		"toNamespaceSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespaces) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"toString",
 		nil, // no parameters
 		&returns,
 	)
@@ -9823,7 +9937,7 @@ func NewPersistentVolume_Override(p PersistentVolume, scope constructs.Construct
 }
 
 // Imports a pv from the cluster as a reference.
-func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVolume {
+func PersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
 	var returns IPersistentVolume
@@ -9831,7 +9945,7 @@ func PersistentVolume_FromPersistentVolumeName(volumeName *string) IPersistentVo
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.PersistentVolume",
 		"fromPersistentVolumeName",
-		[]interface{}{volumeName},
+		[]interface{}{scope, id, volumeName},
 		&returns,
 	)
 
@@ -10192,7 +10306,7 @@ func NewPersistentVolumeClaim_Override(p PersistentVolumeClaim, scope constructs
 }
 
 // Imports a pvc from the cluster as a reference.
-func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeClaim {
+func PersistentVolumeClaim_FromClaimName(scope constructs.Construct, id *string, claimName *string) IPersistentVolumeClaim {
 	_init_.Initialize()
 
 	var returns IPersistentVolumeClaim
@@ -10200,7 +10314,7 @@ func PersistentVolumeClaim_FromClaimName(claimName *string) IPersistentVolumeCla
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.PersistentVolumeClaim",
 		"fromClaimName",
-		[]interface{}{claimName},
+		[]interface{}{scope, id, claimName},
 		&returns,
 	)
 
@@ -11457,42 +11571,91 @@ type PodSelectorConfig struct {
 
 // Represents a group of pods.
 type Pods interface {
+	constructs.Construct
 	IPodSelector
+	// The tree node.
+	Node() constructs.Node
 	// Return the configuration of this selector.
 	ToPodSelectorConfig() *PodSelectorConfig
+	// Returns a string representation of this construct.
+	ToString() *string
 }
 
 // The jsii proxy struct for Pods
 type jsiiProxy_Pods struct {
+	internal.Type__constructsConstruct
 	jsiiProxy_IPodSelector
 }
 
-func NewPods(expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) Pods {
+func (j *jsiiProxy_Pods) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPods(scope constructs.Construct, id *string, expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) Pods {
 	_init_.Initialize()
 
 	j := jsiiProxy_Pods{}
 
 	_jsii_.Create(
 		"cdk8s-plus-22.Pods",
-		[]interface{}{expressions, labels, namespaces},
+		[]interface{}{scope, id, expressions, labels, namespaces},
 		&j,
 	)
 
 	return &j
 }
 
-func NewPods_Override(p Pods, expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) {
+func NewPods_Override(p Pods, scope constructs.Construct, id *string, expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) {
 	_init_.Initialize()
 
 	_jsii_.Create(
 		"cdk8s-plus-22.Pods",
-		[]interface{}{expressions, labels, namespaces},
+		[]interface{}{scope, id, expressions, labels, namespaces},
 		p,
 	)
 }
 
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Pods_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Pods",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
 // Select pods in the cluster with various selectors.
-func Pods_Select(options *PodSelectOptions) Pods {
+func Pods_Select(scope constructs.Construct, id *string, options *PodSelectOptions) Pods {
 	_init_.Initialize()
 
 	var returns Pods
@@ -11500,7 +11663,7 @@ func Pods_Select(options *PodSelectOptions) Pods {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Pods",
 		"select",
-		[]interface{}{options},
+		[]interface{}{scope, id, options},
 		&returns,
 	)
 
@@ -11513,6 +11676,19 @@ func (p *jsiiProxy_Pods) ToPodSelectorConfig() *PodSelectorConfig {
 	_jsii_.Invoke(
 		p,
 		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pods) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		p,
+		"toString",
 		nil, // no parameters
 		&returns,
 	)
@@ -12058,7 +12234,7 @@ func NewRole_Override(r Role, scope constructs.Construct, id *string, props *Rol
 }
 
 // Imports a role from the cluster as a reference.
-func Role_FromRoleName(name *string) IRole {
+func Role_FromRoleName(scope constructs.Construct, id *string, name *string) IRole {
 	_init_.Initialize()
 
 	var returns IRole
@@ -12066,7 +12242,7 @@ func Role_FromRoleName(name *string) IRole {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Role",
 		"fromRoleName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -12770,7 +12946,7 @@ func NewSecret_Override(s Secret, scope constructs.Construct, id *string, props 
 }
 
 // Imports a secret from the cluster as a reference.
-func Secret_FromSecretName(name *string) ISecret {
+func Secret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -12778,7 +12954,7 @@ func Secret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Secret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -13474,7 +13650,7 @@ func NewServiceAccount_Override(s ServiceAccount, scope constructs.Construct, id
 }
 
 // Imports a service account from the cluster as a reference.
-func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
+func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *string, name *string) IServiceAccount {
 	_init_.Initialize()
 
 	var returns IServiceAccount
@@ -13482,7 +13658,7 @@ func ServiceAccount_FromServiceAccountName(name *string) IServiceAccount {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.ServiceAccount",
 		"fromServiceAccountName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -13755,7 +13931,7 @@ func NewServiceAccountTokenSecret_Override(s ServiceAccountTokenSecret, scope co
 }
 
 // Imports a secret from the cluster as a reference.
-func ServiceAccountTokenSecret_FromSecretName(name *string) ISecret {
+func ServiceAccountTokenSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -13763,7 +13939,7 @@ func ServiceAccountTokenSecret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.ServiceAccountTokenSecret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -14176,7 +14352,7 @@ func NewSshAuthSecret_Override(s SshAuthSecret, scope constructs.Construct, id *
 }
 
 // Imports a secret from the cluster as a reference.
-func SshAuthSecret_FromSecretName(name *string) ISecret {
+func SshAuthSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -14184,7 +14360,7 @@ func SshAuthSecret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.SshAuthSecret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -15244,7 +15420,7 @@ func NewTlsSecret_Override(t TlsSecret, scope constructs.Construct, id *string, 
 }
 
 // Imports a secret from the cluster as a reference.
-func TlsSecret_FromSecretName(name *string) ISecret {
+func TlsSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
 	var returns ISecret
@@ -15252,7 +15428,7 @@ func TlsSecret_FromSecretName(name *string) ISecret {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.TlsSecret",
 		"fromSecretName",
-		[]interface{}{name},
+		[]interface{}{scope, id, name},
 		&returns,
 	)
 
@@ -15437,6 +15613,7 @@ func Topology_ZONE() Topology {
 
 // Represents a user.
 type User interface {
+	constructs.Construct
 	ISubject
 	// APIGroup holds the API group of the referenced subject.
 	//
@@ -15452,10 +15629,15 @@ type User interface {
 	Kind() *string
 	// Name of the object being referenced.
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
+	// Returns a string representation of this construct.
+	ToString() *string
 }
 
 // The jsii proxy struct for User
 type jsiiProxy_User struct {
+	internal.Type__constructsConstruct
 	jsiiProxy_ISubject
 }
 
@@ -15489,35 +15671,76 @@ func (j *jsiiProxy_User) Name() *string {
 	return returns
 }
 
-
-func NewUser(props *UserProps) User {
-	_init_.Initialize()
-
-	j := jsiiProxy_User{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.User",
-		[]interface{}{props},
-		&j,
+func (j *jsiiProxy_User) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
 	)
-
-	return &j
+	return returns
 }
 
-func NewUser_Override(u User, props *UserProps) {
+
+// Reference a user in the cluster by name.
+func User_FromName(scope constructs.Construct, id *string, name *string) User {
 	_init_.Initialize()
 
-	_jsii_.Create(
+	var returns User
+
+	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.User",
-		[]interface{}{props},
+		"fromName",
+		[]interface{}{scope, id, name},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func User_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.User",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
+func (u *jsiiProxy_User) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
 		u,
+		"toString",
+		nil, // no parameters
+		&returns,
 	)
-}
 
-// Properties for `User`.
-type UserProps struct {
-	// The name of the user.
-	Name *string `field:"required" json:"name" yaml:"name"`
+	return returns
 }
 
 // Volume represents a named volume in a pod that may be accessed by any container in the pod.
@@ -15551,14 +15774,20 @@ type UserProps struct {
 // hierarchy, and any volumes are mounted at the specified paths within the
 // image. Volumes can not mount onto other volumes
 type Volume interface {
+	constructs.Construct
 	IStorage
 	Name() *string
+	// The tree node.
+	Node() constructs.Node
 	// Convert the piece of storage into a concrete volume.
 	AsVolume() Volume
+	// Returns a string representation of this construct.
+	ToString() *string
 }
 
 // The jsii proxy struct for Volume
 type jsiiProxy_Volume struct {
+	internal.Type__constructsConstruct
 	jsiiProxy_IStorage
 }
 
@@ -15567,6 +15796,16 @@ func (j *jsiiProxy_Volume) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Volume) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
 		&returns,
 	)
 	return returns
@@ -15584,7 +15823,7 @@ func (j *jsiiProxy_Volume) Name() *string {
 // - the nodes on which pods are running must be AWS EC2 instances.
 // - those instances need to be in the same region and availability zone as the EBS volume.
 // - EBS only supports a single EC2 instance mounting a volume.
-func Volume_FromAwsElasticBlockStore(volumeId *string, options *AwsElasticBlockStoreVolumeOptions) Volume {
+func Volume_FromAwsElasticBlockStore(scope constructs.Construct, id *string, volumeId *string, options *AwsElasticBlockStoreVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15592,7 +15831,7 @@ func Volume_FromAwsElasticBlockStore(volumeId *string, options *AwsElasticBlockS
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromAwsElasticBlockStore",
-		[]interface{}{volumeId, options},
+		[]interface{}{scope, id, volumeId, options},
 		&returns,
 	)
 
@@ -15600,7 +15839,7 @@ func Volume_FromAwsElasticBlockStore(volumeId *string, options *AwsElasticBlockS
 }
 
 // Mounts a Microsoft Azure Data Disk into a pod.
-func Volume_FromAzureDisk(diskName *string, diskUri *string, options *AzureDiskVolumeOptions) Volume {
+func Volume_FromAzureDisk(scope constructs.Construct, id *string, diskName *string, diskUri *string, options *AzureDiskVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15608,7 +15847,7 @@ func Volume_FromAzureDisk(diskName *string, diskUri *string, options *AzureDiskV
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromAzureDisk",
-		[]interface{}{diskName, diskUri, options},
+		[]interface{}{scope, id, diskName, diskUri, options},
 		&returns,
 	)
 
@@ -15625,7 +15864,7 @@ func Volume_FromAzureDisk(diskName *string, diskUri *string, options *AzureDiskV
 // When referencing a configMap object, you can simply provide its name in the
 // volume to reference it. You can also customize the path to use for a
 // specific entry in the ConfigMap.
-func Volume_FromConfigMap(configMap IConfigMap, options *ConfigMapVolumeOptions) Volume {
+func Volume_FromConfigMap(scope constructs.Construct, id *string, configMap IConfigMap, options *ConfigMapVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15633,7 +15872,7 @@ func Volume_FromConfigMap(configMap IConfigMap, options *ConfigMapVolumeOptions)
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromConfigMap",
-		[]interface{}{configMap, options},
+		[]interface{}{scope, id, configMap, options},
 		&returns,
 	)
 
@@ -15649,7 +15888,7 @@ func Volume_FromConfigMap(configMap IConfigMap, options *ConfigMapVolumeOptions)
 // any reason, the data in the emptyDir is deleted forever.
 // See: http://kubernetes.io/docs/user-guide/volumes#emptydir
 //
-func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
+func Volume_FromEmptyDir(scope constructs.Construct, id *string, name *string, options *EmptyDirVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15657,7 +15896,7 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromEmptyDir",
-		[]interface{}{name, options},
+		[]interface{}{scope, id, name, options},
 		&returns,
 	)
 
@@ -15674,7 +15913,7 @@ func Volume_FromEmptyDir(name *string, options *EmptyDirVolumeOptions) Volume {
 //
 // - the nodes on which Pods are running must be GCE VMs
 // - those VMs need to be in the same GCE project and zone as the persistent disk.
-func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolumeOptions) Volume {
+func Volume_FromGcePersistentDisk(scope constructs.Construct, id *string, pdName *string, options *GCEPersistentDiskVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15682,7 +15921,7 @@ func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolu
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromGcePersistentDisk",
-		[]interface{}{pdName, options},
+		[]interface{}{scope, id, pdName, options},
 		&returns,
 	)
 
@@ -15695,7 +15934,7 @@ func Volume_FromGcePersistentDisk(pdName *string, options *GCEPersistentDiskVolu
 // without knowing the details of the particular cloud environment.
 // See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 //
-func Volume_FromPersistentVolumeClaim(claim IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
+func Volume_FromPersistentVolumeClaim(scope constructs.Construct, id *string, claim IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15703,7 +15942,7 @@ func Volume_FromPersistentVolumeClaim(claim IPersistentVolumeClaim, options *Per
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromPersistentVolumeClaim",
-		[]interface{}{claim, options},
+		[]interface{}{scope, id, claim, options},
 		&returns,
 	)
 
@@ -15720,7 +15959,7 @@ func Volume_FromPersistentVolumeClaim(claim IPersistentVolumeClaim, options *Per
 // so they are never written to non-volatile storage.
 // See: https://kubernetes.io/docs/concepts/storage/volumes/#secret
 //
-func Volume_FromSecret(secr ISecret, options *SecretVolumeOptions) Volume {
+func Volume_FromSecret(scope constructs.Construct, id *string, secr ISecret, options *SecretVolumeOptions) Volume {
 	_init_.Initialize()
 
 	var returns Volume
@@ -15728,7 +15967,39 @@ func Volume_FromSecret(secr ISecret, options *SecretVolumeOptions) Volume {
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-22.Volume",
 		"fromSecret",
-		[]interface{}{secr, options},
+		[]interface{}{scope, id, secr, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func Volume_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-22.Volume",
+		"isConstruct",
+		[]interface{}{x},
 		&returns,
 	)
 
@@ -15741,6 +16012,19 @@ func (v *jsiiProxy_Volume) AsVolume() Volume {
 	_jsii_.Invoke(
 		v,
 		"asVolume",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (v *jsiiProxy_Volume) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		v,
+		"toString",
 		nil, // no parameters
 		&returns,
 	)
