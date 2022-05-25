@@ -530,6 +530,10 @@ func init() {
 		},
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.DeploymentExposeViaServiceOptions",
+		reflect.TypeOf((*DeploymentExposeViaServiceOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.DeploymentProps",
 		reflect.TypeOf((*DeploymentProps)(nil)).Elem(),
 	)
@@ -673,10 +677,6 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ExposeDeploymentViaIngressOptions",
 		reflect.TypeOf((*ExposeDeploymentViaIngressOptions)(nil)).Elem(),
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-23.ExposeDeploymentViaServiceOptions",
-		reflect.TypeOf((*ExposeDeploymentViaServiceOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ExposeServiceViaIngressOptions",
@@ -1894,13 +1894,12 @@ func init() {
 		"cdk8s-plus-23.Service",
 		reflect.TypeOf((*Service)(nil)).Elem(),
 		[]_jsii_.Member{
-			_jsii_.MemberMethod{JsiiMethod: "addDeployment", GoMethod: "AddDeployment"},
-			_jsii_.MemberMethod{JsiiMethod: "addSelector", GoMethod: "AddSelector"},
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
+			_jsii_.MemberMethod{JsiiMethod: "bind", GoMethod: "Bind"},
 			_jsii_.MemberProperty{JsiiProperty: "clusterIP", GoGetter: "ClusterIP"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
 			_jsii_.MemberProperty{JsiiProperty: "externalName", GoGetter: "ExternalName"},
@@ -1912,8 +1911,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "ports", GoGetter: "Ports"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
-			_jsii_.MemberProperty{JsiiProperty: "selector", GoGetter: "Selector"},
-			_jsii_.MemberMethod{JsiiMethod: "serve", GoMethod: "Serve"},
+			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
+			_jsii_.MemberMethod{JsiiMethod: "selectLabel", GoMethod: "SelectLabel"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "type", GoGetter: "Type"},
 		},
@@ -1989,16 +1988,16 @@ func init() {
 		reflect.TypeOf((*ServiceAccountTokenSecretProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.ServiceBindOptions",
+		reflect.TypeOf((*ServiceBindOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ServiceIngressBackendOptions",
 		reflect.TypeOf((*ServiceIngressBackendOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ServicePort",
 		reflect.TypeOf((*ServicePort)(nil)).Elem(),
-	)
-	_jsii_.RegisterStruct(
-		"cdk8s-plus-23.ServicePortOptions",
-		reflect.TypeOf((*ServicePortOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ServiceProps",
