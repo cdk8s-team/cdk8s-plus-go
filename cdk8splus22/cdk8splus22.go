@@ -14,6 +14,7 @@ type AbstractPod interface {
 	Resource
 	INetworkPolicyPeer
 	IPodSelector
+	ISubject
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The underlying cdk8s API object.
@@ -33,6 +34,7 @@ type AbstractPod interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
@@ -66,6 +68,10 @@ type AbstractPod interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for AbstractPod
@@ -73,6 +79,7 @@ type jsiiProxy_AbstractPod struct {
 	jsiiProxy_Resource
 	jsiiProxy_INetworkPolicyPeer
 	jsiiProxy_IPodSelector
+	jsiiProxy_ISubject
 }
 
 func (j *jsiiProxy_AbstractPod) ApiGroup() *string {
@@ -200,6 +207,16 @@ func (j *jsiiProxy_AbstractPod) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -431,6 +448,19 @@ func (a *jsiiProxy_AbstractPod) ToString() *string {
 	_jsii_.Invoke(
 		a,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		a,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
@@ -1279,6 +1309,7 @@ type AwsElasticBlockStorePersistentVolume interface {
 	Node() constructs.Node
 	// Partition of this volume.
 	Partition() *float64
+	Permissions() ResourcePermissions
 	// Whether or not it is mounted as a read-only volume.
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
@@ -1447,6 +1478,16 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Partition() *float64 {
 	_jsii_.Get(
 		j,
 		"partition",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -1786,6 +1827,7 @@ type AzureDiskPersistentVolume interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// Whether or not it is mounted as a read-only volume.
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
@@ -1982,6 +2024,16 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AzureDiskPersistentVolume) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -2304,6 +2356,7 @@ type BasicAuthSecret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -2402,6 +2455,16 @@ func (j *jsiiProxy_BasicAuthSecret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_BasicAuthSecret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -2594,6 +2657,7 @@ type ClusterRole interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -2716,6 +2780,16 @@ func (j *jsiiProxy_ClusterRole) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRole) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -3076,6 +3150,7 @@ type ClusterRoleBinding interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -3164,6 +3239,16 @@ func (j *jsiiProxy_ClusterRoleBinding) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ClusterRoleBinding) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -3414,6 +3499,7 @@ type ConfigMap interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -3540,6 +3626,16 @@ func (j *jsiiProxy_ConfigMap) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ConfigMap) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -4266,6 +4362,7 @@ type DaemonSet interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -4303,6 +4400,10 @@ type DaemonSet interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for DaemonSet
@@ -4475,6 +4576,16 @@ func (j *jsiiProxy_DaemonSet) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -4750,6 +4861,19 @@ func (d *jsiiProxy_DaemonSet) ToString() *string {
 	return returns
 }
 
+func (d *jsiiProxy_DaemonSet) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		d,
+		"toSubjectConfiguration",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Properties for `DaemonSet`.
 type DaemonSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
@@ -4879,6 +5003,7 @@ type Deployment interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The maximum duration for a deployment to make progress before it is considered to be failed.
@@ -4929,6 +5054,10 @@ type Deployment interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for Deployment
@@ -5101,6 +5230,16 @@ func (j *jsiiProxy_Deployment) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -5432,6 +5571,19 @@ func (d *jsiiProxy_Deployment) ToString() *string {
 	return returns
 }
 
+func (d *jsiiProxy_Deployment) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		d,
+		"toSubjectConfiguration",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Properties for `Deployment`.
 type DeploymentProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
@@ -5636,6 +5788,7 @@ type DockerConfigSecret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -5734,6 +5887,16 @@ func (j *jsiiProxy_DockerConfigSecret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DockerConfigSecret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -6384,6 +6547,7 @@ type GCEPersistentDiskPersistentVolume interface {
 	Partition() *float64
 	// PD resource in GCE of this volume.
 	PdName() *string
+	Permissions() ResourcePermissions
 	// Whether or not it is mounted as a read-only volume.
 	ReadOnly() *bool
 	// Reclaim policy of this volume.
@@ -6560,6 +6724,16 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) PdName() *string {
 	_jsii_.Get(
 		j,
 		"pdName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -6854,24 +7028,17 @@ type GCEPersistentDiskVolumeOptions struct {
 type Group interface {
 	constructs.Construct
 	ISubject
-	// APIGroup holds the API group of the referenced subject.
-	//
-	// Defaults to "" for
-	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
-	// and Group subjects.
 	ApiGroup() *string
-	// Kind of object being referenced.
-	//
-	// Values defined by this API group are
-	// "User", "Group", and "ServiceAccount". If the Authorizer does not
-	// recognized the kind value, the Authorizer should report an error.
 	Kind() *string
-	// Name of the object being referenced.
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for Group
@@ -6921,7 +7088,7 @@ func (j *jsiiProxy_Group) Node() constructs.Node {
 }
 
 
-// Reference a group in the cluster by name.
+// Reference a group by name.
 func Group_FromName(scope constructs.Construct, id *string, name *string) Group {
 	_init_.Initialize()
 
@@ -6975,6 +7142,19 @@ func (g *jsiiProxy_Group) ToString() *string {
 	_jsii_.Invoke(
 		g,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (g *jsiiProxy_Group) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		g,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
@@ -7436,32 +7616,11 @@ func (i *jsiiProxy_IStorage) AsVolume() Volume {
 	return returns
 }
 
-// Subject contains a reference to the object or user identities a role binding applies to.
-//
-// This can either hold a direct API object reference, or a value
-// for non-objects such as user and group names.
+// Represents an object that can be used as a role binding subject.
 type ISubject interface {
 	constructs.IConstruct
-	// APIGroup holds the API group of the referenced subject.
-	//
-	// Defaults to "" for
-	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
-	// and Group subjects.
-	ApiGroup() *string
-	// Kind of object being referenced.
-	//
-	// Values defined by this API group are
-	// "User", "Group", and "ServiceAccount". If the Authorizer does not
-	// recognized the kind value, the Authorizer should report an error.
-	Kind() *string
-	// Name of the object being referenced.
-	Name() *string
-	// Namespace of the referenced object.
-	//
-	// If the object kind is non-namespace,
-	// such as "User" or "Group", and this value is not empty the Authorizer
-	// should report an error.
-	Namespace() *string
+	// Return the subject configuration.
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy for ISubject
@@ -7469,43 +7628,16 @@ type jsiiProxy_ISubject struct {
 	internal.Type__constructsIConstruct
 }
 
-func (j *jsiiProxy_ISubject) ApiGroup() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"apiGroup",
-		&returns,
-	)
-	return returns
-}
+func (i *jsiiProxy_ISubject) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
 
-func (j *jsiiProxy_ISubject) Kind() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"kind",
+	_jsii_.Invoke(
+		i,
+		"toSubjectConfiguration",
+		nil, // no parameters
 		&returns,
 	)
-	return returns
-}
 
-func (j *jsiiProxy_ISubject) Name() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"name",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_ISubject) Namespace() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"namespace",
-		&returns,
-	)
 	return returns
 }
 
@@ -7554,6 +7686,7 @@ type Ingress interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -7655,6 +7788,16 @@ func (j *jsiiProxy_Ingress) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Ingress) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -7989,6 +8132,7 @@ type Job interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -8028,6 +8172,10 @@ type Job interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for Job
@@ -8210,6 +8358,16 @@ func (j *jsiiProxy_Job) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -8488,6 +8646,19 @@ func (j *jsiiProxy_Job) ToString() *string {
 	_jsii_.Invoke(
 		j,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (j *jsiiProxy_Job) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		j,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
@@ -8984,6 +9155,7 @@ type Namespace interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -9082,6 +9254,16 @@ func (j *jsiiProxy_Namespace) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Namespace) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -9505,6 +9687,7 @@ type NetworkPolicy interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -9597,6 +9780,16 @@ func (j *jsiiProxy_NetworkPolicy) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -10691,6 +10884,7 @@ type PersistentVolume interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// Reclaim policy of this volume.
 	ReclaimPolicy() PersistentVolumeReclaimPolicy
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -10837,6 +11031,16 @@ func (j *jsiiProxy_PersistentVolume) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolume) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -11084,6 +11288,7 @@ type PersistentVolumeClaim interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -11196,6 +11401,16 @@ func (j *jsiiProxy_PersistentVolumeClaim) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_PersistentVolumeClaim) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -11536,6 +11751,7 @@ type Pod interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
@@ -11570,6 +11786,10 @@ type Pod interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for Pod
@@ -11712,6 +11932,16 @@ func (j *jsiiProxy_Pod) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -11978,6 +12208,19 @@ func (p *jsiiProxy_Pod) ToString() *string {
 	_jsii_.Invoke(
 		p,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pod) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		p,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
@@ -13012,6 +13255,7 @@ type Resource interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -13104,6 +13348,16 @@ func (j *jsiiProxy_Resource) Node() constructs.Node {
 	return returns
 }
 
+func (j *jsiiProxy_Resource) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Resource) ResourceName() *string {
 	var returns *string
 	_jsii_.Get(
@@ -13125,7 +13379,6 @@ func (j *jsiiProxy_Resource) ResourceType() *string {
 }
 
 
-// Creates a new construct node.
 func NewResource_Override(r Resource, scope constructs.Construct, id *string) {
 	_init_.Initialize()
 
@@ -13224,6 +13477,91 @@ const (
 	ResourceFieldPaths_STORAGE_REQUEST ResourceFieldPaths = "STORAGE_REQUEST"
 )
 
+// Controls permissions for operations on resources.
+type ResourcePermissions interface {
+	Instance() Resource
+	// Grants the list of subjects permissions to read this resource.
+	GrantRead(subjects ...ISubject) RoleBinding
+	// Grants the list of subjects permissions to read and write this resource.
+	GrantReadWrite(subjects ...ISubject) RoleBinding
+}
+
+// The jsii proxy struct for ResourcePermissions
+type jsiiProxy_ResourcePermissions struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_ResourcePermissions) Instance() Resource {
+	var returns Resource
+	_jsii_.Get(
+		j,
+		"instance",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewResourcePermissions(instance Resource) ResourcePermissions {
+	_init_.Initialize()
+
+	j := jsiiProxy_ResourcePermissions{}
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ResourcePermissions",
+		[]interface{}{instance},
+		&j,
+	)
+
+	return &j
+}
+
+func NewResourcePermissions_Override(r ResourcePermissions, instance Resource) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-22.ResourcePermissions",
+		[]interface{}{instance},
+		r,
+	)
+}
+
+func (r *jsiiProxy_ResourcePermissions) GrantRead(subjects ...ISubject) RoleBinding {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	var returns RoleBinding
+
+	_jsii_.Invoke(
+		r,
+		"grantRead",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
+func (r *jsiiProxy_ResourcePermissions) GrantReadWrite(subjects ...ISubject) RoleBinding {
+	args := []interface{}{}
+	for _, a := range subjects {
+		args = append(args, a)
+	}
+
+	var returns RoleBinding
+
+	_jsii_.Invoke(
+		r,
+		"grantReadWrite",
+		args,
+		&returns,
+	)
+
+	return returns
+}
+
 // Initialization properties for resources.
 type ResourceProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
@@ -13261,6 +13599,7 @@ type Role interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -13376,6 +13715,16 @@ func (j *jsiiProxy_Role) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Role) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -13702,6 +14051,7 @@ type RoleBinding interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -13790,6 +14140,16 @@ func (j *jsiiProxy_RoleBinding) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_RoleBinding) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -13999,6 +14359,7 @@ type Secret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -14098,6 +14459,16 @@ func (j *jsiiProxy_Secret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Secret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -14343,6 +14714,7 @@ type Service interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// Ports for this service.
 	//
 	// Use `serve()` to expose additional service ports.
@@ -14471,6 +14843,16 @@ func (j *jsiiProxy_Service) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -14690,6 +15072,7 @@ type ServiceAccount interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -14708,6 +15091,10 @@ type ServiceAccount interface {
 	AsNonApiResource() *string
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for ServiceAccount
@@ -14792,6 +15179,16 @@ func (j *jsiiProxy_ServiceAccount) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccount) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -14947,6 +15344,19 @@ func (s *jsiiProxy_ServiceAccount) ToString() *string {
 	return returns
 }
 
+func (s *jsiiProxy_ServiceAccount) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		s,
+		"toSubjectConfiguration",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Properties for initialization of `ServiceAccount`.
 type ServiceAccountProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
@@ -14985,6 +15395,7 @@ type ServiceAccountTokenSecret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -15083,6 +15494,16 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ServiceAccountTokenSecret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -15406,6 +15827,7 @@ type SshAuthSecret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -15504,6 +15926,16 @@ func (j *jsiiProxy_SshAuthSecret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_SshAuthSecret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -15732,6 +16164,7 @@ type StatefulSet interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// Management policy to use for the set.
 	PodManagementPolicy() PodManagementPolicy
 	// The metadata of pods in this workload.
@@ -15775,6 +16208,10 @@ type StatefulSet interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for StatefulSet
@@ -15947,6 +16384,16 @@ func (j *jsiiProxy_StatefulSet) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -16252,6 +16699,19 @@ func (s *jsiiProxy_StatefulSet) ToString() *string {
 	return returns
 }
 
+func (s *jsiiProxy_StatefulSet) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		s,
+		"toSubjectConfiguration",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Properties for initialization of `StatefulSet`.
 type StatefulSetProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
@@ -16397,6 +16857,33 @@ type StatefulSetUpdateStrategyRollingUpdateOptions struct {
 	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 }
 
+// Subject contains a reference to the object or user identities a role binding applies to.
+//
+// This can either hold a direct API object reference, or a value
+// for non-objects such as user and group names.
+type SubjectConfiguration struct {
+	// Kind of object being referenced.
+	//
+	// Values defined by this API group are
+	// "User", "Group", and "ServiceAccount". If the Authorizer does not
+	// recognized the kind value, the Authorizer should report an error.
+	Kind *string `field:"required" json:"kind" yaml:"kind"`
+	// Name of the object being referenced.
+	Name *string `field:"required" json:"name" yaml:"name"`
+	// APIGroup holds the API group of the referenced subject.
+	//
+	// Defaults to "" for
+	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
+	// and Group subjects.
+	ApiGroup *string `field:"optional" json:"apiGroup" yaml:"apiGroup"`
+	// Namespace of the referenced object.
+	//
+	// If the object kind is non-namespace,
+	// such as "User" or "Group", and this value is not empty the Authorizer
+	// should report an error.
+	Namespace *string `field:"optional" json:"namespace" yaml:"namespace"`
+}
+
 // Sysctl defines a kernel parameter to be set.
 type Sysctl struct {
 	// Name of a property to set.
@@ -16519,6 +17006,7 @@ type TlsSecret interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
 	//
 	// If this is omitted, the ApiResource should represent all objects of the given type.
@@ -16617,6 +17105,16 @@ func (j *jsiiProxy_TlsSecret) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_TlsSecret) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -16863,24 +17361,17 @@ func Topology_ZONE() Topology {
 type User interface {
 	constructs.Construct
 	ISubject
-	// APIGroup holds the API group of the referenced subject.
-	//
-	// Defaults to "" for
-	// ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User
-	// and Group subjects.
 	ApiGroup() *string
-	// Kind of object being referenced.
-	//
-	// Values defined by this API group are
-	// "User", "Group", and "ServiceAccount". If the Authorizer does not
-	// recognized the kind value, the Authorizer should report an error.
 	Kind() *string
-	// Name of the object being referenced.
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for User
@@ -16984,6 +17475,19 @@ func (u *jsiiProxy_User) ToString() *string {
 	_jsii_.Invoke(
 		u,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (u *jsiiProxy_User) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		u,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
@@ -17347,6 +17851,7 @@ type Workload interface {
 	Name() *string
 	// The tree node.
 	Node() constructs.Node
+	Permissions() ResourcePermissions
 	// The metadata of pods in this workload.
 	PodMetadata() cdk8s.ApiObjectMetadataDefinition
 	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
@@ -17384,6 +17889,10 @@ type Workload interface {
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
+	// Return the subject configuration.
+	// See: ISubect.toSubjectConfiguration()
+	//
+	ToSubjectConfiguration() *SubjectConfiguration
 }
 
 // The jsii proxy struct for Workload
@@ -17546,6 +18055,16 @@ func (j *jsiiProxy_Workload) Node() constructs.Node {
 	_jsii_.Get(
 		j,
 		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Permissions() ResourcePermissions {
+	var returns ResourcePermissions
+	_jsii_.Get(
+		j,
+		"permissions",
 		&returns,
 	)
 	return returns
@@ -17800,6 +18319,19 @@ func (w *jsiiProxy_Workload) ToString() *string {
 	_jsii_.Invoke(
 		w,
 		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) ToSubjectConfiguration() *SubjectConfiguration {
+	var returns *SubjectConfiguration
+
+	_jsii_.Invoke(
+		w,
+		"toSubjectConfiguration",
 		nil, // no parameters
 		&returns,
 	)
