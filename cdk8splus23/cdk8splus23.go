@@ -12,6 +12,7 @@ import (
 
 type AbstractPod interface {
 	Resource
+	INetworkPolicyPeer
 	IPodSelector
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
@@ -51,6 +52,14 @@ type AbstractPod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -62,6 +71,7 @@ type AbstractPod interface {
 // The jsii proxy struct for AbstractPod
 type jsiiProxy_AbstractPod struct {
 	jsiiProxy_Resource
+	jsiiProxy_INetworkPolicyPeer
 	jsiiProxy_IPodSelector
 }
 
@@ -369,6 +379,32 @@ func (a *jsiiProxy_AbstractPod) AsNonApiResource() *string {
 	_jsii_.Invoke(
 		a,
 		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		a,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (a *jsiiProxy_AbstractPod) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		a,
+		"toPodSelector",
 		nil, // no parameters
 		&returns,
 	)
@@ -4208,6 +4244,7 @@ type DaemonSet interface {
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -4252,6 +4289,14 @@ type DaemonSet interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -4300,6 +4345,16 @@ func (j *jsiiProxy_DaemonSet) AutomountServiceAccountToken() *bool {
 	_jsii_.Get(
 		j,
 		"automountServiceAccountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -4643,6 +4698,32 @@ func (d *jsiiProxy_DaemonSet) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (d *jsiiProxy_DaemonSet) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		d,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_DaemonSet) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		d,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (d *jsiiProxy_DaemonSet) ToPodSelectorConfig() *PodSelectorConfig {
 	var returns *PodSelectorConfig
 
@@ -4775,6 +4856,7 @@ type Deployment interface {
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -4833,6 +4915,14 @@ type Deployment interface {
 	ExposeViaService(options *ExposeDeploymentViaServiceOptions) Service
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -4881,6 +4971,16 @@ func (j *jsiiProxy_Deployment) AutomountServiceAccountToken() *bool {
 	_jsii_.Get(
 		j,
 		"automountServiceAccountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -5278,6 +5378,32 @@ func (d *jsiiProxy_Deployment) Select(selectors ...LabelSelector) {
 		"select",
 		args,
 	)
+}
+
+func (d *jsiiProxy_Deployment) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		d,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_Deployment) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		d,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (d *jsiiProxy_Deployment) ToPodSelectorConfig() *PodSelectorConfig {
@@ -7114,6 +7240,46 @@ func (i *jsiiProxy_INamespaceSelector) ToNamespaceSelectorConfig() *NamespaceSel
 	return returns
 }
 
+// Describes a peer to allow traffic to/from.
+type INetworkPolicyPeer interface {
+	constructs.IConstruct
+	// Return the configuration of this peer.
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	ToPodSelector() IPodSelector
+}
+
+// The jsii proxy for INetworkPolicyPeer
+type jsiiProxy_INetworkPolicyPeer struct {
+	internal.Type__constructsIConstruct
+}
+
+func (i *jsiiProxy_INetworkPolicyPeer) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		i,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (i *jsiiProxy_INetworkPolicyPeer) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		i,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 // Contract of a `PersistentVolumeClaim`.
 type IPersistentVolume interface {
 	IResource
@@ -7802,6 +7968,7 @@ type Job interface {
 	AutomountServiceAccountToken() *bool
 	// Number of retries before marking failed.
 	BackoffLimit() *float64
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -7847,6 +8014,14 @@ type Job interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -7915,6 +8090,16 @@ func (j *jsiiProxy_Job) BackoffLimit() *float64 {
 	_jsii_.Get(
 		j,
 		"backoffLimit",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -8258,6 +8443,32 @@ func (j *jsiiProxy_Job) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (j *jsiiProxy_Job) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		j,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (j *jsiiProxy_Job) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		j,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (j *jsiiProxy_Job) ToPodSelectorConfig() *PodSelectorConfig {
 	var returns *PodSelectorConfig
 
@@ -8475,6 +8686,7 @@ func LabelExpression_NotIn(key *string, values *[]*string) LabelExpression {
 
 // Match a resource by labels.
 type LabelSelector interface {
+	IsEmpty() *bool
 }
 
 // The jsii proxy struct for LabelSelector
@@ -8491,6 +8703,19 @@ func LabelSelector_Of(options LabelSelectorOptions) LabelSelector {
 		"cdk8s-plus-23.LabelSelector",
 		"of",
 		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
+func (l *jsiiProxy_LabelSelector) IsEmpty() *bool {
+	var returns *bool
+
+	_jsii_.Invoke(
+		l,
+		"isEmpty",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -8743,6 +8968,7 @@ func NewNamedNode_Override(n NamedNode, name *string) {
 type Namespace interface {
 	Resource
 	INamespaceSelector
+	INetworkPolicyPeer
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The underlying cdk8s API object.
@@ -8772,6 +8998,14 @@ type Namespace interface {
 	// See: INamespaceSelector.toNamespaceSelectorConfig()
 	//
 	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -8780,6 +9014,7 @@ type Namespace interface {
 type jsiiProxy_Namespace struct {
 	jsiiProxy_Resource
 	jsiiProxy_INamespaceSelector
+	jsiiProxy_INetworkPolicyPeer
 }
 
 func (j *jsiiProxy_Namespace) ApiGroup() *string {
@@ -8979,6 +9214,32 @@ func (n *jsiiProxy_Namespace) ToNamespaceSelectorConfig() *NamespaceSelectorConf
 	return returns
 }
 
+func (n *jsiiProxy_Namespace) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		n,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespace) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		n,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (n *jsiiProxy_Namespace) ToString() *string {
 	var returns *string
 
@@ -9010,12 +9271,21 @@ type NamespaceSelectorConfig struct {
 type Namespaces interface {
 	constructs.Construct
 	INamespaceSelector
+	INetworkPolicyPeer
 	// The tree node.
 	Node() constructs.Node
 	// Return the configuration of this selector.
 	// See: INamespaceSelector.toNamespaceSelectorConfig()
 	//
 	ToNamespaceSelectorConfig() *NamespaceSelectorConfig
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Returns a string representation of this construct.
 	ToString() *string
 }
@@ -9024,6 +9294,7 @@ type Namespaces interface {
 type jsiiProxy_Namespaces struct {
 	internal.Type__constructsConstruct
 	jsiiProxy_INamespaceSelector
+	jsiiProxy_INetworkPolicyPeer
 }
 
 func (j *jsiiProxy_Namespaces) Node() constructs.Node {
@@ -9138,6 +9409,32 @@ func (n *jsiiProxy_Namespaces) ToNamespaceSelectorConfig() *NamespaceSelectorCon
 	return returns
 }
 
+func (n *jsiiProxy_Namespaces) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		n,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_Namespaces) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		n,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (n *jsiiProxy_Namespaces) ToString() *string {
 	var returns *string
 
@@ -9165,6 +9462,690 @@ type NamespacesSelectOptions struct {
 	// Namespaces names must be one of these.
 	Names *[]*string `field:"optional" json:"names" yaml:"names"`
 }
+
+// Control traffic flow at the IP address or port level (OSI layer 3 or 4), network policies are an application-centric construct which allow you to specify how a pod is allowed to communicate with various network peers.
+//
+// - Outgoing traffic is allowed if there are no network policies selecting
+//    the pod (and cluster policy otherwise allows the traffic),
+//    OR if the traffic matches at least one egress rule across all of the
+//    network policies that select the pod.
+//
+// - Incoming traffic is allowed to a pod if there are no network policies
+//    selecting the pod (and cluster policy otherwise allows the traffic),
+//    OR if the traffic source is the pod's local node,
+//    OR if the traffic matches at least one ingress rule across all of
+//    the network policies that select the pod.
+//
+// Network policies do not conflict; they are additive.
+// If any policy or policies apply to a given pod for a given
+// direction, the connections allowed in that direction from
+// that pod is the union of what the applicable policies allow.
+// Thus, order of evaluation does not affect the policy result.
+//
+// For a connection from a source pod to a destination pod to be allowed,
+// both the egress policy on the source pod and the ingress policy on the
+// destination pod need to allow the connection.
+// If either side does not allow the connection, it will not happen.
+// See: https://kubernetes.io/docs/concepts/services-networking/network-policies/#networkpolicy-resource
+//
+type NetworkPolicy interface {
+	Resource
+	// The group portion of the API version (e.g. "authorization.k8s.io").
+	ApiGroup() *string
+	// The underlying cdk8s API object.
+	// See: base.Resource.apiObject
+	//
+	ApiObject() cdk8s.ApiObject
+	// The object's API version (e.g. "authorization.k8s.io/v1").
+	ApiVersion() *string
+	// The object kind (e.g. "Deployment").
+	Kind() *string
+	Metadata() cdk8s.ApiObjectMetadataDefinition
+	// The name of this API object.
+	Name() *string
+	// The tree node.
+	Node() constructs.Node
+	// The unique, namespace-global, name of an object inside the Kubernetes cluster.
+	//
+	// If this is omitted, the ApiResource should represent all objects of the given type.
+	ResourceName() *string
+	// The name of a resource type as it appears in the relevant API endpoint.
+	ResourceType() *string
+	// Allow outgoing traffic to the peer.
+	//
+	// If ports are not passed, traffic will be allowed on all ports.
+	AddEgressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort)
+	// Allow incoming traffic from the peer.
+	//
+	// If ports are not passed, traffic will be allowed on all ports.
+	AddIngressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort)
+	// Return the IApiResource this object represents.
+	AsApiResource() IApiResource
+	// Return the non resource url this object represents.
+	AsNonApiResource() *string
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for NetworkPolicy
+type jsiiProxy_NetworkPolicy struct {
+	jsiiProxy_Resource
+}
+
+func (j *jsiiProxy_NetworkPolicy) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) ApiObject() cdk8s.ApiObject {
+	var returns cdk8s.ApiObject
+	_jsii_.Get(
+		j,
+		"apiObject",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) ApiVersion() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiVersion",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) Kind() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"kind",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) Metadata() cdk8s.ApiObjectMetadataDefinition {
+	var returns cdk8s.ApiObjectMetadataDefinition
+	_jsii_.Get(
+		j,
+		"metadata",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) Name() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicy) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewNetworkPolicy(scope constructs.Construct, id *string, props *NetworkPolicyProps) NetworkPolicy {
+	_init_.Initialize()
+
+	j := jsiiProxy_NetworkPolicy{}
+
+	_jsii_.Create(
+		"cdk8s-plus-23.NetworkPolicy",
+		[]interface{}{scope, id, props},
+		&j,
+	)
+
+	return &j
+}
+
+func NewNetworkPolicy_Override(n NetworkPolicy, scope constructs.Construct, id *string, props *NetworkPolicyProps) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-23.NetworkPolicy",
+		[]interface{}{scope, id, props},
+		n,
+	)
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func NetworkPolicy_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicy",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicy) AddEgressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort) {
+	_jsii_.InvokeVoid(
+		n,
+		"addEgressRule",
+		[]interface{}{peer, ports},
+	)
+}
+
+func (n *jsiiProxy_NetworkPolicy) AddIngressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort) {
+	_jsii_.InvokeVoid(
+		n,
+		"addIngressRule",
+		[]interface{}{peer, ports},
+	)
+}
+
+func (n *jsiiProxy_NetworkPolicy) AsApiResource() IApiResource {
+	var returns IApiResource
+
+	_jsii_.Invoke(
+		n,
+		"asApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicy) AsNonApiResource() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"asNonApiResource",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicy) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Options for `NetworkPolicy.addEgressRule`.
+type NetworkPolicyAddEgressRuleOptions struct {
+	// Ports the rule should allow outgoing traffic to.
+	Ports *[]NetworkPolicyPort `field:"optional" json:"ports" yaml:"ports"`
+}
+
+// Describes a particular CIDR (Ex.
+//
+// "192.168.1.1/24","2001:db9::/64") that is
+// allowed to the pods matched by a network policy selector.
+// The except entry describes CIDRs that should not be included within this rule.
+type NetworkPolicyIpBlock interface {
+	constructs.Construct
+	INetworkPolicyPeer
+	// A string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64".
+	Cidr() *string
+	// A slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64". Except values will be rejected if they are outside the CIDR range.
+	Except() *[]*string
+	// The tree node.
+	Node() constructs.Node
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
+	// Returns a string representation of this construct.
+	ToString() *string
+}
+
+// The jsii proxy struct for NetworkPolicyIpBlock
+type jsiiProxy_NetworkPolicyIpBlock struct {
+	internal.Type__constructsConstruct
+	jsiiProxy_INetworkPolicyPeer
+}
+
+func (j *jsiiProxy_NetworkPolicyIpBlock) Cidr() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"cidr",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicyIpBlock) Except() *[]*string {
+	var returns *[]*string
+	_jsii_.Get(
+		j,
+		"except",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_NetworkPolicyIpBlock) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+
+// Any IPv4 address.
+func NetworkPolicyIpBlock_AnyIpv4(scope constructs.Construct, id *string) NetworkPolicyIpBlock {
+	_init_.Initialize()
+
+	var returns NetworkPolicyIpBlock
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		"anyIpv4",
+		[]interface{}{scope, id},
+		&returns,
+	)
+
+	return returns
+}
+
+// Any IPv6 address.
+func NetworkPolicyIpBlock_AnyIpv6(scope constructs.Construct, id *string) NetworkPolicyIpBlock {
+	_init_.Initialize()
+
+	var returns NetworkPolicyIpBlock
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		"anyIpv6",
+		[]interface{}{scope, id},
+		&returns,
+	)
+
+	return returns
+}
+
+// Create an IPv4 peer from a CIDR.
+func NetworkPolicyIpBlock_Ipv4(scope constructs.Construct, id *string, cidrIp *string, except *[]*string) NetworkPolicyIpBlock {
+	_init_.Initialize()
+
+	var returns NetworkPolicyIpBlock
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		"ipv4",
+		[]interface{}{scope, id, cidrIp, except},
+		&returns,
+	)
+
+	return returns
+}
+
+// Create an IPv6 peer from a CIDR.
+func NetworkPolicyIpBlock_Ipv6(scope constructs.Construct, id *string, cidrIp *string, except *[]*string) NetworkPolicyIpBlock {
+	_init_.Initialize()
+
+	var returns NetworkPolicyIpBlock
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		"ipv6",
+		[]interface{}{scope, id, cidrIp, except},
+		&returns,
+	)
+
+	return returns
+}
+
+// Checks if `x` is a construct.
+//
+// Use this method instead of `instanceof` to properly detect `Construct`
+// instances, even when the construct library is symlinked.
+//
+// Explanation: in JavaScript, multiple copies of the `constructs` library on
+// disk are seen as independent, completely different libraries. As a
+// consequence, the class `Construct` in each copy of the `constructs` library
+// is seen as a different class, and an instance of one class will not test as
+// `instanceof` the other class. `npm install` will not create installations
+// like this, but users may manually symlink construct libraries together or
+// use a monorepo tool: in those cases, multiple copies of the `constructs`
+// library can be accidentally installed, and `instanceof` will behave
+// unpredictably. It is safest to avoid using `instanceof`, and using
+// this type-testing method instead.
+//
+// Returns: true if `x` is an object created from a class which extends `Construct`.
+func NetworkPolicyIpBlock_IsConstruct(x interface{}) *bool {
+	_init_.Initialize()
+
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		"isConstruct",
+		[]interface{}{x},
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicyIpBlock) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		n,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicyIpBlock) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		n,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (n *jsiiProxy_NetworkPolicyIpBlock) ToString() *string {
+	var returns *string
+
+	_jsii_.Invoke(
+		n,
+		"toString",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Configuration for network peers.
+//
+// A peer can either by an ip block, or a selection of pods, not both.
+type NetworkPolicyPeerConfig struct {
+	// The ip block this peer represents.
+	IpBlock NetworkPolicyIpBlock `field:"optional" json:"ipBlock" yaml:"ipBlock"`
+	// The pod selector this peer represents.
+	PodSelector *PodSelectorConfig `field:"optional" json:"podSelector" yaml:"podSelector"`
+}
+
+// Describes a port to allow traffic on.
+type NetworkPolicyPort interface {
+}
+
+// The jsii proxy struct for NetworkPolicyPort
+type jsiiProxy_NetworkPolicyPort struct {
+	_ byte // padding
+}
+
+// Any TCP traffic.
+func NetworkPolicyPort_AllTcp() NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"allTcp",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Any UDP traffic.
+func NetworkPolicyPort_AllUdp() NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"allUdp",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+// Custom port configuration.
+func NetworkPolicyPort_Of(props *NetworkPolicyPortProps) NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"of",
+		[]interface{}{props},
+		&returns,
+	)
+
+	return returns
+}
+
+// Distinct TCP ports.
+func NetworkPolicyPort_Tcp(port *float64) NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"tcp",
+		[]interface{}{port},
+		&returns,
+	)
+
+	return returns
+}
+
+// A TCP port range.
+func NetworkPolicyPort_TcpRange(startPort *float64, endPort *float64) NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"tcpRange",
+		[]interface{}{startPort, endPort},
+		&returns,
+	)
+
+	return returns
+}
+
+// Distinct UDP ports.
+func NetworkPolicyPort_Udp(port *float64) NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"udp",
+		[]interface{}{port},
+		&returns,
+	)
+
+	return returns
+}
+
+// A UDP port range.
+func NetworkPolicyPort_UdpRange(startPort *float64, endPort *float64) NetworkPolicyPort {
+	_init_.Initialize()
+
+	var returns NetworkPolicyPort
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		"udpRange",
+		[]interface{}{startPort, endPort},
+		&returns,
+	)
+
+	return returns
+}
+
+// Properties for `NetworkPolicyPort`.
+type NetworkPolicyPortProps struct {
+	// End port (relative to `port`).
+	//
+	// Only applies if `port` is defined.
+	// Use this to specify a port range, rather that a specific one.
+	EndPort *float64 `field:"optional" json:"endPort" yaml:"endPort"`
+	// Specific port number.
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
+	// Protocol.
+	Protocol NetworkProtocol `field:"optional" json:"protocol" yaml:"protocol"`
+}
+
+// Properties for `NetworkPolicy`.
+type NetworkPolicyProps struct {
+	// Metadata that all persisted resources must have, which includes all objects users must create.
+	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
+	// Egress traffic configuration.
+	Egress *NetworkPolicyTraffic `field:"optional" json:"egress" yaml:"egress"`
+	// Ingress traffic configuration.
+	Ingress *NetworkPolicyTraffic `field:"optional" json:"ingress" yaml:"ingress"`
+	// Which pods does this policy object applies to.
+	//
+	// This can either be a single pod / workload, or a grouping of pods selected
+	// via the `Pods.select` function. Rules is applied to any pods selected by this property.
+	// Multiple network policies can select the same set of pods.
+	// In this case, the rules for each are combined additively.
+	//
+	// Note that.
+	Selector IPodSelector `field:"optional" json:"selector" yaml:"selector"`
+}
+
+// Describes a rule allowing traffic from / to pods matched by a network policy selector.
+type NetworkPolicyRule struct {
+	// Peer this rule interacts with.
+	Peer INetworkPolicyPeer `field:"required" json:"peer" yaml:"peer"`
+	// The ports of the rule.
+	Ports *[]NetworkPolicyPort `field:"optional" json:"ports" yaml:"ports"`
+}
+
+// Describes how the network policy should configure egress / ingress traffic.
+type NetworkPolicyTraffic struct {
+	// Specifies the default behavior of the policy when no rules are defined.
+	Default NetworkPolicyTrafficDefault `field:"optional" json:"default" yaml:"default"`
+	// List of rules to be applied to the selected pods.
+	//
+	// If empty, the behavior of the policy is dictated by the `default` property.
+	Rules *[]*NetworkPolicyRule `field:"optional" json:"rules" yaml:"rules"`
+}
+
+// Default behaviors of network traffic in policies.
+type NetworkPolicyTrafficDefault string
+
+const (
+	// The policy denies all traffic.
+	//
+	// Since rules are additive, additional rules or policies can allow
+	// specific traffic.
+	NetworkPolicyTrafficDefault_DENY NetworkPolicyTrafficDefault = "DENY"
+	// The policy allows all traffic (either ingress or egress).
+	//
+	// Since rules are additive, no additional rule or policies can
+	// subsequently deny the traffic.
+	NetworkPolicyTrafficDefault_ALLOW NetworkPolicyTrafficDefault = "ALLOW"
+)
+
+// Network protocols.
+type NetworkProtocol string
+
+const (
+	// TCP.
+	NetworkProtocol_TCP NetworkProtocol = "TCP"
+	// UDP.
+	NetworkProtocol_UDP NetworkProtocol = "UDP"
+	// SCTP.
+	NetworkProtocol_SCTP NetworkProtocol = "SCTP"
+)
 
 // Represents a node in the cluster.
 type Node interface {
@@ -10452,6 +11433,7 @@ type Pod interface {
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -10484,6 +11466,14 @@ type Pod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -10532,6 +11522,16 @@ func (j *jsiiProxy_Pod) AutomountServiceAccountToken() *bool {
 	_jsii_.Get(
 		j,
 		"automountServiceAccountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -10843,6 +11843,32 @@ func (p *jsiiProxy_Pod) AsNonApiResource() *string {
 	return returns
 }
 
+func (p *jsiiProxy_Pod) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		p,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pod) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		p,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (p *jsiiProxy_Pod) ToPodSelectorConfig() *PodSelectorConfig {
 	var returns *PodSelectorConfig
 
@@ -10868,6 +11894,125 @@ func (p *jsiiProxy_Pod) ToString() *string {
 
 	return returns
 }
+
+// Controls network isolation rules for inter-pod communication.
+type PodConnections interface {
+	Instance() AbstractPod
+	// Allow network traffic from the peer to this pod.
+	//
+	// By default, this will create an ingress network policy for this pod, and an egress
+	// network policy for the peer. This is required if both sides are already isolated.
+	// Use `options.isolation` to control this behavior.
+	//
+	// Example:
+	//   // create only an egress policy that selects the 'web' pod to allow outgoing traffic
+	//   // to the 'redis' pod. this requires the 'redis' pod to not be isolated for ingress.
+	//   redis.connections.allowFrom(web, { isolation: Isolation.PEER })
+	//
+	//   // create only an ingress policy that selects the 'redis' peer to allow incoming traffic
+	//   // from the 'web' pod. this requires the 'web' pod to not be isolated for egress.
+	//   redis.connections.allowFrom(web, { isolation: Isolation.POD })
+	//
+	AllowFrom(peer INetworkPolicyPeer, options *PodConnectionsAllowFromOptions)
+	// Allow network traffic from this pod to the peer.
+	//
+	// By default, this will create an egress network policy for this pod, and an ingress
+	// network policy for the peer. This is required if both sides are already isolated.
+	// Use `options.isolation` to control this behavior.
+	//
+	// Example:
+	//   // create only an egress policy that selects the 'web' pod to allow outgoing traffic
+	//   // to the 'redis' pod. this requires the 'redis' pod to not be isolated for ingress.
+	//   web.connections.allowTo(redis, { isolation: Isolation.POD })
+	//
+	//   // create only an ingress policy that selects the 'redis' peer to allow incoming traffic
+	//   // from the 'web' pod. this requires the 'web' pod to not be isolated for egress.
+	//   web.connections.allowTo(redis, { isolation: Isolation.PEER })
+	//
+	AllowTo(peer INetworkPolicyPeer, options *PodConnectionsAllowToOptions)
+}
+
+// The jsii proxy struct for PodConnections
+type jsiiProxy_PodConnections struct {
+	_ byte // padding
+}
+
+func (j *jsiiProxy_PodConnections) Instance() AbstractPod {
+	var returns AbstractPod
+	_jsii_.Get(
+		j,
+		"instance",
+		&returns,
+	)
+	return returns
+}
+
+
+func NewPodConnections(instance AbstractPod) PodConnections {
+	_init_.Initialize()
+
+	j := jsiiProxy_PodConnections{}
+
+	_jsii_.Create(
+		"cdk8s-plus-23.PodConnections",
+		[]interface{}{instance},
+		&j,
+	)
+
+	return &j
+}
+
+func NewPodConnections_Override(p PodConnections, instance AbstractPod) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"cdk8s-plus-23.PodConnections",
+		[]interface{}{instance},
+		p,
+	)
+}
+
+func (p *jsiiProxy_PodConnections) AllowFrom(peer INetworkPolicyPeer, options *PodConnectionsAllowFromOptions) {
+	_jsii_.InvokeVoid(
+		p,
+		"allowFrom",
+		[]interface{}{peer, options},
+	)
+}
+
+func (p *jsiiProxy_PodConnections) AllowTo(peer INetworkPolicyPeer, options *PodConnectionsAllowToOptions) {
+	_jsii_.InvokeVoid(
+		p,
+		"allowTo",
+		[]interface{}{peer, options},
+	)
+}
+
+// Options for `PodConnections.allowFrom`.
+type PodConnectionsAllowFromOptions struct {
+	// Which isolation should be applied to establish the connection.
+	Isolation PodConnectionsIsolation `field:"optional" json:"isolation" yaml:"isolation"`
+	// Ports to allow incoming traffic to.
+	Ports *[]NetworkPolicyPort `field:"optional" json:"ports" yaml:"ports"`
+}
+
+// Options for `PodConnections.allowTo`.
+type PodConnectionsAllowToOptions struct {
+	// Which isolation should be applied to establish the connection.
+	Isolation PodConnectionsIsolation `field:"optional" json:"isolation" yaml:"isolation"`
+	// Ports to allow outgoing traffic to.
+	Ports *[]NetworkPolicyPort `field:"optional" json:"ports" yaml:"ports"`
+}
+
+// Isolation determines which policies are created when allowing connections from a a pod / workload to peers.
+type PodConnectionsIsolation string
+
+const (
+	// Only creates network policies that select the pod.
+	PodConnectionsIsolation_POD PodConnectionsIsolation = "POD"
+	// Only creates network policies that select the peer.
+	PodConnectionsIsolation_PEER PodConnectionsIsolation = "PEER"
+)
 
 // Holds dns settings of the pod.
 type PodDns interface {
@@ -11187,7 +12332,7 @@ type PodScheduling interface {
 	//
 	// - An instance of a `Pod`.
 	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
-	// - An un-managed pod that can be selected via `Pod.select()`.
+	// - An un-managed pod that can be selected via `Pods.select()`.
 	//
 	// Co-locating with multiple selections ((i.e invoking this method multiple times)) acts as
 	// an AND condition. meaning the pod will be assigned to a node that satisfies all
@@ -11203,7 +12348,7 @@ type PodScheduling interface {
 	//
 	// - An instance of a `Pod`.
 	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
-	// - An un-managed pod that can be selected via `Pod.select()`.
+	// - An un-managed pod that can be selected via `Pods.select()`.
 	//
 	// Seperating from multiple selections acts as an AND condition. meaning the pod
 	// will not be assigned to a node that satisfies all selections (i.e runs at least one pod that satisifies each selection).
@@ -11459,18 +12604,6 @@ type PodSecurityContextProps struct {
 	User *float64 `field:"optional" json:"user" yaml:"user"`
 }
 
-// Options for `Pods.select`.
-type PodSelectOptions struct {
-	// Expressions the pods must satisify.
-	Expressions *[]LabelExpression `field:"optional" json:"expressions" yaml:"expressions"`
-	// Labels the pods must have.
-	Labels *map[string]*string `field:"optional" json:"labels" yaml:"labels"`
-	// Namespaces the pods are allowed to be in.
-	//
-	// Use `Namespaces.all()` to allow all namespaces.
-	Namespaces Namespaces `field:"optional" json:"namespaces" yaml:"namespaces"`
-}
-
 // Configuration for selecting pods, optionally in particular namespaces.
 type PodSelectorConfig struct {
 	// A selector to select pods by labels.
@@ -11485,7 +12618,15 @@ type Pods interface {
 	IPodSelector
 	// The tree node.
 	Node() constructs.Node
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
+	// See: IPodSelector.toPodSelectorConfig()
+	//
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
@@ -11532,6 +12673,22 @@ func NewPods_Override(p Pods, scope constructs.Construct, id *string, expression
 	)
 }
 
+// Select all pods.
+func Pods_All(scope constructs.Construct, id *string, options *PodsAllOptions) Pods {
+	_init_.Initialize()
+
+	var returns Pods
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.Pods",
+		"all",
+		[]interface{}{scope, id, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`
@@ -11565,7 +12722,7 @@ func Pods_IsConstruct(x interface{}) *bool {
 }
 
 // Select pods in the cluster with various selectors.
-func Pods_Select(scope constructs.Construct, id *string, options *PodSelectOptions) Pods {
+func Pods_Select(scope constructs.Construct, id *string, options *PodsSelectOptions) Pods {
 	_init_.Initialize()
 
 	var returns Pods
@@ -11574,6 +12731,32 @@ func Pods_Select(scope constructs.Construct, id *string, options *PodSelectOptio
 		"cdk8s-plus-23.Pods",
 		"select",
 		[]interface{}{scope, id, options},
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pods) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		p,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (p *jsiiProxy_Pods) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		p,
+		"toPodSelector",
+		nil, // no parameters
 		&returns,
 	)
 
@@ -11604,6 +12787,26 @@ func (p *jsiiProxy_Pods) ToString() *string {
 	)
 
 	return returns
+}
+
+// Options for `Pods.all`.
+type PodsAllOptions struct {
+	// Namespaces the pods are allowed to be in.
+	//
+	// Use `Namespaces.all()` to allow all namespaces.
+	Namespaces Namespaces `field:"optional" json:"namespaces" yaml:"namespaces"`
+}
+
+// Options for `Pods.select`.
+type PodsSelectOptions struct {
+	// Expressions the pods must satisify.
+	Expressions *[]LabelExpression `field:"optional" json:"expressions" yaml:"expressions"`
+	// Labels the pods must have.
+	Labels *map[string]*string `field:"optional" json:"labels" yaml:"labels"`
+	// Namespaces the pods are allowed to be in.
+	//
+	// Use `Namespaces.all()` to allow all namespaces.
+	Namespaces Namespaces `field:"optional" json:"namespaces" yaml:"namespaces"`
 }
 
 // Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -14416,6 +15619,7 @@ type StatefulSet interface {
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -14467,6 +15671,14 @@ type StatefulSet interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -14515,6 +15727,16 @@ func (j *jsiiProxy_StatefulSet) AutomountServiceAccountToken() *bool {
 	_jsii_.Get(
 		j,
 		"automountServiceAccountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -14886,6 +16108,32 @@ func (s *jsiiProxy_StatefulSet) Select(selectors ...LabelSelector) {
 		"select",
 		args,
 	)
+}
+
+func (s *jsiiProxy_StatefulSet) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		s,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_StatefulSet) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		s,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
 }
 
 func (s *jsiiProxy_StatefulSet) ToPodSelectorConfig() *PodSelectorConfig {
@@ -15988,6 +17236,7 @@ type Workload interface {
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	AutomountServiceAccountToken() *bool
+	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
@@ -16031,6 +17280,14 @@ type Workload interface {
 	AsNonApiResource() *string
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
+	// Return the configuration of this peer.
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	//
+	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
+	// Convert the peer into a pod selector, if possible.
+	// See: INetworkPolicyPeer.toPodSelector()
+	//
+	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
 	// See: IPodSelector.toPodSelectorConfig()
 	//
@@ -16079,6 +17336,16 @@ func (j *jsiiProxy_Workload) AutomountServiceAccountToken() *bool {
 	_jsii_.Get(
 		j,
 		"automountServiceAccountToken",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) Connections() PodConnections {
+	var returns PodConnections
+	_jsii_.Get(
+		j,
+		"connections",
 		&returns,
 	)
 	return returns
@@ -16398,6 +17665,32 @@ func (w *jsiiProxy_Workload) Select(selectors ...LabelSelector) {
 	)
 }
 
+func (w *jsiiProxy_Workload) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
+	var returns *NetworkPolicyPeerConfig
+
+	_jsii_.Invoke(
+		w,
+		"toNetworkPolicyPeerConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (w *jsiiProxy_Workload) ToPodSelector() IPodSelector {
+	var returns IPodSelector
+
+	_jsii_.Invoke(
+		w,
+		"toPodSelector",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
 func (w *jsiiProxy_Workload) ToPodSelectorConfig() *PodSelectorConfig {
 	var returns *PodSelectorConfig
 
@@ -16531,7 +17824,7 @@ type WorkloadScheduling interface {
 	//
 	// - An instance of a `Pod`.
 	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
-	// - An un-managed pod that can be selected via `Pod.select()`.
+	// - An un-managed pod that can be selected via `Pods.select()`.
 	//
 	// Co-locating with multiple selections ((i.e invoking this method multiple times)) acts as
 	// an AND condition. meaning the pod will be assigned to a node that satisfies all
@@ -16547,7 +17840,7 @@ type WorkloadScheduling interface {
 	//
 	// - An instance of a `Pod`.
 	// - An instance of a `Workload` (e.g `Deployment`, `StatefulSet`).
-	// - An un-managed pod that can be selected via `Pod.select()`.
+	// - An un-managed pod that can be selected via `Pods.select()`.
 	//
 	// Seperating from multiple selections acts as an AND condition. meaning the pod
 	// will not be assigned to a node that satisfies all selections (i.e runs at least one pod that satisifies each selection).

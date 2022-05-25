@@ -36,6 +36,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -43,6 +45,7 @@ func init() {
 		func() interface{} {
 			j := jsiiProxy_AbstractPod{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INetworkPolicyPeer)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSelector)
 			return &j
 		},
@@ -424,6 +427,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -444,6 +448,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -472,6 +478,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -497,6 +504,8 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -831,6 +840,20 @@ func init() {
 		},
 	)
 	_jsii_.RegisterInterface(
+		"cdk8s-plus-23.INetworkPolicyPeer",
+		reflect.TypeOf((*INetworkPolicyPeer)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
+		},
+		func() interface{} {
+			j := jsiiProxy_INetworkPolicyPeer{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsIConstruct)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
 		"cdk8s-plus-23.IPersistentVolume",
 		reflect.TypeOf((*IPersistentVolume)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -1042,6 +1065,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
 			_jsii_.MemberProperty{JsiiProperty: "backoffLimit", GoGetter: "BackoffLimit"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -1061,6 +1085,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "ttlAfterFinished", GoGetter: "TtlAfterFinished"},
@@ -1091,7 +1117,9 @@ func init() {
 	_jsii_.RegisterClass(
 		"cdk8s-plus-23.LabelSelector",
 		reflect.TypeOf((*LabelSelector)(nil)).Elem(),
-		nil, // no members
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "isEmpty", GoMethod: "IsEmpty"},
+		},
 		func() interface{} {
 			return &jsiiProxy_LabelSelector{}
 		},
@@ -1164,12 +1192,15 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Namespace{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_INamespaceSelector)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INetworkPolicyPeer)
 			return &j
 		},
 	)
@@ -1187,18 +1218,113 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Namespaces{}
 			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_INamespaceSelector)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INetworkPolicyPeer)
 			return &j
 		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.NamespacesSelectOptions",
 		reflect.TypeOf((*NamespacesSelectOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.NetworkPolicy",
+		reflect.TypeOf((*NetworkPolicy)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addEgressRule", GoMethod: "AddEgressRule"},
+			_jsii_.MemberMethod{JsiiMethod: "addIngressRule", GoMethod: "AddIngressRule"},
+			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
+			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
+			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
+			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_NetworkPolicy{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyAddEgressRuleOptions",
+		reflect.TypeOf((*NetworkPolicyAddEgressRuleOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.NetworkPolicyIpBlock",
+		reflect.TypeOf((*NetworkPolicyIpBlock)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "cidr", GoGetter: "Cidr"},
+			_jsii_.MemberProperty{JsiiProperty: "except", GoGetter: "Except"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_NetworkPolicyIpBlock{}
+			_jsii_.InitJsiiProxy(&j.Type__constructsConstruct)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_INetworkPolicyPeer)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyPeerConfig",
+		reflect.TypeOf((*NetworkPolicyPeerConfig)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.NetworkPolicyPort",
+		reflect.TypeOf((*NetworkPolicyPort)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_NetworkPolicyPort{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyPortProps",
+		reflect.TypeOf((*NetworkPolicyPortProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyProps",
+		reflect.TypeOf((*NetworkPolicyProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyRule",
+		reflect.TypeOf((*NetworkPolicyRule)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.NetworkPolicyTraffic",
+		reflect.TypeOf((*NetworkPolicyTraffic)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-23.NetworkPolicyTrafficDefault",
+		reflect.TypeOf((*NetworkPolicyTrafficDefault)(nil)).Elem(),
+		map[string]interface{}{
+			"DENY": NetworkPolicyTrafficDefault_DENY,
+			"ALLOW": NetworkPolicyTrafficDefault_ALLOW,
+		},
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-23.NetworkProtocol",
+		reflect.TypeOf((*NetworkProtocol)(nil)).Elem(),
+		map[string]interface{}{
+			"TCP": NetworkProtocol_TCP,
+			"UDP": NetworkProtocol_UDP,
+			"SCTP": NetworkProtocol_SCTP,
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-23.Node",
@@ -1373,6 +1499,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -1389,6 +1516,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -1397,6 +1526,34 @@ func init() {
 			j := jsiiProxy_Pod{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_AbstractPod)
 			return &j
+		},
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.PodConnections",
+		reflect.TypeOf((*PodConnections)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "allowFrom", GoMethod: "AllowFrom"},
+			_jsii_.MemberMethod{JsiiMethod: "allowTo", GoMethod: "AllowTo"},
+			_jsii_.MemberProperty{JsiiProperty: "instance", GoGetter: "Instance"},
+		},
+		func() interface{} {
+			return &jsiiProxy_PodConnections{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.PodConnectionsAllowFromOptions",
+		reflect.TypeOf((*PodConnectionsAllowFromOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.PodConnectionsAllowToOptions",
+		reflect.TypeOf((*PodConnectionsAllowToOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-23.PodConnectionsIsolation",
+		reflect.TypeOf((*PodConnectionsIsolation)(nil)).Elem(),
+		map[string]interface{}{
+			"POD": PodConnectionsIsolation_POD,
+			"PEER": PodConnectionsIsolation_PEER,
 		},
 	)
 	_jsii_.RegisterClass(
@@ -1481,10 +1638,6 @@ func init() {
 		reflect.TypeOf((*PodSecurityContextProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
-		"cdk8s-plus-23.PodSelectOptions",
-		reflect.TypeOf((*PodSelectOptions)(nil)).Elem(),
-	)
-	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.PodSelectorConfig",
 		reflect.TypeOf((*PodSelectorConfig)(nil)).Elem(),
 	)
@@ -1493,6 +1646,8 @@ func init() {
 		reflect.TypeOf((*Pods)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 		},
@@ -1502,6 +1657,14 @@ func init() {
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IPodSelector)
 			return &j
 		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.PodsAllOptions",
+		reflect.TypeOf((*PodsAllOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.PodsSelectOptions",
+		reflect.TypeOf((*PodsSelectOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-23.Probe",
@@ -1853,6 +2016,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -1876,6 +2040,8 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
 			_jsii_.MemberProperty{JsiiProperty: "strategy", GoGetter: "Strategy"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -2020,6 +2186,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
 			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
 			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
@@ -2039,6 +2206,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
 			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
