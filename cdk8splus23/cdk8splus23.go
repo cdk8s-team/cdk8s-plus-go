@@ -7231,6 +7231,36 @@ type HostAlias struct {
 	Ip *string `field:"required" json:"ip" yaml:"ip"`
 }
 
+// Options for a HostPathVolume-based volume.
+type HostPathVolumeOptions struct {
+	// The path of the directory on the host.
+	Path *string `field:"required" json:"path" yaml:"path"`
+	// The expected type of the path found on the host.
+	Type HostPathVolumeType `field:"optional" json:"type" yaml:"type"`
+}
+
+// Host path types.
+type HostPathVolumeType string
+
+const (
+	// Empty string (default) is for backward compatibility, which means that no checks will be performed before mounting the hostPath volume.
+	HostPathVolumeType_DEFAULT HostPathVolumeType = "DEFAULT"
+	// If nothing exists at the given path, an empty directory will be created there as needed with permission set to 0755, having the same group and ownership with Kubelet.
+	HostPathVolumeType_DIRECTORY_OR_CREATE HostPathVolumeType = "DIRECTORY_OR_CREATE"
+	// A directory must exist at the given path.
+	HostPathVolumeType_DIRECTORY HostPathVolumeType = "DIRECTORY"
+	// If nothing exists at the given path, an empty file will be created there as needed with permission set to 0644, having the same group and ownership with Kubelet.
+	HostPathVolumeType_FILE_OR_CREATE HostPathVolumeType = "FILE_OR_CREATE"
+	// A file must exist at the given path.
+	HostPathVolumeType_FILE HostPathVolumeType = "FILE"
+	// A UNIX socket must exist at the given path.
+	HostPathVolumeType_SOCKET HostPathVolumeType = "SOCKET"
+	// A character device must exist at the given path.
+	HostPathVolumeType_CHAR_DEVICE HostPathVolumeType = "CHAR_DEVICE"
+	// A block device must exist at the given path.
+	HostPathVolumeType_BLOCK_DEVICE HostPathVolumeType = "BLOCK_DEVICE"
+)
+
 // Options for `Probe.fromHttpGet()`.
 type HttpGetProbeOptions struct {
 	// Minimum consecutive failures for the probe to be considered failed after having succeeded.
@@ -17584,6 +17614,27 @@ func Volume_FromGcePersistentDisk(scope constructs.Construct, id *string, pdName
 		"cdk8s-plus-23.Volume",
 		"fromGcePersistentDisk",
 		[]interface{}{scope, id, pdName, options},
+		&returns,
+	)
+
+	return returns
+}
+
+// Used to mount a file or directory from the host node's filesystem into a Pod.
+//
+// This is not something that most Pods will need, but it offers a powerful
+// escape hatch for some applications.
+// See: https://kubernetes.io/docs/concepts/storage/volumes/#hostpath
+//
+func Volume_FromHostPath(scope constructs.Construct, id *string, name *string, options *HostPathVolumeOptions) Volume {
+	_init_.Initialize()
+
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-23.Volume",
+		"fromHostPath",
+		[]interface{}{scope, id, name, options},
 		&returns,
 	)
 
