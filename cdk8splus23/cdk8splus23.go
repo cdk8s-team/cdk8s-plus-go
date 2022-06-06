@@ -4134,8 +4134,8 @@ type ContainerProps struct {
 
 // CPU and memory compute resources.
 type ContainerResources struct {
-	Cpu *CpuResources `field:"required" json:"cpu" yaml:"cpu"`
-	Memory *MemoryResources `field:"required" json:"memory" yaml:"memory"`
+	Cpu *CpuResources `field:"optional" json:"cpu" yaml:"cpu"`
+	Memory *MemoryResources `field:"optional" json:"memory" yaml:"memory"`
 }
 
 // Container security attributes and settings.
@@ -4310,8 +4310,8 @@ func Cpu_Units(amount *float64) Cpu {
 
 // CPU request and limit.
 type CpuResources struct {
-	Limit Cpu `field:"required" json:"limit" yaml:"limit"`
-	Request Cpu `field:"required" json:"request" yaml:"request"`
+	Limit Cpu `field:"optional" json:"limit" yaml:"limit"`
+	Request Cpu `field:"optional" json:"request" yaml:"request"`
 }
 
 // A DaemonSet ensures that all (or some) Nodes run a copy of a Pod.
@@ -9032,8 +9032,8 @@ func NewLabeledNode_Override(l LabeledNode, labelSelector *[]NodeLabelQuery) {
 
 // Memory request and limit.
 type MemoryResources struct {
-	Limit cdk8s.Size `field:"required" json:"limit" yaml:"limit"`
-	Request cdk8s.Size `field:"required" json:"request" yaml:"request"`
+	Limit cdk8s.Size `field:"optional" json:"limit" yaml:"limit"`
+	Request cdk8s.Size `field:"optional" json:"request" yaml:"request"`
 }
 
 // Options for mounts.
