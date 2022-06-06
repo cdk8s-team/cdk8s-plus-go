@@ -775,6 +775,24 @@ func init() {
 		reflect.TypeOf((*HostAlias)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-24.HostPathVolumeOptions",
+		reflect.TypeOf((*HostPathVolumeOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-24.HostPathVolumeType",
+		reflect.TypeOf((*HostPathVolumeType)(nil)).Elem(),
+		map[string]interface{}{
+			"DEFAULT": HostPathVolumeType_DEFAULT,
+			"DIRECTORY_OR_CREATE": HostPathVolumeType_DIRECTORY_OR_CREATE,
+			"DIRECTORY": HostPathVolumeType_DIRECTORY,
+			"FILE_OR_CREATE": HostPathVolumeType_FILE_OR_CREATE,
+			"FILE": HostPathVolumeType_FILE,
+			"SOCKET": HostPathVolumeType_SOCKET,
+			"CHAR_DEVICE": HostPathVolumeType_CHAR_DEVICE,
+			"BLOCK_DEVICE": HostPathVolumeType_BLOCK_DEVICE,
+		},
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-24.HttpGetProbeOptions",
 		reflect.TypeOf((*HttpGetProbeOptions)(nil)).Elem(),
 	)
