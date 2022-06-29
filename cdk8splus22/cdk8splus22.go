@@ -8885,7 +8885,7 @@ type jsiiProxy_LabelSelector struct {
 	_ byte // padding
 }
 
-func LabelSelector_Of(options LabelSelectorOptions) LabelSelector {
+func LabelSelector_Of(options *LabelSelectorOptions) LabelSelector {
 	_init_.Initialize()
 
 	var returns LabelSelector
@@ -8914,61 +8914,11 @@ func (l *jsiiProxy_LabelSelector) IsEmpty() *bool {
 }
 
 // Options for `LabelSelector.of`.
-type LabelSelectorOptions interface {
+type LabelSelectorOptions struct {
 	// Expression based label matchers.
-	Expressions() *[]LabelExpression
+	Expressions *[]LabelExpression `field:"optional" json:"expressions" yaml:"expressions"`
 	// Strict label matchers.
-	Labels() *map[string]*string
-}
-
-// The jsii proxy struct for LabelSelectorOptions
-type jsiiProxy_LabelSelectorOptions struct {
-	_ byte // padding
-}
-
-func (j *jsiiProxy_LabelSelectorOptions) Expressions() *[]LabelExpression {
-	var returns *[]LabelExpression
-	_jsii_.Get(
-		j,
-		"expressions",
-		&returns,
-	)
-	return returns
-}
-
-func (j *jsiiProxy_LabelSelectorOptions) Labels() *map[string]*string {
-	var returns *map[string]*string
-	_jsii_.Get(
-		j,
-		"labels",
-		&returns,
-	)
-	return returns
-}
-
-
-func NewLabelSelectorOptions() LabelSelectorOptions {
-	_init_.Initialize()
-
-	j := jsiiProxy_LabelSelectorOptions{}
-
-	_jsii_.Create(
-		"cdk8s-plus-22.LabelSelectorOptions",
-		nil, // no parameters
-		&j,
-	)
-
-	return &j
-}
-
-func NewLabelSelectorOptions_Override(l LabelSelectorOptions) {
-	_init_.Initialize()
-
-	_jsii_.Create(
-		"cdk8s-plus-22.LabelSelectorOptions",
-		nil, // no parameters
-		l,
-	)
+	Labels *map[string]*string `field:"optional" json:"labels" yaml:"labels"`
 }
 
 // A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.

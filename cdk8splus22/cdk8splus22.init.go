@@ -1158,16 +1158,9 @@ func init() {
 			return &jsiiProxy_LabelSelector{}
 		},
 	)
-	_jsii_.RegisterClass(
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.LabelSelectorOptions",
 		reflect.TypeOf((*LabelSelectorOptions)(nil)).Elem(),
-		[]_jsii_.Member{
-			_jsii_.MemberProperty{JsiiProperty: "expressions", GoGetter: "Expressions"},
-			_jsii_.MemberProperty{JsiiProperty: "labels", GoGetter: "Labels"},
-		},
-		func() interface{} {
-			return &jsiiProxy_LabelSelectorOptions{}
-		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.LabelSelectorRequirement",
