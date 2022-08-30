@@ -675,6 +675,10 @@ func init() {
 		reflect.TypeOf((*EnvValueFromSecretOptions)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.EphemeralStorageResources",
+		reflect.TypeOf((*EphemeralStorageResources)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.ExposeDeploymentViaIngressOptions",
 		reflect.TypeOf((*ExposeDeploymentViaIngressOptions)(nil)).Elem(),
 	)
