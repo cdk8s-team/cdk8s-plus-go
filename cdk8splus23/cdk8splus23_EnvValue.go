@@ -42,6 +42,9 @@ func (j *jsiiProxy_EnvValue) ValueFrom() interface{} {
 func EnvValue_FromConfigMap(configMap IConfigMap, key *string, options *EnvValueFromConfigMapOptions) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromConfigMapParameters(configMap, key, options); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
@@ -58,6 +61,9 @@ func EnvValue_FromConfigMap(configMap IConfigMap, key *string, options *EnvValue
 func EnvValue_FromFieldRef(fieldPath EnvFieldPaths, options *EnvValueFromFieldRefOptions) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromFieldRefParameters(fieldPath, options); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
@@ -74,6 +80,9 @@ func EnvValue_FromFieldRef(fieldPath EnvFieldPaths, options *EnvValueFromFieldRe
 func EnvValue_FromProcess(key *string, options *EnvValueFromProcessOptions) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromProcessParameters(key, options); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
@@ -90,6 +99,9 @@ func EnvValue_FromProcess(key *string, options *EnvValueFromProcessOptions) EnvV
 func EnvValue_FromResource(resource ResourceFieldPaths, options *EnvValueFromResourceOptions) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromResourceParameters(resource, options); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
@@ -106,6 +118,9 @@ func EnvValue_FromResource(resource ResourceFieldPaths, options *EnvValueFromRes
 func EnvValue_FromSecretValue(secretValue *SecretValue, options *EnvValueFromSecretOptions) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromSecretValueParameters(secretValue, options); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(
@@ -122,6 +137,9 @@ func EnvValue_FromSecretValue(secretValue *SecretValue, options *EnvValueFromSec
 func EnvValue_FromValue(value *string) EnvValue {
 	_init_.Initialize()
 
+	if err := validateEnvValue_FromValueParameters(value); err != nil {
+		panic(err)
+	}
 	var returns EnvValue
 
 	_jsii_.StaticInvoke(

@@ -262,6 +262,9 @@ func (j *jsiiProxy_PersistentVolume) StorageClassName() *string {
 func NewPersistentVolume(scope constructs.Construct, id *string, props *PersistentVolumeProps) PersistentVolume {
 	_init_.Initialize()
 
+	if err := validateNewPersistentVolumeParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_PersistentVolume{}
 
 	_jsii_.Create(
@@ -287,6 +290,9 @@ func NewPersistentVolume_Override(p PersistentVolume, scope constructs.Construct
 func PersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
+	if err := validatePersistentVolume_FromPersistentVolumeNameParameters(scope, id, volumeName); err != nil {
+		panic(err)
+	}
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
@@ -319,6 +325,9 @@ func PersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *s
 func PersistentVolume_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validatePersistentVolume_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -371,6 +380,9 @@ func (p *jsiiProxy_PersistentVolume) AsVolume() Volume {
 }
 
 func (p *jsiiProxy_PersistentVolume) Bind(claim IPersistentVolumeClaim) {
+	if err := p.validateBindParameters(claim); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"bind",

@@ -22,6 +22,9 @@ type jsiiProxy_IngressBackend struct {
 func IngressBackend_FromResource(resource IResource) IngressBackend {
 	_init_.Initialize()
 
+	if err := validateIngressBackend_FromResourceParameters(resource); err != nil {
+		panic(err)
+	}
 	var returns IngressBackend
 
 	_jsii_.StaticInvoke(
@@ -38,6 +41,9 @@ func IngressBackend_FromResource(resource IResource) IngressBackend {
 func IngressBackend_FromService(serv Service, options *ServiceIngressBackendOptions) IngressBackend {
 	_init_.Initialize()
 
+	if err := validateIngressBackend_FromServiceParameters(serv, options); err != nil {
+		panic(err)
+	}
 	var returns IngressBackend
 
 	_jsii_.StaticInvoke(

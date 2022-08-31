@@ -416,6 +416,9 @@ func (j *jsiiProxy_StatefulSet) Volumes() *[]Volume {
 func NewStatefulSet(scope constructs.Construct, id *string, props *StatefulSetProps) StatefulSet {
 	_init_.Initialize()
 
+	if err := validateNewStatefulSetParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_StatefulSet{}
 
 	_jsii_.Create(
@@ -457,6 +460,9 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 func StatefulSet_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateStatefulSet_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -470,6 +476,9 @@ func StatefulSet_IsConstruct(x interface{}) *bool {
 }
 
 func (s *jsiiProxy_StatefulSet) AddContainer(cont *ContainerProps) Container {
+	if err := s.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -483,6 +492,9 @@ func (s *jsiiProxy_StatefulSet) AddContainer(cont *ContainerProps) Container {
 }
 
 func (s *jsiiProxy_StatefulSet) AddHostAlias(hostAlias *HostAlias) {
+	if err := s.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"addHostAlias",
@@ -491,6 +503,9 @@ func (s *jsiiProxy_StatefulSet) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (s *jsiiProxy_StatefulSet) AddInitContainer(cont *ContainerProps) Container {
+	if err := s.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -504,6 +519,9 @@ func (s *jsiiProxy_StatefulSet) AddInitContainer(cont *ContainerProps) Container
 }
 
 func (s *jsiiProxy_StatefulSet) AddVolume(vol Volume) {
+	if err := s.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"addVolume",

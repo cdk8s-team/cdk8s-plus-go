@@ -374,6 +374,9 @@ func NewWorkload_Override(w Workload, scope constructs.Construct, id *string, pr
 func Workload_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateWorkload_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -387,6 +390,9 @@ func Workload_IsConstruct(x interface{}) *bool {
 }
 
 func (w *jsiiProxy_Workload) AddContainer(cont *ContainerProps) Container {
+	if err := w.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -400,6 +406,9 @@ func (w *jsiiProxy_Workload) AddContainer(cont *ContainerProps) Container {
 }
 
 func (w *jsiiProxy_Workload) AddHostAlias(hostAlias *HostAlias) {
+	if err := w.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"addHostAlias",
@@ -408,6 +417,9 @@ func (w *jsiiProxy_Workload) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (w *jsiiProxy_Workload) AddInitContainer(cont *ContainerProps) Container {
+	if err := w.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -421,6 +433,9 @@ func (w *jsiiProxy_Workload) AddInitContainer(cont *ContainerProps) Container {
 }
 
 func (w *jsiiProxy_Workload) AddVolume(vol Volume) {
+	if err := w.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"addVolume",

@@ -76,6 +76,9 @@ func (j *jsiiProxy_NetworkPolicyIpBlock) Node() constructs.Node {
 func NetworkPolicyIpBlock_AnyIpv4(scope constructs.Construct, id *string) NetworkPolicyIpBlock {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyIpBlock_AnyIpv4Parameters(scope, id); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyIpBlock
 
 	_jsii_.StaticInvoke(
@@ -92,6 +95,9 @@ func NetworkPolicyIpBlock_AnyIpv4(scope constructs.Construct, id *string) Networ
 func NetworkPolicyIpBlock_AnyIpv6(scope constructs.Construct, id *string) NetworkPolicyIpBlock {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyIpBlock_AnyIpv6Parameters(scope, id); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyIpBlock
 
 	_jsii_.StaticInvoke(
@@ -108,6 +114,9 @@ func NetworkPolicyIpBlock_AnyIpv6(scope constructs.Construct, id *string) Networ
 func NetworkPolicyIpBlock_Ipv4(scope constructs.Construct, id *string, cidrIp *string, except *[]*string) NetworkPolicyIpBlock {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyIpBlock_Ipv4Parameters(scope, id, cidrIp); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyIpBlock
 
 	_jsii_.StaticInvoke(
@@ -124,6 +133,9 @@ func NetworkPolicyIpBlock_Ipv4(scope constructs.Construct, id *string, cidrIp *s
 func NetworkPolicyIpBlock_Ipv6(scope constructs.Construct, id *string, cidrIp *string, except *[]*string) NetworkPolicyIpBlock {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyIpBlock_Ipv6Parameters(scope, id, cidrIp); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyIpBlock
 
 	_jsii_.StaticInvoke(
@@ -156,6 +168,9 @@ func NetworkPolicyIpBlock_Ipv6(scope constructs.Construct, id *string, cidrIp *s
 func NetworkPolicyIpBlock_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyIpBlock_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

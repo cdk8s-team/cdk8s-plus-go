@@ -389,6 +389,9 @@ func (j *jsiiProxy_Job) Volumes() *[]Volume {
 func NewJob(scope constructs.Construct, id *string, props *JobProps) Job {
 	_init_.Initialize()
 
+	if err := validateNewJobParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Job{}
 
 	_jsii_.Create(
@@ -430,6 +433,9 @@ func NewJob_Override(j Job, scope constructs.Construct, id *string, props *JobPr
 func Job_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateJob_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -443,6 +449,9 @@ func Job_IsConstruct(x interface{}) *bool {
 }
 
 func (j *jsiiProxy_Job) AddContainer(cont *ContainerProps) Container {
+	if err := j.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -456,6 +465,9 @@ func (j *jsiiProxy_Job) AddContainer(cont *ContainerProps) Container {
 }
 
 func (j *jsiiProxy_Job) AddHostAlias(hostAlias *HostAlias) {
+	if err := j.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		j,
 		"addHostAlias",
@@ -464,6 +476,9 @@ func (j *jsiiProxy_Job) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (j *jsiiProxy_Job) AddInitContainer(cont *ContainerProps) Container {
+	if err := j.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -477,6 +492,9 @@ func (j *jsiiProxy_Job) AddInitContainer(cont *ContainerProps) Container {
 }
 
 func (j *jsiiProxy_Job) AddVolume(vol Volume) {
+	if err := j.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		j,
 		"addVolume",

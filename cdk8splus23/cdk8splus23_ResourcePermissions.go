@@ -34,6 +34,9 @@ func (j *jsiiProxy_ResourcePermissions) Instance() Resource {
 func NewResourcePermissions(instance Resource) ResourcePermissions {
 	_init_.Initialize()
 
+	if err := validateNewResourcePermissionsParameters(instance); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ResourcePermissions{}
 
 	_jsii_.Create(

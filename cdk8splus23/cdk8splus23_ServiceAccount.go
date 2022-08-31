@@ -196,6 +196,9 @@ func (j *jsiiProxy_ServiceAccount) Secrets() *[]ISecret {
 func NewServiceAccount(scope constructs.Construct, id *string, props *ServiceAccountProps) ServiceAccount {
 	_init_.Initialize()
 
+	if err := validateNewServiceAccountParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ServiceAccount{}
 
 	_jsii_.Create(
@@ -221,6 +224,9 @@ func NewServiceAccount_Override(s ServiceAccount, scope constructs.Construct, id
 func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *string, name *string) IServiceAccount {
 	_init_.Initialize()
 
+	if err := validateServiceAccount_FromServiceAccountNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns IServiceAccount
 
 	_jsii_.StaticInvoke(
@@ -253,6 +259,9 @@ func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *strin
 func ServiceAccount_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateServiceAccount_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -266,6 +275,9 @@ func ServiceAccount_IsConstruct(x interface{}) *bool {
 }
 
 func (s *jsiiProxy_ServiceAccount) AddSecret(secr ISecret) {
+	if err := s.validateAddSecretParameters(secr); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"addSecret",

@@ -231,6 +231,9 @@ func (j *jsiiProxy_Service) Type() ServiceType {
 func NewService(scope constructs.Construct, id *string, props *ServiceProps) Service {
 	_init_.Initialize()
 
+	if err := validateNewServiceParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Service{}
 
 	_jsii_.Create(
@@ -272,6 +275,9 @@ func NewService_Override(s Service, scope constructs.Construct, id *string, prop
 func Service_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateService_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -311,6 +317,9 @@ func (s *jsiiProxy_Service) AsNonApiResource() *string {
 }
 
 func (s *jsiiProxy_Service) Bind(port *float64, options *ServiceBindOptions) {
+	if err := s.validateBindParameters(port, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"bind",
@@ -319,6 +328,9 @@ func (s *jsiiProxy_Service) Bind(port *float64, options *ServiceBindOptions) {
 }
 
 func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServiceViaIngressOptions) Ingress {
+	if err := s.validateExposeViaIngressParameters(path, options); err != nil {
+		panic(err)
+	}
 	var returns Ingress
 
 	_jsii_.Invoke(
@@ -332,6 +344,9 @@ func (s *jsiiProxy_Service) ExposeViaIngress(path *string, options *ExposeServic
 }
 
 func (s *jsiiProxy_Service) Select(selector IPodSelector) {
+	if err := s.validateSelectParameters(selector); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"select",
@@ -340,6 +355,9 @@ func (s *jsiiProxy_Service) Select(selector IPodSelector) {
 }
 
 func (s *jsiiProxy_Service) SelectLabel(key *string, value *string) {
+	if err := s.validateSelectLabelParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"selectLabel",

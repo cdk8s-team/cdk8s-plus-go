@@ -175,6 +175,9 @@ func (j *jsiiProxy_ClusterRoleBinding) Subjects() *[]ISubject {
 func NewClusterRoleBinding(scope constructs.Construct, id *string, props *ClusterRoleBindingProps) ClusterRoleBinding {
 	_init_.Initialize()
 
+	if err := validateNewClusterRoleBindingParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ClusterRoleBinding{}
 
 	_jsii_.Create(
@@ -216,6 +219,9 @@ func NewClusterRoleBinding_Override(c ClusterRoleBinding, scope constructs.Const
 func ClusterRoleBinding_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateClusterRoleBinding_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

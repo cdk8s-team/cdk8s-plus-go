@@ -49,6 +49,9 @@ func (j *jsiiProxy_Pods) Node() constructs.Node {
 func NewPods(scope constructs.Construct, id *string, expressions *[]LabelExpression, labels *map[string]*string, namespaces INamespaceSelector) Pods {
 	_init_.Initialize()
 
+	if err := validateNewPodsParameters(scope, id); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Pods{}
 
 	_jsii_.Create(
@@ -74,6 +77,9 @@ func NewPods_Override(p Pods, scope constructs.Construct, id *string, expression
 func Pods_All(scope constructs.Construct, id *string, options *PodsAllOptions) Pods {
 	_init_.Initialize()
 
+	if err := validatePods_AllParameters(scope, id, options); err != nil {
+		panic(err)
+	}
 	var returns Pods
 
 	_jsii_.StaticInvoke(
@@ -106,6 +112,9 @@ func Pods_All(scope constructs.Construct, id *string, options *PodsAllOptions) P
 func Pods_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validatePods_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -122,6 +131,9 @@ func Pods_IsConstruct(x interface{}) *bool {
 func Pods_Select(scope constructs.Construct, id *string, options *PodsSelectOptions) Pods {
 	_init_.Initialize()
 
+	if err := validatePods_SelectParameters(scope, id, options); err != nil {
+		panic(err)
+	}
 	var returns Pods
 
 	_jsii_.StaticInvoke(

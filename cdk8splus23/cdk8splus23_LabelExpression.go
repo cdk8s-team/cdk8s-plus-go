@@ -53,6 +53,9 @@ func (j *jsiiProxy_LabelExpression) Values() *[]*string {
 func LabelExpression_DoesNotExist(key *string) LabelExpression {
 	_init_.Initialize()
 
+	if err := validateLabelExpression_DoesNotExistParameters(key); err != nil {
+		panic(err)
+	}
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
@@ -69,6 +72,9 @@ func LabelExpression_DoesNotExist(key *string) LabelExpression {
 func LabelExpression_Exists(key *string) LabelExpression {
 	_init_.Initialize()
 
+	if err := validateLabelExpression_ExistsParameters(key); err != nil {
+		panic(err)
+	}
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
@@ -85,6 +91,9 @@ func LabelExpression_Exists(key *string) LabelExpression {
 func LabelExpression_In(key *string, values *[]*string) LabelExpression {
 	_init_.Initialize()
 
+	if err := validateLabelExpression_InParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(
@@ -101,6 +110,9 @@ func LabelExpression_In(key *string, values *[]*string) LabelExpression {
 func LabelExpression_NotIn(key *string, values *[]*string) LabelExpression {
 	_init_.Initialize()
 
+	if err := validateLabelExpression_NotInParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns LabelExpression
 
 	_jsii_.StaticInvoke(

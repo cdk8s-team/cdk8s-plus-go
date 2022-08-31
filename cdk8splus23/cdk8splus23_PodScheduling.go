@@ -106,6 +106,9 @@ func (j *jsiiProxy_PodScheduling) Instance() AbstractPod {
 func NewPodScheduling(instance AbstractPod) PodScheduling {
 	_init_.Initialize()
 
+	if err := validateNewPodSchedulingParameters(instance); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_PodScheduling{}
 
 	_jsii_.Create(
@@ -128,6 +131,9 @@ func NewPodScheduling_Override(p PodScheduling, instance AbstractPod) {
 }
 
 func (p *jsiiProxy_PodScheduling) Assign(node NamedNode) {
+	if err := p.validateAssignParameters(node); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"assign",
@@ -136,6 +142,9 @@ func (p *jsiiProxy_PodScheduling) Assign(node NamedNode) {
 }
 
 func (p *jsiiProxy_PodScheduling) Attract(node LabeledNode, options *PodSchedulingAttractOptions) {
+	if err := p.validateAttractParameters(node, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"attract",
@@ -144,6 +153,9 @@ func (p *jsiiProxy_PodScheduling) Attract(node LabeledNode, options *PodScheduli
 }
 
 func (p *jsiiProxy_PodScheduling) Colocate(selector IPodSelector, options *PodSchedulingColocateOptions) {
+	if err := p.validateColocateParameters(selector, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"colocate",
@@ -152,6 +164,9 @@ func (p *jsiiProxy_PodScheduling) Colocate(selector IPodSelector, options *PodSc
 }
 
 func (p *jsiiProxy_PodScheduling) Separate(selector IPodSelector, options *PodSchedulingSeparateOptions) {
+	if err := p.validateSeparateParameters(selector, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"separate",
@@ -160,6 +175,9 @@ func (p *jsiiProxy_PodScheduling) Separate(selector IPodSelector, options *PodSc
 }
 
 func (p *jsiiProxy_PodScheduling) Tolerate(node TaintedNode) {
+	if err := p.validateTolerateParameters(node); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"tolerate",

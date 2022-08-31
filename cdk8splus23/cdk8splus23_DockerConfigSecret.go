@@ -169,6 +169,9 @@ func (j *jsiiProxy_DockerConfigSecret) ResourceType() *string {
 func NewDockerConfigSecret(scope constructs.Construct, id *string, props *DockerConfigSecretProps) DockerConfigSecret {
 	_init_.Initialize()
 
+	if err := validateNewDockerConfigSecretParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_DockerConfigSecret{}
 
 	_jsii_.Create(
@@ -194,6 +197,9 @@ func NewDockerConfigSecret_Override(d DockerConfigSecret, scope constructs.Const
 func DockerConfigSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
+	if err := validateDockerConfigSecret_FromSecretNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
@@ -226,6 +232,9 @@ func DockerConfigSecret_FromSecretName(scope constructs.Construct, id *string, n
 func DockerConfigSecret_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateDockerConfigSecret_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -239,6 +248,9 @@ func DockerConfigSecret_IsConstruct(x interface{}) *bool {
 }
 
 func (d *jsiiProxy_DockerConfigSecret) AddStringData(key *string, value *string) {
+	if err := d.validateAddStringDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		d,
 		"addStringData",
@@ -273,6 +285,9 @@ func (d *jsiiProxy_DockerConfigSecret) AsNonApiResource() *string {
 }
 
 func (d *jsiiProxy_DockerConfigSecret) GetStringData(key *string) *string {
+	if err := d.validateGetStringDataParameters(key); err != nil {
+		panic(err)
+	}
 	var returns *string
 
 	_jsii_.Invoke(

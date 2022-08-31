@@ -169,6 +169,9 @@ func (j *jsiiProxy_TlsSecret) ResourceType() *string {
 func NewTlsSecret(scope constructs.Construct, id *string, props *TlsSecretProps) TlsSecret {
 	_init_.Initialize()
 
+	if err := validateNewTlsSecretParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_TlsSecret{}
 
 	_jsii_.Create(
@@ -194,6 +197,9 @@ func NewTlsSecret_Override(t TlsSecret, scope constructs.Construct, id *string, 
 func TlsSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
+	if err := validateTlsSecret_FromSecretNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
@@ -226,6 +232,9 @@ func TlsSecret_FromSecretName(scope constructs.Construct, id *string, name *stri
 func TlsSecret_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateTlsSecret_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -239,6 +248,9 @@ func TlsSecret_IsConstruct(x interface{}) *bool {
 }
 
 func (t *jsiiProxy_TlsSecret) AddStringData(key *string, value *string) {
+	if err := t.validateAddStringDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		t,
 		"addStringData",
@@ -273,6 +285,9 @@ func (t *jsiiProxy_TlsSecret) AsNonApiResource() *string {
 }
 
 func (t *jsiiProxy_TlsSecret) GetStringData(key *string) *string {
+	if err := t.validateGetStringDataParameters(key); err != nil {
+		panic(err)
+	}
 	var returns *string
 
 	_jsii_.Invoke(

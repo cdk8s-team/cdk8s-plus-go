@@ -74,6 +74,9 @@ func (j *jsiiProxy_ContainerSecurityContext) User() *float64 {
 func NewContainerSecurityContext(props *ContainerSecurityContextProps) ContainerSecurityContext {
 	_init_.Initialize()
 
+	if err := validateNewContainerSecurityContextParameters(props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ContainerSecurityContext{}
 
 	_jsii_.Create(

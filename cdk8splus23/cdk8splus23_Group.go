@@ -77,6 +77,9 @@ func (j *jsiiProxy_Group) Node() constructs.Node {
 func Group_FromName(scope constructs.Construct, id *string, name *string) Group {
 	_init_.Initialize()
 
+	if err := validateGroup_FromNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns Group
 
 	_jsii_.StaticInvoke(
@@ -109,6 +112,9 @@ func Group_FromName(scope constructs.Construct, id *string, name *string) Group 
 func Group_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateGroup_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

@@ -111,6 +111,9 @@ func (j *jsiiProxy_PodDns) Subdomain() *string {
 func NewPodDns(props *PodDnsProps) PodDns {
 	_init_.Initialize()
 
+	if err := validateNewPodDnsParameters(props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_PodDns{}
 
 	_jsii_.Create(
@@ -146,6 +149,9 @@ func (p *jsiiProxy_PodDns) AddNameserver(nameservers ...*string) {
 }
 
 func (p *jsiiProxy_PodDns) AddOption(options ...*DnsOption) {
+	if err := p.validateAddOptionParameters(&options); err != nil {
+		panic(err)
+	}
 	args := []interface{}{}
 	for _, a := range options {
 		args = append(args, a)
