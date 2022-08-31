@@ -30,6 +30,9 @@ func (j *jsiiProxy_NamedNode) Name() *string {
 func NewNamedNode(name *string) NamedNode {
 	_init_.Initialize()
 
+	if err := validateNewNamedNodeParameters(name); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_NamedNode{}
 
 	_jsii_.Create(

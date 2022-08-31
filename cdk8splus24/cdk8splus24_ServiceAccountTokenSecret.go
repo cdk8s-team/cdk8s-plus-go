@@ -169,6 +169,9 @@ func (j *jsiiProxy_ServiceAccountTokenSecret) ResourceType() *string {
 func NewServiceAccountTokenSecret(scope constructs.Construct, id *string, props *ServiceAccountTokenSecretProps) ServiceAccountTokenSecret {
 	_init_.Initialize()
 
+	if err := validateNewServiceAccountTokenSecretParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ServiceAccountTokenSecret{}
 
 	_jsii_.Create(
@@ -194,6 +197,9 @@ func NewServiceAccountTokenSecret_Override(s ServiceAccountTokenSecret, scope co
 func ServiceAccountTokenSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
+	if err := validateServiceAccountTokenSecret_FromSecretNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
@@ -226,6 +232,9 @@ func ServiceAccountTokenSecret_FromSecretName(scope constructs.Construct, id *st
 func ServiceAccountTokenSecret_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateServiceAccountTokenSecret_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -239,6 +248,9 @@ func ServiceAccountTokenSecret_IsConstruct(x interface{}) *bool {
 }
 
 func (s *jsiiProxy_ServiceAccountTokenSecret) AddStringData(key *string, value *string) {
+	if err := s.validateAddStringDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		s,
 		"addStringData",
@@ -273,6 +285,9 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) AsNonApiResource() *string {
 }
 
 func (s *jsiiProxy_ServiceAccountTokenSecret) GetStringData(key *string) *string {
+	if err := s.validateGetStringDataParameters(key); err != nil {
+		panic(err)
+	}
 	var returns *string
 
 	_jsii_.Invoke(

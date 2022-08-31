@@ -175,6 +175,9 @@ func (j *jsiiProxy_RoleBinding) Subjects() *[]ISubject {
 func NewRoleBinding(scope constructs.Construct, id *string, props *RoleBindingProps) RoleBinding {
 	_init_.Initialize()
 
+	if err := validateNewRoleBindingParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_RoleBinding{}
 
 	_jsii_.Create(
@@ -216,6 +219,9 @@ func NewRoleBinding_Override(r RoleBinding, scope constructs.Construct, id *stri
 func RoleBinding_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateRoleBinding_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

@@ -169,6 +169,9 @@ func (j *jsiiProxy_BasicAuthSecret) ResourceType() *string {
 func NewBasicAuthSecret(scope constructs.Construct, id *string, props *BasicAuthSecretProps) BasicAuthSecret {
 	_init_.Initialize()
 
+	if err := validateNewBasicAuthSecretParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_BasicAuthSecret{}
 
 	_jsii_.Create(
@@ -194,6 +197,9 @@ func NewBasicAuthSecret_Override(b BasicAuthSecret, scope constructs.Construct, 
 func BasicAuthSecret_FromSecretName(scope constructs.Construct, id *string, name *string) ISecret {
 	_init_.Initialize()
 
+	if err := validateBasicAuthSecret_FromSecretNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns ISecret
 
 	_jsii_.StaticInvoke(
@@ -226,6 +232,9 @@ func BasicAuthSecret_FromSecretName(scope constructs.Construct, id *string, name
 func BasicAuthSecret_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateBasicAuthSecret_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -239,6 +248,9 @@ func BasicAuthSecret_IsConstruct(x interface{}) *bool {
 }
 
 func (b *jsiiProxy_BasicAuthSecret) AddStringData(key *string, value *string) {
+	if err := b.validateAddStringDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		b,
 		"addStringData",
@@ -273,6 +285,9 @@ func (b *jsiiProxy_BasicAuthSecret) AsNonApiResource() *string {
 }
 
 func (b *jsiiProxy_BasicAuthSecret) GetStringData(key *string) *string {
+	if err := b.validateGetStringDataParameters(key); err != nil {
+		panic(err)
+	}
 	var returns *string
 
 	_jsii_.Invoke(

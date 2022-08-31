@@ -30,6 +30,9 @@ func (j *jsiiProxy_LabeledNode) LabelSelector() *[]NodeLabelQuery {
 func NewLabeledNode(labelSelector *[]NodeLabelQuery) LabeledNode {
 	_init_.Initialize()
 
+	if err := validateNewLabeledNodeParameters(labelSelector); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_LabeledNode{}
 
 	_jsii_.Create(

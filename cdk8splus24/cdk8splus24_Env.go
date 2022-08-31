@@ -56,6 +56,9 @@ func (j *jsiiProxy_Env) Variables() *map[string]EnvValue {
 func NewEnv(sources *[]EnvFrom, variables *map[string]EnvValue) Env {
 	_init_.Initialize()
 
+	if err := validateNewEnvParameters(sources, variables); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Env{}
 
 	_jsii_.Create(
@@ -84,6 +87,9 @@ func NewEnv_Override(e Env, sources *[]EnvFrom, variables *map[string]EnvValue) 
 func Env_FromConfigMap(configMap IConfigMap, prefix *string) EnvFrom {
 	_init_.Initialize()
 
+	if err := validateEnv_FromConfigMapParameters(configMap); err != nil {
+		panic(err)
+	}
 	var returns EnvFrom
 
 	_jsii_.StaticInvoke(
@@ -103,6 +109,9 @@ func Env_FromConfigMap(configMap IConfigMap, prefix *string) EnvFrom {
 func Env_FromSecret(secr ISecret) EnvFrom {
 	_init_.Initialize()
 
+	if err := validateEnv_FromSecretParameters(secr); err != nil {
+		panic(err)
+	}
 	var returns EnvFrom
 
 	_jsii_.StaticInvoke(
@@ -116,6 +125,9 @@ func Env_FromSecret(secr ISecret) EnvFrom {
 }
 
 func (e *jsiiProxy_Env) AddVariable(name *string, value EnvValue) {
+	if err := e.validateAddVariableParameters(name, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		e,
 		"addVariable",
@@ -124,6 +136,9 @@ func (e *jsiiProxy_Env) AddVariable(name *string, value EnvValue) {
 }
 
 func (e *jsiiProxy_Env) CopyFrom(from EnvFrom) {
+	if err := e.validateCopyFromParameters(from); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		e,
 		"copyFrom",

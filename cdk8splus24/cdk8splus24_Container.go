@@ -161,6 +161,9 @@ func (j *jsiiProxy_Container) WorkingDir() *string {
 func NewContainer(props *ContainerProps) Container {
 	_init_.Initialize()
 
+	if err := validateNewContainerParameters(props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Container{}
 
 	_jsii_.Create(
@@ -183,6 +186,9 @@ func NewContainer_Override(c Container, props *ContainerProps) {
 }
 
 func (c *jsiiProxy_Container) Mount(path *string, storage IStorage, options *MountOptions) {
+	if err := c.validateMountParameters(path, storage, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"mount",

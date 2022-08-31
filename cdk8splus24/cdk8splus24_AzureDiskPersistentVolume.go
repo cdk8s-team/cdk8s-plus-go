@@ -324,6 +324,9 @@ func (j *jsiiProxy_AzureDiskPersistentVolume) StorageClassName() *string {
 func NewAzureDiskPersistentVolume(scope constructs.Construct, id *string, props *AzureDiskPersistentVolumeProps) AzureDiskPersistentVolume {
 	_init_.Initialize()
 
+	if err := validateNewAzureDiskPersistentVolumeParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_AzureDiskPersistentVolume{}
 
 	_jsii_.Create(
@@ -349,6 +352,9 @@ func NewAzureDiskPersistentVolume_Override(a AzureDiskPersistentVolume, scope co
 func AzureDiskPersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
+	if err := validateAzureDiskPersistentVolume_FromPersistentVolumeNameParameters(scope, id, volumeName); err != nil {
+		panic(err)
+	}
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
@@ -381,6 +387,9 @@ func AzureDiskPersistentVolume_FromPersistentVolumeName(scope constructs.Constru
 func AzureDiskPersistentVolume_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateAzureDiskPersistentVolume_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -433,6 +442,9 @@ func (a *jsiiProxy_AzureDiskPersistentVolume) AsVolume() Volume {
 }
 
 func (a *jsiiProxy_AzureDiskPersistentVolume) Bind(claim IPersistentVolumeClaim) {
+	if err := a.validateBindParameters(claim); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		a,
 		"bind",

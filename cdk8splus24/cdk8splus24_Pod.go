@@ -317,6 +317,9 @@ func (j *jsiiProxy_Pod) Volumes() *[]Volume {
 func NewPod(scope constructs.Construct, id *string, props *PodProps) Pod {
 	_init_.Initialize()
 
+	if err := validateNewPodParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Pod{}
 
 	_jsii_.Create(
@@ -358,6 +361,9 @@ func NewPod_Override(p Pod, scope constructs.Construct, id *string, props *PodPr
 func Pod_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validatePod_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -382,6 +388,9 @@ func Pod_ADDRESS_LABEL() *string {
 }
 
 func (p *jsiiProxy_Pod) AddContainer(cont *ContainerProps) Container {
+	if err := p.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -395,6 +404,9 @@ func (p *jsiiProxy_Pod) AddContainer(cont *ContainerProps) Container {
 }
 
 func (p *jsiiProxy_Pod) AddHostAlias(hostAlias *HostAlias) {
+	if err := p.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"addHostAlias",
@@ -403,6 +415,9 @@ func (p *jsiiProxy_Pod) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (p *jsiiProxy_Pod) AddInitContainer(cont *ContainerProps) Container {
+	if err := p.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -416,6 +431,9 @@ func (p *jsiiProxy_Pod) AddInitContainer(cont *ContainerProps) Container {
 }
 
 func (p *jsiiProxy_Pod) AddVolume(vol Volume) {
+	if err := p.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"addVolume",

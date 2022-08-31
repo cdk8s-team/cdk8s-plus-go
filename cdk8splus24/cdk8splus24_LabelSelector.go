@@ -19,6 +19,9 @@ type jsiiProxy_LabelSelector struct {
 func LabelSelector_Of(options *LabelSelectorOptions) LabelSelector {
 	_init_.Initialize()
 
+	if err := validateLabelSelector_OfParameters(options); err != nil {
+		panic(err)
+	}
 	var returns LabelSelector
 
 	_jsii_.StaticInvoke(

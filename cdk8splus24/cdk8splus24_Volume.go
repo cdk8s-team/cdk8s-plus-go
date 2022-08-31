@@ -92,6 +92,9 @@ func (j *jsiiProxy_Volume) Node() constructs.Node {
 func Volume_FromAwsElasticBlockStore(scope constructs.Construct, id *string, volumeId *string, options *AwsElasticBlockStoreVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromAwsElasticBlockStoreParameters(scope, id, volumeId, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -108,6 +111,9 @@ func Volume_FromAwsElasticBlockStore(scope constructs.Construct, id *string, vol
 func Volume_FromAzureDisk(scope constructs.Construct, id *string, diskName *string, diskUri *string, options *AzureDiskVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromAzureDiskParameters(scope, id, diskName, diskUri, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -133,6 +139,9 @@ func Volume_FromAzureDisk(scope constructs.Construct, id *string, diskName *stri
 func Volume_FromConfigMap(scope constructs.Construct, id *string, configMap IConfigMap, options *ConfigMapVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromConfigMapParameters(scope, id, configMap, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -157,6 +166,9 @@ func Volume_FromConfigMap(scope constructs.Construct, id *string, configMap ICon
 func Volume_FromEmptyDir(scope constructs.Construct, id *string, name *string, options *EmptyDirVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromEmptyDirParameters(scope, id, name, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -182,6 +194,9 @@ func Volume_FromEmptyDir(scope constructs.Construct, id *string, name *string, o
 func Volume_FromGcePersistentDisk(scope constructs.Construct, id *string, pdName *string, options *GCEPersistentDiskVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromGcePersistentDiskParameters(scope, id, pdName, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -203,6 +218,9 @@ func Volume_FromGcePersistentDisk(scope constructs.Construct, id *string, pdName
 func Volume_FromHostPath(scope constructs.Construct, id *string, name *string, options *HostPathVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromHostPathParameters(scope, id, name, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -224,6 +242,9 @@ func Volume_FromHostPath(scope constructs.Construct, id *string, name *string, o
 func Volume_FromPersistentVolumeClaim(scope constructs.Construct, id *string, claim IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromPersistentVolumeClaimParameters(scope, id, claim, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -249,6 +270,9 @@ func Volume_FromPersistentVolumeClaim(scope constructs.Construct, id *string, cl
 func Volume_FromSecret(scope constructs.Construct, id *string, secr ISecret, options *SecretVolumeOptions) Volume {
 	_init_.Initialize()
 
+	if err := validateVolume_FromSecretParameters(scope, id, secr, options); err != nil {
+		panic(err)
+	}
 	var returns Volume
 
 	_jsii_.StaticInvoke(
@@ -281,6 +305,9 @@ func Volume_FromSecret(scope constructs.Construct, id *string, secr ISecret, opt
 func Volume_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateVolume_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

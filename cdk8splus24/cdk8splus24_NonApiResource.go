@@ -23,6 +23,9 @@ type jsiiProxy_NonApiResource struct {
 func NonApiResource_Of(url *string) NonApiResource {
 	_init_.Initialize()
 
+	if err := validateNonApiResource_OfParameters(url); err != nil {
+		panic(err)
+	}
 	var returns NonApiResource
 
 	_jsii_.StaticInvoke(

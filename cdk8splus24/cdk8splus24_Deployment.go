@@ -422,6 +422,9 @@ func (j *jsiiProxy_Deployment) Volumes() *[]Volume {
 func NewDeployment(scope constructs.Construct, id *string, props *DeploymentProps) Deployment {
 	_init_.Initialize()
 
+	if err := validateNewDeploymentParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Deployment{}
 
 	_jsii_.Create(
@@ -463,6 +466,9 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 func Deployment_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateDeployment_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -476,6 +482,9 @@ func Deployment_IsConstruct(x interface{}) *bool {
 }
 
 func (d *jsiiProxy_Deployment) AddContainer(cont *ContainerProps) Container {
+	if err := d.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -489,6 +498,9 @@ func (d *jsiiProxy_Deployment) AddContainer(cont *ContainerProps) Container {
 }
 
 func (d *jsiiProxy_Deployment) AddHostAlias(hostAlias *HostAlias) {
+	if err := d.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		d,
 		"addHostAlias",
@@ -497,6 +509,9 @@ func (d *jsiiProxy_Deployment) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (d *jsiiProxy_Deployment) AddInitContainer(cont *ContainerProps) Container {
+	if err := d.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -510,6 +525,9 @@ func (d *jsiiProxy_Deployment) AddInitContainer(cont *ContainerProps) Container 
 }
 
 func (d *jsiiProxy_Deployment) AddVolume(vol Volume) {
+	if err := d.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		d,
 		"addVolume",
@@ -544,6 +562,9 @@ func (d *jsiiProxy_Deployment) AsNonApiResource() *string {
 }
 
 func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) Ingress {
+	if err := d.validateExposeViaIngressParameters(path, options); err != nil {
+		panic(err)
+	}
 	var returns Ingress
 
 	_jsii_.Invoke(
@@ -557,6 +578,9 @@ func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDep
 }
 
 func (d *jsiiProxy_Deployment) ExposeViaService(options *DeploymentExposeViaServiceOptions) Service {
+	if err := d.validateExposeViaServiceParameters(options); err != nil {
+		panic(err)
+	}
 	var returns Service
 
 	_jsii_.Invoke(

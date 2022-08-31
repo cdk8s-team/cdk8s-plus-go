@@ -172,6 +172,9 @@ func (j *jsiiProxy_Ingress) ResourceType() *string {
 func NewIngress(scope constructs.Construct, id *string, props *IngressProps) Ingress {
 	_init_.Initialize()
 
+	if err := validateNewIngressParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Ingress{}
 
 	_jsii_.Create(
@@ -213,6 +216,9 @@ func NewIngress_Override(i Ingress, scope constructs.Construct, id *string, prop
 func Ingress_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateIngress_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -226,6 +232,9 @@ func Ingress_IsConstruct(x interface{}) *bool {
 }
 
 func (i *jsiiProxy_Ingress) AddDefaultBackend(backend IngressBackend) {
+	if err := i.validateAddDefaultBackendParameters(backend); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		i,
 		"addDefaultBackend",
@@ -234,6 +243,9 @@ func (i *jsiiProxy_Ingress) AddDefaultBackend(backend IngressBackend) {
 }
 
 func (i *jsiiProxy_Ingress) AddHostDefaultBackend(host *string, backend IngressBackend) {
+	if err := i.validateAddHostDefaultBackendParameters(host, backend); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		i,
 		"addHostDefaultBackend",
@@ -242,6 +254,9 @@ func (i *jsiiProxy_Ingress) AddHostDefaultBackend(host *string, backend IngressB
 }
 
 func (i *jsiiProxy_Ingress) AddHostRule(host *string, path *string, backend IngressBackend, pathType HttpIngressPathType) {
+	if err := i.validateAddHostRuleParameters(host, path, backend); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		i,
 		"addHostRule",
@@ -250,6 +265,9 @@ func (i *jsiiProxy_Ingress) AddHostRule(host *string, path *string, backend Ingr
 }
 
 func (i *jsiiProxy_Ingress) AddRule(path *string, backend IngressBackend, pathType HttpIngressPathType) {
+	if err := i.validateAddRuleParameters(path, backend); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		i,
 		"addRule",
@@ -258,6 +276,9 @@ func (i *jsiiProxy_Ingress) AddRule(path *string, backend IngressBackend, pathTy
 }
 
 func (i *jsiiProxy_Ingress) AddRules(rules ...*IngressRule) {
+	if err := i.validateAddRulesParameters(&rules); err != nil {
+		panic(err)
+	}
 	args := []interface{}{}
 	for _, a := range rules {
 		args = append(args, a)
@@ -271,6 +292,9 @@ func (i *jsiiProxy_Ingress) AddRules(rules ...*IngressRule) {
 }
 
 func (i *jsiiProxy_Ingress) AddTls(tls *[]*IngressTls) {
+	if err := i.validateAddTlsParameters(tls); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		i,
 		"addTls",

@@ -30,6 +30,9 @@ func (j *jsiiProxy_TaintedNode) TaintSelector() *[]NodeTaintQuery {
 func NewTaintedNode(taintSelector *[]NodeTaintQuery) TaintedNode {
 	_init_.Initialize()
 
+	if err := validateNewTaintedNodeParameters(taintSelector); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_TaintedNode{}
 
 	_jsii_.Create(

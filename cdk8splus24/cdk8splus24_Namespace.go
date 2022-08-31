@@ -171,6 +171,9 @@ func (j *jsiiProxy_Namespace) ResourceType() *string {
 func NewNamespace(scope constructs.Construct, id *string, props *NamespaceProps) Namespace {
 	_init_.Initialize()
 
+	if err := validateNewNamespaceParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Namespace{}
 
 	_jsii_.Create(
@@ -212,6 +215,9 @@ func NewNamespace_Override(n Namespace, scope constructs.Construct, id *string, 
 func Namespace_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateNamespace_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

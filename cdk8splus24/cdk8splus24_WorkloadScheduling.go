@@ -114,6 +114,9 @@ func (j *jsiiProxy_WorkloadScheduling) Instance() AbstractPod {
 func NewWorkloadScheduling(instance AbstractPod) WorkloadScheduling {
 	_init_.Initialize()
 
+	if err := validateNewWorkloadSchedulingParameters(instance); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_WorkloadScheduling{}
 
 	_jsii_.Create(
@@ -136,6 +139,9 @@ func NewWorkloadScheduling_Override(w WorkloadScheduling, instance AbstractPod) 
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Assign(node NamedNode) {
+	if err := w.validateAssignParameters(node); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"assign",
@@ -144,6 +150,9 @@ func (w *jsiiProxy_WorkloadScheduling) Assign(node NamedNode) {
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Attract(node LabeledNode, options *PodSchedulingAttractOptions) {
+	if err := w.validateAttractParameters(node, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"attract",
@@ -152,6 +161,9 @@ func (w *jsiiProxy_WorkloadScheduling) Attract(node LabeledNode, options *PodSch
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Colocate(selector IPodSelector, options *PodSchedulingColocateOptions) {
+	if err := w.validateColocateParameters(selector, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"colocate",
@@ -160,6 +172,9 @@ func (w *jsiiProxy_WorkloadScheduling) Colocate(selector IPodSelector, options *
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Separate(selector IPodSelector, options *PodSchedulingSeparateOptions) {
+	if err := w.validateSeparateParameters(selector, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"separate",
@@ -168,6 +183,9 @@ func (w *jsiiProxy_WorkloadScheduling) Separate(selector IPodSelector, options *
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Spread(options *WorkloadSchedulingSpreadOptions) {
+	if err := w.validateSpreadParameters(options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"spread",
@@ -176,6 +194,9 @@ func (w *jsiiProxy_WorkloadScheduling) Spread(options *WorkloadSchedulingSpreadO
 }
 
 func (w *jsiiProxy_WorkloadScheduling) Tolerate(node TaintedNode) {
+	if err := w.validateTolerateParameters(node); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		w,
 		"tolerate",

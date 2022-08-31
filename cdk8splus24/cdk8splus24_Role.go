@@ -193,6 +193,9 @@ func (j *jsiiProxy_Role) Rules() *[]*RolePolicyRule {
 func NewRole(scope constructs.Construct, id *string, props *RoleProps) Role {
 	_init_.Initialize()
 
+	if err := validateNewRoleParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Role{}
 
 	_jsii_.Create(
@@ -218,6 +221,9 @@ func NewRole_Override(r Role, scope constructs.Construct, id *string, props *Rol
 func Role_FromRoleName(scope constructs.Construct, id *string, name *string) IRole {
 	_init_.Initialize()
 
+	if err := validateRole_FromRoleNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns IRole
 
 	_jsii_.StaticInvoke(
@@ -250,6 +256,9 @@ func Role_FromRoleName(scope constructs.Construct, id *string, name *string) IRo
 func Role_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateRole_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -263,6 +272,9 @@ func Role_IsConstruct(x interface{}) *bool {
 }
 
 func (r *jsiiProxy_Role) Allow(verbs *[]*string, resources ...IApiResource) {
+	if err := r.validateAllowParameters(verbs); err != nil {
+		panic(err)
+	}
 	args := []interface{}{verbs}
 	for _, a := range resources {
 		args = append(args, a)

@@ -32,6 +32,9 @@ func (j *jsiiProxy_PercentOrAbsolute) Value() interface{} {
 func PercentOrAbsolute_Absolute(num *float64) PercentOrAbsolute {
 	_init_.Initialize()
 
+	if err := validatePercentOrAbsolute_AbsoluteParameters(num); err != nil {
+		panic(err)
+	}
 	var returns PercentOrAbsolute
 
 	_jsii_.StaticInvoke(
@@ -48,6 +51,9 @@ func PercentOrAbsolute_Absolute(num *float64) PercentOrAbsolute {
 func PercentOrAbsolute_Percent(percent *float64) PercentOrAbsolute {
 	_init_.Initialize()
 
+	if err := validatePercentOrAbsolute_PercentParameters(percent); err != nil {
+		panic(err)
+	}
 	var returns PercentOrAbsolute
 
 	_jsii_.StaticInvoke(
