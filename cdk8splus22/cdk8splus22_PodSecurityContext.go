@@ -85,6 +85,9 @@ func (j *jsiiProxy_PodSecurityContext) User() *float64 {
 func NewPodSecurityContext(props *PodSecurityContextProps) PodSecurityContext {
 	_init_.Initialize()
 
+	if err := validateNewPodSecurityContextParameters(props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_PodSecurityContext{}
 
 	_jsii_.Create(

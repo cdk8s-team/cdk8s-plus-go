@@ -64,6 +64,9 @@ func Node_Labeled(labelSelector ...NodeLabelQuery) LabeledNode {
 func Node_Named(nodeName *string) NamedNode {
 	_init_.Initialize()
 
+	if err := validateNode_NamedParameters(nodeName); err != nil {
+		panic(err)
+	}
 	var returns NamedNode
 
 	_jsii_.StaticInvoke(

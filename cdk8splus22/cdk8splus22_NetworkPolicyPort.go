@@ -51,6 +51,9 @@ func NetworkPolicyPort_AllUdp() NetworkPolicyPort {
 func NetworkPolicyPort_Of(props *NetworkPolicyPortProps) NetworkPolicyPort {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyPort_OfParameters(props); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyPort
 
 	_jsii_.StaticInvoke(
@@ -67,6 +70,9 @@ func NetworkPolicyPort_Of(props *NetworkPolicyPortProps) NetworkPolicyPort {
 func NetworkPolicyPort_Tcp(port *float64) NetworkPolicyPort {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyPort_TcpParameters(port); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyPort
 
 	_jsii_.StaticInvoke(
@@ -83,6 +89,9 @@ func NetworkPolicyPort_Tcp(port *float64) NetworkPolicyPort {
 func NetworkPolicyPort_TcpRange(startPort *float64, endPort *float64) NetworkPolicyPort {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyPort_TcpRangeParameters(startPort, endPort); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyPort
 
 	_jsii_.StaticInvoke(
@@ -99,6 +108,9 @@ func NetworkPolicyPort_TcpRange(startPort *float64, endPort *float64) NetworkPol
 func NetworkPolicyPort_Udp(port *float64) NetworkPolicyPort {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyPort_UdpParameters(port); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyPort
 
 	_jsii_.StaticInvoke(
@@ -115,6 +127,9 @@ func NetworkPolicyPort_Udp(port *float64) NetworkPolicyPort {
 func NetworkPolicyPort_UdpRange(startPort *float64, endPort *float64) NetworkPolicyPort {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicyPort_UdpRangeParameters(startPort, endPort); err != nil {
+		panic(err)
+	}
 	var returns NetworkPolicyPort
 
 	_jsii_.StaticInvoke(

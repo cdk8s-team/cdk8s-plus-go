@@ -19,6 +19,9 @@ type jsiiProxy_Handler struct {
 func Handler_FromCommand(command *[]*string) Handler {
 	_init_.Initialize()
 
+	if err := validateHandler_FromCommandParameters(command); err != nil {
+		panic(err)
+	}
 	var returns Handler
 
 	_jsii_.StaticInvoke(
@@ -35,6 +38,9 @@ func Handler_FromCommand(command *[]*string) Handler {
 func Handler_FromHttpGet(path *string, options *HandlerFromHttpGetOptions) Handler {
 	_init_.Initialize()
 
+	if err := validateHandler_FromHttpGetParameters(path, options); err != nil {
+		panic(err)
+	}
 	var returns Handler
 
 	_jsii_.StaticInvoke(
@@ -51,6 +57,9 @@ func Handler_FromHttpGet(path *string, options *HandlerFromHttpGetOptions) Handl
 func Handler_FromTcpSocket(options *HandlerFromTcpSocketOptions) Handler {
 	_init_.Initialize()
 
+	if err := validateHandler_FromTcpSocketParameters(options); err != nil {
+		panic(err)
+	}
 	var returns Handler
 
 	_jsii_.StaticInvoke(

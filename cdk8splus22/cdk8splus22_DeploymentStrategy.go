@@ -36,6 +36,9 @@ func DeploymentStrategy_Recreate() DeploymentStrategy {
 func DeploymentStrategy_RollingUpdate(options *DeploymentStrategyRollingUpdateOptions) DeploymentStrategy {
 	_init_.Initialize()
 
+	if err := validateDeploymentStrategy_RollingUpdateParameters(options); err != nil {
+		panic(err)
+	}
 	var returns DeploymentStrategy
 
 	_jsii_.StaticInvoke(

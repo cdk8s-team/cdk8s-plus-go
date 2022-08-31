@@ -53,6 +53,9 @@ func (j *jsiiProxy_Namespaces) Node() constructs.Node {
 func NewNamespaces(scope constructs.Construct, id *string, expressions *[]LabelExpression, names *[]*string, labels *map[string]*string) Namespaces {
 	_init_.Initialize()
 
+	if err := validateNewNamespacesParameters(scope, id); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_Namespaces{}
 
 	_jsii_.Create(
@@ -78,6 +81,9 @@ func NewNamespaces_Override(n Namespaces, scope constructs.Construct, id *string
 func Namespaces_All(scope constructs.Construct, id *string) Namespaces {
 	_init_.Initialize()
 
+	if err := validateNamespaces_AllParameters(scope, id); err != nil {
+		panic(err)
+	}
 	var returns Namespaces
 
 	_jsii_.StaticInvoke(
@@ -110,6 +116,9 @@ func Namespaces_All(scope constructs.Construct, id *string) Namespaces {
 func Namespaces_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateNamespaces_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -126,6 +135,9 @@ func Namespaces_IsConstruct(x interface{}) *bool {
 func Namespaces_Select(scope constructs.Construct, id *string, options *NamespacesSelectOptions) Namespaces {
 	_init_.Initialize()
 
+	if err := validateNamespaces_SelectParameters(scope, id, options); err != nil {
+		panic(err)
+	}
 	var returns Namespaces
 
 	_jsii_.StaticInvoke(

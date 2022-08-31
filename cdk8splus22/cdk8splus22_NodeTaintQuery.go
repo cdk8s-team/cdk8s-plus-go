@@ -93,6 +93,9 @@ func NodeTaintQuery_Any() NodeTaintQuery {
 func NodeTaintQuery_Exists(key *string, options *NodeTaintQueryOptions) NodeTaintQuery {
 	_init_.Initialize()
 
+	if err := validateNodeTaintQuery_ExistsParameters(key, options); err != nil {
+		panic(err)
+	}
 	var returns NodeTaintQuery
 
 	_jsii_.StaticInvoke(
@@ -109,6 +112,9 @@ func NodeTaintQuery_Exists(key *string, options *NodeTaintQueryOptions) NodeTain
 func NodeTaintQuery_Is(key *string, value *string, options *NodeTaintQueryOptions) NodeTaintQuery {
 	_init_.Initialize()
 
+	if err := validateNodeTaintQuery_IsParameters(key, value, options); err != nil {
+		panic(err)
+	}
 	var returns NodeTaintQuery
 
 	_jsii_.StaticInvoke(

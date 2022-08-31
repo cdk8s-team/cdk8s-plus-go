@@ -53,6 +53,9 @@ func (j *jsiiProxy_NodeLabelQuery) Values() *[]*string {
 func NodeLabelQuery_DoesNotExist(key *string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_DoesNotExistParameters(key); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -69,6 +72,9 @@ func NodeLabelQuery_DoesNotExist(key *string) NodeLabelQuery {
 func NodeLabelQuery_Exists(key *string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_ExistsParameters(key); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -85,6 +91,9 @@ func NodeLabelQuery_Exists(key *string) NodeLabelQuery {
 func NodeLabelQuery_Gt(key *string, values *[]*string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_GtParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -101,6 +110,9 @@ func NodeLabelQuery_Gt(key *string, values *[]*string) NodeLabelQuery {
 func NodeLabelQuery_In(key *string, values *[]*string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_InParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -117,6 +129,9 @@ func NodeLabelQuery_In(key *string, values *[]*string) NodeLabelQuery {
 func NodeLabelQuery_Is(key *string, value *string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_IsParameters(key, value); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -133,6 +148,9 @@ func NodeLabelQuery_Is(key *string, value *string) NodeLabelQuery {
 func NodeLabelQuery_Lt(key *string, values *[]*string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_LtParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(
@@ -149,6 +167,9 @@ func NodeLabelQuery_Lt(key *string, values *[]*string) NodeLabelQuery {
 func NodeLabelQuery_NotIn(key *string, values *[]*string) NodeLabelQuery {
 	_init_.Initialize()
 
+	if err := validateNodeLabelQuery_NotInParameters(key, values); err != nil {
+		panic(err)
+	}
 	var returns NodeLabelQuery
 
 	_jsii_.StaticInvoke(

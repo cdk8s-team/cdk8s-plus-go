@@ -42,6 +42,9 @@ func StatefulSetUpdateStrategy_OnDelete() StatefulSetUpdateStrategy {
 func StatefulSetUpdateStrategy_RollingUpdate(options *StatefulSetUpdateStrategyRollingUpdateOptions) StatefulSetUpdateStrategy {
 	_init_.Initialize()
 
+	if err := validateStatefulSetUpdateStrategy_RollingUpdateParameters(options); err != nil {
+		panic(err)
+	}
 	var returns StatefulSetUpdateStrategy
 
 	_jsii_.StaticInvoke(

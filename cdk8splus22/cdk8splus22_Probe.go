@@ -19,6 +19,9 @@ type jsiiProxy_Probe struct {
 func Probe_FromCommand(command *[]*string, options *CommandProbeOptions) Probe {
 	_init_.Initialize()
 
+	if err := validateProbe_FromCommandParameters(command, options); err != nil {
+		panic(err)
+	}
 	var returns Probe
 
 	_jsii_.StaticInvoke(
@@ -35,6 +38,9 @@ func Probe_FromCommand(command *[]*string, options *CommandProbeOptions) Probe {
 func Probe_FromHttpGet(path *string, options *HttpGetProbeOptions) Probe {
 	_init_.Initialize()
 
+	if err := validateProbe_FromHttpGetParameters(path, options); err != nil {
+		panic(err)
+	}
 	var returns Probe
 
 	_jsii_.StaticInvoke(
@@ -51,6 +57,9 @@ func Probe_FromHttpGet(path *string, options *HttpGetProbeOptions) Probe {
 func Probe_FromTcpSocket(options *TcpSocketProbeOptions) Probe {
 	_init_.Initialize()
 
+	if err := validateProbe_FromTcpSocketParameters(options); err != nil {
+		panic(err)
+	}
 	var returns Probe
 
 	_jsii_.StaticInvoke(

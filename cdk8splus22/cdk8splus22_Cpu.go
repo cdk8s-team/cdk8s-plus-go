@@ -30,7 +30,10 @@ func (j *jsiiProxy_Cpu) Amount() *string {
 }
 
 
-func (j *jsiiProxy_Cpu) SetAmount(val *string) {
+func (j *jsiiProxy_Cpu)SetAmount(val *string) {
+	if err := j.validateSetAmountParameters(val); err != nil {
+		panic(err)
+	}
 	_jsii_.Set(
 		j,
 		"amount",
@@ -41,6 +44,9 @@ func (j *jsiiProxy_Cpu) SetAmount(val *string) {
 func Cpu_Millis(amount *float64) Cpu {
 	_init_.Initialize()
 
+	if err := validateCpu_MillisParameters(amount); err != nil {
+		panic(err)
+	}
 	var returns Cpu
 
 	_jsii_.StaticInvoke(
@@ -56,6 +62,9 @@ func Cpu_Millis(amount *float64) Cpu {
 func Cpu_Units(amount *float64) Cpu {
 	_init_.Initialize()
 
+	if err := validateCpu_UnitsParameters(amount); err != nil {
+		panic(err)
+	}
 	var returns Cpu
 
 	_jsii_.StaticInvoke(

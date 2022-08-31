@@ -62,6 +62,9 @@ func (j *jsiiProxy_PodConnections) Instance() AbstractPod {
 func NewPodConnections(instance AbstractPod) PodConnections {
 	_init_.Initialize()
 
+	if err := validateNewPodConnectionsParameters(instance); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_PodConnections{}
 
 	_jsii_.Create(
@@ -84,6 +87,9 @@ func NewPodConnections_Override(p PodConnections, instance AbstractPod) {
 }
 
 func (p *jsiiProxy_PodConnections) AllowFrom(peer INetworkPolicyPeer, options *PodConnectionsAllowFromOptions) {
+	if err := p.validateAllowFromParameters(peer, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"allowFrom",
@@ -92,6 +98,9 @@ func (p *jsiiProxy_PodConnections) AllowFrom(peer INetworkPolicyPeer, options *P
 }
 
 func (p *jsiiProxy_PodConnections) AllowTo(peer INetworkPolicyPeer, options *PodConnectionsAllowToOptions) {
+	if err := p.validateAllowToParameters(peer, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		p,
 		"allowTo",

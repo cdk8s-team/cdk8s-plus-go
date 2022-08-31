@@ -31,6 +31,9 @@ func (j *jsiiProxy_Topology) Key() *string {
 func Topology_Custom(key *string) Topology {
 	_init_.Initialize()
 
+	if err := validateTopology_CustomParameters(key); err != nil {
+		panic(err)
+	}
 	var returns Topology
 
 	_jsii_.StaticInvoke(

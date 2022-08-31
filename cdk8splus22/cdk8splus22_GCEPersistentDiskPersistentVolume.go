@@ -304,6 +304,9 @@ func (j *jsiiProxy_GCEPersistentDiskPersistentVolume) StorageClassName() *string
 func NewGCEPersistentDiskPersistentVolume(scope constructs.Construct, id *string, props *GCEPersistentDiskPersistentVolumeProps) GCEPersistentDiskPersistentVolume {
 	_init_.Initialize()
 
+	if err := validateNewGCEPersistentDiskPersistentVolumeParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_GCEPersistentDiskPersistentVolume{}
 
 	_jsii_.Create(
@@ -329,6 +332,9 @@ func NewGCEPersistentDiskPersistentVolume_Override(g GCEPersistentDiskPersistent
 func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
+	if err := validateGCEPersistentDiskPersistentVolume_FromPersistentVolumeNameParameters(scope, id, volumeName); err != nil {
+		panic(err)
+	}
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
@@ -361,6 +367,9 @@ func GCEPersistentDiskPersistentVolume_FromPersistentVolumeName(scope constructs
 func GCEPersistentDiskPersistentVolume_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateGCEPersistentDiskPersistentVolume_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -413,6 +422,9 @@ func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) AsVolume() Volume {
 }
 
 func (g *jsiiProxy_GCEPersistentDiskPersistentVolume) Bind(claim IPersistentVolumeClaim) {
+	if err := g.validateBindParameters(claim); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		g,
 		"bind",

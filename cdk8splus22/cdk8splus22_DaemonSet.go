@@ -370,6 +370,9 @@ func (j *jsiiProxy_DaemonSet) Volumes() *[]Volume {
 func NewDaemonSet(scope constructs.Construct, id *string, props *DaemonSetProps) DaemonSet {
 	_init_.Initialize()
 
+	if err := validateNewDaemonSetParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_DaemonSet{}
 
 	_jsii_.Create(
@@ -411,6 +414,9 @@ func NewDaemonSet_Override(d DaemonSet, scope constructs.Construct, id *string, 
 func DaemonSet_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateDaemonSet_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -424,6 +430,9 @@ func DaemonSet_IsConstruct(x interface{}) *bool {
 }
 
 func (d *jsiiProxy_DaemonSet) AddContainer(cont *ContainerProps) Container {
+	if err := d.validateAddContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -437,6 +446,9 @@ func (d *jsiiProxy_DaemonSet) AddContainer(cont *ContainerProps) Container {
 }
 
 func (d *jsiiProxy_DaemonSet) AddHostAlias(hostAlias *HostAlias) {
+	if err := d.validateAddHostAliasParameters(hostAlias); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		d,
 		"addHostAlias",
@@ -445,6 +457,9 @@ func (d *jsiiProxy_DaemonSet) AddHostAlias(hostAlias *HostAlias) {
 }
 
 func (d *jsiiProxy_DaemonSet) AddInitContainer(cont *ContainerProps) Container {
+	if err := d.validateAddInitContainerParameters(cont); err != nil {
+		panic(err)
+	}
 	var returns Container
 
 	_jsii_.Invoke(
@@ -458,6 +473,9 @@ func (d *jsiiProxy_DaemonSet) AddInitContainer(cont *ContainerProps) Container {
 }
 
 func (d *jsiiProxy_DaemonSet) AddVolume(vol Volume) {
+	if err := d.validateAddVolumeParameters(vol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		d,
 		"addVolume",

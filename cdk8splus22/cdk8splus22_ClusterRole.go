@@ -201,6 +201,9 @@ func (j *jsiiProxy_ClusterRole) Rules() *[]*ClusterRolePolicyRule {
 func NewClusterRole(scope constructs.Construct, id *string, props *ClusterRoleProps) ClusterRole {
 	_init_.Initialize()
 
+	if err := validateNewClusterRoleParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ClusterRole{}
 
 	_jsii_.Create(
@@ -226,6 +229,9 @@ func NewClusterRole_Override(c ClusterRole, scope constructs.Construct, id *stri
 func ClusterRole_FromClusterRoleName(scope constructs.Construct, id *string, name *string) IClusterRole {
 	_init_.Initialize()
 
+	if err := validateClusterRole_FromClusterRoleNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns IClusterRole
 
 	_jsii_.StaticInvoke(
@@ -258,6 +264,9 @@ func ClusterRole_FromClusterRoleName(scope constructs.Construct, id *string, nam
 func ClusterRole_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateClusterRole_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -271,6 +280,9 @@ func ClusterRole_IsConstruct(x interface{}) *bool {
 }
 
 func (c *jsiiProxy_ClusterRole) Aggregate(key *string, value *string) {
+	if err := c.validateAggregateParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"aggregate",
@@ -279,6 +291,9 @@ func (c *jsiiProxy_ClusterRole) Aggregate(key *string, value *string) {
 }
 
 func (c *jsiiProxy_ClusterRole) Allow(verbs *[]*string, endpoints ...IApiEndpoint) {
+	if err := c.validateAllowParameters(verbs); err != nil {
+		panic(err)
+	}
 	args := []interface{}{verbs}
 	for _, a := range endpoints {
 		args = append(args, a)
@@ -466,6 +481,9 @@ func (c *jsiiProxy_ClusterRole) Bind(subjects ...ISubject) ClusterRoleBinding {
 }
 
 func (c *jsiiProxy_ClusterRole) BindInNamespace(namespace *string, subjects ...ISubject) RoleBinding {
+	if err := c.validateBindInNamespaceParameters(namespace); err != nil {
+		panic(err)
+	}
 	args := []interface{}{namespace}
 	for _, a := range subjects {
 		args = append(args, a)
@@ -484,6 +502,9 @@ func (c *jsiiProxy_ClusterRole) BindInNamespace(namespace *string, subjects ...I
 }
 
 func (c *jsiiProxy_ClusterRole) Combine(rol ClusterRole) {
+	if err := c.validateCombineParameters(rol); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"combine",

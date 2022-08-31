@@ -204,6 +204,9 @@ func (j *jsiiProxy_ConfigMap) ResourceType() *string {
 func NewConfigMap(scope constructs.Construct, id *string, props *ConfigMapProps) ConfigMap {
 	_init_.Initialize()
 
+	if err := validateNewConfigMapParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_ConfigMap{}
 
 	_jsii_.Create(
@@ -229,6 +232,9 @@ func NewConfigMap_Override(c ConfigMap, scope constructs.Construct, id *string, 
 func ConfigMap_FromConfigMapName(scope constructs.Construct, id *string, name *string) IConfigMap {
 	_init_.Initialize()
 
+	if err := validateConfigMap_FromConfigMapNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns IConfigMap
 
 	_jsii_.StaticInvoke(
@@ -261,6 +267,9 @@ func ConfigMap_FromConfigMapName(scope constructs.Construct, id *string, name *s
 func ConfigMap_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateConfigMap_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -274,6 +283,9 @@ func ConfigMap_IsConstruct(x interface{}) *bool {
 }
 
 func (c *jsiiProxy_ConfigMap) AddBinaryData(key *string, value *string) {
+	if err := c.validateAddBinaryDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"addBinaryData",
@@ -282,6 +294,9 @@ func (c *jsiiProxy_ConfigMap) AddBinaryData(key *string, value *string) {
 }
 
 func (c *jsiiProxy_ConfigMap) AddData(key *string, value *string) {
+	if err := c.validateAddDataParameters(key, value); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"addData",
@@ -290,6 +305,9 @@ func (c *jsiiProxy_ConfigMap) AddData(key *string, value *string) {
 }
 
 func (c *jsiiProxy_ConfigMap) AddDirectory(localDir *string, options *AddDirectoryOptions) {
+	if err := c.validateAddDirectoryParameters(localDir, options); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"addDirectory",
@@ -298,6 +316,9 @@ func (c *jsiiProxy_ConfigMap) AddDirectory(localDir *string, options *AddDirecto
 }
 
 func (c *jsiiProxy_ConfigMap) AddFile(localFile *string, key *string) {
+	if err := c.validateAddFileParameters(localFile); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		c,
 		"addFile",

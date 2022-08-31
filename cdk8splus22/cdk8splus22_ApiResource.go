@@ -57,6 +57,9 @@ func (j *jsiiProxy_ApiResource) ResourceType() *string {
 func ApiResource_Custom(options *ApiResourceOptions) ApiResource {
 	_init_.Initialize()
 
+	if err := validateApiResource_CustomParameters(options); err != nil {
+		panic(err)
+	}
 	var returns ApiResource
 
 	_jsii_.StaticInvoke(

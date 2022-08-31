@@ -77,6 +77,9 @@ func (j *jsiiProxy_User) Node() constructs.Node {
 func User_FromName(scope constructs.Construct, id *string, name *string) User {
 	_init_.Initialize()
 
+	if err := validateUser_FromNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
 	var returns User
 
 	_jsii_.StaticInvoke(
@@ -109,6 +112,9 @@ func User_FromName(scope constructs.Construct, id *string, name *string) User {
 func User_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateUser_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(

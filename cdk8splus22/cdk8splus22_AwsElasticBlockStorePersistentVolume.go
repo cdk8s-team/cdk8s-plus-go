@@ -302,6 +302,9 @@ func (j *jsiiProxy_AwsElasticBlockStorePersistentVolume) VolumeId() *string {
 func NewAwsElasticBlockStorePersistentVolume(scope constructs.Construct, id *string, props *AwsElasticBlockStorePersistentVolumeProps) AwsElasticBlockStorePersistentVolume {
 	_init_.Initialize()
 
+	if err := validateNewAwsElasticBlockStorePersistentVolumeParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_AwsElasticBlockStorePersistentVolume{}
 
 	_jsii_.Create(
@@ -327,6 +330,9 @@ func NewAwsElasticBlockStorePersistentVolume_Override(a AwsElasticBlockStorePers
 func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(scope constructs.Construct, id *string, volumeName *string) IPersistentVolume {
 	_init_.Initialize()
 
+	if err := validateAwsElasticBlockStorePersistentVolume_FromPersistentVolumeNameParameters(scope, id, volumeName); err != nil {
+		panic(err)
+	}
 	var returns IPersistentVolume
 
 	_jsii_.StaticInvoke(
@@ -359,6 +365,9 @@ func AwsElasticBlockStorePersistentVolume_FromPersistentVolumeName(scope constru
 func AwsElasticBlockStorePersistentVolume_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateAwsElasticBlockStorePersistentVolume_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -411,6 +420,9 @@ func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) AsVolume() Volume {
 }
 
 func (a *jsiiProxy_AwsElasticBlockStorePersistentVolume) Bind(claim IPersistentVolumeClaim) {
+	if err := a.validateBindParameters(claim); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		a,
 		"bind",

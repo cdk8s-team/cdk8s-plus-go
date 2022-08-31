@@ -183,6 +183,9 @@ func (j *jsiiProxy_NetworkPolicy) ResourceType() *string {
 func NewNetworkPolicy(scope constructs.Construct, id *string, props *NetworkPolicyProps) NetworkPolicy {
 	_init_.Initialize()
 
+	if err := validateNewNetworkPolicyParameters(scope, id, props); err != nil {
+		panic(err)
+	}
 	j := jsiiProxy_NetworkPolicy{}
 
 	_jsii_.Create(
@@ -224,6 +227,9 @@ func NewNetworkPolicy_Override(n NetworkPolicy, scope constructs.Construct, id *
 func NetworkPolicy_IsConstruct(x interface{}) *bool {
 	_init_.Initialize()
 
+	if err := validateNetworkPolicy_IsConstructParameters(x); err != nil {
+		panic(err)
+	}
 	var returns *bool
 
 	_jsii_.StaticInvoke(
@@ -237,6 +243,9 @@ func NetworkPolicy_IsConstruct(x interface{}) *bool {
 }
 
 func (n *jsiiProxy_NetworkPolicy) AddEgressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort) {
+	if err := n.validateAddEgressRuleParameters(peer); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		n,
 		"addEgressRule",
@@ -245,6 +254,9 @@ func (n *jsiiProxy_NetworkPolicy) AddEgressRule(peer INetworkPolicyPeer, ports *
 }
 
 func (n *jsiiProxy_NetworkPolicy) AddIngressRule(peer INetworkPolicyPeer, ports *[]NetworkPolicyPort) {
+	if err := n.validateAddIngressRuleParameters(peer); err != nil {
+		panic(err)
+	}
 	_jsii_.InvokeVoid(
 		n,
 		"addIngressRule",
