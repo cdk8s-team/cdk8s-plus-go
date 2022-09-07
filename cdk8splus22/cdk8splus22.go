@@ -357,6 +357,14 @@ func init() {
 		"cdk8s-plus-22.ConfigMapVolumeOptions",
 		reflect.TypeOf((*ConfigMapVolumeOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.ConnectionScheme",
+		reflect.TypeOf((*ConnectionScheme)(nil)).Elem(),
+		map[string]interface{}{
+			"HTTP": ConnectionScheme_HTTP,
+			"HTTPS": ConnectionScheme_HTTPS,
+		},
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.Container",
 		reflect.TypeOf((*Container)(nil)).Elem(),

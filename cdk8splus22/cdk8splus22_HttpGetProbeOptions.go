@@ -31,5 +31,7 @@ type HttpGetProbeOptions struct {
 	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
 	// The TCP port to use when sending the GET request.
 	Port *float64 `field:"optional" json:"port" yaml:"port"`
+	// Scheme to use for connecting to the host (HTTP or HTTPS).
+	Scheme ConnectionScheme `field:"optional" json:"scheme" yaml:"scheme"`
 }
 
