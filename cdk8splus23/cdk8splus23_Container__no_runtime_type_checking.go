@@ -6,6 +6,10 @@ package cdk8splus23
 
 // Building without runtime type checking enabled, so all the below just return nil
 
+func (c *jsiiProxy_Container) validateAddPortParameters(port *ContainerPort) error {
+	return nil
+}
+
 func (c *jsiiProxy_Container) validateMountParameters(path *string, storage IStorage, options *MountOptions) error {
 	return nil
 }

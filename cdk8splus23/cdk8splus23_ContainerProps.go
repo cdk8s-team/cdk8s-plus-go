@@ -45,10 +45,19 @@ type ContainerProps struct {
 	//
 	// Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
 	Name *string `field:"optional" json:"name" yaml:"name"`
+	// Deprecated: - use `portNumber`.
+	Port *float64 `field:"optional" json:"port" yaml:"port"`
 	// Number of port to expose on the pod's IP address.
 	//
 	// This must be a valid port number, 0 < x < 65536.
-	Port *float64 `field:"optional" json:"port" yaml:"port"`
+	//
+	// This is a convinience property if all you need a single TCP numbered port.
+	// In case more advanced configuartion is required, use the `ports` property.
+	//
+	// This port is added to the list of ports mentioned in the `ports` property.
+	PortNumber *float64 `field:"optional" json:"portNumber" yaml:"portNumber"`
+	// List of ports to expose from this container.
+	Ports *[]*ContainerPort `field:"optional" json:"ports" yaml:"ports"`
 	// Determines when the container is ready to serve traffic.
 	Readiness Probe `field:"optional" json:"readiness" yaml:"readiness"`
 	// Compute resources (CPU and memory requests and limits) required by the container.
