@@ -26,8 +26,17 @@ type Container interface {
 	Mounts() *[]*VolumeMount
 	// The name of the container.
 	Name() *string
-	// The port this container exposes.
+	// Deprecated: - use `portNumber`.
 	Port() *float64
+	// The port number that was configured for this container.
+	//
+	// If undefined, either the container doesn't expose a port, or its
+	// port configuration is stored in the `ports` field.
+	PortNumber() *float64
+	// Ports exposed by this containers.
+	//
+	// Returns a copy, use `addPort` to modify.
+	Ports() *[]*ContainerPort
 	// Compute resources (CPU and memory requests and limits) required by the container.
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
@@ -36,6 +45,8 @@ type Container interface {
 	SecurityContext() ContainerSecurityContext
 	// The working directory inside the container.
 	WorkingDir() *string
+	// Add a port to expose from this container.
+	AddPort(port *ContainerPort)
 	// Mount a volume to a specific path so that it is accessible by the container.
 	//
 	// Every pod that is configured to use this container will autmoatically have access to the volume.
@@ -127,6 +138,26 @@ func (j *jsiiProxy_Container) Port() *float64 {
 	return returns
 }
 
+func (j *jsiiProxy_Container) PortNumber() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"portNumber",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Container) Ports() *[]*ContainerPort {
+	var returns *[]*ContainerPort
+	_jsii_.Get(
+		j,
+		"ports",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_Container) Resources() *ContainerResources {
 	var returns *ContainerResources
 	_jsii_.Get(
@@ -182,6 +213,17 @@ func NewContainer_Override(c Container, props *ContainerProps) {
 		"cdk8s-plus-22.Container",
 		[]interface{}{props},
 		c,
+	)
+}
+
+func (c *jsiiProxy_Container) AddPort(port *ContainerPort) {
+	if err := c.validateAddPortParameters(port); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		c,
+		"addPort",
+		[]interface{}{port},
 	)
 }
 
