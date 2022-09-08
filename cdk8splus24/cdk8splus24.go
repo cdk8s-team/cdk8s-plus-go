@@ -369,6 +369,7 @@ func init() {
 		"cdk8s-plus-24.Container",
 		reflect.TypeOf((*Container)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addPort", GoMethod: "AddPort"},
 			_jsii_.MemberProperty{JsiiProperty: "args", GoGetter: "Args"},
 			_jsii_.MemberProperty{JsiiProperty: "command", GoGetter: "Command"},
 			_jsii_.MemberProperty{JsiiProperty: "env", GoGetter: "Env"},
@@ -378,6 +379,8 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "mounts", GoGetter: "Mounts"},
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "port", GoGetter: "Port"},
+			_jsii_.MemberProperty{JsiiProperty: "portNumber", GoGetter: "PortNumber"},
+			_jsii_.MemberProperty{JsiiProperty: "ports", GoGetter: "Ports"},
 			_jsii_.MemberProperty{JsiiProperty: "resources", GoGetter: "Resources"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "workingDir", GoGetter: "WorkingDir"},
@@ -389,6 +392,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-24.ContainerLifecycle",
 		reflect.TypeOf((*ContainerLifecycle)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-24.ContainerPort",
+		reflect.TypeOf((*ContainerPort)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-24.ContainerProps",

@@ -10,6 +10,17 @@ import (
 	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
 )
 
+func (c *jsiiProxy_Container) validateAddPortParameters(port *ContainerPort) error {
+	if port == nil {
+		return fmt.Errorf("parameter port is required, but nil was provided")
+	}
+	if err := _jsii_.ValidateStruct(port, func() string { return "parameter port" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *jsiiProxy_Container) validateMountParameters(path *string, storage IStorage, options *MountOptions) error {
 	if path == nil {
 		return fmt.Errorf("parameter path is required, but nil was provided")
