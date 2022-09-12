@@ -317,6 +317,15 @@ func init() {
 		"cdk8s-plus-22.CommonSecretProps",
 		reflect.TypeOf((*CommonSecretProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-22.ConcurrencyPolicy",
+		reflect.TypeOf((*ConcurrencyPolicy)(nil)).Elem(),
+		map[string]interface{}{
+			"ALLOW": ConcurrencyPolicy_ALLOW,
+			"FORBID": ConcurrencyPolicy_FORBID,
+			"REPLACE": ConcurrencyPolicy_REPLACE,
+		},
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.ConfigMap",
 		reflect.TypeOf((*ConfigMap)(nil)).Elem(),
@@ -436,6 +445,64 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-22.CpuResources",
 		reflect.TypeOf((*CpuResources)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-22.CronJob",
+		reflect.TypeOf((*CronJob)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "addContainer", GoMethod: "AddContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
+			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
+			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
+			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
+			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
+			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
+			_jsii_.MemberProperty{JsiiProperty: "automountServiceAccountToken", GoGetter: "AutomountServiceAccountToken"},
+			_jsii_.MemberProperty{JsiiProperty: "concurrencyPolicy", GoGetter: "ConcurrencyPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "connections", GoGetter: "Connections"},
+			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
+			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
+			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
+			_jsii_.MemberProperty{JsiiProperty: "failedJobsRetained", GoGetter: "FailedJobsRetained"},
+			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
+			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
+			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberProperty{JsiiProperty: "matchExpressions", GoGetter: "MatchExpressions"},
+			_jsii_.MemberProperty{JsiiProperty: "matchLabels", GoGetter: "MatchLabels"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "permissions", GoGetter: "Permissions"},
+			_jsii_.MemberProperty{JsiiProperty: "podMetadata", GoGetter: "PodMetadata"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "schedule", GoGetter: "Schedule"},
+			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
+			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
+			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
+			_jsii_.MemberProperty{JsiiProperty: "serviceAccount", GoGetter: "ServiceAccount"},
+			_jsii_.MemberProperty{JsiiProperty: "startingDeadline", GoGetter: "StartingDeadline"},
+			_jsii_.MemberProperty{JsiiProperty: "successfulJobsRetained", GoGetter: "SuccessfulJobsRetained"},
+			_jsii_.MemberProperty{JsiiProperty: "suspend", GoGetter: "Suspend"},
+			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
+			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+		},
+		func() interface{} {
+			j := jsiiProxy_CronJob{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-22.CronJobProps",
+		reflect.TypeOf((*CronJobProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-22.DaemonSet",
