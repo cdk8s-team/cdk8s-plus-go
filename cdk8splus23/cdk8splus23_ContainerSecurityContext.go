@@ -8,6 +8,7 @@ import (
 
 // Container security attributes and settings.
 type ContainerSecurityContext interface {
+	AllowPrivilegeEscalation() *bool
 	EnsureNonRoot() *bool
 	Group() *float64
 	Privileged() *bool
@@ -18,6 +19,16 @@ type ContainerSecurityContext interface {
 // The jsii proxy struct for ContainerSecurityContext
 type jsiiProxy_ContainerSecurityContext struct {
 	_ byte // padding
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) AllowPrivilegeEscalation() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"allowPrivilegeEscalation",
+		&returns,
+	)
+	return returns
 }
 
 func (j *jsiiProxy_ContainerSecurityContext) EnsureNonRoot() *bool {

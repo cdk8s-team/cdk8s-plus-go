@@ -4,6 +4,8 @@ package cdk8splus23
 
 // Properties for `ContainerSecurityContext`.
 type ContainerSecurityContextProps struct {
+	// Whether a process can gain more privileges than its parent process.
+	AllowPrivilegeEscalation *bool `field:"optional" json:"allowPrivilegeEscalation" yaml:"allowPrivilegeEscalation"`
 	// Indicates that the container must run as a non-root user.
 	//
 	// If true, the Kubelet will validate the image at runtime to ensure that it does
