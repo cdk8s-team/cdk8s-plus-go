@@ -418,6 +418,7 @@ func init() {
 		"cdk8s-plus-24.ContainerSecurityContext",
 		reflect.TypeOf((*ContainerSecurityContext)(nil)).Elem(),
 		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "allowPrivilegeEscalation", GoGetter: "AllowPrivilegeEscalation"},
 			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
 			_jsii_.MemberProperty{JsiiProperty: "group", GoGetter: "Group"},
 			_jsii_.MemberProperty{JsiiProperty: "privileged", GoGetter: "Privileged"},
