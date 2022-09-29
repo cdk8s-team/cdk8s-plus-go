@@ -72,5 +72,9 @@ type WorkloadProps struct {
 	// This ensures this workload manages pods created by
 	// its pod template.
 	Select *bool `field:"optional" json:"select" yaml:"select"`
+	// Automatically spread pods across hostname and zones.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#internal-default-constraints
+	//
+	Spread *bool `field:"optional" json:"spread" yaml:"spread"`
 }
 

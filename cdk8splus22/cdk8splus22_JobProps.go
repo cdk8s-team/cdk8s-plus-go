@@ -72,6 +72,10 @@ type JobProps struct {
 	// This ensures this workload manages pods created by
 	// its pod template.
 	Select *bool `field:"optional" json:"select" yaml:"select"`
+	// Automatically spread pods across hostname and zones.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#internal-default-constraints
+	//
+	Spread *bool `field:"optional" json:"spread" yaml:"spread"`
 	// Specifies the duration the job may be active before the system tries to terminate it.
 	ActiveDeadline cdk8s.Duration `field:"optional" json:"activeDeadline" yaml:"activeDeadline"`
 	// Specifies the number of retries before marking this job failed.
