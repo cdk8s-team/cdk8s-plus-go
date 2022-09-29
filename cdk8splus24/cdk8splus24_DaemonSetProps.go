@@ -72,6 +72,10 @@ type DaemonSetProps struct {
 	// This ensures this workload manages pods created by
 	// its pod template.
 	Select *bool `field:"optional" json:"select" yaml:"select"`
+	// Automatically spread pods across hostname and zones.
+	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#internal-default-constraints
+	//
+	Spread *bool `field:"optional" json:"spread" yaml:"spread"`
 	// Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	MinReadySeconds *float64 `field:"optional" json:"minReadySeconds" yaml:"minReadySeconds"`
 }
