@@ -30,6 +30,7 @@ type Pod interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	Isolate() *bool
 	// The object kind (e.g. "Deployment").
 	Kind() *string
 	Metadata() cdk8s.ApiObjectMetadataDefinition
@@ -178,6 +179,16 @@ func (j *jsiiProxy_Pod) InitContainers() *[]Container {
 	_jsii_.Get(
 		j,
 		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) Isolate() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"isolate",
 		&returns,
 	)
 	return returns
