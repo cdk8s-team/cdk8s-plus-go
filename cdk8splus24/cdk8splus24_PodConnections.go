@@ -41,6 +41,8 @@ type PodConnections interface {
 	//   web.connections.allowTo(redis, { isolation: Isolation.PEER })
 	//
 	AllowTo(peer INetworkPolicyPeer, options *PodConnectionsAllowToOptions)
+	// Sets the default network policy for Pod/Workload to have all egress and ingress connections as disabled.
+	Isolate()
 }
 
 // The jsii proxy struct for PodConnections
@@ -105,6 +107,14 @@ func (p *jsiiProxy_PodConnections) AllowTo(peer INetworkPolicyPeer, options *Pod
 		p,
 		"allowTo",
 		[]interface{}{peer, options},
+	)
+}
+
+func (p *jsiiProxy_PodConnections) Isolate() {
+	_jsii_.InvokeVoid(
+		p,
+		"isolate",
+		nil, // no parameters
 	)
 }
 
