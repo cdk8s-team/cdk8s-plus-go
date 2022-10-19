@@ -49,6 +49,7 @@ type Deployment interface {
 	DockerRegistryAuth() DockerConfigSecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
+	Isolate() *bool
 	// The object kind (e.g. "Deployment").
 	Kind() *string
 	// The expression matchers this workload will use in order to select pods.
@@ -223,6 +224,16 @@ func (j *jsiiProxy_Deployment) InitContainers() *[]Container {
 	_jsii_.Get(
 		j,
 		"initContainers",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) Isolate() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"isolate",
 		&returns,
 	)
 	return returns
