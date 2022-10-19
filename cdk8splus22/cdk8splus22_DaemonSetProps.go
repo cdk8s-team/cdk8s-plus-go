@@ -42,6 +42,11 @@ type DaemonSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
 	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
+	// Isolates the pod.
+	//
+	// This will prevent any ingress or egress connections to / from this pod.
+	// You can however allow explicit connections post instantiation by using the `.connections` property.
+	Isolate *bool `field:"optional" json:"isolate" yaml:"isolate"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
