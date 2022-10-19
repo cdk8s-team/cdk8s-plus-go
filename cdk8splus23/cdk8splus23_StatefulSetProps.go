@@ -81,8 +81,6 @@ type StatefulSetProps struct {
 	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#internal-default-constraints
 	//
 	Spread *bool `field:"optional" json:"spread" yaml:"spread"`
-	// Service to associate with the statefulset.
-	Service Service `field:"required" json:"service" yaml:"service"`
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	//
 	// Zero means the pod will be considered available as soon as it is ready.
@@ -95,6 +93,8 @@ type StatefulSetProps struct {
 	PodManagementPolicy PodManagementPolicy `field:"optional" json:"podManagementPolicy" yaml:"podManagementPolicy"`
 	// Number of desired pods.
 	Replicas *float64 `field:"optional" json:"replicas" yaml:"replicas"`
+	// Service to associate with the statefulset.
+	Service Service `field:"optional" json:"service" yaml:"service"`
 	// Indicates the StatefulSetUpdateStrategy that will be employed to update Pods in the StatefulSet when a revision is made to Template.
 	Strategy StatefulSetUpdateStrategy `field:"optional" json:"strategy" yaml:"strategy"`
 }

@@ -84,6 +84,7 @@ type StatefulSet interface {
 	RestartPolicy() RestartPolicy
 	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
+	Service() Service
 	ServiceAccount() IServiceAccount
 	// The update startegy of this stateful set.
 	Strategy() StatefulSetUpdateStrategy
@@ -388,6 +389,16 @@ func (j *jsiiProxy_StatefulSet) SecurityContext() PodSecurityContext {
 	_jsii_.Get(
 		j,
 		"securityContext",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) Service() Service {
+	var returns Service
+	_jsii_.Get(
+		j,
+		"service",
 		&returns,
 	)
 	return returns

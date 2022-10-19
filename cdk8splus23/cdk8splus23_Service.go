@@ -44,6 +44,8 @@ type Service interface {
 	// The tree node.
 	Node() constructs.Node
 	Permissions() ResourcePermissions
+	// Return the first port of the service.
+	Port() *float64
 	// Ports for this service.
 	//
 	// Use `bind()` to bind additional service ports.
@@ -182,6 +184,16 @@ func (j *jsiiProxy_Service) Permissions() ResourcePermissions {
 	_jsii_.Get(
 		j,
 		"permissions",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Service) Port() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"port",
 		&returns,
 	)
 	return returns
