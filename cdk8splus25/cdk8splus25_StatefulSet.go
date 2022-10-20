@@ -35,6 +35,7 @@ import (
 // - Ordered, automated rolling updates.
 type StatefulSet interface {
 	Workload
+	IScalable
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The underlying cdk8s API object.
@@ -48,6 +49,9 @@ type StatefulSet interface {
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
+	// If this is a target of an autoscaler.
+	HasAutoscaler() *bool
+	SetHasAutoscaler(val *bool)
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
 	Isolate() *bool
@@ -97,6 +101,10 @@ type StatefulSet interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Called on all IScalable targets when they are associated with an autoscaler.
+	// See: IScalable.markHasAutoscaler()
+	//
+	MarkHasAutoscaler()
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -111,6 +119,10 @@ type StatefulSet interface {
 	// See: IPodSelector.toPodSelectorConfig()
 	//
 	ToPodSelectorConfig() *PodSelectorConfig
+	// Return the target spec properties of this Scalable.
+	// See: IScalable.toScalingTarget()
+	//
+	ToScalingTarget() *ScalingTarget
 	// Returns a string representation of this construct.
 	ToString() *string
 	// Return the subject configuration.
@@ -122,6 +134,7 @@ type StatefulSet interface {
 // The jsii proxy struct for StatefulSet
 type jsiiProxy_StatefulSet struct {
 	jsiiProxy_Workload
+	jsiiProxy_IScalable
 }
 
 func (j *jsiiProxy_StatefulSet) ApiGroup() *string {
@@ -199,6 +212,16 @@ func (j *jsiiProxy_StatefulSet) DockerRegistryAuth() DockerConfigSecret {
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) HasAutoscaler() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"hasAutoscaler",
 		&returns,
 	)
 	return returns
@@ -462,6 +485,17 @@ func NewStatefulSet_Override(s StatefulSet, scope constructs.Construct, id *stri
 	)
 }
 
+func (j *jsiiProxy_StatefulSet)SetHasAutoscaler(val *bool) {
+	if err := j.validateSetHasAutoscalerParameters(val); err != nil {
+		panic(err)
+	}
+	_jsii_.Set(
+		j,
+		"hasAutoscaler",
+		val,
+	)
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`
@@ -577,6 +611,14 @@ func (s *jsiiProxy_StatefulSet) AsNonApiResource() *string {
 	return returns
 }
 
+func (s *jsiiProxy_StatefulSet) MarkHasAutoscaler() {
+	_jsii_.InvokeVoid(
+		s,
+		"markHasAutoscaler",
+		nil, // no parameters
+	)
+}
+
 func (s *jsiiProxy_StatefulSet) Select(selectors ...LabelSelector) {
 	args := []interface{}{}
 	for _, a := range selectors {
@@ -622,6 +664,19 @@ func (s *jsiiProxy_StatefulSet) ToPodSelectorConfig() *PodSelectorConfig {
 	_jsii_.Invoke(
 		s,
 		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_StatefulSet) ToScalingTarget() *ScalingTarget {
+	var returns *ScalingTarget
+
+	_jsii_.Invoke(
+		s,
+		"toScalingTarget",
 		nil, // no parameters
 		&returns,
 	)

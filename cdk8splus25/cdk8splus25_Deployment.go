@@ -34,6 +34,7 @@ import (
 // - Clean up older ReplicaSets that you don't need anymore.
 type Deployment interface {
 	Workload
+	IScalable
 	// The group portion of the API version (e.g. "authorization.k8s.io").
 	ApiGroup() *string
 	// The underlying cdk8s API object.
@@ -47,6 +48,9 @@ type Deployment interface {
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() DockerConfigSecret
+	// If this is a target of an autoscaler.
+	HasAutoscaler() *bool
+	SetHasAutoscaler(val *bool)
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
 	Isolate() *bool
@@ -102,6 +106,10 @@ type Deployment interface {
 	//
 	// This is equivalent to running `kubectl expose deployment <deployment-name>`.
 	ExposeViaService(options *DeploymentExposeViaServiceOptions) Service
+	// Called on all IScalable targets when they are associated with an autoscaler.
+	// See: IScalable.markHasAutoscaler()
+	//
+	MarkHasAutoscaler()
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -116,6 +124,10 @@ type Deployment interface {
 	// See: IPodSelector.toPodSelectorConfig()
 	//
 	ToPodSelectorConfig() *PodSelectorConfig
+	// Return the target spec properties of this Scalable.
+	// See: IScalable.toScalingTarget()
+	//
+	ToScalingTarget() *ScalingTarget
 	// Returns a string representation of this construct.
 	ToString() *string
 	// Return the subject configuration.
@@ -127,6 +139,7 @@ type Deployment interface {
 // The jsii proxy struct for Deployment
 type jsiiProxy_Deployment struct {
 	jsiiProxy_Workload
+	jsiiProxy_IScalable
 }
 
 func (j *jsiiProxy_Deployment) ApiGroup() *string {
@@ -204,6 +217,16 @@ func (j *jsiiProxy_Deployment) DockerRegistryAuth() DockerConfigSecret {
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) HasAutoscaler() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"hasAutoscaler",
 		&returns,
 	)
 	return returns
@@ -457,6 +480,17 @@ func NewDeployment_Override(d Deployment, scope constructs.Construct, id *string
 	)
 }
 
+func (j *jsiiProxy_Deployment)SetHasAutoscaler(val *bool) {
+	if err := j.validateSetHasAutoscalerParameters(val); err != nil {
+		panic(err)
+	}
+	_jsii_.Set(
+		j,
+		"hasAutoscaler",
+		val,
+	)
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`
@@ -604,6 +638,14 @@ func (d *jsiiProxy_Deployment) ExposeViaService(options *DeploymentExposeViaServ
 	return returns
 }
 
+func (d *jsiiProxy_Deployment) MarkHasAutoscaler() {
+	_jsii_.InvokeVoid(
+		d,
+		"markHasAutoscaler",
+		nil, // no parameters
+	)
+}
+
 func (d *jsiiProxy_Deployment) Select(selectors ...LabelSelector) {
 	args := []interface{}{}
 	for _, a := range selectors {
@@ -649,6 +691,19 @@ func (d *jsiiProxy_Deployment) ToPodSelectorConfig() *PodSelectorConfig {
 	_jsii_.Invoke(
 		d,
 		"toPodSelectorConfig",
+		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (d *jsiiProxy_Deployment) ToScalingTarget() *ScalingTarget {
+	var returns *ScalingTarget
+
+	_jsii_.Invoke(
+		d,
+		"toScalingTarget",
 		nil, // no parameters
 		&returns,
 	)
