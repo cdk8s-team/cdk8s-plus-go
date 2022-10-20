@@ -60,6 +60,14 @@ func validateStatefulSet_IsConstructParameters(x interface{}) error {
 	return nil
 }
 
+func (j *jsiiProxy_StatefulSet) validateSetHasAutoscalerParameters(val *bool) error {
+	if val == nil {
+		return fmt.Errorf("parameter val is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateNewStatefulSetParameters(scope constructs.Construct, id *string, props *StatefulSetProps) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")

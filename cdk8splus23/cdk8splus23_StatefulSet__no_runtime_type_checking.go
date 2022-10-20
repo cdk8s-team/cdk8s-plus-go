@@ -25,6 +25,10 @@ func validateStatefulSet_IsConstructParameters(x interface{}) error {
 	return nil
 }
 
+func (j *jsiiProxy_StatefulSet) validateSetHasAutoscalerParameters(val *bool) error {
+	return nil
+}
+
 func validateNewStatefulSetParameters(scope constructs.Construct, id *string, props *StatefulSetProps) error {
 	return nil
 }

@@ -581,10 +581,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaIngress", GoMethod: "ExposeViaIngress"},
 			_jsii_.MemberMethod{JsiiMethod: "exposeViaService", GoMethod: "ExposeViaService"},
+			_jsii_.MemberProperty{JsiiProperty: "hasAutoscaler", GoGetter: "HasAutoscaler"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "isolate", GoGetter: "Isolate"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberMethod{JsiiMethod: "markHasAutoscaler", GoMethod: "MarkHasAutoscaler"},
 			_jsii_.MemberProperty{JsiiProperty: "matchExpressions", GoGetter: "MatchExpressions"},
 			_jsii_.MemberProperty{JsiiProperty: "matchLabels", GoGetter: "MatchLabels"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -606,6 +608,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toScalingTarget", GoMethod: "ToScalingTarget"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -613,6 +616,7 @@ func init() {
 		func() interface{} {
 			j := jsiiProxy_Deployment{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IScalable)
 			return &j
 		},
 	)
@@ -861,6 +865,40 @@ func init() {
 		"cdk8s-plus-23.HandlerFromTcpSocketOptions",
 		reflect.TypeOf((*HandlerFromTcpSocketOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.HorizontalPodAutoscaler",
+		reflect.TypeOf((*HorizontalPodAutoscaler)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
+			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
+			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
+			_jsii_.MemberMethod{JsiiMethod: "asApiResource", GoMethod: "AsApiResource"},
+			_jsii_.MemberMethod{JsiiMethod: "asNonApiResource", GoMethod: "AsNonApiResource"},
+			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberProperty{JsiiProperty: "maxReplicas", GoGetter: "MaxReplicas"},
+			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
+			_jsii_.MemberProperty{JsiiProperty: "metrics", GoGetter: "Metrics"},
+			_jsii_.MemberProperty{JsiiProperty: "minReplicas", GoGetter: "MinReplicas"},
+			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
+			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberProperty{JsiiProperty: "permissions", GoGetter: "Permissions"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
+			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberProperty{JsiiProperty: "scaleDown", GoGetter: "ScaleDown"},
+			_jsii_.MemberProperty{JsiiProperty: "scaleUp", GoGetter: "ScaleUp"},
+			_jsii_.MemberProperty{JsiiProperty: "target", GoGetter: "Target"},
+			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+		},
+		func() interface{} {
+			j := jsiiProxy_HorizontalPodAutoscaler{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			return &j
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.HorizontalPodAutoscalerProps",
+		reflect.TypeOf((*HorizontalPodAutoscalerProps)(nil)).Elem(),
+	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.HostAlias",
 		reflect.TypeOf((*HostAlias)(nil)).Elem(),
@@ -1053,6 +1091,18 @@ func init() {
 			j := jsiiProxy_IRole{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
 			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"cdk8s-plus-23.IScalable",
+		reflect.TypeOf((*IScalable)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "hasAutoscaler", GoGetter: "HasAutoscaler"},
+			_jsii_.MemberMethod{JsiiMethod: "markHasAutoscaler", GoMethod: "MarkHasAutoscaler"},
+			_jsii_.MemberMethod{JsiiMethod: "toScalingTarget", GoMethod: "ToScalingTarget"},
+		},
+		func() interface{} {
+			return &jsiiProxy_IScalable{}
 		},
 	)
 	_jsii_.RegisterInterface(
@@ -1271,6 +1321,36 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.MemoryResources",
 		reflect.TypeOf((*MemoryResources)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.Metric",
+		reflect.TypeOf((*Metric)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberProperty{JsiiProperty: "type", GoGetter: "Type"},
+		},
+		func() interface{} {
+			return &jsiiProxy_Metric{}
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.MetricContainerResourceOptions",
+		reflect.TypeOf((*MetricContainerResourceOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.MetricObjectOptions",
+		reflect.TypeOf((*MetricObjectOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.MetricOptions",
+		reflect.TypeOf((*MetricOptions)(nil)).Elem(),
+	)
+	_jsii_.RegisterClass(
+		"cdk8s-plus-23.MetricTarget",
+		reflect.TypeOf((*MetricTarget)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_MetricTarget{}
+		},
 	)
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.MountOptions",
@@ -1815,6 +1895,14 @@ func init() {
 		},
 	)
 	_jsii_.RegisterClass(
+		"cdk8s-plus-23.Replicas",
+		reflect.TypeOf((*Replicas)(nil)).Elem(),
+		nil, // no members
+		func() interface{} {
+			return &jsiiProxy_Replicas{}
+		},
+	)
+	_jsii_.RegisterClass(
 		"cdk8s-plus-23.Resource",
 		reflect.TypeOf((*Resource)(nil)).Elem(),
 		[]_jsii_.Member{
@@ -1954,6 +2042,27 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-23.RoleProps",
 		reflect.TypeOf((*RoleProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.ScalingPolicy",
+		reflect.TypeOf((*ScalingPolicy)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.ScalingRules",
+		reflect.TypeOf((*ScalingRules)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-23.ScalingStrategy",
+		reflect.TypeOf((*ScalingStrategy)(nil)).Elem(),
+		map[string]interface{}{
+			"MAX_CHANGE": ScalingStrategy_MAX_CHANGE,
+			"MIN_CHANGE": ScalingStrategy_MIN_CHANGE,
+			"DISABLED": ScalingStrategy_DISABLED,
+		},
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-23.ScalingTarget",
+		reflect.TypeOf((*ScalingTarget)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-23.Secret",
@@ -2168,10 +2277,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "containers", GoGetter: "Containers"},
 			_jsii_.MemberProperty{JsiiProperty: "dns", GoGetter: "Dns"},
 			_jsii_.MemberProperty{JsiiProperty: "dockerRegistryAuth", GoGetter: "DockerRegistryAuth"},
+			_jsii_.MemberProperty{JsiiProperty: "hasAutoscaler", GoGetter: "HasAutoscaler"},
 			_jsii_.MemberProperty{JsiiProperty: "hostAliases", GoGetter: "HostAliases"},
 			_jsii_.MemberProperty{JsiiProperty: "initContainers", GoGetter: "InitContainers"},
 			_jsii_.MemberProperty{JsiiProperty: "isolate", GoGetter: "Isolate"},
 			_jsii_.MemberProperty{JsiiProperty: "kind", GoGetter: "Kind"},
+			_jsii_.MemberMethod{JsiiMethod: "markHasAutoscaler", GoMethod: "MarkHasAutoscaler"},
 			_jsii_.MemberProperty{JsiiProperty: "matchExpressions", GoGetter: "MatchExpressions"},
 			_jsii_.MemberProperty{JsiiProperty: "matchLabels", GoGetter: "MatchLabels"},
 			_jsii_.MemberProperty{JsiiProperty: "metadata", GoGetter: "Metadata"},
@@ -2194,6 +2305,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "toScalingTarget", GoMethod: "ToScalingTarget"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
@@ -2201,6 +2313,7 @@ func init() {
 		func() interface{} {
 			j := jsiiProxy_StatefulSet{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_Workload)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IScalable)
 			return &j
 		},
 	)
