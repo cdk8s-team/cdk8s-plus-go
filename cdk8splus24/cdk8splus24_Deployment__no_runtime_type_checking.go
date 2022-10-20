@@ -33,6 +33,10 @@ func validateDeployment_IsConstructParameters(x interface{}) error {
 	return nil
 }
 
+func (j *jsiiProxy_Deployment) validateSetHasAutoscalerParameters(val *bool) error {
+	return nil
+}
+
 func validateNewDeploymentParameters(scope constructs.Construct, id *string, props *DeploymentProps) error {
 	return nil
 }

@@ -80,6 +80,14 @@ func validateDeployment_IsConstructParameters(x interface{}) error {
 	return nil
 }
 
+func (j *jsiiProxy_Deployment) validateSetHasAutoscalerParameters(val *bool) error {
+	if val == nil {
+		return fmt.Errorf("parameter val is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateNewDeploymentParameters(scope constructs.Construct, id *string, props *DeploymentProps) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")
