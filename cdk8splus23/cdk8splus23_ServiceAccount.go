@@ -221,10 +221,10 @@ func NewServiceAccount_Override(s ServiceAccount, scope constructs.Construct, id
 }
 
 // Imports a service account from the cluster as a reference.
-func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *string, name *string) IServiceAccount {
+func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *string, name *string, options *FromServiceAccountNameOptions) IServiceAccount {
 	_init_.Initialize()
 
-	if err := validateServiceAccount_FromServiceAccountNameParameters(scope, id, name); err != nil {
+	if err := validateServiceAccount_FromServiceAccountNameParameters(scope, id, name, options); err != nil {
 		panic(err)
 	}
 	var returns IServiceAccount
@@ -232,7 +232,7 @@ func ServiceAccount_FromServiceAccountName(scope constructs.Construct, id *strin
 	_jsii_.StaticInvoke(
 		"cdk8s-plus-23.ServiceAccount",
 		"fromServiceAccountName",
-		[]interface{}{scope, id, name},
+		[]interface{}{scope, id, name, options},
 		&returns,
 	)
 
