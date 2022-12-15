@@ -9,7 +9,7 @@ func (s *jsiiProxy_ServiceAccount) validateAddSecretParameters(secr ISecret) err
 	return nil
 }
 
-func validateServiceAccount_FromServiceAccountNameParameters(scope constructs.Construct, id *string, name *string) error {
+func validateServiceAccount_FromServiceAccountNameParameters(scope constructs.Construct, id *string, name *string, options *FromServiceAccountNameOptions) error {
 	return nil
 }
 
