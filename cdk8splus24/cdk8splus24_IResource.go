@@ -10,9 +10,8 @@ import (
 
 // Represents a resource.
 type IResource interface {
+	IApiResource
 	constructs.IConstruct
-	// The group portion of the API version (e.g. "authorization.k8s.io").
-	ApiGroup() *string
 	// The object's API version (e.g. "authorization.k8s.io/v1").
 	ApiVersion() *string
 	// The object kind (e.g. "Deployment").
@@ -23,17 +22,8 @@ type IResource interface {
 
 // The jsii proxy for IResource
 type jsiiProxy_IResource struct {
+	jsiiProxy_IApiResource
 	internal.Type__constructsIConstruct
-}
-
-func (j *jsiiProxy_IResource) ApiGroup() *string {
-	var returns *string
-	_jsii_.Get(
-		j,
-		"apiGroup",
-		&returns,
-	)
-	return returns
 }
 
 func (j *jsiiProxy_IResource) ApiVersion() *string {
@@ -61,6 +51,46 @@ func (j *jsiiProxy_IResource) Name() *string {
 	_jsii_.Get(
 		j,
 		"name",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) ApiGroup() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"apiGroup",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) Node() constructs.Node {
+	var returns constructs.Node
+	_jsii_.Get(
+		j,
+		"node",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) ResourceName() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceName",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_IResource) ResourceType() *string {
+	var returns *string
+	_jsii_.Get(
+		j,
+		"resourceType",
 		&returns,
 	)
 	return returns
