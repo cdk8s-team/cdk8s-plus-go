@@ -778,6 +778,10 @@ func init() {
 		"cdk8s-plus-24.ExposeServiceViaIngressOptions",
 		reflect.TypeOf((*ExposeServiceViaIngressOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-24.FromServiceAccountNameOptions",
+		reflect.TypeOf((*FromServiceAccountNameOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-24.FsGroupChangePolicy",
 		reflect.TypeOf((*FsGroupChangePolicy)(nil)).Elem(),
@@ -1148,10 +1152,12 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IServiceAccount{}
 			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_ISubject)
 			return &j
 		},
 	)
