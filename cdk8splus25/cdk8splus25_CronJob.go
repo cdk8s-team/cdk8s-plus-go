@@ -83,6 +83,7 @@ type CronJob interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -581,6 +582,17 @@ func (c *jsiiProxy_CronJob) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (c *jsiiProxy_CronJob) AttachContainer(cont Container) {
+	if err := c.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		c,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (c *jsiiProxy_CronJob) Select(selectors ...LabelSelector) {

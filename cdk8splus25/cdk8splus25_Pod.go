@@ -59,6 +59,7 @@ type Pod interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Return the configuration of this peer.
 	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
 	//
@@ -476,6 +477,17 @@ func (p *jsiiProxy_Pod) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (p *jsiiProxy_Pod) AttachContainer(cont Container) {
+	if err := p.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		p,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (p *jsiiProxy_Pod) ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig {
