@@ -101,6 +101,7 @@ type StatefulSet interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Called on all IScalable targets when they are associated with an autoscaler.
 	// See: IScalable.markHasAutoscaler()
 	//
@@ -609,6 +610,17 @@ func (s *jsiiProxy_StatefulSet) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (s *jsiiProxy_StatefulSet) AttachContainer(cont Container) {
+	if err := s.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		s,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (s *jsiiProxy_StatefulSet) MarkHasAutoscaler() {

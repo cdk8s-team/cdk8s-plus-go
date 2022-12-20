@@ -80,6 +80,7 @@ type DaemonSet interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -518,6 +519,17 @@ func (d *jsiiProxy_DaemonSet) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (d *jsiiProxy_DaemonSet) AttachContainer(cont Container) {
+	if err := d.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		d,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (d *jsiiProxy_DaemonSet) Select(selectors ...LabelSelector) {

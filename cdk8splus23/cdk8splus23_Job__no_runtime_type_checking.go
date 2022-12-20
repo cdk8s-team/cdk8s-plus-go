@@ -21,6 +21,10 @@ func (j *jsiiProxy_Job) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (j *jsiiProxy_Job) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateJob_IsConstructParameters(x interface{}) error {
 	return nil
 }

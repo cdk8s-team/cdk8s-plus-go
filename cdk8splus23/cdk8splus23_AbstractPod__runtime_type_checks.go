@@ -52,6 +52,14 @@ func (a *jsiiProxy_AbstractPod) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (a *jsiiProxy_AbstractPod) validateAttachContainerParameters(cont Container) error {
+	if cont == nil {
+		return fmt.Errorf("parameter cont is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateAbstractPod_IsConstructParameters(x interface{}) error {
 	if x == nil {
 		return fmt.Errorf("parameter x is required, but nil was provided")

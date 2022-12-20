@@ -98,6 +98,7 @@ type Deployment interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Expose a deployment via an ingress.
 	//
 	// This will first expose the deployment with a service, and then expose the service via an ingress.
@@ -604,6 +605,17 @@ func (d *jsiiProxy_Deployment) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (d *jsiiProxy_Deployment) AttachContainer(cont Container) {
+	if err := d.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		d,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (d *jsiiProxy_Deployment) ExposeViaIngress(path *string, options *ExposeDeploymentViaIngressOptions) Ingress {

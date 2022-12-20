@@ -21,6 +21,10 @@ func (s *jsiiProxy_StatefulSet) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (s *jsiiProxy_StatefulSet) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateStatefulSet_IsConstructParameters(x interface{}) error {
 	return nil
 }
