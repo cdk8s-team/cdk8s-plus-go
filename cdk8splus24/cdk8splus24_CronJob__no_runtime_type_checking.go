@@ -21,6 +21,10 @@ func (c *jsiiProxy_CronJob) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (c *jsiiProxy_CronJob) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateCronJob_IsConstructParameters(x interface{}) error {
 	return nil
 }

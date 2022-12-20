@@ -52,6 +52,14 @@ func (c *jsiiProxy_CronJob) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (c *jsiiProxy_CronJob) validateAttachContainerParameters(cont Container) error {
+	if cont == nil {
+		return fmt.Errorf("parameter cont is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateCronJob_IsConstructParameters(x interface{}) error {
 	if x == nil {
 		return fmt.Errorf("parameter x is required, but nil was provided")

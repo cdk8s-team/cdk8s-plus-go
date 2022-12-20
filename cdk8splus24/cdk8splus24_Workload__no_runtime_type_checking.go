@@ -21,6 +21,10 @@ func (w *jsiiProxy_Workload) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (w *jsiiProxy_Workload) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateWorkload_IsConstructParameters(x interface{}) error {
 	return nil
 }

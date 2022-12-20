@@ -21,6 +21,10 @@ func (d *jsiiProxy_DaemonSet) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (d *jsiiProxy_DaemonSet) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateDaemonSet_IsConstructParameters(x interface{}) error {
 	return nil
 }

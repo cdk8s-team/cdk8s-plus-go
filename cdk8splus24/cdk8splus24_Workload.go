@@ -67,6 +67,7 @@ type Workload interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	AttachContainer(cont Container)
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
@@ -478,6 +479,17 @@ func (w *jsiiProxy_Workload) AsNonApiResource() *string {
 	)
 
 	return returns
+}
+
+func (w *jsiiProxy_Workload) AttachContainer(cont Container) {
+	if err := w.validateAttachContainerParameters(cont); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		w,
+		"attachContainer",
+		[]interface{}{cont},
+	)
 }
 
 func (w *jsiiProxy_Workload) Select(selectors ...LabelSelector) {

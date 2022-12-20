@@ -21,6 +21,10 @@ func (a *jsiiProxy_AbstractPod) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (a *jsiiProxy_AbstractPod) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func validateAbstractPod_IsConstructParameters(x interface{}) error {
 	return nil
 }

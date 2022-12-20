@@ -21,6 +21,10 @@ func (d *jsiiProxy_Deployment) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (d *jsiiProxy_Deployment) validateAttachContainerParameters(cont Container) error {
+	return nil
+}
+
 func (d *jsiiProxy_Deployment) validateExposeViaIngressParameters(path *string, options *ExposeDeploymentViaIngressOptions) error {
 	return nil
 }

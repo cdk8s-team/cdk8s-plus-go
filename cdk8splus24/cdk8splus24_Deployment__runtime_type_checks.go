@@ -52,6 +52,14 @@ func (d *jsiiProxy_Deployment) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (d *jsiiProxy_Deployment) validateAttachContainerParameters(cont Container) error {
+	if cont == nil {
+		return fmt.Errorf("parameter cont is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func (d *jsiiProxy_Deployment) validateExposeViaIngressParameters(path *string, options *ExposeDeploymentViaIngressOptions) error {
 	if path == nil {
 		return fmt.Errorf("parameter path is required, but nil was provided")
