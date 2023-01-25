@@ -44,6 +44,8 @@ type ServiceAccountTokenSecret interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Returns EnvValue object from a secret's key.
+	EnvValue(key *string, options *EnvValueFromSecretOptions) EnvValue
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Returns a string representation of this construct.
@@ -278,6 +280,22 @@ func (s *jsiiProxy_ServiceAccountTokenSecret) AsNonApiResource() *string {
 		s,
 		"asNonApiResource",
 		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (s *jsiiProxy_ServiceAccountTokenSecret) EnvValue(key *string, options *EnvValueFromSecretOptions) EnvValue {
+	if err := s.validateEnvValueParameters(key, options); err != nil {
+		panic(err)
+	}
+	var returns EnvValue
+
+	_jsii_.Invoke(
+		s,
+		"envValue",
+		[]interface{}{key, options},
 		&returns,
 	)
 

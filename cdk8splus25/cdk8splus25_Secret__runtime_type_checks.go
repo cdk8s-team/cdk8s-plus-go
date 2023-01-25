@@ -23,6 +23,18 @@ func (s *jsiiProxy_Secret) validateAddStringDataParameters(key *string, value *s
 	return nil
 }
 
+func (s *jsiiProxy_Secret) validateEnvValueParameters(key *string, options *EnvValueFromSecretOptions) error {
+	if key == nil {
+		return fmt.Errorf("parameter key is required, but nil was provided")
+	}
+
+	if err := _jsii_.ValidateStruct(options, func() string { return "parameter options" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (s *jsiiProxy_Secret) validateGetStringDataParameters(key *string) error {
 	if key == nil {
 		return fmt.Errorf("parameter key is required, but nil was provided")
