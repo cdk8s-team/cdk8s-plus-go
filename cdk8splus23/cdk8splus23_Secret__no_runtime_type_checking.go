@@ -9,6 +9,10 @@ func (s *jsiiProxy_Secret) validateAddStringDataParameters(key *string, value *s
 	return nil
 }
 
+func (s *jsiiProxy_Secret) validateEnvValueParameters(key *string, options *EnvValueFromSecretOptions) error {
+	return nil
+}
+
 func (s *jsiiProxy_Secret) validateGetStringDataParameters(key *string) error {
 	return nil
 }

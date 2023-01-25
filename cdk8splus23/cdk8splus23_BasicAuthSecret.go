@@ -44,6 +44,8 @@ type BasicAuthSecret interface {
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
 	AsNonApiResource() *string
+	// Returns EnvValue object from a secret's key.
+	EnvValue(key *string, options *EnvValueFromSecretOptions) EnvValue
 	// Gets a string data by key or undefined.
 	GetStringData(key *string) *string
 	// Returns a string representation of this construct.
@@ -278,6 +280,22 @@ func (b *jsiiProxy_BasicAuthSecret) AsNonApiResource() *string {
 		b,
 		"asNonApiResource",
 		nil, // no parameters
+		&returns,
+	)
+
+	return returns
+}
+
+func (b *jsiiProxy_BasicAuthSecret) EnvValue(key *string, options *EnvValueFromSecretOptions) EnvValue {
+	if err := b.validateEnvValueParameters(key, options); err != nil {
+		panic(err)
+	}
+	var returns EnvValue
+
+	_jsii_.Invoke(
+		b,
+		"envValue",
+		[]interface{}{key, options},
 		&returns,
 	)
 

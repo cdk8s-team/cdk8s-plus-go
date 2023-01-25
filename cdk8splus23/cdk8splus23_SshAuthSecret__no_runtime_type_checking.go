@@ -9,6 +9,10 @@ func (s *jsiiProxy_SshAuthSecret) validateAddStringDataParameters(key *string, v
 	return nil
 }
 
+func (s *jsiiProxy_SshAuthSecret) validateEnvValueParameters(key *string, options *EnvValueFromSecretOptions) error {
+	return nil
+}
+
 func (s *jsiiProxy_SshAuthSecret) validateGetStringDataParameters(key *string) error {
 	return nil
 }

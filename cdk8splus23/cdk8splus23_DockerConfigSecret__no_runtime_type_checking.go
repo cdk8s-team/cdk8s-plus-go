@@ -9,6 +9,10 @@ func (d *jsiiProxy_DockerConfigSecret) validateAddStringDataParameters(key *stri
 	return nil
 }
 
+func (d *jsiiProxy_DockerConfigSecret) validateEnvValueParameters(key *string, options *EnvValueFromSecretOptions) error {
+	return nil
+}
+
 func (d *jsiiProxy_DockerConfigSecret) validateGetStringDataParameters(key *string) error {
 	return nil
 }
