@@ -25,7 +25,7 @@ type DaemonSetProps struct {
 	//
 	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
-	DockerRegistryAuth DockerConfigSecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
+	DockerRegistryAuth ISecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// List of initialization containers belonging to the pod.
