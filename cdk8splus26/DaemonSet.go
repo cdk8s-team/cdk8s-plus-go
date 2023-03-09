@@ -38,7 +38,7 @@ type DaemonSet interface {
 	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
-	DockerRegistryAuth() DockerConfigSecret
+	DockerRegistryAuth() ISecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
 	Isolate() *bool
@@ -178,8 +178,8 @@ func (j *jsiiProxy_DaemonSet) Dns() PodDns {
 	return returns
 }
 
-func (j *jsiiProxy_DaemonSet) DockerRegistryAuth() DockerConfigSecret {
-	var returns DockerConfigSecret
+func (j *jsiiProxy_DaemonSet) DockerRegistryAuth() ISecret {
+	var returns ISecret
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",

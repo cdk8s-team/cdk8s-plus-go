@@ -23,7 +23,7 @@ type AbstractPod interface {
 	AutomountServiceAccountToken() *bool
 	Containers() *[]Container
 	Dns() PodDns
-	DockerRegistryAuth() DockerConfigSecret
+	DockerRegistryAuth() ISecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
 	Isolate() *bool
@@ -143,8 +143,8 @@ func (j *jsiiProxy_AbstractPod) Dns() PodDns {
 	return returns
 }
 
-func (j *jsiiProxy_AbstractPod) DockerRegistryAuth() DockerConfigSecret {
-	var returns DockerConfigSecret
+func (j *jsiiProxy_AbstractPod) DockerRegistryAuth() ISecret {
+	var returns ISecret
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
