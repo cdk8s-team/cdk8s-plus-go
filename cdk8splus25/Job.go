@@ -36,7 +36,7 @@ type Job interface {
 	Connections() PodConnections
 	Containers() *[]Container
 	Dns() PodDns
-	DockerRegistryAuth() DockerConfigSecret
+	DockerRegistryAuth() ISecret
 	HostAliases() *[]*HostAlias
 	InitContainers() *[]Container
 	Isolate() *bool
@@ -197,8 +197,8 @@ func (j *jsiiProxy_Job) Dns() PodDns {
 	return returns
 }
 
-func (j *jsiiProxy_Job) DockerRegistryAuth() DockerConfigSecret {
-	var returns DockerConfigSecret
+func (j *jsiiProxy_Job) DockerRegistryAuth() ISecret {
+	var returns ISecret
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
