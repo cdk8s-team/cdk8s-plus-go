@@ -162,6 +162,27 @@ func NewKubeCsiStorageCapacity_Override(k KubeCsiStorageCapacity, scope construc
 	)
 }
 
+// Return whether the given object is an `ApiObject`.
+//
+// We do attribute detection since we can't reliably use 'instanceof'.
+func KubeCsiStorageCapacity_IsApiObject(o interface{}) *bool {
+	_init_.Initialize()
+
+	if err := validateKubeCsiStorageCapacity_IsApiObjectParameters(o); err != nil {
+		panic(err)
+	}
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-24.k8s.KubeCsiStorageCapacity",
+		"isApiObject",
+		[]interface{}{o},
+		&returns,
+	)
+
+	return returns
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`

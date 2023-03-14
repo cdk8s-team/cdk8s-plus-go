@@ -154,6 +154,27 @@ func NewKubeFlowSchemaV1Beta2_Override(k KubeFlowSchemaV1Beta2, scope constructs
 	)
 }
 
+// Return whether the given object is an `ApiObject`.
+//
+// We do attribute detection since we can't reliably use 'instanceof'.
+func KubeFlowSchemaV1Beta2_IsApiObject(o interface{}) *bool {
+	_init_.Initialize()
+
+	if err := validateKubeFlowSchemaV1Beta2_IsApiObjectParameters(o); err != nil {
+		panic(err)
+	}
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-24.k8s.KubeFlowSchemaV1Beta2",
+		"isApiObject",
+		[]interface{}{o},
+		&returns,
+	)
+
+	return returns
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`
