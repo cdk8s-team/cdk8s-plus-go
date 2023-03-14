@@ -10,6 +10,14 @@ import (
 	"github.com/aws/constructs-go/constructs/v10"
 )
 
+func validateKubeClusterCidrv1Alpha1_IsApiObjectParameters(o interface{}) error {
+	if o == nil {
+		return fmt.Errorf("parameter o is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateKubeClusterCidrv1Alpha1_IsConstructParameters(x interface{}) error {
 	if x == nil {
 		return fmt.Errorf("parameter x is required, but nil was provided")
