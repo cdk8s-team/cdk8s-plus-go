@@ -152,6 +152,27 @@ func NewKubePriorityLevelConfigurationListV1Beta3_Override(k KubePriorityLevelCo
 	)
 }
 
+// Return whether the given object is an `ApiObject`.
+//
+// We do attribute detection since we can't reliably use 'instanceof'.
+func KubePriorityLevelConfigurationListV1Beta3_IsApiObject(o interface{}) *bool {
+	_init_.Initialize()
+
+	if err := validateKubePriorityLevelConfigurationListV1Beta3_IsApiObjectParameters(o); err != nil {
+		panic(err)
+	}
+	var returns *bool
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-26.k8s.KubePriorityLevelConfigurationListV1Beta3",
+		"isApiObject",
+		[]interface{}{o},
+		&returns,
+	)
+
+	return returns
+}
+
 // Checks if `x` is a construct.
 //
 // Use this method instead of `instanceof` to properly detect `Construct`
