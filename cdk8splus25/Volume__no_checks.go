@@ -17,6 +17,10 @@ func validateVolume_FromConfigMapParameters(scope constructs.Construct, id *stri
 	return nil
 }
 
+func validateVolume_FromCsiParameters(scope constructs.Construct, id *string, driver *string, options *CsiVolumeOptions) error {
+	return nil
+}
+
 func validateVolume_FromEmptyDirParameters(scope constructs.Construct, id *string, name *string, options *EmptyDirVolumeOptions) error {
 	return nil
 }

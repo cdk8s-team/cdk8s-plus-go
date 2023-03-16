@@ -511,6 +511,10 @@ func init() {
 		"cdk8s-plus-25.CronJobProps",
 		reflect.TypeOf((*CronJobProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-25.CsiVolumeOptions",
+		reflect.TypeOf((*CsiVolumeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-25.DaemonSet",
 		reflect.TypeOf((*DaemonSet)(nil)).Elem(),
