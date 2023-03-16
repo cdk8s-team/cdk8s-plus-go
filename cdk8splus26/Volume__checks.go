@@ -75,6 +75,26 @@ func validateVolume_FromConfigMapParameters(scope constructs.Construct, id *stri
 	return nil
 }
 
+func validateVolume_FromCsiParameters(scope constructs.Construct, id *string, driver *string, options *CsiVolumeOptions) error {
+	if scope == nil {
+		return fmt.Errorf("parameter scope is required, but nil was provided")
+	}
+
+	if id == nil {
+		return fmt.Errorf("parameter id is required, but nil was provided")
+	}
+
+	if driver == nil {
+		return fmt.Errorf("parameter driver is required, but nil was provided")
+	}
+
+	if err := _jsii_.ValidateStruct(options, func() string { return "parameter options" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func validateVolume_FromEmptyDirParameters(scope constructs.Construct, id *string, name *string, options *EmptyDirVolumeOptions) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")

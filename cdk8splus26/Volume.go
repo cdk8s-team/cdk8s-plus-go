@@ -154,6 +154,25 @@ func Volume_FromConfigMap(scope constructs.Construct, id *string, configMap ICon
 	return returns
 }
 
+// Populate the volume from a CSI driver, for example the Secrets Store CSI Driver: https://secrets-store-csi-driver.sigs.k8s.io/introduction.html. Which in turn needs an associated provider to source the secrets, such as the AWS Secrets Manager and Systems Manager Parameter Store provider: https://aws.github.io/secrets-store-csi-driver-provider-aws/.
+func Volume_FromCsi(scope constructs.Construct, id *string, driver *string, options *CsiVolumeOptions) Volume {
+	_init_.Initialize()
+
+	if err := validateVolume_FromCsiParameters(scope, id, driver, options); err != nil {
+		panic(err)
+	}
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-26.Volume",
+		"fromCsi",
+		[]interface{}{scope, id, driver, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node.
 //
 // As the name says, it is
