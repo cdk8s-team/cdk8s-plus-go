@@ -3,7 +3,7 @@ module github.com/cdk8s-team/cdk8s-plus-go/cdk8splus26/v2
 go 1.18
 
 require (
-	github.com/aws/jsii-runtime-go v1.79.0
-	github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2 v2.7.52
-	github.com/aws/constructs-go/constructs/v10 v10.1.299
+	github.com/aws/jsii-runtime-go v1.80.0
+	github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2 v2.7.55
+	github.com/aws/constructs-go/constructs/v10 v10.1.306
 )
