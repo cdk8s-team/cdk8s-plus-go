@@ -28,6 +28,8 @@ type StatefulSetProps struct {
 	DockerRegistryAuth ISecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
+	// Host network for the pod.
+	HostNetwork *bool `field:"optional" json:"hostNetwork" yaml:"hostNetwork"`
 	// List of initialization containers belonging to the pod.
 	//
 	// Init containers are executed in order prior to containers being started.
