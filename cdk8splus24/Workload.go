@@ -28,6 +28,7 @@ type Workload interface {
 	Dns() PodDns
 	DockerRegistryAuth() ISecret
 	HostAliases() *[]*HostAlias
+	HostNetwork() *bool
 	InitContainers() *[]Container
 	Isolate() *bool
 	// The object kind (e.g. "Deployment").
@@ -180,6 +181,16 @@ func (j *jsiiProxy_Workload) HostAliases() *[]*HostAlias {
 	_jsii_.Get(
 		j,
 		"hostAliases",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Workload) HostNetwork() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"hostNetwork",
 		&returns,
 	)
 	return returns
