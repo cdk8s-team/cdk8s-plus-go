@@ -407,6 +407,10 @@ func init() {
 		reflect.TypeOf((*ContainerLifecycle)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-24.ContainerOpts",
+		reflect.TypeOf((*ContainerOpts)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-24.ContainerPort",
 		reflect.TypeOf((*ContainerPort)(nil)).Elem(),
 	)
