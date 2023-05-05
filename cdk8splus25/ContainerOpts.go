@@ -2,8 +2,8 @@
 package cdk8splus25
 
 
-// Properties for creating a container.
-type ContainerProps struct {
+// Optional properties of a container.
+type ContainerOpts struct {
 	// Arguments to the entrypoint. The docker image's CMD is used if `command` is not provided.
 	//
 	// Variable references $(VAR_NAME) are expanded using the container's
@@ -80,7 +80,5 @@ type ContainerProps struct {
 	//
 	// If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
 	WorkingDir *string `field:"optional" json:"workingDir" yaml:"workingDir"`
-	// Docker image name.
-	Image *string `field:"required" json:"image" yaml:"image"`
 }
 
