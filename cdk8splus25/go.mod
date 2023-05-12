@@ -4,6 +4,6 @@ go 1.18
 
 require (
 	github.com/aws/jsii-runtime-go v1.81.0
-	github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2 v2.7.58
-	github.com/aws/constructs-go/constructs/v10 v10.2.19
+	github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2 v2.7.59
+	github.com/aws/constructs-go/constructs/v10 v10.2.20
 )
