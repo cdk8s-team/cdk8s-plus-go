@@ -72,6 +72,7 @@ type CronJob interface {
 	SuccessfulJobsRetained() *float64
 	// Whether or not the cron job is currently suspended or not.
 	Suspend() *bool
+	TerminationGracePeriod() cdk8s.Duration
 	// The timezone which this cron job would follow to schedule jobs.
 	TimeZone() *string
 	Volumes() *[]Volume
@@ -426,6 +427,16 @@ func (j *jsiiProxy_CronJob) Suspend() *bool {
 	_jsii_.Get(
 		j,
 		"suspend",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_CronJob) TerminationGracePeriod() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"terminationGracePeriod",
 		&returns,
 	)
 	return returns
