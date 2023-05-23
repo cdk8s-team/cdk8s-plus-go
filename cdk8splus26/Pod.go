@@ -50,6 +50,7 @@ type Pod interface {
 	Scheduling() PodScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
+	TerminationGracePeriod() cdk8s.Duration
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
@@ -320,6 +321,16 @@ func (j *jsiiProxy_Pod) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Pod) TerminationGracePeriod() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"terminationGracePeriod",
 		&returns,
 	)
 	return returns
