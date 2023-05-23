@@ -92,6 +92,7 @@ type StatefulSet interface {
 	ServiceAccount() IServiceAccount
 	// The update startegy of this stateful set.
 	Strategy() StatefulSetUpdateStrategy
+	TerminationGracePeriod() cdk8s.Duration
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
@@ -453,6 +454,16 @@ func (j *jsiiProxy_StatefulSet) Strategy() StatefulSetUpdateStrategy {
 	_jsii_.Get(
 		j,
 		"strategy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) TerminationGracePeriod() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"terminationGracePeriod",
 		&returns,
 	)
 	return returns

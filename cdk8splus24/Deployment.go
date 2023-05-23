@@ -89,6 +89,7 @@ type Deployment interface {
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
 	Strategy() DeploymentStrategy
+	TerminationGracePeriod() cdk8s.Duration
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
@@ -448,6 +449,16 @@ func (j *jsiiProxy_Deployment) Strategy() DeploymentStrategy {
 	_jsii_.Get(
 		j,
 		"strategy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) TerminationGracePeriod() cdk8s.Duration {
+	var returns cdk8s.Duration
+	_jsii_.Get(
+		j,
+		"terminationGracePeriod",
 		&returns,
 	)
 	return returns

@@ -65,6 +65,8 @@ type WorkloadProps struct {
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
 	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
+	// Grace period until the pod is terminated.
+	TerminationGracePeriod cdk8s.Duration `field:"optional" json:"terminationGracePeriod" yaml:"terminationGracePeriod"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
