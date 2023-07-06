@@ -13,7 +13,7 @@ import (
 	cdk8s      "github.com/cdk8s-team/cdk8s-core-go/cdk8s/v2/jsii"
 )
 
-//go:embed cdk8s-plus-24-2.8.72.tgz
+//go:embed cdk8s-plus-24-2.8.73.tgz
 var tarball []byte
 
 // Initialize loads the necessary packages in the @jsii/kernel to support the enclosing module.
@@ -24,5 +24,5 @@ func Initialize() {
 	constructs.Initialize()
 
 	// Load this library into the kernel
-	_jsii_.Load("cdk8s-plus-24", "2.8.72", tarball)
+	_jsii_.Load("cdk8s-plus-24", "2.8.73", tarball)
 }
