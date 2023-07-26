@@ -251,6 +251,27 @@ func Volume_FromHostPath(scope constructs.Construct, id *string, name *string, o
 	return returns
 }
 
+// Used to mount an NFS share into a Pod.
+// See: https://kubernetes.io/docs/concepts/storage/volumes/#nfs
+//
+func Volume_FromNfs(scope constructs.Construct, id *string, name *string, options *NfsVolumeOptions) Volume {
+	_init_.Initialize()
+
+	if err := validateVolume_FromNfsParameters(scope, id, name, options); err != nil {
+		panic(err)
+	}
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-25.Volume",
+		"fromNfs",
+		[]interface{}{scope, id, name, options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Used to mount a PersistentVolume into a Pod.
 //
 // PersistentVolumeClaims are a way for users to "claim" durable storage (such as a GCE PersistentDisk or an iSCSI volume)
