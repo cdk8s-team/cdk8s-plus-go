@@ -1578,6 +1578,10 @@ func init() {
 			"SCTP": NetworkProtocol_SCTP,
 		},
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-27.NfsVolumeOptions",
+		reflect.TypeOf((*NfsVolumeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-27.Node",
 		reflect.TypeOf((*Node)(nil)).Elem(),

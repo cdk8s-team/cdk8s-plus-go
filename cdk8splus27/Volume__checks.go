@@ -157,6 +157,29 @@ func validateVolume_FromHostPathParameters(scope constructs.Construct, id *strin
 	return nil
 }
 
+func validateVolume_FromNfsParameters(scope constructs.Construct, id *string, name *string, options *NfsVolumeOptions) error {
+	if scope == nil {
+		return fmt.Errorf("parameter scope is required, but nil was provided")
+	}
+
+	if id == nil {
+		return fmt.Errorf("parameter id is required, but nil was provided")
+	}
+
+	if name == nil {
+		return fmt.Errorf("parameter name is required, but nil was provided")
+	}
+
+	if options == nil {
+		return fmt.Errorf("parameter options is required, but nil was provided")
+	}
+	if err := _jsii_.ValidateStruct(options, func() string { return "parameter options" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func validateVolume_FromPersistentVolumeClaimParameters(scope constructs.Construct, id *string, claim IPersistentVolumeClaim, options *PersistentVolumeClaimVolumeOptions) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")
