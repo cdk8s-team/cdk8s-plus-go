@@ -9,12 +9,18 @@ type VolumeMount struct {
 	//
 	// Mount propagation allows for sharing volumes mounted by a Container to
 	// other Containers in the same Pod, or even to other Pods on the same node.
+	// Default: MountPropagation.NONE
+	//
 	Propagation MountPropagation `field:"optional" json:"propagation" yaml:"propagation"`
 	// Mounted read-only if true, read-write otherwise (false or unspecified).
 	//
 	// Defaults to false.
+	// Default: false.
+	//
 	ReadOnly *bool `field:"optional" json:"readOnly" yaml:"readOnly"`
 	// Path within the volume from which the container's volume should be mounted.).
+	// Default: "" the volume's root.
+	//
 	SubPath *string `field:"optional" json:"subPath" yaml:"subPath"`
 	// Expanded path within the volume from which the container's volume should be mounted.
 	//
@@ -23,6 +29,8 @@ type VolumeMount struct {
 	// (volume's root).
 	//
 	// `subPathExpr` and `subPath` are mutually exclusive.
+	// Default: "" volume's root.
+	//
 	SubPathExpr *string `field:"optional" json:"subPathExpr" yaml:"subPathExpr"`
 	// Path within the container at which the volume should be mounted.
 	//

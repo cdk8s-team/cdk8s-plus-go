@@ -13,6 +13,8 @@ type EmptyDirVolumeOptions struct {
 	// filesystem) for you instead. While tmpfs is very fast, be aware that unlike
 	// disks, tmpfs is cleared on node reboot and any files you write will count
 	// against your Container's memory limit.
+	// Default: EmptyDirMedium.DEFAULT
+	//
 	Medium EmptyDirMedium `field:"optional" json:"medium" yaml:"medium"`
 	// Total amount of local storage required for this EmptyDir volume.
 	//
@@ -20,6 +22,8 @@ type EmptyDirVolumeOptions struct {
 	// limit is also applicable for memory medium. The maximum usage on memory
 	// medium EmptyDir would be the minimum value between the SizeLimit specified
 	// here and the sum of memory limits of all containers in a pod.
+	// Default: - limit is undefined.
+	//
 	SizeLimit cdk8s.Size `field:"optional" json:"sizeLimit" yaml:"sizeLimit"`
 }
 

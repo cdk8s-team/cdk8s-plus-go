@@ -11,6 +11,8 @@ type MetricObjectOptions struct {
 	//
 	// When set, it is passed as an additional parameter to the metrics server
 	// for more specific metrics scoping.
+	// Default: - Just the metric 'name' will be used to gather metrics.
+	//
 	LabelSelector LabelSelector `field:"optional" json:"labelSelector" yaml:"labelSelector"`
 	// Resource where the metric can be found.
 	Object IResource `field:"required" json:"object" yaml:"object"`

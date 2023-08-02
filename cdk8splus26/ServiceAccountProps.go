@@ -13,6 +13,8 @@ type ServiceAccountProps struct {
 	// Can be overridden at the pod level.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
+	// Default: false.
+	//
 	AutomountToken *bool `field:"optional" json:"automountToken" yaml:"automountToken"`
 	// List of secrets allowed to be used by pods running using this ServiceAccount.
 	// See: https://kubernetes.io/docs/concepts/configuration/secret

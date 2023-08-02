@@ -10,6 +10,8 @@ type ScalingPolicy struct {
 	// The amount of time the scaling policy has to continue scaling before the target metric must be revalidated.
 	//
 	// Must be greater than 0 seconds and no longer than 30 minutes.
+	// Default: - 15 seconds.
+	//
 	Duration cdk8s.Duration `field:"optional" json:"duration" yaml:"duration"`
 }
 

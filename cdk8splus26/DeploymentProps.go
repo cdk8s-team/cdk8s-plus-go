@@ -11,6 +11,8 @@ type DeploymentProps struct {
 	// Indicates whether a service account token should be automatically mounted.
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
 	//
+	// Default: false.
+	//
 	AutomountServiceAccountToken *bool `field:"optional" json:"automountServiceAccountToken" yaml:"automountServiceAccountToken"`
 	// List of containers belonging to the pod.
 	//
@@ -18,16 +20,25 @@ type DeploymentProps struct {
 	// added or removed. There must be at least one container in a Pod.
 	//
 	// You can add additionnal containers using `podSpec.addContainer()`
+	// Default: - No containers. Note that a pod spec must include at least one container.
+	//
 	Containers *[]*ContainerProps `field:"optional" json:"containers" yaml:"containers"`
 	// DNS settings for the pod.
 	// See: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
 	//
+	// Default:  policy: DnsPolicy.CLUSTER_FIRST
+	// hostnameAsFQDN: false.
+	//
 	Dns *PodDnsProps `field:"optional" json:"dns" yaml:"dns"`
 	// A secret containing docker credentials for authenticating to a registry.
+	// Default: - No auth. Images are assumed to be publicly available.
+	//
 	DockerRegistryAuth ISecret `field:"optional" json:"dockerRegistryAuth" yaml:"dockerRegistryAuth"`
 	// HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
 	HostAliases *[]*HostAlias `field:"optional" json:"hostAliases" yaml:"hostAliases"`
 	// Host network for the pod.
+	// Default: false.
+	//
 	HostNetwork *bool `field:"optional" json:"hostNetwork" yaml:"hostNetwork"`
 	// List of initialization containers belonging to the pod.
 	//
@@ -42,17 +53,26 @@ type DeploymentProps struct {
 	// Init containers cannot currently be added ,removed or updated.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 	//
+	// Default: - No init containers.
+	//
 	InitContainers *[]*ContainerProps `field:"optional" json:"initContainers" yaml:"initContainers"`
 	// Isolates the pod.
 	//
 	// This will prevent any ingress or egress connections to / from this pod.
 	// You can however allow explicit connections post instantiation by using the `.connections` property.
+	// Default: false.
+	//
 	Isolate *bool `field:"optional" json:"isolate" yaml:"isolate"`
 	// Restart policy for all containers within the pod.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
 	//
+	// Default: RestartPolicy.ALWAYS
+	//
 	RestartPolicy RestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext holds pod-level security attributes and common container settings.
+	// Default:   fsGroupChangePolicy: FsGroupChangePolicy.FsGroupChangePolicy.ALWAYS
+	// ensureNonRoot: true.
+	//
 	SecurityContext *PodSecurityContextProps `field:"optional" json:"securityContext" yaml:"securityContext"`
 	// A service account provides an identity for processes that run in a Pod.
 	//
@@ -64,13 +84,19 @@ type DeploymentProps struct {
 	// Account (for example, default).
 	// See: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 	//
+	// Default: - No service account.
+	//
 	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
 	// Grace period until the pod is terminated.
+	// Default: Duration.seconds(30)
+	//
 	TerminationGracePeriod cdk8s.Duration `field:"optional" json:"terminationGracePeriod" yaml:"terminationGracePeriod"`
 	// List of volumes that can be mounted by containers belonging to the pod.
 	//
 	// You can also add volumes later using `podSpec.addVolume()`
 	// See: https://kubernetes.io/docs/concepts/storage/volumes
+	//
+	// Default: - No volumes.
 	//
 	Volumes *[]Volume `field:"optional" json:"volumes" yaml:"volumes"`
 	// The pod metadata of this workload.
@@ -79,15 +105,21 @@ type DeploymentProps struct {
 	//
 	// This ensures this workload manages pods created by
 	// its pod template.
+	// Default: true.
+	//
 	Select *bool `field:"optional" json:"select" yaml:"select"`
 	// Automatically spread pods across hostname and zones.
 	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#internal-default-constraints
+	//
+	// Default: false.
 	//
 	Spread *bool `field:"optional" json:"spread" yaml:"spread"`
 	// Minimum duration for which a newly created pod should be ready without any of its container crashing, for it to be considered available.
 	//
 	// Zero means the pod will be considered available as soon as it is ready.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#min-ready-seconds
+	//
+	// Default: Duration.seconds(0)
 	//
 	MinReady cdk8s.Duration `field:"optional" json:"minReady" yaml:"minReady"`
 	// The maximum duration for a deployment to make progress before it is considered to be failed.
@@ -99,10 +131,16 @@ type DeploymentProps struct {
 	// Note that progress will not be estimated during the time a deployment is paused.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#progress-deadline-seconds
 	//
+	// Default: Duration.seconds(600)
+	//
 	ProgressDeadline cdk8s.Duration `field:"optional" json:"progressDeadline" yaml:"progressDeadline"`
 	// Number of desired pods.
+	// Default: 2.
+	//
 	Replicas *float64 `field:"optional" json:"replicas" yaml:"replicas"`
 	// Specifies the strategy used to replace old Pods by new ones.
+	// Default: - RollingUpdate with maxSurge and maxUnavailable set to 25%.
+	//
 	Strategy DeploymentStrategy `field:"optional" json:"strategy" yaml:"strategy"`
 }
 
