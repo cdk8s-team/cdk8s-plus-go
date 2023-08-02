@@ -13,6 +13,8 @@ type DeploymentStrategyRollingUpdateOptions struct {
 	// starts, such that the total number of old and new pods do not exceed 130% of desired pods.
 	// Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that
 	// total number of pods running at any time during the update is at most 130% of desired pods.
+	// Default: '25%'.
+	//
 	MaxSurge PercentOrAbsolute `field:"optional" json:"maxSurge" yaml:"maxSurge"`
 	// The maximum number of pods that can be unavailable during the update.
 	//
@@ -24,6 +26,8 @@ type DeploymentStrategyRollingUpdateOptions struct {
 	// pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can
 	// be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total
 	// number of pods available at all times during the update is at least 70% of desired pods.
+	// Default: '25%'.
+	//
 	MaxUnavailable PercentOrAbsolute `field:"optional" json:"maxUnavailable" yaml:"maxUnavailable"`
 }
 

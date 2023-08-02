@@ -11,6 +11,8 @@ type SshAuthSecretProps struct {
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
+	// Default: false.
+	//
 	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// The SSH private key to use.
 	SshPrivateKey *string `field:"required" json:"sshPrivateKey" yaml:"sshPrivateKey"`

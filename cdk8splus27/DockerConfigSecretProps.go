@@ -11,6 +11,8 @@ type DockerConfigSecretProps struct {
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
+	// Default: false.
+	//
 	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// JSON content to provide for the `~/.docker/config.json` file. This will be stringified and inserted as stringData.
 	// See: https://docs.docker.com/engine/reference/commandline/cli/#sample-configuration-file

@@ -18,12 +18,18 @@ type ServicePort struct {
 	// requires one.
 	// See: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 	//
+	// Default: - auto-allocate a port if the ServiceType of this Service requires one.
+	//
 	NodePort *float64 `field:"optional" json:"nodePort" yaml:"nodePort"`
 	// The IP protocol for this port.
 	//
 	// Supports "TCP", "UDP", and "SCTP". Default is TCP.
+	// Default: Protocol.TCP
+	//
 	Protocol Protocol `field:"optional" json:"protocol" yaml:"protocol"`
 	// The port number the service will redirect to.
+	// Default: - The value of `port` will be used.
+	//
 	TargetPort *float64 `field:"optional" json:"targetPort" yaml:"targetPort"`
 	// The port number the service will bind to.
 	Port *float64 `field:"required" json:"port" yaml:"port"`

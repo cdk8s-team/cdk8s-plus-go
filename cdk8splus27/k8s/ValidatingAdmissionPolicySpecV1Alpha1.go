@@ -18,6 +18,8 @@ type ValidatingAdmissionPolicySpecV1Alpha1 struct {
 	// When failurePolicy is set to Fail, ValidatingAdmissionPolicyBinding validationActions define how failures are enforced.
 	//
 	// Allowed values are Ignore or Fail. Defaults to Fail.
+	// Default: Fail.
+	//
 	FailurePolicy *string `field:"optional" json:"failurePolicy" yaml:"failurePolicy"`
 	// MatchConditions is a list of conditions that must be met for a request to be validated.
 	//
