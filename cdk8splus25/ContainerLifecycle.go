@@ -7,6 +7,8 @@ type ContainerLifecycle struct {
 	//
 	// However,
 	// there is no guarantee that the hook will execute before the container ENTRYPOINT.
+	// Default: - No post start handler.
+	//
 	PostStart Handler `field:"optional" json:"postStart" yaml:"postStart"`
 	// This hook is called immediately before a container is terminated due to an API request or management event such as a liveness/startup probe failure, preemption, resource contention and others.
 	//
@@ -16,6 +18,8 @@ type ContainerLifecycle struct {
 	// so regardless of the outcome of the handler, the container will eventually terminate
 	// within the Pod's termination grace period. No parameters are passed to the handler.
 	// See: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination
+	//
+	// Default: - No pre stop handler.
 	//
 	PreStop Handler `field:"optional" json:"preStop" yaml:"preStop"`
 }

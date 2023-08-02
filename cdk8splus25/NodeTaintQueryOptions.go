@@ -7,10 +7,14 @@ import (
 // Options for `NodeTaintQuery`.
 type NodeTaintQueryOptions struct {
 	// The taint effect to match.
+	// Default: - all effects are matched.
+	//
 	Effect TaintEffect `field:"optional" json:"effect" yaml:"effect"`
 	// How much time should a pod that tolerates the `NO_EXECUTE` effect be bound to the node.
 	//
 	// Only applies for the `NO_EXECUTE` effect.
+	// Default: - bound forever.
+	//
 	EvictAfter cdk8s.Duration `field:"optional" json:"evictAfter" yaml:"evictAfter"`
 }
 

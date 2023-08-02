@@ -4,6 +4,8 @@ package cdk8splus25
 // Properties for `PodDns`.
 type PodDnsProps struct {
 	// Specifies the hostname of the Pod.
+	// Default: - Set to a system-defined value.
+	//
 	Hostname *string `field:"optional" json:"hostname" yaml:"hostname"`
 	// If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).
 	//
@@ -11,6 +13,8 @@ type PodDnsProps struct {
 	// In Windows containers, this means setting the registry value of hostname for the registry
 	// key HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters to FQDN.
 	// If a pod does not have FQDN, this has no effect.
+	// Default: false.
+	//
 	HostnameAsFQDN *bool `field:"optional" json:"hostnameAsFQDN" yaml:"hostnameAsFQDN"`
 	// A list of IP addresses that will be used as DNS servers for the Pod.
 	//
@@ -29,6 +33,8 @@ type PodDnsProps struct {
 	// Set DNS policy for the pod.
 	//
 	// If policy is set to `None`, other configuration must be supplied.
+	// Default: DnsPolicy.CLUSTER_FIRST
+	//
 	Policy DnsPolicy `field:"optional" json:"policy" yaml:"policy"`
 	// A list of DNS search domains for hostname lookup in the Pod.
 	//
@@ -39,6 +45,8 @@ type PodDnsProps struct {
 	// Kubernetes allows for at most 6 search domains.
 	Searches *[]*string `field:"optional" json:"searches" yaml:"searches"`
 	// If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>".
+	// Default: - No subdomain.
+	//
 	Subdomain *string `field:"optional" json:"subdomain" yaml:"subdomain"`
 }
 

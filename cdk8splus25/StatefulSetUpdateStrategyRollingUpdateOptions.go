@@ -10,6 +10,8 @@ type StatefulSetUpdateStrategyRollingUpdateOptions struct {
 	// update, roll out a canary, or perform a phased roll out.
 	// See: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#partitions
 	//
+	// Default: 0.
+	//
 	Partition *float64 `field:"optional" json:"partition" yaml:"partition"`
 }
 

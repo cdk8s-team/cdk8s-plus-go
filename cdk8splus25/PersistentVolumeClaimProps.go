@@ -11,9 +11,13 @@ type PersistentVolumeClaimProps struct {
 	// Contains the access modes the volume should support.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
 	//
+	// Default: - No access modes requirement.
+	//
 	AccessModes *[]PersistentVolumeAccessMode `field:"optional" json:"accessModes" yaml:"accessModes"`
 	// Minimum storage size the volume should have.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+	//
+	// Default: - No storage requirement.
 	//
 	Storage cdk8s.Size `field:"optional" json:"storage" yaml:"storage"`
 	// Name of the StorageClass required by the claim. When this property is not set, the behavior is as follows:.
@@ -21,6 +25,8 @@ type PersistentVolumeClaimProps struct {
 	// - If the admission plugin is turned on, the storage class marked as default will be used.
 	// - If the admission plugin is turned off, the pvc can only be bound to volumes without a storage class.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+	//
+	// Default: - Not set.
 	//
 	StorageClassName *string `field:"optional" json:"storageClassName" yaml:"storageClassName"`
 	// The PersistentVolume backing this claim.
@@ -36,8 +42,12 @@ type PersistentVolumeClaimProps struct {
 	// create a bi-directional bounded claim.
 	// See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding.
 	//
+	// Default: - No specific volume binding.
+	//
 	Volume IPersistentVolume `field:"optional" json:"volume" yaml:"volume"`
 	// Defines what type of volume is required by the claim.
+	// Default: VolumeMode.FILE_SYSTEM
+	//
 	VolumeMode PersistentVolumeMode `field:"optional" json:"volumeMode" yaml:"volumeMode"`
 }
 

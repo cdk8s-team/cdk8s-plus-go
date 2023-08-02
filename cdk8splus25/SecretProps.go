@@ -11,6 +11,8 @@ type SecretProps struct {
 	// If set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified).
 	//
 	// If not set to true, the field can be modified at any time.
+	// Default: false.
+	//
 	Immutable *bool `field:"optional" json:"immutable" yaml:"immutable"`
 	// stringData allows specifying non-binary secret data in string form.
 	//
@@ -23,6 +25,8 @@ type SecretProps struct {
 	//
 	// Used to facilitate programmatic
 	// handling of secret data by various controllers.
+	// Default: undefined - Don't set a type.
+	//
 	Type *string `field:"optional" json:"type" yaml:"type"`
 }
 

@@ -9,8 +9,12 @@ type NetworkPolicyProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
 	// Egress traffic configuration.
+	// Default: - the policy doesn't change egress behavior of the pods it selects.
+	//
 	Egress *NetworkPolicyTraffic `field:"optional" json:"egress" yaml:"egress"`
 	// Ingress traffic configuration.
+	// Default: - the policy doesn't change ingress behavior of the pods it selects.
+	//
 	Ingress *NetworkPolicyTraffic `field:"optional" json:"ingress" yaml:"ingress"`
 	// Which pods does this policy object applies to.
 	//
@@ -20,6 +24,8 @@ type NetworkPolicyProps struct {
 	// In this case, the rules for each are combined additively.
 	//
 	// Note that.
+	// Default: - will select all pods in the namespace of the policy.
+	//
 	Selector IPodSelector `field:"optional" json:"selector" yaml:"selector"`
 }
 
