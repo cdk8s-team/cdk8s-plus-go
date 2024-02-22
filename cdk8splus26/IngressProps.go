@@ -8,6 +8,11 @@ import (
 type IngressProps struct {
 	// Metadata that all persisted resources must have, which includes all objects users must create.
 	Metadata *cdk8s.ApiObjectMetadata `field:"optional" json:"metadata" yaml:"metadata"`
+	// Class Name for this ingress.
+	//
+	// This field is a reference to an IngressClass resource that contains
+	// additional Ingress configuration, including the name of the Ingress controller.
+	ClassName *string `field:"optional" json:"className" yaml:"className"`
 	// The default backend services requests that do not match any rule.
 	//
 	// Using this option or the `addDefaultBackend()` method is equivalent to
