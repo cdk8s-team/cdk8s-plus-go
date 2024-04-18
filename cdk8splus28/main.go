@@ -397,6 +397,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "portNumber", GoGetter: "PortNumber"},
 			_jsii_.MemberProperty{JsiiProperty: "ports", GoGetter: "Ports"},
 			_jsii_.MemberProperty{JsiiProperty: "resources", GoGetter: "Resources"},
+			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberProperty{JsiiProperty: "workingDir", GoGetter: "WorkingDir"},
 		},
@@ -423,6 +424,13 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-28.ContainerResources",
 		reflect.TypeOf((*ContainerResources)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-28.ContainerRestartPolicy",
+		reflect.TypeOf((*ContainerRestartPolicy)(nil)).Elem(),
+		map[string]interface{}{
+			"ALWAYS": ContainerRestartPolicy_ALWAYS,
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-28.ContainerSecurityContext",

@@ -40,6 +40,8 @@ type Container interface {
 	// See: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 	//
 	Resources() *ContainerResources
+	// The restart policy of the container.
+	RestartPolicy() ContainerRestartPolicy
 	// The security context of the container.
 	SecurityContext() ContainerSecurityContext
 	// The working directory inside the container.
@@ -162,6 +164,16 @@ func (j *jsiiProxy_Container) Resources() *ContainerResources {
 	_jsii_.Get(
 		j,
 		"resources",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Container) RestartPolicy() ContainerRestartPolicy {
+	var returns ContainerRestartPolicy
+	_jsii_.Get(
+		j,
+		"restartPolicy",
 		&returns,
 	)
 	return returns
