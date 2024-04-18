@@ -88,6 +88,12 @@ type ContainerOpts struct {
 	// limit: 2048 mebibytes.
 	//
 	Resources *ContainerResources `field:"optional" json:"resources" yaml:"resources"`
+	// Kubelet will start init containers with restartPolicy=Always in the order with other init containers, but instead of waiting for its completion, it will wait for the container startup completion Currently, only accepted value is Always.
+	// See: https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/
+	//
+	// Default: - no restart policy is defined and the pod restart policy is applied.
+	//
+	RestartPolicy ContainerRestartPolicy `field:"optional" json:"restartPolicy" yaml:"restartPolicy"`
 	// SecurityContext defines the security options the container should be run with.
 	//
 	// If set, the fields override equivalent fields of the pod's security context.
