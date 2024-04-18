@@ -8,6 +8,7 @@ import (
 // Container security attributes and settings.
 type ContainerSecurityContext interface {
 	AllowPrivilegeEscalation() *bool
+	Capabilities() *ContainerSecutiryContextCapabilities
 	EnsureNonRoot() *bool
 	Group() *float64
 	Privileged() *bool
@@ -25,6 +26,16 @@ func (j *jsiiProxy_ContainerSecurityContext) AllowPrivilegeEscalation() *bool {
 	_jsii_.Get(
 		j,
 		"allowPrivilegeEscalation",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) Capabilities() *ContainerSecutiryContextCapabilities {
+	var returns *ContainerSecutiryContextCapabilities
+	_jsii_.Get(
+		j,
+		"capabilities",
 		&returns,
 	)
 	return returns
