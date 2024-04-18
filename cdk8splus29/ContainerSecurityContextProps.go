@@ -7,6 +7,10 @@ type ContainerSecurityContextProps struct {
 	// Default: false.
 	//
 	AllowPrivilegeEscalation *bool `field:"optional" json:"allowPrivilegeEscalation" yaml:"allowPrivilegeEscalation"`
+	// POSIX capabilities for running containers.
+	// Default: none.
+	//
+	Capabilities *ContainerSecutiryContextCapabilities `field:"optional" json:"capabilities" yaml:"capabilities"`
 	// Indicates that the container must run as a non-root user.
 	//
 	// If true, the Kubelet will validate the image at runtime to ensure that it does

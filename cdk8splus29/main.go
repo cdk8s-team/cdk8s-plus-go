@@ -234,6 +234,53 @@ func init() {
 		"cdk8s-plus-29.BasicAuthSecretProps",
 		reflect.TypeOf((*BasicAuthSecretProps)(nil)).Elem(),
 	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-29.Capability",
+		reflect.TypeOf((*Capability)(nil)).Elem(),
+		map[string]interface{}{
+			"AUDIT_CONTROL": Capability_AUDIT_CONTROL,
+			"AUDIT_READ": Capability_AUDIT_READ,
+			"AUDIT_WRITE": Capability_AUDIT_WRITE,
+			"BLOCK_SUSPEND": Capability_BLOCK_SUSPEND,
+			"BPF": Capability_BPF,
+			"CHECKPOINT_RESTORE": Capability_CHECKPOINT_RESTORE,
+			"CHOWN": Capability_CHOWN,
+			"DAC_OVERRIDE": Capability_DAC_OVERRIDE,
+			"DAC_READ_SEARCH": Capability_DAC_READ_SEARCH,
+			"FOWNER": Capability_FOWNER,
+			"FSETID": Capability_FSETID,
+			"IPC_LOCK": Capability_IPC_LOCK,
+			"IPC_OWNER": Capability_IPC_OWNER,
+			"KILL": Capability_KILL,
+			"LEASE": Capability_LEASE,
+			"LINUX_IMMUTABLE": Capability_LINUX_IMMUTABLE,
+			"MAC_ADMIN": Capability_MAC_ADMIN,
+			"MAC_OVERRIDE": Capability_MAC_OVERRIDE,
+			"MKNOD": Capability_MKNOD,
+			"NET_ADMIN": Capability_NET_ADMIN,
+			"NET_BIND_SERVICE": Capability_NET_BIND_SERVICE,
+			"NET_BROADCAST": Capability_NET_BROADCAST,
+			"NET_RAW": Capability_NET_RAW,
+			"PERFMON": Capability_PERFMON,
+			"SETGID": Capability_SETGID,
+			"SETFCAP": Capability_SETFCAP,
+			"SETPCAP": Capability_SETPCAP,
+			"SETUID": Capability_SETUID,
+			"SYS_ADMIN": Capability_SYS_ADMIN,
+			"SYS_BOOT": Capability_SYS_BOOT,
+			"SYS_CHROOT": Capability_SYS_CHROOT,
+			"SYS_MODULE": Capability_SYS_MODULE,
+			"SYS_NICE": Capability_SYS_NICE,
+			"SYS_PACCT": Capability_SYS_PACCT,
+			"SYS_PTRACE": Capability_SYS_PTRACE,
+			"SYS_RAWIO": Capability_SYS_RAWIO,
+			"SYS_RESOURCE": Capability_SYS_RESOURCE,
+			"SYS_TIME": Capability_SYS_TIME,
+			"SYS_TTY_CONFIG": Capability_SYS_TTY_CONFIG,
+			"SYSLOG": Capability_SYSLOG,
+			"WAKE_ALARM": Capability_WAKE_ALARM,
+		},
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-29.ClusterRole",
 		reflect.TypeOf((*ClusterRole)(nil)).Elem(),
@@ -437,6 +484,7 @@ func init() {
 		reflect.TypeOf((*ContainerSecurityContext)(nil)).Elem(),
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "allowPrivilegeEscalation", GoGetter: "AllowPrivilegeEscalation"},
+			_jsii_.MemberProperty{JsiiProperty: "capabilities", GoGetter: "Capabilities"},
 			_jsii_.MemberProperty{JsiiProperty: "ensureNonRoot", GoGetter: "EnsureNonRoot"},
 			_jsii_.MemberProperty{JsiiProperty: "group", GoGetter: "Group"},
 			_jsii_.MemberProperty{JsiiProperty: "privileged", GoGetter: "Privileged"},
@@ -450,6 +498,10 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-29.ContainerSecurityContextProps",
 		reflect.TypeOf((*ContainerSecurityContextProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-29.ContainerSecutiryContextCapabilities",
+		reflect.TypeOf((*ContainerSecutiryContextCapabilities)(nil)).Elem(),
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-29.Cpu",
