@@ -38,6 +38,10 @@ type HttpGetProbeOptions struct {
 	// Default: Duration.seconds(1)
 	//
 	TimeoutSeconds cdk8s.Duration `field:"optional" json:"timeoutSeconds" yaml:"timeoutSeconds"`
+	// The host name to connect to on the container.
+	// Default: - defaults to the pod IP.
+	//
+	Host *string `field:"optional" json:"host" yaml:"host"`
 	// The TCP port to use when sending the GET request.
 	// Default: - defaults to `container.port`.
 	//
