@@ -238,6 +238,7 @@ func init() {
 		"cdk8s-plus-29.Capability",
 		reflect.TypeOf((*Capability)(nil)).Elem(),
 		map[string]interface{}{
+			"ALL": Capability_ALL,
 			"AUDIT_CONTROL": Capability_AUDIT_CONTROL,
 			"AUDIT_READ": Capability_AUDIT_READ,
 			"AUDIT_WRITE": Capability_AUDIT_WRITE,
