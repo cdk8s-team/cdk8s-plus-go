@@ -5,6 +5,8 @@ package cdk8splus28
 type Capability string
 
 const (
+	// ALL.
+	Capability_ALL Capability = "ALL"
 	// CAP_AUDIT_CONTROL.
 	Capability_AUDIT_CONTROL Capability = "AUDIT_CONTROL"
 	// CAP_AUDIT_READ.
