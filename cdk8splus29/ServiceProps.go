@@ -46,6 +46,12 @@ type ServiceProps struct {
 	// Default: - either the selector ports, or none.
 	//
 	Ports *[]*ServicePort `field:"optional" json:"ports" yaml:"ports"`
+	// The publishNotReadyAddresses indicates that any agent which deals with endpoints for this Service should disregard any indications of ready/not-ready.
+	//
+	// More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#servicespec-v1-core
+	// Default: - false.
+	//
+	PublishNotReadyAddresses *bool `field:"optional" json:"publishNotReadyAddresses" yaml:"publishNotReadyAddresses"`
 	// Which pods should the service select and route to.
 	//
 	// You can pass one of the following:
