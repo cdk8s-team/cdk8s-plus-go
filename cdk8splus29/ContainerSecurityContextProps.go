@@ -34,6 +34,12 @@ type ContainerSecurityContextProps struct {
 	// Default: true.
 	//
 	ReadOnlyRootFilesystem *bool `field:"optional" json:"readOnlyRootFilesystem" yaml:"readOnlyRootFilesystem"`
+	// Container's seccomp profile settings.
+	//
+	// Only one profile source may be set.
+	// Default: none.
+	//
+	SeccompProfile *SeccompProfile `field:"optional" json:"seccompProfile" yaml:"seccompProfile"`
 	// The UID to run the entrypoint of the container process.
 	// Default: - 25000. An arbitrary number bigger than 9999 is selected here.
 	// This is so that the container is blocked to access host files even if

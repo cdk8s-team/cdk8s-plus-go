@@ -490,6 +490,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "group", GoGetter: "Group"},
 			_jsii_.MemberProperty{JsiiProperty: "privileged", GoGetter: "Privileged"},
 			_jsii_.MemberProperty{JsiiProperty: "readOnlyRootFilesystem", GoGetter: "ReadOnlyRootFilesystem"},
+			_jsii_.MemberProperty{JsiiProperty: "seccompProfile", GoGetter: "SeccompProfile"},
 			_jsii_.MemberProperty{JsiiProperty: "user", GoGetter: "User"},
 		},
 		func() interface{} {
@@ -2182,6 +2183,19 @@ func init() {
 	_jsii_.RegisterStruct(
 		"cdk8s-plus-29.ScalingTarget",
 		reflect.TypeOf((*ScalingTarget)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-29.SeccompProfile",
+		reflect.TypeOf((*SeccompProfile)(nil)).Elem(),
+	)
+	_jsii_.RegisterEnum(
+		"cdk8s-plus-29.SeccompProfileType",
+		reflect.TypeOf((*SeccompProfileType)(nil)).Elem(),
+		map[string]interface{}{
+			"LOCALHOST": SeccompProfileType_LOCALHOST,
+			"RUNTIME_DEFAULT": SeccompProfileType_RUNTIME_DEFAULT,
+			"UNCONFINED": SeccompProfileType_UNCONFINED,
+		},
 	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-29.Secret",
