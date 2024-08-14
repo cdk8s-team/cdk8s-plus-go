@@ -13,6 +13,7 @@ type ContainerSecurityContext interface {
 	Group() *float64
 	Privileged() *bool
 	ReadOnlyRootFilesystem() *bool
+	SeccompProfile() *SeccompProfile
 	User() *float64
 }
 
@@ -76,6 +77,16 @@ func (j *jsiiProxy_ContainerSecurityContext) ReadOnlyRootFilesystem() *bool {
 	_jsii_.Get(
 		j,
 		"readOnlyRootFilesystem",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_ContainerSecurityContext) SeccompProfile() *SeccompProfile {
+	var returns *SeccompProfile
+	_jsii_.Get(
+		j,
+		"seccompProfile",
 		&returns,
 	)
 	return returns
