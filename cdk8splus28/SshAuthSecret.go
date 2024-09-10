@@ -37,7 +37,7 @@ type SshAuthSecret interface {
 	ResourceName() *string
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
-	// Adds a string data field to the secert.
+	// Adds a string data field to the secret.
 	AddStringData(key *string, value *string)
 	// Return the IApiResource this object represents.
 	AsApiResource() IApiResource
