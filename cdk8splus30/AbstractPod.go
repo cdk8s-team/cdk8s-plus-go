@@ -57,21 +57,21 @@ type AbstractPod interface {
 	AsNonApiResource() *string
 	AttachContainer(cont Container)
 	// Return the configuration of this peer.
-	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig ()
 	//
 	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
 	// Convert the peer into a pod selector, if possible.
-	// See: INetworkPolicyPeer.toPodSelector()
+	// See: INetworkPolicyPeer.toPodSelector ()
 	//
 	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
-	// See: IPodSelector.toPodSelectorConfig()
+	// See: IPodSelector.toPodSelectorConfig ()
 	//
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.
 	ToString() *string
 	// Return the subject configuration.
-	// See: ISubect.toSubjectConfiguration()
+	// See: ISubect.toSubjectConfiguration ()
 	//
 	ToSubjectConfiguration() *SubjectConfiguration
 }
