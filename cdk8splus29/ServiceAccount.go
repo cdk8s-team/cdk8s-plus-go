@@ -59,7 +59,7 @@ type ServiceAccount interface {
 	// Returns a string representation of this construct.
 	ToString() *string
 	// Return the subject configuration.
-	// See: ISubect.toSubjectConfiguration()
+	// See: ISubect.toSubjectConfiguration ()
 	//
 	ToSubjectConfiguration() *SubjectConfiguration
 }

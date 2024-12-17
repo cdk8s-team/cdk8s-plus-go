@@ -21,12 +21,12 @@ import (
 // The following are typical use cases for Deployments:
 //
 // - Create a Deployment to rollout a ReplicaSet. The ReplicaSet creates Pods in the background.
-//    Check the status of the rollout to see if it succeeds or not.
+//   Check the status of the rollout to see if it succeeds or not.
 // - Declare the new state of the Pods by updating the PodTemplateSpec of the Deployment.
-//    A new ReplicaSet is created and the Deployment manages moving the Pods from the old ReplicaSet to the new one at a controlled rate.
-//    Each new ReplicaSet updates the revision of the Deployment.
+//   A new ReplicaSet is created and the Deployment manages moving the Pods from the old ReplicaSet to the new one at a controlled rate.
+//   Each new ReplicaSet updates the revision of the Deployment.
 // - Rollback to an earlier Deployment revision if the current state of the Deployment is not stable.
-//    Each rollback updates the revision of the Deployment.
+//   Each rollback updates the revision of the Deployment.
 // - Scale up the Deployment to facilitate more load.
 // - Pause the Deployment to apply multiple fixes to its PodTemplateSpec and then resume it to start a new rollout.
 // - Use the status of the Deployment as an indicator that a rollout has stuck.
@@ -109,31 +109,31 @@ type Deployment interface {
 	// This is equivalent to running `kubectl expose deployment <deployment-name>`.
 	ExposeViaService(options *DeploymentExposeViaServiceOptions) Service
 	// Called on all IScalable targets when they are associated with an autoscaler.
-	// See: IScalable.markHasAutoscaler()
+	// See: IScalable.markHasAutoscaler ()
 	//
 	MarkHasAutoscaler()
 	// Configure selectors for this workload.
 	Select(selectors ...LabelSelector)
 	// Return the configuration of this peer.
-	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig ()
 	//
 	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
 	// Convert the peer into a pod selector, if possible.
-	// See: INetworkPolicyPeer.toPodSelector()
+	// See: INetworkPolicyPeer.toPodSelector ()
 	//
 	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
-	// See: IPodSelector.toPodSelectorConfig()
+	// See: IPodSelector.toPodSelectorConfig ()
 	//
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Return the target spec properties of this Scalable.
-	// See: IScalable.toScalingTarget()
+	// See: IScalable.toScalingTarget ()
 	//
 	ToScalingTarget() *ScalingTarget
 	// Returns a string representation of this construct.
 	ToString() *string
 	// Return the subject configuration.
-	// See: ISubect.toSubjectConfiguration()
+	// See: ISubect.toSubjectConfiguration ()
 	//
 	ToSubjectConfiguration() *SubjectConfiguration
 }

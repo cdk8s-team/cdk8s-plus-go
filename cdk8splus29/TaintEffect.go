@@ -14,7 +14,7 @@ const (
 	// - Pods that do not tolerate the taint are evicted immediately.
 	// - Pods that tolerate the taint without specifying `duration` remain bound forever.
 	// - Pods that tolerate the taint with a specified `duration` remain bound for
-	//    the specified amount of time.
+	//   the specified amount of time.
 	TaintEffect_NO_EXECUTE TaintEffect = "NO_EXECUTE"
 )
 

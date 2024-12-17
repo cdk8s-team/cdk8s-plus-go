@@ -11,15 +11,15 @@ import (
 // Control traffic flow at the IP address or port level (OSI layer 3 or 4), network policies are an application-centric construct which allow you to specify how a pod is allowed to communicate with various network peers.
 //
 // - Outgoing traffic is allowed if there are no network policies selecting
-//    the pod (and cluster policy otherwise allows the traffic),
-//    OR if the traffic matches at least one egress rule across all of the
-//    network policies that select the pod.
+//   the pod (and cluster policy otherwise allows the traffic),
+//   OR if the traffic matches at least one egress rule across all of the
+//   network policies that select the pod.
 //
 // - Incoming traffic is allowed to a pod if there are no network policies
-//    selecting the pod (and cluster policy otherwise allows the traffic),
-//    OR if the traffic source is the pod's local node,
-//    OR if the traffic matches at least one ingress rule across all of
-//    the network policies that select the pod.
+//   selecting the pod (and cluster policy otherwise allows the traffic),
+//   OR if the traffic source is the pod's local node,
+//   OR if the traffic matches at least one ingress rule across all of
+//   the network policies that select the pod.
 //
 // Network policies do not conflict; they are additive.
 // If any policy or policies apply to a given pod for a given

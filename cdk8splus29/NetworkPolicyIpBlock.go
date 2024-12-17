@@ -23,11 +23,11 @@ type NetworkPolicyIpBlock interface {
 	// The tree node.
 	Node() constructs.Node
 	// Return the configuration of this peer.
-	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig ()
 	//
 	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
 	// Convert the peer into a pod selector, if possible.
-	// See: INetworkPolicyPeer.toPodSelector()
+	// See: INetworkPolicyPeer.toPodSelector ()
 	//
 	ToPodSelector() IPodSelector
 	// Returns a string representation of this construct.

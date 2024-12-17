@@ -19,9 +19,9 @@ type WorkloadScheduling interface {
 	// Some limitations of static assignment are:
 	//
 	// - If the named node does not exist, the Pod will not run, and in some
-	//    cases may be automatically deleted.
+	//   cases may be automatically deleted.
 	// - If the named node does not have the resources to accommodate the Pod,
-	//    the Pod will fail and its reason will indicate why, for example OutOfmemory or OutOfcpu.
+	//   the Pod will fail and its reason will indicate why, for example OutOfmemory or OutOfcpu.
 	// - Node names in cloud environments are not always predictable or stable.
 	//
 	// Will throw is the pod is already assigned to named node.
@@ -81,12 +81,12 @@ type WorkloadScheduling interface {
 	// the remaining un-ignored taints have the indicated effects on the pod. In particular:
 	//
 	// - if there is at least one un-ignored taint with effect NoSchedule then Kubernetes will
-	//    not schedule the pod onto that node
+	//   not schedule the pod onto that node
 	// - if there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored
-	//    taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node
+	//   taint with effect PreferNoSchedule then Kubernetes will try to not schedule the pod onto the node
 	// - if there is at least one un-ignored taint with effect NoExecute then the pod will be evicted from
-	//    the node (if it is already running on the node), and will not be scheduled onto the node (if it is
-	//    not yet running on the node).
+	//   the node (if it is already running on the node), and will not be scheduled onto the node (if it is
+	//   not yet running on the node).
 	//
 	// Under the hood, this method utilizes the `tolerations` property.
 	// See: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
