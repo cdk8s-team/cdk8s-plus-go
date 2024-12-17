@@ -14,14 +14,14 @@ type Pods interface {
 	IPodSelector
 	// The tree node.
 	Node() constructs.Node
-	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig()
+	// See: INetworkPolicyPeer.toNetworkPolicyPeerConfig ()
 	//
 	ToNetworkPolicyPeerConfig() *NetworkPolicyPeerConfig
-	// See: INetworkPolicyPeer.toPodSelector()
+	// See: INetworkPolicyPeer.toPodSelector ()
 	//
 	ToPodSelector() IPodSelector
 	// Return the configuration of this selector.
-	// See: IPodSelector.toPodSelectorConfig()
+	// See: IPodSelector.toPodSelectorConfig ()
 	//
 	ToPodSelectorConfig() *PodSelectorConfig
 	// Returns a string representation of this construct.

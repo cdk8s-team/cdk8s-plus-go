@@ -13,7 +13,7 @@ const (
 	// An administrator can manually reclaim the volume with the following steps:
 	//
 	// 1. Delete the PersistentVolume. The associated storage asset in external
-	//     infrastructure (such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume) still exists after the PV is deleted.
+	//    infrastructure (such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume) still exists after the PV is deleted.
 	// 2. Manually clean up the data on the associated storage asset accordingly.
 	// 3. Manually delete the associated storage asset.
 	//

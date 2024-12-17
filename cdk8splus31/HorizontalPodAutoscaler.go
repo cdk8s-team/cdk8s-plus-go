@@ -19,8 +19,8 @@ import (
 // * When Memory usage is above 70%, scale up the number of replicas to meet the demand.
 // * When CPU usage is below 30%, scale down the number of replicas to save resources.
 // * When a service is experiencing a spike in traffic, scale up the number of replicas
-//    to meet the demand. Then, when the traffic subsides, scale down the number of
-//    replicas to save resources.
+//   to meet the demand. Then, when the traffic subsides, scale down the number of
+//   replicas to save resources.
 //
 // The autoscaler uses the following algorithm to determine the number of replicas to scale:
 //
