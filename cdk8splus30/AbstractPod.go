@@ -45,6 +45,7 @@ type AbstractPod interface {
 	RestartPolicy() RestartPolicy
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
+	ShareProcessNamespace() *bool
 	TerminationGracePeriod() cdk8s.Duration
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
@@ -299,6 +300,16 @@ func (j *jsiiProxy_AbstractPod) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_AbstractPod) ShareProcessNamespace() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"shareProcessNamespace",
 		&returns,
 	)
 	return returns
