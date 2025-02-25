@@ -68,6 +68,7 @@ type Job interface {
 	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
+	ShareProcessNamespace() *bool
 	TerminationGracePeriod() cdk8s.Duration
 	// TTL before the job is deleted after it is finished.
 	TtlAfterFinished() cdk8s.Duration
@@ -383,6 +384,16 @@ func (j *jsiiProxy_Job) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Job) ShareProcessNamespace() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"shareProcessNamespace",
 		&returns,
 	)
 	return returns

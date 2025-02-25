@@ -88,6 +88,7 @@ type Deployment interface {
 	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
+	ShareProcessNamespace() *bool
 	Strategy() DeploymentStrategy
 	TerminationGracePeriod() cdk8s.Duration
 	Volumes() *[]Volume
@@ -439,6 +440,16 @@ func (j *jsiiProxy_Deployment) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) ShareProcessNamespace() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"shareProcessNamespace",
 		&returns,
 	)
 	return returns

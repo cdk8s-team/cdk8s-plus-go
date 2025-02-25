@@ -87,6 +87,12 @@ type DeploymentProps struct {
 	// Default: - No service account.
 	//
 	ServiceAccount IServiceAccount `field:"optional" json:"serviceAccount" yaml:"serviceAccount"`
+	// When process namespace sharing is enabled, processes in a container are visible to all other containers in the same pod.
+	// See: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
+	//
+	// Default: false.
+	//
+	ShareProcessNamespace *bool `field:"optional" json:"shareProcessNamespace" yaml:"shareProcessNamespace"`
 	// Grace period until the pod is terminated.
 	// Default: Duration.seconds(30)
 	//

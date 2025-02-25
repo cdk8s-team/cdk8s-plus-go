@@ -90,6 +90,7 @@ type StatefulSet interface {
 	SecurityContext() PodSecurityContext
 	Service() Service
 	ServiceAccount() IServiceAccount
+	ShareProcessNamespace() *bool
 	// The update startegy of this stateful set.
 	Strategy() StatefulSetUpdateStrategy
 	TerminationGracePeriod() cdk8s.Duration
@@ -444,6 +445,16 @@ func (j *jsiiProxy_StatefulSet) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) ShareProcessNamespace() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"shareProcessNamespace",
 		&returns,
 	)
 	return returns
