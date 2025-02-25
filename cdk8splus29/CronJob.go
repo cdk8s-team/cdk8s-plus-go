@@ -64,6 +64,7 @@ type CronJob interface {
 	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
+	ShareProcessNamespace() *bool
 	// The time by which the running cron job needs to schedule the next job execution.
 	//
 	// The job is considered as failed if it misses this deadline.
@@ -397,6 +398,16 @@ func (j *jsiiProxy_CronJob) ServiceAccount() IServiceAccount {
 	_jsii_.Get(
 		j,
 		"serviceAccount",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_CronJob) ShareProcessNamespace() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"shareProcessNamespace",
 		&returns,
 	)
 	return returns
