@@ -48,6 +48,7 @@ type StatefulSet interface {
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() ISecret
+	EnableServiceLinks() *bool
 	// If this is a target of an autoscaler.
 	HasAutoscaler() *bool
 	SetHasAutoscaler(val *bool)
@@ -215,6 +216,16 @@ func (j *jsiiProxy_StatefulSet) DockerRegistryAuth() ISecret {
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_StatefulSet) EnableServiceLinks() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"enableServiceLinks",
 		&returns,
 	)
 	return returns

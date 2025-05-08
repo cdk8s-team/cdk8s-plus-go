@@ -38,6 +38,7 @@ type DaemonSet interface {
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() ISecret
+	EnableServiceLinks() *bool
 	HostAliases() *[]*HostAlias
 	HostNetwork() *bool
 	InitContainers() *[]Container
@@ -185,6 +186,16 @@ func (j *jsiiProxy_DaemonSet) DockerRegistryAuth() ISecret {
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_DaemonSet) EnableServiceLinks() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"enableServiceLinks",
 		&returns,
 	)
 	return returns
