@@ -28,6 +28,7 @@ type CronJob interface {
 	Containers() *[]Container
 	Dns() PodDns
 	DockerRegistryAuth() ISecret
+	EnableServiceLinks() *bool
 	// The number of failed jobs retained by this cron job.
 	FailedJobsRetained() *float64
 	HostAliases() *[]*HostAlias
@@ -198,6 +199,16 @@ func (j *jsiiProxy_CronJob) DockerRegistryAuth() ISecret {
 	_jsii_.Get(
 		j,
 		"dockerRegistryAuth",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_CronJob) EnableServiceLinks() *bool {
+	var returns *bool
+	_jsii_.Get(
+		j,
+		"enableServiceLinks",
 		&returns,
 	)
 	return returns
