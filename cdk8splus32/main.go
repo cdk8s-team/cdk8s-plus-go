@@ -1028,6 +1028,10 @@ func init() {
 		"cdk8s-plus-32.HttpGetProbeOptions",
 		reflect.TypeOf((*HttpGetProbeOptions)(nil)).Elem(),
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-32.HttpHeader",
+		reflect.TypeOf((*HttpHeader)(nil)).Elem(),
+	)
 	_jsii_.RegisterEnum(
 		"cdk8s-plus-32.HttpIngressPathType",
 		reflect.TypeOf((*HttpIngressPathType)(nil)).Elem(),
