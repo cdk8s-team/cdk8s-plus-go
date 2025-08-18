@@ -948,6 +948,10 @@ func init() {
 			return &j
 		},
 	)
+	_jsii_.RegisterStruct(
+		"cdk8s-plus-32.GrpcProbeOptions",
+		reflect.TypeOf((*GrpcProbeOptions)(nil)).Elem(),
+	)
 	_jsii_.RegisterClass(
 		"cdk8s-plus-32.Handler",
 		reflect.TypeOf((*Handler)(nil)).Elem(),
