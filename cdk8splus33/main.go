@@ -691,6 +691,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "restartPolicy", GoGetter: "RestartPolicy"},
+			_jsii_.MemberProperty{JsiiProperty: "revisionHistoryLimit", GoGetter: "RevisionHistoryLimit"},
 			_jsii_.MemberProperty{JsiiProperty: "scheduling", GoGetter: "Scheduling"},
 			_jsii_.MemberProperty{JsiiProperty: "securityContext", GoGetter: "SecurityContext"},
 			_jsii_.MemberMethod{JsiiMethod: "select", GoMethod: "Select"},
