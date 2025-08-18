@@ -42,6 +42,12 @@ type HttpGetProbeOptions struct {
 	// Default: - defaults to the pod IP.
 	//
 	Host *string `field:"optional" json:"host" yaml:"host"`
+	// Custom HTTP headers to set in the probe request.
+	//
+	// Note that HTTP allows repeated headers.
+	// Default: - no custom headers are set.
+	//
+	HttpHeaders *[]*HttpHeader `field:"optional" json:"httpHeaders" yaml:"httpHeaders"`
 	// The TCP port to use when sending the GET request.
 	// Default: - defaults to `container.port`.
 	//
