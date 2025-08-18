@@ -86,6 +86,10 @@ type Deployment interface {
 	// The name of a resource type as it appears in the relevant API endpoint.
 	ResourceType() *string
 	RestartPolicy() RestartPolicy
+	// Number of desired replicasets history.
+	// Default: 10.
+	//
+	RevisionHistoryLimit() *float64
 	Scheduling() WorkloadScheduling
 	SecurityContext() PodSecurityContext
 	ServiceAccount() IServiceAccount
@@ -421,6 +425,16 @@ func (j *jsiiProxy_Deployment) RestartPolicy() RestartPolicy {
 	_jsii_.Get(
 		j,
 		"restartPolicy",
+		&returns,
+	)
+	return returns
+}
+
+func (j *jsiiProxy_Deployment) RevisionHistoryLimit() *float64 {
+	var returns *float64
+	_jsii_.Get(
+		j,
+		"revisionHistoryLimit",
 		&returns,
 	)
 	return returns

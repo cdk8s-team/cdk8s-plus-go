@@ -150,6 +150,12 @@ type DeploymentProps struct {
 	// Default: 2.
 	//
 	Replicas *float64 `field:"optional" json:"replicas" yaml:"replicas"`
+	// Specify how many old ReplicaSets for this Deployment you want to retain.
+	//
+	// The rest will be garbage-collected in the background. By default, it is 10.
+	// Default: 10.
+	//
+	RevisionHistoryLimit *float64 `field:"optional" json:"revisionHistoryLimit" yaml:"revisionHistoryLimit"`
 	// Specifies the strategy used to replace old Pods by new ones.
 	// Default: - RollingUpdate with maxSurge and maxUnavailable set to 25%.
 	//
