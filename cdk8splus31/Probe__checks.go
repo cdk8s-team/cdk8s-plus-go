@@ -20,6 +20,14 @@ func validateProbe_FromCommandParameters(command *[]*string, options *CommandPro
 	return nil
 }
 
+func validateProbe_FromGrpcParameters(options *GrpcProbeOptions) error {
+	if err := _jsii_.ValidateStruct(options, func() string { return "parameter options" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func validateProbe_FromHttpGetParameters(path *string, options *HttpGetProbeOptions) error {
 	if path == nil {
 		return fmt.Errorf("parameter path is required, but nil was provided")

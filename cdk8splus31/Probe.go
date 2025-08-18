@@ -33,6 +33,25 @@ func Probe_FromCommand(command *[]*string, options *CommandProbeOptions) Probe {
 	return returns
 }
 
+// Defines a probe based on a gRPC request to the container.
+func Probe_FromGrpc(options *GrpcProbeOptions) Probe {
+	_init_.Initialize()
+
+	if err := validateProbe_FromGrpcParameters(options); err != nil {
+		panic(err)
+	}
+	var returns Probe
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-31.Probe",
+		"fromGrpc",
+		[]interface{}{options},
+		&returns,
+	)
+
+	return returns
+}
+
 // Defines a probe based on an HTTP GET request to the IP address of the container.
 func Probe_FromHttpGet(path *string, options *HttpGetProbeOptions) Probe {
 	_init_.Initialize()
