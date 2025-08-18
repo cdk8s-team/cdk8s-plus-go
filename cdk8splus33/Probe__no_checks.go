@@ -8,6 +8,10 @@ func validateProbe_FromCommandParameters(command *[]*string, options *CommandPro
 	return nil
 }
 
+func validateProbe_FromGrpcParameters(options *GrpcProbeOptions) error {
+	return nil
+}
+
 func validateProbe_FromHttpGetParameters(path *string, options *HttpGetProbeOptions) error {
 	return nil
 }
