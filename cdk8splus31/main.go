@@ -1801,6 +1801,10 @@ func init() {
 		reflect.TypeOf((*PersistentVolumeClaimProps)(nil)).Elem(),
 	)
 	_jsii_.RegisterStruct(
+		"cdk8s-plus-31.PersistentVolumeClaimTemplateProps",
+		reflect.TypeOf((*PersistentVolumeClaimTemplateProps)(nil)).Elem(),
+	)
+	_jsii_.RegisterStruct(
 		"cdk8s-plus-31.PersistentVolumeClaimVolumeOptions",
 		reflect.TypeOf((*PersistentVolumeClaimVolumeOptions)(nil)).Elem(),
 	)
@@ -2424,6 +2428,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "addHostAlias", GoMethod: "AddHostAlias"},
 			_jsii_.MemberMethod{JsiiMethod: "addInitContainer", GoMethod: "AddInitContainer"},
 			_jsii_.MemberMethod{JsiiMethod: "addVolume", GoMethod: "AddVolume"},
+			_jsii_.MemberMethod{JsiiMethod: "addVolumeClaimTemplate", GoMethod: "AddVolumeClaimTemplate"},
 			_jsii_.MemberProperty{JsiiProperty: "apiGroup", GoGetter: "ApiGroup"},
 			_jsii_.MemberProperty{JsiiProperty: "apiObject", GoGetter: "ApiObject"},
 			_jsii_.MemberProperty{JsiiProperty: "apiVersion", GoGetter: "ApiVersion"},
@@ -2470,6 +2475,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toScalingTarget", GoMethod: "ToScalingTarget"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberProperty{JsiiProperty: "volumeClaimTemplates", GoGetter: "VolumeClaimTemplates"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
 		},
 		func() interface{} {

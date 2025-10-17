@@ -95,11 +95,14 @@ type StatefulSet interface {
 	// The update startegy of this stateful set.
 	Strategy() StatefulSetUpdateStrategy
 	TerminationGracePeriod() cdk8s.Duration
+	VolumeClaimTemplates() *[]*PersistentVolumeClaimTemplateProps
+	SetVolumeClaimTemplates(val *[]*PersistentVolumeClaimTemplateProps)
 	Volumes() *[]Volume
 	AddContainer(cont *ContainerProps) Container
 	AddHostAlias(hostAlias *HostAlias)
 	AddInitContainer(cont *ContainerProps) Container
 	AddVolume(vol Volume)
+	AddVolumeClaimTemplate(template *PersistentVolumeClaimTemplateProps)
 	// Return the IApiResource this object represents.
 	AsApiResource() IApiResource
 	// Return the non resource url this object represents.
@@ -491,6 +494,16 @@ func (j *jsiiProxy_StatefulSet) TerminationGracePeriod() cdk8s.Duration {
 	return returns
 }
 
+func (j *jsiiProxy_StatefulSet) VolumeClaimTemplates() *[]*PersistentVolumeClaimTemplateProps {
+	var returns *[]*PersistentVolumeClaimTemplateProps
+	_jsii_.Get(
+		j,
+		"volumeClaimTemplates",
+		&returns,
+	)
+	return returns
+}
+
 func (j *jsiiProxy_StatefulSet) Volumes() *[]Volume {
 	var returns *[]Volume
 	_jsii_.Get(
@@ -536,6 +549,17 @@ func (j *jsiiProxy_StatefulSet)SetHasAutoscaler(val *bool) {
 	_jsii_.Set(
 		j,
 		"hasAutoscaler",
+		val,
+	)
+}
+
+func (j *jsiiProxy_StatefulSet)SetVolumeClaimTemplates(val *[]*PersistentVolumeClaimTemplateProps) {
+	if err := j.validateSetVolumeClaimTemplatesParameters(val); err != nil {
+		panic(err)
+	}
+	_jsii_.Set(
+		j,
+		"volumeClaimTemplates",
 		val,
 	)
 }
@@ -626,6 +650,17 @@ func (s *jsiiProxy_StatefulSet) AddVolume(vol Volume) {
 		s,
 		"addVolume",
 		[]interface{}{vol},
+	)
+}
+
+func (s *jsiiProxy_StatefulSet) AddVolumeClaimTemplate(template *PersistentVolumeClaimTemplateProps) {
+	if err := s.validateAddVolumeClaimTemplateParameters(template); err != nil {
+		panic(err)
+	}
+	_jsii_.InvokeVoid(
+		s,
+		"addVolumeClaimTemplate",
+		[]interface{}{template},
 	)
 }
 

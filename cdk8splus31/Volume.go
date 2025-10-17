@@ -251,6 +251,25 @@ func Volume_FromHostPath(scope constructs.Construct, id *string, name *string, o
 	return returns
 }
 
+// Create a volume with an arbitrary name and no configuration.
+func Volume_FromName(scope constructs.Construct, id *string, name *string) Volume {
+	_init_.Initialize()
+
+	if err := validateVolume_FromNameParameters(scope, id, name); err != nil {
+		panic(err)
+	}
+	var returns Volume
+
+	_jsii_.StaticInvoke(
+		"cdk8s-plus-31.Volume",
+		"fromName",
+		[]interface{}{scope, id, name},
+		&returns,
+	)
+
+	return returns
+}
+
 // Used to mount an NFS share into a Pod.
 // See: https://kubernetes.io/docs/concepts/storage/volumes/#nfs
 //
