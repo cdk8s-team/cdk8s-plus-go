@@ -157,6 +157,22 @@ func validateVolume_FromHostPathParameters(scope constructs.Construct, id *strin
 	return nil
 }
 
+func validateVolume_FromNameParameters(scope constructs.Construct, id *string, name *string) error {
+	if scope == nil {
+		return fmt.Errorf("parameter scope is required, but nil was provided")
+	}
+
+	if id == nil {
+		return fmt.Errorf("parameter id is required, but nil was provided")
+	}
+
+	if name == nil {
+		return fmt.Errorf("parameter name is required, but nil was provided")
+	}
+
+	return nil
+}
+
 func validateVolume_FromNfsParameters(scope constructs.Construct, id *string, name *string, options *NfsVolumeOptions) error {
 	if scope == nil {
 		return fmt.Errorf("parameter scope is required, but nil was provided")
