@@ -152,5 +152,14 @@ type StatefulSetProps struct {
 	// Default: - RollingUpdate with partition set to 0.
 	//
 	Strategy StatefulSetUpdateStrategy `field:"optional" json:"strategy" yaml:"strategy"`
+	// A list of PersistentVolumeClaim templates that will be created for each pod in the StatefulSet.
+	//
+	// The StatefulSet controller creates a PVC and a PV for each template based on the pod's ordinal index,
+	// ensuring stable storage across pod restarts and rescheduling.
+	//
+	// Each claim in this list must have at least one matching (by name) volumeMount in one of the containers.
+	// Default: - No volume claim templates will be created.
+	//
+	VolumeClaimTemplates *[]*PersistentVolumeClaimTemplateProps `field:"optional" json:"volumeClaimTemplates" yaml:"volumeClaimTemplates"`
 }
 

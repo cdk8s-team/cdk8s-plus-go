@@ -51,6 +51,17 @@ func (s *jsiiProxy_StatefulSet) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (s *jsiiProxy_StatefulSet) validateAddVolumeClaimTemplateParameters(template *PersistentVolumeClaimTemplateProps) error {
+	if template == nil {
+		return fmt.Errorf("parameter template is required, but nil was provided")
+	}
+	if err := _jsii_.ValidateStruct(template, func() string { return "parameter template" }); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (s *jsiiProxy_StatefulSet) validateAttachContainerParameters(cont Container) error {
 	if cont == nil {
 		return fmt.Errorf("parameter cont is required, but nil was provided")
@@ -70,6 +81,16 @@ func validateStatefulSet_IsConstructParameters(x interface{}) error {
 func (j *jsiiProxy_StatefulSet) validateSetHasAutoscalerParameters(val *bool) error {
 	if val == nil {
 		return fmt.Errorf("parameter val is required, but nil was provided")
+	}
+
+	return nil
+}
+
+func (j *jsiiProxy_StatefulSet) validateSetVolumeClaimTemplatesParameters(val *[]*PersistentVolumeClaimTemplateProps) error {
+	for idx_97dfc6, v := range *val {
+		if err := _jsii_.ValidateStruct(v, func() string { return fmt.Sprintf("parameter val[%#v]", idx_97dfc6) }); err != nil {
+			return err
+		}
 	}
 
 	return nil

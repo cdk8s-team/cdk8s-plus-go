@@ -32,6 +32,10 @@ func validateVolume_FromHostPathParameters(scope constructs.Construct, id *strin
 	return nil
 }
 
+func validateVolume_FromNameParameters(scope constructs.Construct, id *string, name *string) error {
+	return nil
+}
+
 func validateVolume_FromNfsParameters(scope constructs.Construct, id *string, name *string, options *NfsVolumeOptions) error {
 	return nil
 }

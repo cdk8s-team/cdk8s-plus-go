@@ -20,6 +20,10 @@ func (s *jsiiProxy_StatefulSet) validateAddVolumeParameters(vol Volume) error {
 	return nil
 }
 
+func (s *jsiiProxy_StatefulSet) validateAddVolumeClaimTemplateParameters(template *PersistentVolumeClaimTemplateProps) error {
+	return nil
+}
+
 func (s *jsiiProxy_StatefulSet) validateAttachContainerParameters(cont Container) error {
 	return nil
 }
@@ -29,6 +33,10 @@ func validateStatefulSet_IsConstructParameters(x interface{}) error {
 }
 
 func (j *jsiiProxy_StatefulSet) validateSetHasAutoscalerParameters(val *bool) error {
+	return nil
+}
+
+func (j *jsiiProxy_StatefulSet) validateSetVolumeClaimTemplatesParameters(val *[]*PersistentVolumeClaimTemplateProps) error {
 	return nil
 }
 
