@@ -50,6 +50,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_AbstractPod{}
@@ -123,6 +124,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volumeId", GoGetter: "VolumeId"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_AwsElasticBlockStorePersistentVolume{}
@@ -171,6 +173,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
 			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_AzureDiskPersistentVolume{}
@@ -225,6 +228,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_BasicAuthSecret{}
@@ -317,6 +321,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "rules", GoGetter: "Rules"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ClusterRole{}
@@ -346,6 +351,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "role", GoGetter: "Role"},
 			_jsii_.MemberProperty{JsiiProperty: "subjects", GoGetter: "Subjects"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ClusterRoleBinding{}
@@ -406,6 +412,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ConfigMap{}
@@ -575,6 +582,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_CronJob{}
@@ -638,6 +646,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_DaemonSet{}
@@ -706,6 +715,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Deployment{}
@@ -769,6 +779,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_DockerConfigSecret{}
@@ -915,6 +926,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
 			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_GCEPersistentDiskPersistentVolume{}
@@ -940,6 +952,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Group{}
@@ -991,6 +1004,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "scaleUp", GoGetter: "ScaleUp"},
 			_jsii_.MemberProperty{JsiiProperty: "target", GoGetter: "Target"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_HorizontalPodAutoscaler{}
@@ -1075,6 +1089,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IClusterRole{}
@@ -1093,6 +1108,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IConfigMap{}
@@ -1106,6 +1122,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toNamespaceSelectorConfig", GoMethod: "ToNamespaceSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_INamespaceSelector{}
@@ -1120,6 +1137,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_INetworkPolicyPeer{}
@@ -1138,6 +1156,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IPersistentVolume{}
@@ -1156,6 +1175,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IPersistentVolumeClaim{}
@@ -1169,6 +1189,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IPodSelector{}
@@ -1187,6 +1208,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IResource{}
@@ -1206,6 +1228,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IRole{}
@@ -1237,6 +1260,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ISecret{}
@@ -1256,6 +1280,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IServiceAccount{}
@@ -1270,6 +1295,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberMethod{JsiiMethod: "asVolume", GoMethod: "AsVolume"},
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_IStorage{}
@@ -1283,6 +1309,7 @@ func init() {
 		[]_jsii_.Member{
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ISubject{}
@@ -1322,6 +1349,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Ingress{}
@@ -1399,6 +1427,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "ttlAfterFinished", GoGetter: "TtlAfterFinished"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Job{}
@@ -1527,6 +1556,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Namespace{}
@@ -1553,6 +1583,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Namespaces{}
@@ -1585,6 +1616,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_NetworkPolicy{}
@@ -1606,6 +1638,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toNetworkPolicyPeerConfig", GoMethod: "ToNetworkPolicyPeerConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_NetworkPolicyIpBlock{}
@@ -1746,6 +1779,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "storage", GoGetter: "Storage"},
 			_jsii_.MemberProperty{JsiiProperty: "storageClassName", GoGetter: "StorageClassName"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_PersistentVolume{}
@@ -1788,6 +1822,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "volume", GoGetter: "Volume"},
 			_jsii_.MemberProperty{JsiiProperty: "volumeMode", GoGetter: "VolumeMode"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_PersistentVolumeClaim{}
@@ -1872,6 +1907,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Pod{}
@@ -2002,6 +2038,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelector", GoMethod: "ToPodSelector"},
 			_jsii_.MemberMethod{JsiiMethod: "toPodSelectorConfig", GoMethod: "ToPodSelectorConfig"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Pods{}
@@ -2064,6 +2101,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Resource{}
@@ -2141,6 +2179,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberProperty{JsiiProperty: "rules", GoGetter: "Rules"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Role{}
@@ -2169,6 +2208,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "role", GoGetter: "Role"},
 			_jsii_.MemberProperty{JsiiProperty: "subjects", GoGetter: "Subjects"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_RoleBinding{}
@@ -2243,6 +2283,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Secret{}
@@ -2289,6 +2330,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "selectLabel", GoMethod: "SelectLabel"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberProperty{JsiiProperty: "type", GoGetter: "Type"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Service{}
@@ -2317,6 +2359,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "secrets", GoGetter: "Secrets"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ServiceAccount{}
@@ -2351,6 +2394,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_ServiceAccountTokenSecret{}
@@ -2409,6 +2453,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_SshAuthSecret{}
@@ -2477,6 +2522,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumeClaimTemplates", GoGetter: "VolumeClaimTemplates"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_StatefulSet{}
@@ -2553,6 +2599,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "resourceName", GoGetter: "ResourceName"},
 			_jsii_.MemberProperty{JsiiProperty: "resourceType", GoGetter: "ResourceType"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_TlsSecret{}
@@ -2584,6 +2631,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_User{}
@@ -2600,6 +2648,7 @@ func init() {
 			_jsii_.MemberProperty{JsiiProperty: "name", GoGetter: "Name"},
 			_jsii_.MemberProperty{JsiiProperty: "node", GoGetter: "Node"},
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Volume{}
@@ -2659,6 +2708,7 @@ func init() {
 			_jsii_.MemberMethod{JsiiMethod: "toString", GoMethod: "ToString"},
 			_jsii_.MemberMethod{JsiiMethod: "toSubjectConfiguration", GoMethod: "ToSubjectConfiguration"},
 			_jsii_.MemberProperty{JsiiProperty: "volumes", GoGetter: "Volumes"},
+			_jsii_.MemberMethod{JsiiMethod: "with", GoMethod: "With"},
 		},
 		func() interface{} {
 			j := jsiiProxy_Workload{}
